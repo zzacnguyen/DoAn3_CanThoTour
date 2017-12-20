@@ -59,8 +59,7 @@ Route::get('test', 'timkiemController@test');
 
 Route::post('upload-image','hinhanhController@Upload');
 Route::get('lay-mot-hinh-icon/{id}', 'hinhanhController@LayMotIcon');
-Route::get('lay-mot-hinh-thumb1/{id}', 'hinhanhController@LayMotThumb1');
-Route::get('lay-mot-hinh-thumb2/{id}', 'hinhanhController@LayMotThumb2');
+Route::get('lay-mot-hinh-thumb/{id}', 'hinhanhController@LayMotThumb');
 Route::get('lay-mot-hinh-chi-tiet-1/{id}', 'hinhanhController@LayMotHinhChiTiet1');
 Route::get('lay-mot-hinh-chi-tiet-2/{id}', 'hinhanhController@LayMotHinhChiTiet2');
 

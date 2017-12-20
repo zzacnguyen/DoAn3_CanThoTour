@@ -12,25 +12,30 @@ use DateTime;
 class hinhanhController extends Controller
 {
     
-    public function layhinhanh($id_dich_vu)
+    public function LayMotIcon($id_dich_vu)
     {
-        $url  = 'http://localhost/doan3/public/icons/';
+        $url  = 'http://localhost/DoAn3_CanThoTour/public/icons/';
         $string_replace = '","id":';
         $ha_icon = DB::table('dlct_hinhanh') 
-        ->select('hinhanh','id')
+        ->select('chitiet1','id')
         ->where('dv_iddichvu', $id_dich_vu)->get();
         $chuoi_can_cat_icon = $ha_icon;
-        $chuoi_da_cat_icon = substr ( $chuoi_can_cat_icon ,13);
-        echo $chuoi_da_cat_icon;
+        $chuoi_da_cat_icon = substr ( $chuoi_can_cat_icon ,14);
+        $arr[]= (explode ('","' , $chuoi_da_cat_icon));
+        $ten_hinh_anh = ($arr[0][0]);
+        $cat_ben_phai= rtrim($chuoi_da_cat_icon, '"}]');
+        $ket_qua_hinh_anh =  str_replace($string_replace , '+', $cat_ben_phai);
+        $duong_dan_hinh_anh_chua_cat = $url.$ket_qua_hinh_anh.'+'.$ten_hinh_anh;
+        return json_encode($duong_dan_hinh_anh_chua_cat, JSON_UNESCAPED_SLASHES);
     }
-    public function LayMotThumb1($id_dia_diem)
+    public function LayMotThumb($id_dich_vu)
     {
-        $url  = 'http://localhost/doan3/public/images/';
+        $url  = 'http://localhost/DoAn3_CanThoTour/public/thumbnails/';
         $string_replace = '","id":';
-        $ha_thumb = DB::table('dlct_hinhanh') ->select('ha_thumb1','id')
-        ->where('dd_iddiadiem', $id_dia_diem)->get();
+        $ha_thumb = DB::table('dlct_hinhanh') ->select('chitiet1','id')
+        ->where('dv_iddichvu', $id_dich_vu)->get();
         $chuoi_can_cat_thumb = $ha_thumb;
-        $chuoi_da_cat_thumb = substr ( $chuoi_can_cat_thumb ,15);
+        $chuoi_da_cat_thumb = substr ( $chuoi_can_cat_thumb ,14);
         $arr[]= (explode ('","' , $chuoi_da_cat_thumb));
         $ten_hinh_anh = ($arr[0][0]);
         $cat_ben_phai= rtrim($chuoi_da_cat_thumb, '"}]');
@@ -38,29 +43,15 @@ class hinhanhController extends Controller
         $duong_dan_hinh_anh_chua_cat = $url.$ket_qua_hinh_anh.'+'.$ten_hinh_anh;
         return json_encode($duong_dan_hinh_anh_chua_cat, JSON_UNESCAPED_SLASHES);
     }
-    public function LayMotThumb2($id_dia_diem)
+    public function LayMotHinhChiTiet1($id_dich_vu)
     {
-        $url  = 'http://localhost/doan3/public/images/';
+        $url  = 'http://localhost/DoAn3_CanThoTour/public/chitiet1/';
         $string_replace = '","id":';
-        $ha_thumb = DB::table('dlct_hinhanh') ->select('ha_thumb2','id')
-        ->where('dd_iddiadiem', $id_dia_diem)->get();
-        $chuoi_can_cat_thumb = $ha_thumb;
-        $chuoi_da_cat_thumb = substr ( $chuoi_can_cat_thumb ,15);
-        $arr[]= (explode ('","' , $chuoi_da_cat_thumb));
-        $ten_hinh_anh = ($arr[0][0]);
-        $cat_ben_phai= rtrim($chuoi_da_cat_thumb, '"}]');
-        $ket_qua_hinh_anh =  str_replace($string_replace , '+', $cat_ben_phai);
-        $duong_dan_hinh_anh_chua_cat = $url.$ket_qua_hinh_anh.'+'.$ten_hinh_anh;
-        return json_encode($duong_dan_hinh_anh_chua_cat, JSON_UNESCAPED_SLASHES);
-    }
-    public function LayMotHinhChiTiet1($id_dia_diem)
-    {
-        $url  = 'http://localhost/doan3/public/images/';
-        $string_replace = '","id":';
-        $ha_chi_tiet = DB::table('dlct_hinhanh') ->select('ha_hinhchitiet1','id')
-        ->where('dd_iddiadiem', $id_dia_diem)->get();
+        $ha_chi_tiet = DB::table('dlct_hinhanh') 
+        ->select('chitiet1','id')
+        ->where('dv_iddichvu', $id_dich_vu)->get();
         $chuoi_can_cat_chi_tiet = $ha_chi_tiet;
-        $chuoi_da_cat_chi_tiet = substr ( $chuoi_can_cat_chi_tiet ,21);
+        $chuoi_da_cat_chi_tiet = substr ( $chuoi_can_cat_chi_tiet ,14);
         $arr[]= (explode ('","' , $chuoi_da_cat_chi_tiet));
         $ten_hinh_anh = ($arr[0][0]);
         $cat_ben_phai= rtrim($chuoi_da_cat_chi_tiet, '"}]');
@@ -68,14 +59,15 @@ class hinhanhController extends Controller
         $duong_dan_hinh_anh_chua_cat = $url.$ket_qua_hinh_anh.'+'.$ten_hinh_anh;
         return json_encode($duong_dan_hinh_anh_chua_cat, JSON_UNESCAPED_SLASHES);
     }
-    public function LayMotHinhChiTiet2($id_dia_diem)
+    public function LayMotHinhChiTiet2($id_dich_vu)
     {
-        $url  = 'http://localhost/doan3/public/images/';
+        $url  = 'http://localhost/DoAn3_CanThoTour/public/chitiet2/';
         $string_replace = '","id":';
-        $ha_chi_tiet = DB::table('dlct_hinhanh') ->select('ha_hinhchitiet2','id')
-        ->where('dd_iddiadiem', $id_dia_diem)->get();
+        $ha_chi_tiet = DB::table('dlct_hinhanh') 
+        ->select('chitiet1','id')
+        ->where('dv_iddichvu', $id_dich_vu)->get();
         $chuoi_can_cat_chi_tiet = $ha_chi_tiet;
-        $chuoi_da_cat_chi_tiet = substr ( $chuoi_can_cat_chi_tiet ,21);
+        $chuoi_da_cat_chi_tiet = substr ( $chuoi_can_cat_chi_tiet ,14);
         $arr[]= (explode ('","' , $chuoi_da_cat_chi_tiet));
         $ten_hinh_anh = ($arr[0][0]);
         $cat_ben_phai= rtrim($chuoi_da_cat_chi_tiet, '"}]');
