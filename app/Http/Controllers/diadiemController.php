@@ -13,9 +13,7 @@ class diadiemController extends Controller
     {
         $dia_diem = DB::table('dlct_diadiem')
         ->select('dlct_diadiem.id','dd_tendiadiem', 'dd_gioithieu','dd_diachi','dd_sodienthoai', 'dd_kinhdo',
-                'dd_vido', 'nd_idnguoidung', 'dlct_sukien.id', 'dlct_loaihinhsukien.lhsk_ten')
-        ->leftJoin('dlct_sukien', 'dlct_sukien.dd_iddiadiem', '=', 'dlct_diadiem.id')
-        ->leftJoin('dlct_loaihinhsukien', 'dlct_loaihinhsukien.id', '=','dlct_sukien.lhsk_idloaihinhsukien')
+                'dd_vido', 'nd_idnguoidung', 'dlct_sukien.id')
         ->paginate(10);
         //;
         $encode = json_encode($dia_diem);
@@ -45,9 +43,12 @@ class diadiemController extends Controller
 
 
         $dia_diem = DB::table('dlct_diadiem')
-        ->select('id','dd_tendiadiem', 'dd_gioithieu','dn_diachi','dd_sodienthoai', 'dd_kinhdo',
-                'dd_vido', 'nd_idnguoidung')
-        ->where('id', $id)
+        ->select('dlct_diadiem.id','dd_tendiadiem', 'dd_gioithieu','dd_diachi','dd_sodienthoai', 'dd_kinhdo',
+                'dd_vido', 'nd_idnguoidung', 'dlct_loaihinhsukien.lhsk_ten')
+        ->leftJoin('dlct_sukien', 'dlct_sukien.dd_iddiadiem', '=', 'dlct_diadiem.id')
+        ->leftJoin('dlct_loaihinhsukien', 'dlct_loaihinhsukien.id', '=','dlct_sukien.lhsk_idloaihinhsukien')
+                
+        ->where('dlct_diadiem.id', $id)
         ->get();
         $encode = json_encode($dia_diem);
         return $encode;
