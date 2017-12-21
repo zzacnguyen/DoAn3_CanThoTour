@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 18, 2017 lúc 10:35 AM
+-- Thời gian đã tạo: Th12 21, 2017 lúc 09:10 AM
 -- Phiên bản máy phục vụ: 10.1.28-MariaDB
 -- Phiên bản PHP: 7.1.10
 
@@ -103,6 +103,13 @@ CREATE TABLE `dlct_diadiem` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `dlct_diadiem`
+--
+
+INSERT INTO `dlct_diadiem` (`id`, `dd_tendiadiem`, `dd_gioithieu`, `dd_diachi`, `dd_sodienthoai`, `dd_kinhdo`, `dd_vido`, `nd_idnguoidung`, `created_at`, `updated_at`) VALUES
+(1, 'â', 'a', 'a', 'a', 'a', 'a', 1, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -122,6 +129,13 @@ CREATE TABLE `dlct_dichvu` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `dlct_dichvu`
+--
+
+INSERT INTO `dlct_dichvu` (`id`, `dv_gioithieu`, `dv_giomocua`, `dv_giodongcua`, `dv_giacaonhat`, `dv_giathapnhat`, `dv_trangthai`, `dd_iddiadiem`, `created_at`, `updated_at`) VALUES
+(1, 'â', 'a', 'a', 2, 2, 1, 1, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -130,11 +144,20 @@ CREATE TABLE `dlct_dichvu` (
 
 CREATE TABLE `dlct_hinhanh` (
   `id` int(10) UNSIGNED NOT NULL,
-  `hinhanh` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `banner` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `chitiet1` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `chitiet2` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `dv_iddichvu` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `dlct_hinhanh`
+--
+
+INSERT INTO `dlct_hinhanh` (`id`, `banner`, `chitiet1`, `chitiet2`, `dv_iddichvu`, `created_at`, `updated_at`) VALUES
+(3, 'banner_2017_12_20DA3_DIADIEM1_1.jpg', '2017_12_20DA3_DIADIEM1_3.jpg', 'chitiet2_2017_12_20DA3_DIADIEM1_5.jpg', 1, '2017-12-20 12:49:14', '2017-12-20 12:49:14');
 
 -- --------------------------------------------------------
 
@@ -198,6 +221,13 @@ CREATE TABLE `dlct_nguoidung` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `dlct_nguoidung`
+--
+
+INSERT INTO `dlct_nguoidung` (`id`, `nd_tendangnhap`, `nd_matkhau`, `nd_facebook_id`, `nd_email_id`, `nd_avatar`, `nd_quocgia`, `nd_ngonngu`, `created_at`, `updated_at`) VALUES
+(1, 'â', 'â', 'a', 'â', 'â', 'â', 'a', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -350,26 +380,26 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(43, '2017_11_02_142109_create_nguoidung_table', 1),
-(44, '2017_11_02_143248_create_diadiem_table', 1),
-(45, '2017_11_02_143901_create_lichtrinh_table', 1),
-(46, '2017_11_02_144022_create_chitietlichtrinh_table', 1),
-(47, '2017_11_02_144140_create_dichvu_table', 1),
-(48, '2017_11_02_144243_create_loaihinhsukien_table', 1),
-(49, '2017_11_02_144358_create_sukien_table', 1),
-(50, '2017_11_02_144540_create_binhluan_table', 1),
-(51, '2017_11_02_151955_create_danhgia_table', 1),
-(52, '2017_11_02_152627_create_thamquan_table', 1),
-(53, '2017_11_02_152802_create_phuongtien_table', 1),
-(54, '2017_11_02_152910_create_anuong_table', 1),
-(55, '2017_11_02_152958_create_khachsan_table', 1),
-(56, '2017_11_02_153038_create_vuichoi_table', 1),
-(57, '2017_11_09_123423_create_yeuthich_table', 1),
-(58, '2017_11_13_141540_create_tukhoa_table', 1),
-(59, '2017_11_13_144257_create_tukhoa_dichvu_table', 1),
-(60, '2017_12_13_233705_create_nguoidungcanhan_table', 1),
-(61, '2017_12_13_235129_create_nguoidungdoanhnghiep_table', 1),
-(62, '2017_12_18_141111_create_hinhanh_table', 1);
+(63, '2017_11_02_142109_create_nguoidung_table', 1),
+(64, '2017_11_02_143248_create_diadiem_table', 1),
+(65, '2017_11_02_143901_create_lichtrinh_table', 1),
+(66, '2017_11_02_144022_create_chitietlichtrinh_table', 1),
+(67, '2017_11_02_144140_create_dichvu_table', 1),
+(68, '2017_11_02_144243_create_loaihinhsukien_table', 1),
+(69, '2017_11_02_144358_create_sukien_table', 1),
+(70, '2017_11_02_144540_create_binhluan_table', 1),
+(71, '2017_11_02_151955_create_danhgia_table', 1),
+(72, '2017_11_02_152627_create_thamquan_table', 1),
+(73, '2017_11_02_152802_create_phuongtien_table', 1),
+(74, '2017_11_02_152910_create_anuong_table', 1),
+(75, '2017_11_02_152958_create_khachsan_table', 1),
+(76, '2017_11_02_153038_create_vuichoi_table', 1),
+(77, '2017_11_09_123423_create_yeuthich_table', 1),
+(78, '2017_11_13_141540_create_tukhoa_table', 1),
+(79, '2017_11_13_144257_create_tukhoa_dichvu_table', 1),
+(80, '2017_12_13_233705_create_nguoidungcanhan_table', 1),
+(81, '2017_12_13_235129_create_nguoidungdoanhnghiep_table', 1),
+(82, '2017_12_18_141111_create_hinhanh_table', 1);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -556,19 +586,19 @@ ALTER TABLE `dlct_danhgia`
 -- AUTO_INCREMENT cho bảng `dlct_diadiem`
 --
 ALTER TABLE `dlct_diadiem`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `dlct_dichvu`
 --
 ALTER TABLE `dlct_dichvu`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `dlct_hinhanh`
 --
 ALTER TABLE `dlct_hinhanh`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `dlct_khachsan`
@@ -592,7 +622,7 @@ ALTER TABLE `dlct_loaihinhsukien`
 -- AUTO_INCREMENT cho bảng `dlct_nguoidung`
 --
 ALTER TABLE `dlct_nguoidung`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `dlct_nguoidungcanhan`
@@ -652,7 +682,7 @@ ALTER TABLE `dlct_yeuthich`
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

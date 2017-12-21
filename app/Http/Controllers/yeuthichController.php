@@ -11,7 +11,8 @@ class yeuthichController extends Controller
     public function index()
     {
         $yeu_thich = DB::table('dlct_yeuthich')
-        ->select('id','dd_iddiadiem', 'nd_idnguoidung')
+        ->select('dlct_yeuthich.id','dd_iddiadiem', 'dlct_yeuthich.nd_idnguoidung', 'dd_tendiadiem')
+        ->join('dlct_diadiem', 'dlct_diadiem.id', '=', 'dlct_yeuthich.dd_iddiadiem')
         ->get();
         $encode=json_encode($yeu_thich);
         return $encode;
