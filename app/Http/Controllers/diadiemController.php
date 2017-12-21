@@ -12,8 +12,9 @@ class diadiemController extends Controller
     public function index()
     {
         $dia_diem = DB::table('dlct_diadiem')
-        ->select('id','dd_tendiadiem', 'dd_gioithieu','dn_diachi','dd_sodienthoai', 'dd_kinhdo',
+        ->select('dlct_diadiem.id','dd_tendiadiem', 'dd_gioithieu','dd_diachi','dd_sodienthoai', 'dd_kinhdo',
                 'dd_vido', 'nd_idnguoidung')
+        ->leftJoin('dlct_sukien', 'dlct_sukien.dd_iddiadiem', '=', 'dlct_diadiem.id')
         ->paginate(10);
         //;
         $encode = json_encode($dia_diem);
