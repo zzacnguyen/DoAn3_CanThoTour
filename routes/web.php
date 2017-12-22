@@ -64,13 +64,3 @@ Route::get('lay-mot-hinh-chi-tiet-1/{id}', 'hinhanhController@LayMotHinhChiTiet1
 Route::get('lay-mot-hinh-chi-tiet-2/{id}', 'hinhanhController@LayMotHinhChiTiet2');
 
 
-//GET ID
-Route::get('lay-id-dia-diem', 'GetIDController@LayIDiaDiem');
-Route::get('lay-id-su-kien', 'GetIDController@LayIDSuKien');
-Route::get('lay-id-dich-vu', 'GetIDController@LayIDDichVu');
-Route::get('lay-id-yeu-thich', 'GetIDController@LayIDYeuThich');
-Route::get('lay-id-an-uong', 'GetIDController@LayIDAnUong');
-Route::get('lay-id-binh-luan', 'GetIDController@LayIDBinhLuan');
-Route::get('lay-id-tham-quan', 'GetIDController@LayIDThamQuan');
-Route::get('lay-id-khach-san', 'GetIDController@LayIDKhachSan');
-Route::get('lay-id-vui-choi', 'GetIDController@LayIDVuiChoi');
