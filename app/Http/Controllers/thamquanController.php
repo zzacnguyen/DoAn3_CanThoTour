@@ -14,7 +14,7 @@ class thamquanController extends Controller
         
         $tham_quan = DB::table('dlct_thamquan')
         ->select('dlct_thamquan.id AS id_thamquan','tq_tendiemthamquan', 'dlct_hinhanh.id AS id_hinhanh','dlct_hinhanh.chitiet1','dlct_thamquan.dv_iddichvu AS id_dichvu')
-        ->join('dlct_hinhanh', 'dlct_hinhanh.dv_iddichvu', '=', 'dlct_thamquan.dv_iddichvu')
+        ->leftJoin('dlct_hinhanh', 'dlct_hinhanh.dv_iddichvu', '=', 'dlct_thamquan.dv_iddichvu')
         ->paginate(10);
         $encode=json_encode($tham_quan);
         return $encode;

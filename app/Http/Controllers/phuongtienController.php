@@ -12,7 +12,7 @@ class phuongtienController extends Controller
     {
         $phuong_tien = DB::table('dlct_phuongtien')
         ->select('id','pt_tenphuongtien','dlct_hinhanh.id AS id_hinhanh','dlct_hinhanh.chitiet1', 'pt_loaihinh','dlct_phuongtien.dv_iddichvu')
-        ->join('dlct_hinhanh', 'dlct_hinhanh.dv_iddichvu', '=', 'dlct_phuongtien.dv_iddichvu')
+        ->leftJoin('dlct_hinhanh', 'dlct_hinhanh.dv_iddichvu', '=', 'dlct_phuongtien.dv_iddichvu')
         
         ->paginate(10);
         $encode=json_encode($phuong_tien);

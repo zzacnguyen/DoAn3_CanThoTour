@@ -12,7 +12,7 @@ class anuongController extends Controller
     { 
         $an_uong = DB::table('dlct_anuong')
         ->select('dlct_anuong.id AS id_anuong','au_ten','dlct_hinhanh.id AS id_hinhanh','dlct_hinhanh.chitiet1', 'au_gioithieu','dlct_anuong.dv_iddichvu AS id_dichvu')
-        ->join('dlct_hinhanh', 'dlct_hinhanh.dv_iddichvu', '=', 'dlct_anuong.dv_iddichvu')
+        ->leftJoin('dlct_hinhanh', 'dlct_hinhanh.dv_iddichvu', '=', 'dlct_anuong.dv_iddichvu')
         
         ->paginate(10);
         $encode=json_encode($an_uong);

@@ -12,7 +12,7 @@ class vuichoiController extends Controller
     {
         $vui_choi = DB::table('dlct_vuichoi')
         ->select('dlct_vuichoi.id AS id_vuichoi','vc_tendiemvuichoi','dlct_hinhanh.id AS id_hinhanh','dlct_hinhanh.chitiet1' ,'vc_gioithieu', 'dlct_vuichoi.dv_iddichvu AS id_dichvu')
-        ->join('dlct_hinhanh', 'dlct_hinhanh.dv_iddichvu', '=', 'dlct_vuichoi.dv_iddichvu')
+        ->leftJoin('dlct_hinhanh', 'dlct_hinhanh.dv_iddichvu', '=', 'dlct_vuichoi.dv_iddichvu')
         ->paginate(10);
         $encode=json_encode($vui_choi);
         return $encode;
