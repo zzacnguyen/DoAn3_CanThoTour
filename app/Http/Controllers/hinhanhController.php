@@ -93,7 +93,7 @@ class hinhanhController extends Controller
         $image_banner = \Image::make($file_banner);
         $path_banner = public_path().'/banners/';
         $image_banner->resize(768,720);
-        $image_banner->save($path_banner.'banner.'.$file_banner->getClientOriginalExtension());
+        $image_banner->save($path_banner.'banner.'.$time.'.'.$file_banner->getClientOriginalExtension());
        
 
         //upload chi tiet 1
@@ -112,7 +112,7 @@ class hinhanhController extends Controller
         $file_chitiet_2 = $request->file('chitiet2');
         $image_chitiet2 = \Image::make($file_chitiet_2);
         $image_chitiet2->resize(1280,720);
-        $image_chitiet2->save($path_chitiet2.'chitiet2_'.$time.$file_chitiet_2->getClientOriginalExtension());
+        $image_chitiet2->save($path_chitiet2.'chitiet2_'.$time.'.'.$file_chitiet_2->getClientOriginalExtension());
                
 
         //create images in model

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 22, 2017 lúc 04:27 PM
+-- Thời gian đã tạo: Th12 22, 2017 lúc 04:33 PM
 -- Phiên bản máy phục vụ: 10.1.28-MariaDB
 -- Phiên bản PHP: 7.1.10
 
@@ -43,9 +43,9 @@ CREATE TABLE `dlct_hinhanh` (
 --
 
 INSERT INTO `dlct_hinhanh` (`id`, `banner`, `chitiet1`, `chitiet2`, `dv_iddichvu`, `created_at`, `updated_at`) VALUES
-(9, 'banner__2017_12_22_10_25_27.jpg', '_2017_12_22_10_25_27.jpg', 'chitiet2__2017_12_22_10_25_27.jpg', 3, '2017-12-22 15:25:28', '2017-12-22 15:25:28'),
-(10, 'banner__2017_12_22_10_26_37.jpg', '_2017_12_22_10_26_37.jpg', 'chitiet2__2017_12_22_10_26_37.jpg', 2, '2017-12-22 15:26:38', '2017-12-22 15:26:38'),
-(11, 'banner__2017_12_22_10_27_13.jpg', '_2017_12_22_10_27_13.jpg', 'chitiet2__2017_12_22_10_27_13.jpg', 1, '2017-12-22 15:27:14', '2017-12-22 15:27:14');
+(12, 'banner__2017_12_22_10_32_38.jpg', '_2017_12_22_10_32_38.jpg', 'chitiet2__2017_12_22_10_32_38.jpg', 1, '2017-12-22 15:32:39', '2017-12-22 15:32:39'),
+(13, 'banner__2017_12_22_10_32_48.jpg', '_2017_12_22_10_32_48.jpg', 'chitiet2__2017_12_22_10_32_48.jpg', 2, '2017-12-22 15:32:50', '2017-12-22 15:32:50'),
+(14, 'banner__2017_12_22_10_33_10.jpg', '_2017_12_22_10_33_10.jpg', 'chitiet2__2017_12_22_10_33_10.jpg', 3, '2017-12-22 15:33:12', '2017-12-22 15:33:12');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -66,7 +66,7 @@ ALTER TABLE `dlct_hinhanh`
 -- AUTO_INCREMENT cho bảng `dlct_hinhanh`
 --
 ALTER TABLE `dlct_hinhanh`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
