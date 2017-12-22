@@ -30,7 +30,7 @@ class timkiemController extends Controller
         $list_result = array(); 
         foreach ($list_Location as $l) {
             $euclideDistance = $this::euclideDistance($user_latitude,$user_longitude,$l['dd_vido'],$l['dd_kinhdo']);
-            if ($euclideDistance <= $radius) {
+            if ($euclideDistance <= $radius && $euclideDistance >0) {
                 $list_result[$euclideDistance] = array('id' => $l['id'],'dd_tendiadiem' => $l['dd_tendiadiem'],'khoangcach' => $euclideDistance, 'vido' => $l['dd_vido'],'kinhdo' => $l['dd_kinhdo']);
             }
         }
