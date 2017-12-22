@@ -13,9 +13,9 @@ class diadiemController extends Controller
     {
         $dia_diem = DB::table('dlct_diadiem')
         ->select('dlct_diadiem.id','dd_tendiadiem', 'dd_gioithieu','dd_diachi','dd_sodienthoai', 'dd_kinhdo',
-                'dd_vido', 'nd_idnguoidung', 'dlct_sukien.id')
+                'dd_vido', 'nd_idnguoidung')
         ->paginate(10);
-        //;
+
         $encode = json_encode($dia_diem);
         return $encode;
     }
