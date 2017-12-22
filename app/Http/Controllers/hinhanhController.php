@@ -28,6 +28,28 @@ class hinhanhController extends Controller
         $duong_dan_hinh_anh_chua_cat = $url.$ket_qua_hinh_anh.'+'.$ten_hinh_anh;
         return json_encode($duong_dan_hinh_anh_chua_cat, JSON_UNESCAPED_SLASHES);
     }
+
+
+    public function LayMotBanner($id_dich_vu)
+    {
+        $url  = 'http://localhost/DoAn3_CanThoTour/public/banners/';
+        $string_replace = '","id":';
+        $ha_icon = DB::table('dlct_hinhanh') 
+        ->select('banner','id')
+        ->where('dv_iddichvu', $id_dich_vu)->get();
+        $chuoi_can_cat_icon = $ha_icon;
+        $chuoi_da_cat_icon = substr ( $chuoi_can_cat_icon ,12);
+        $arr[]= (explode ('","' , $chuoi_da_cat_icon));
+        $ten_hinh_anh = ($arr[0][0]);
+        $cat_ben_phai= rtrim($chuoi_da_cat_icon, '"}]');
+        $ket_qua_hinh_anh =  str_replace($string_replace , '+', $cat_ben_phai);
+        $duong_dan_hinh_anh_chua_cat = $url.$ket_qua_hinh_anh.'+'.$ten_hinh_anh;
+        return json_encode($duong_dan_hinh_anh_chua_cat, JSON_UNESCAPED_SLASHES);
+    }
+
+
+
+
     public function LayMotThumb($id_dich_vu)
     {
         $url  = 'http://localhost/DoAn3_CanThoTour/public/thumbnails/';

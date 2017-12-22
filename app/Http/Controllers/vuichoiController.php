@@ -12,6 +12,7 @@ class vuichoiController extends Controller
     {
         $vui_choi = DB::table('dlct_vuichoi')
         ->select('id','vc_tendiemvuichoi', 'vc_gioithieu', 'dv_iddichvu')
+        ->join('dlct_hinhanh', 'dlct_hinhanh.dv_iddichvu', '=', 'dlct_thamquan.dv_iddichvu')
         ->paginate(10);
         $encode=json_encode($vui_choi);
         return $encode;
@@ -35,6 +36,8 @@ class vuichoiController extends Controller
     {
         $vui_choi = DB::table('dlct_vuichoi')
         ->select('id','vc_tendiemvuichoi', 'vc_gioithieu', 'dv_iddichvu')->where('id', $id)
+
+        
         ->get();
         $encode=json_encode($vui_choi);
         return $encode;
