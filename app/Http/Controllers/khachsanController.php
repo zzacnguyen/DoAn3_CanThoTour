@@ -11,7 +11,9 @@ class khachsanController extends Controller
     public function index()
     {   
         $khach_san = DB::table('dlct_khachsan')
-        ->select('id','ks_tenkhachsan', 'ks_website','ks_gioithieu','dv_iddichvu')
+        ->select('dlct_khachsan.id AS id_khachsan','ks_tenkhachsan','dlct_hinhanh.id','dlct_hinhanh.chitiet1', 'ks_website','ks_gioithieu','dlct_khachsan.dv_iddichvu AS id_dichvu')
+        ->join('dlct_hinhanh', 'dlct_hinhanh.dv_iddichvu', '=', 'dlct_khachsan.dv_iddichvu')
+        
         ->paginate(10);
         $encode=json_encode($khach_san);
         return $encode;
