@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 22, 2017 lúc 04:02 PM
+-- Thời gian đã tạo: Th12 22, 2017 lúc 04:27 PM
 -- Phiên bản máy phục vụ: 10.1.28-MariaDB
 -- Phiên bản PHP: 7.1.10
 
@@ -43,9 +43,9 @@ CREATE TABLE `dlct_hinhanh` (
 --
 
 INSERT INTO `dlct_hinhanh` (`id`, `banner`, `chitiet1`, `chitiet2`, `dv_iddichvu`, `created_at`, `updated_at`) VALUES
-(4, 'banner_2017_12_22foody-mobile--15-_hinhmob-jpg-647-635780150737028844.jpg', '2017_12_22foody-com-tam-ba-bay-nguyen-van-cu-174-636269175402618684.jpg', 'chitiet2_2017_12_22foody-mobile-t7-jpg-690-635948455894259081.jpg', 1, '2017-12-22 15:01:01', '2017-12-22 15:01:01'),
-(5, 'banner_2017_12_22khach-san-riverside-quang-binh-8.jpg', '2017_12_22large_swb1464082634_khach_san_marguerite.jpg', 'chitiet2_2017_12_22prop-img-full-hataw9p1-fwtn0j5zu2o(1).jpg', 2, '2017-12-22 15:01:24', '2017-12-22 15:01:24'),
-(6, 'banner_2017_12_2237092180.jpg', '2017_12_22foody-cong-vien-van-hoa-mien-tay-479-636027306170888760.jpg', 'chitiet2_2017_12_22foody-mobile-t2-jpg-297-635948411126708920.jpg', 3, '2017-12-22 15:01:53', '2017-12-22 15:01:53');
+(9, 'banner__2017_12_22_10_25_27.jpg', '_2017_12_22_10_25_27.jpg', 'chitiet2__2017_12_22_10_25_27.jpg', 3, '2017-12-22 15:25:28', '2017-12-22 15:25:28'),
+(10, 'banner__2017_12_22_10_26_37.jpg', '_2017_12_22_10_26_37.jpg', 'chitiet2__2017_12_22_10_26_37.jpg', 2, '2017-12-22 15:26:38', '2017-12-22 15:26:38'),
+(11, 'banner__2017_12_22_10_27_13.jpg', '_2017_12_22_10_27_13.jpg', 'chitiet2__2017_12_22_10_27_13.jpg', 1, '2017-12-22 15:27:14', '2017-12-22 15:27:14');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -66,7 +66,7 @@ ALTER TABLE `dlct_hinhanh`
 -- AUTO_INCREMENT cho bảng `dlct_hinhanh`
 --
 ALTER TABLE `dlct_hinhanh`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
