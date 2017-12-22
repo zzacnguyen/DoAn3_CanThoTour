@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 22, 2017 lúc 09:08 AM
+-- Thời gian đã tạo: Th12 22, 2017 lúc 04:32 PM
 -- Phiên bản máy phục vụ: 10.1.28-MariaDB
 -- Phiên bản PHP: 7.1.11
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `csdl-test`
+-- Cơ sở dữ liệu: `db_dulichcantho`
 --
 
 -- --------------------------------------------------------
@@ -170,9 +170,9 @@ CREATE TABLE `dlct_dichvu` (
 --
 
 INSERT INTO `dlct_dichvu` (`id`, `dv_gioithieu`, `dv_giomocua`, `dv_giodongcua`, `dv_giacaonhat`, `dv_giathapnhat`, `dv_trangthai`, `dd_iddiadiem`, `created_at`, `updated_at`) VALUES
-(1, 'Ăn uống', '8:00', '22:00', 200000, 10000, 1, 1, NULL, NULL),
-(2, 'Khách sạn', '6:00', '23:59', 1200000, 150000, 1, 1, NULL, NULL),
-(3, 'Vui chơi', '8:00', '22:00', 50000, 20000, 1, 1, NULL, NULL);
+(1, 'Ăn uống tại Bến Ninh Kiều', '8:00', '22:00', 200000, 10000, 1, 1, NULL, NULL),
+(2, 'Khách sạn tại Bến Ninh Kiều', '6:00', '23:59', 1200000, 150000, 1, 1, NULL, NULL),
+(3, 'Vui chơi tại Bến Ninh Kiều', '8:00', '22:00', 50000, 20000, 1, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -195,7 +195,10 @@ CREATE TABLE `dlct_hinhanh` (
 --
 
 INSERT INTO `dlct_hinhanh` (`id`, `banner`, `chitiet1`, `chitiet2`, `dv_iddichvu`, `created_at`, `updated_at`) VALUES
-(3, 'banner_2017_12_20DA3_DIADIEM1_1.jpg', '2017_12_20DA3_DIADIEM1_3.jpg', 'chitiet2_2017_12_20DA3_DIADIEM1_5.jpg', 1, '2017-12-20 12:49:14', '2017-12-20 12:49:14');
+(3, 'banner_2017_12_20DA3_DIADIEM1_1.jpg', '2017_12_20DA3_DIADIEM1_3.jpg', 'chitiet2_2017_12_20DA3_DIADIEM1_5.jpg', 1, '2017-12-20 12:49:14', '2017-12-20 12:49:14'),
+(4, 'banner_2017_12_22foody-mobile--15-_hinhmob-jpg-647-635780150737028844.jpg', '2017_12_22foody-com-tam-ba-bay-nguyen-van-cu-174-636269175402618684.jpg', 'chitiet2_2017_12_22foody-mobile-t7-jpg-690-635948455894259081.jpg', 1, '2017-12-22 08:01:01', '2017-12-22 08:01:01'),
+(5, 'banner_2017_12_22khach-san-riverside-quang-binh-8.jpg', '2017_12_22large_swb1464082634_khach_san_marguerite.jpg', 'chitiet2_2017_12_22prop-img-full-hataw9p1-fwtn0j5zu2o(1).jpg', 2, '2017-12-22 08:01:24', '2017-12-22 08:01:24'),
+(6, 'banner_2017_12_2237092180.jpg', '2017_12_22foody-cong-vien-van-hoa-mien-tay-479-636027306170888760.jpg', 'chitiet2_2017_12_22foody-mobile-t2-jpg-297-635948411126708920.jpg', 3, '2017-12-22 08:01:53', '2017-12-22 08:01:53');
 
 -- --------------------------------------------------------
 
@@ -447,6 +450,16 @@ CREATE TABLE `dlct_yeuthich` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `dlct_yeuthich`
+--
+
+INSERT INTO `dlct_yeuthich` (`id`, `dd_iddiadiem`, `nd_idnguoidung`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, NULL, NULL),
+(2, 4, 1, NULL, NULL),
+(3, 2, 1, NULL, NULL),
+(4, 7, 1, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -682,7 +695,7 @@ ALTER TABLE `dlct_dichvu`
 -- AUTO_INCREMENT cho bảng `dlct_hinhanh`
 --
 ALTER TABLE `dlct_hinhanh`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `dlct_khachsan`
@@ -760,7 +773,7 @@ ALTER TABLE `dlct_vuichoi`
 -- AUTO_INCREMENT cho bảng `dlct_yeuthich`
 --
 ALTER TABLE `dlct_yeuthich`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`

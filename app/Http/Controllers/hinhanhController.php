@@ -93,19 +93,22 @@ class hinhanhController extends Controller
         $image_banner = \Image::make($file_banner);
         $path_banner = public_path().'/banners/';
         $image_banner->resize(768,720);
-        $image_banner->save($path_banner.'banner.'.$time.'.'.$file_banner->getClientOriginalExtension());
-       
+        $image_banner->save($path_banner.'banner_'.$time.'.'.$file_banner->getClientOriginalExtension());
+        $image_banner->resize(600,400);
+        $image_banner->save($path_thumb.'banner_'.$time.'.'.$file_banner->getClientOriginalExtension());
+        $image_banner->resize(50,50);
+        $image_banner->save($path_icon.'banner_'.$time.'.'.$file_banner->getClientOriginalExtension());
+        
 
         //upload chi tiet 1
         $file_chitiet_1 = $request->file('chitiet1');
         $image_chitiet1 = \Image::make($file_chitiet_1);
         $image_chitiet1->resize(1280,720);
-        $image_chitiet1->save($path_chitiet1.$time.'.'.$file_chitiet_1->getClientOriginalExtension());
-        
+        $image_chitiet1->save($path_chitiet1.'chitiet1_'.$time.'.'.$file_chitiet_1->getClientOriginalExtension());
         $image_chitiet1->resize(600,400);
-        $image_chitiet1->save($path_thumb.$time.'.'.$file_chitiet_1->getClientOriginalExtension());
+        $image_chitiet1->save($path_thumb.'chitiet1_'.$time.'.'.$file_chitiet_1->getClientOriginalExtension());
         $image_chitiet1->resize(50,50);
-        $image_chitiet1->save($path_icon.$time.'.'.$file_chitiet_1->getClientOriginalExtension());
+        $image_chitiet1->save($path_icon.'chitiet1_'.$time.'.'.$file_chitiet_1->getClientOriginalExtension());
         
 
         //upload chi tiet 2
@@ -113,12 +116,16 @@ class hinhanhController extends Controller
         $image_chitiet2 = \Image::make($file_chitiet_2);
         $image_chitiet2->resize(1280,720);
         $image_chitiet2->save($path_chitiet2.'chitiet2_'.$time.'.'.$file_chitiet_2->getClientOriginalExtension());
-               
+        $image_chitiet2->resize(600,400);
+        $image_chitiet2->save($path_thumb.'chitiet2_'.$time.'.'.$file_chitiet_2->getClientOriginalExtension());
+        $image_chitiet2->resize(50,50);
+        $image_chitiet2->save($path_icon.'chitiet2_'.$time.'.'.$file_chitiet_2->getClientOriginalExtension());
+                 
 
         //create images in model
         $thumbnail = new hinhanhModel();
         $thumbnail->banner = "banner_".$time.'.'.$file_banner->getClientOriginalExtension();
-        $thumbnail->chitiet1 = $time.'.'.$file_chitiet_1->getClientOriginalExtension();
+        $thumbnail->chitiet1 ="chitiet1_".$time.'.'.$file_chitiet_1->getClientOriginalExtension();
         $thumbnail->chitiet2 = "chitiet2_".$time.'.'.$file_chitiet_2->getClientOriginalExtension();
         $thumbnail->dv_iddichvu=$request->input('dichvu');
         $thumbnail->save();
