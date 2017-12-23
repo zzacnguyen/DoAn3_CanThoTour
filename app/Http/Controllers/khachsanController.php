@@ -40,7 +40,7 @@ class khachsanController extends Controller
         $khach_san = DB::table('dlct_khachsan')
         ->select('dlct_khachsan.id','ks_tenkhachsan','ks_website', 'dlct_diadiem.dd_diachi','dlct_diadiem.dd_sodienthoai',
             'dlct_dichvu.dv_giathapnhat', 'dlct_dichvu.dv_giacaonhat', 'dlct_dichvu.dv_giomocua','dlct_dichvu.dv_giodongcua',
-            'dlct_dichvu.dv_gioithieu')
+            'dlct_dichvu.dv_gioithieu','dlct_khachsan.dv_iddichvu')
         ->join('dlct_dichvu', 'dlct_dichvu.id', '=', 'dlct_khachsan.dv_iddichvu')
         ->join('dlct_diadiem', 'dlct_dichvu.dd_iddiadiem', '=', 'dlct_diadiem.id')
         
