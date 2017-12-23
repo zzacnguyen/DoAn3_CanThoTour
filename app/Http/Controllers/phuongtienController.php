@@ -11,7 +11,7 @@ class phuongtienController extends Controller
     public function index()
     {
         $phuong_tien = DB::table('dlct_phuongtien')
-        ->select('id','pt_tenphuongtien','dlct_hinhanh.id AS id_hinhanh','dlct_hinhanh.chitiet1', 'pt_loaihinh','dlct_phuongtien.dv_iddichvu')
+        ->select('dlct_phuongtien.id','pt_tenphuongtien','dlct_hinhanh.id AS id_hinhanh','dlct_hinhanh.chitiet1')
         ->leftJoin('dlct_hinhanh', 'dlct_hinhanh.dv_iddichvu', '=', 'dlct_phuongtien.dv_iddichvu')
         
         ->paginate(10);

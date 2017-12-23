@@ -11,7 +11,7 @@ class khachsanController extends Controller
     public function index()
     {   
         $khach_san = DB::table('dlct_khachsan')
-        ->select('dlct_khachsan.id AS id_khachsan','ks_tenkhachsan','dlct_hinhanh.id','dlct_hinhanh.chitiet1', 'ks_website','ks_gioithieu','dlct_khachsan.dv_iddichvu AS id_dichvu')
+        ->select('dlct_khachsan.id AS id_khachsan','ks_tenkhachsan','dlct_hinhanh.id','dlct_hinhanh.chitiet1')
         ->leftJoin('dlct_hinhanh', 'dlct_hinhanh.dv_iddichvu', '=', 'dlct_khachsan.dv_iddichvu')
         
         ->paginate(10);
