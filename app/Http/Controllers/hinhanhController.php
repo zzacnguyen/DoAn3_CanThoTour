@@ -14,7 +14,7 @@ class hinhanhController extends Controller
     
     public function LayMotIcon($id_dich_vu)
     {
-        $url  = 'http://localhost/DoAn3_CanThoTour/public/icons/';
+        $url  = 'icons/';
         $string_replace = '","id":';
         $ha_icon = DB::table('dlct_hinhanh') 
         ->select('chitiet1','id')
@@ -32,7 +32,7 @@ class hinhanhController extends Controller
 
     public function LayMotBanner($id_dich_vu)
     {
-        $url  = 'http://localhost/DoAn3_CanThoTour/public/banners/';
+        $url  = 'banners/';
         $string_replace = '","id":';
         $ha_icon = DB::table('dlct_hinhanh') 
         ->select('banner','id')
@@ -52,7 +52,7 @@ class hinhanhController extends Controller
 
     public function LayMotThumb($id_dich_vu)
     {
-        $url  = 'http://localhost/DoAn3_CanThoTour/public/thumbnails/';
+        $url  = 'thumbnails/';
         $string_replace = '","id":';
         $ha_thumb = DB::table('dlct_hinhanh') ->select('chitiet1','id')
         ->where('dv_iddichvu', $id_dich_vu)->get();
@@ -67,7 +67,7 @@ class hinhanhController extends Controller
     }
     public function LayMotHinhChiTiet1($id_dich_vu)
     {
-        $url  = 'http://localhost/DoAn3_CanThoTour/public/chitiet1/';
+        $url  = 'chitiet1/';
         $string_replace = '","id":';
         $ha_chi_tiet = DB::table('dlct_hinhanh') 
         ->select('chitiet1','id')
@@ -83,7 +83,7 @@ class hinhanhController extends Controller
     }
     public function LayMotHinhChiTiet2($id_dich_vu)
     {
-        $url  = 'http://localhost/DoAn3_CanThoTour/public/chitiet2/';
+        $url  = 'chitiet2/';
         $string_replace = '","id":';
         $ha_chi_tiet = DB::table('dlct_hinhanh') 
         ->select('chitiet1','id')
