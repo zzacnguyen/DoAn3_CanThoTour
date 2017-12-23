@@ -53,12 +53,17 @@ class timkiemController extends Controller
     public function search_lancan($user_latitude, $user_longitude,$radius)
     {
         $dia_diem = diadiemModel::all();
+
         foreach ($dia_diem as $l) {
             $euclideDistance = $this::euclideDistance($user_latitude,$user_longitude,$l['dd_vido'],$l['dd_kinhdo']);
-            if ($euclideDistance <= $radius) {
-                $list_result[$euclideDistance] = array('id' => $l['id'],'dd_tendiadiem' => $l['dd_tendiadiem'],'khoangcach' => $euclideDistance, 'vido' => $l['dd_vido'],'kinhdo' => $l['dd_kinhdo']);
+
+            if ($euclideDistance <= $radius && $euclideDistance > 0) {
+                // echo $euclideDistance ;
+                // echo "</br>";
+                $list_result[] = array('id' => $l['id'],'dd_tendiadiem' => $l['dd_tendiadiem'],'khoangcach' => $euclideDistance, 'vido' => $l['dd_vido'],'kinhdo' => $l['dd_kinhdo']);
             }
         }
+
         if(!empty($list_result))
         {
             ksort($list_result); // sap xep mang theo thu tu tang dan theo khoang cach
