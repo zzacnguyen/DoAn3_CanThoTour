@@ -14,7 +14,7 @@ class timkiemController extends Controller
 	// d = sqrt((x2 - x1)^2 + (y2  - y1)^2 )
     public function euclideDistance($latitude, $longitude, $latitude2, $longitude2)
     {
-        $euclideDistance = sqrt(($latitude2-$latitude)*($latitude2-$latitude) + ($longitude2 - $longitude)*($longitude2 - $longitude));
+        $euclideDistance = sqrt(pow(($latitude2-$latitude),2) + pow(($longitude2 - $longitude),2));
     	return $euclideDistance;
    	}
 
