@@ -26,7 +26,7 @@ class timkiemController extends Controller
         $keyword_handing = str_replace("+", " ", $keyword);
         $list_Location = diadiemModel::where('dd_tendiadiem','like','%'.$keyword_handing.'%')
                                        ->orwhere('dd_gioithieu','like','%'.$keyword_handing.'%')
-                                       ->orwhere('dn_diachi','like','%'.$keyword_handing.'%')->get();
+                                       ->orwhere('dd_diachi','like','%'.$keyword_handing.'%')->get();
         $list_result = array(); 
         foreach ($list_Location as $l) {
             $euclideDistance = $this::euclideDistance($user_latitude,$user_longitude,$l['dd_vido'],$l['dd_kinhdo']);
@@ -95,7 +95,7 @@ class timkiemController extends Controller
                 break;
             case 'dichvu':
                 $result = DB::select("SELECT dv.id,dv.dv_gioithieu,dv.dv_giomocua,dv.dv_giodongcua,dv.dv_giacaonhat,dv.dv_giacaonhat,
-                                        a.id,a.dd_tendiadiem,a.dd_gioithieu,a.dn_diachi 
+                                        a.id,a.dd_tendiadiem,a.dd_gioithieu,a.dd_diachi 
                                         FROM dlct_dichvu as dv INNER JOIN dlct_diadiem as a ON dv.dd_iddiadiem = a.id 
                                         WHERE dv.dv_gioithieu LIKE '%$keyword_handing%' 
                                     ");
@@ -159,7 +159,7 @@ class timkiemController extends Controller
             
             case 'diadiem':
                 $result = diadiemModel::where('dd_tendiadiem','like','%'.$keyword_handing.'%')
-                                       ->orwhere('dn_diachi','like','%'.$keyword_handing.'%')->get();
+                                       ->orwhere('dd_diachi','like','%'.$keyword_handing.'%')->get();
                 foreach ($result as $list) {
                     $new_list[] = array('dd_id' => $list['id'],'dd_tendiadiem' => $list['dd_tendiadiem'],'gioithieu' =>$list['dd_gioithieu'], 'diachi' => $list['dn_diachi']);
                 }
