@@ -11,8 +11,7 @@ class nguoidungController extends Controller
     public function index()
     {
         $nguoi_dung = DB::table('dlct_nguoidung')
-        ->select('id','nd_tendoanhnghiep', 'nd_sodienthoai','nd_website','nd_email', 'nd_diachi','nd_quocgia',
-                 'nd_ngonngu', 'nd_ghichu', 'nd_loainguoidung')
+        ->select('id','nd_tendangnhap', 'nd_facebook_id','nd_email_id','nd_avatar', 'nd_quocgia','nd_ngonngu')
         ->paginate(10);
         $encode = json_encode($nguoi_dung);
         return $encode;
@@ -27,8 +26,8 @@ class nguoidungController extends Controller
     public function store(Request $request)
     {
         $nguoidung                    = new nguoidungModel();
-        $nguoidung->nd_tendoanhnghiep = $request->input('nd_tendoanhnghiep');
-        $nguoidung->nd_tendangnhap    = $request->input('nd_tendangnhap');
+        $nguoidung->nd_tendangnhap = $request->input('nd_tendoanhnghiep');
+        $nguoidung->nd_matkhau    = $request->input('nd_tendangnhap');
         $nguoidung->nd_sodienthoai    = $request->input('nd_sodienthoai');
         $nguoidung->nd_website        = $request->input('nd_website');
         $nguoidung->nd_matkhau        = $request->input('nd_matkhau');

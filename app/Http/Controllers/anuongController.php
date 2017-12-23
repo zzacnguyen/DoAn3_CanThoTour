@@ -37,8 +37,13 @@ class anuongController extends Controller
     public function show($id)
     {
         $an_uong = DB::table('dlct_anuong')
-        ->select('id','au_ten', 'au_gioithieu','dv_iddichvu')
-        ->where('id',$id)
+        ->select('dlct_anuong.id','au_ten', 'dlct_diadiem.dd_diachi','dlct_diadiem.dd_sodienthoai',
+            'dlct_dichvu.dv_giathapnhat', 'dlct_dichvu.dv_giacaonhat', 'dlct_dichvu.dv_giomocua','dlct_dichvu.dv_giodongcua',
+            'dlct_dichvu.dv_gioithieu')
+        ->join('dlct_dichvu', 'dlct_dichvu.id', '=', 'dlct_anuong.dv_iddichvu')
+        ->join('dlct_diadiem', 'dlct_dichvu.dd_iddiadiem', '=', 'dlct_diadiem.id')
+        
+        ->where('dlct_anuong.id',$id)
         ->get();
         $encode=json_encode($an_uong);
         return $encode;
