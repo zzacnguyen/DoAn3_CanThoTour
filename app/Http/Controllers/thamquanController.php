@@ -41,7 +41,7 @@ class thamquanController extends Controller
         $tham_quan = DB::table('dlct_thamquan')
         ->select('dlct_thamquan.id','tq_tendiemthamquan', 'dlct_diadiem.dd_diachi','dlct_diadiem.dd_sodienthoai',
             'dlct_dichvu.dv_giathapnhat', 'dlct_dichvu.dv_giacaonhat', 'dlct_dichvu.dv_giomocua','dlct_dichvu.dv_giodongcua',
-            'dlct_dichvu.dv_gioithieu')
+            'dlct_dichvu.dv_gioithieu','dlct_thamquan.dv_iddichvu')
         ->join('dlct_dichvu', 'dlct_dichvu.id', '=', 'dlct_thamquan.dv_iddichvu')
         ->join('dlct_diadiem', 'dlct_dichvu.dd_iddiadiem', '=', 'dlct_diadiem.id')
         
