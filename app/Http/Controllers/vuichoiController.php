@@ -35,7 +35,12 @@ class vuichoiController extends Controller
     public function show($id)
     {
         $vui_choi = DB::table('dlct_vuichoi')
-        ->select('id','vc_tendiemvuichoi', 'vc_gioithieu', 'dv_iddichvu')->where('id', $id)    
+        ->select('dlct_vuichoi.id','vc_tendiemvuichoi', 'dlct_diadiem.dd_diachi','dlct_diadiem.dd_sodienthoai',
+            'dlct_dichvu.dv_giathapnhat', 'dlct_dichvu.dv_giacaonhat', 'dlct_dichvu.dv_giomocua','dlct_dichvu.dv_giodongcua',
+            'dlct_dichvu.dv_gioithieu')
+        ->join('dlct_dichvu', 'dlct_dichvu.id', '=', 'dlct_vuichoi.dv_iddichvu')
+        ->join('dlct_diadiem', 'dlct_dichvu.dd_iddiadiem', '=', 'dlct_diadiem.id')
+        ->where('dlct_vuichoi.id', $id)
         ->get();
         $encode=json_encode($vui_choi);
         return $encode;
