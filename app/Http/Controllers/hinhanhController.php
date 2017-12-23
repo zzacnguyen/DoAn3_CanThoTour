@@ -50,11 +50,26 @@ class hinhanhController extends Controller
 
 
 
-    public function LayMotThumb($id_dich_vu)
+    public function LayMotThumb1($id_dich_vu)
     {
         $url  = 'thumbnails/';
         $string_replace = '","id":';
         $ha_thumb = DB::table('dlct_hinhanh') ->select('chitiet1','id')
+        ->where('dv_iddichvu', $id_dich_vu)->get();
+        $chuoi_can_cat_thumb = $ha_thumb;
+        $chuoi_da_cat_thumb = substr ( $chuoi_can_cat_thumb ,14);
+        $arr[]= (explode ('","' , $chuoi_da_cat_thumb));
+        $ten_hinh_anh = ($arr[0][0]);
+        $cat_ben_phai= rtrim($chuoi_da_cat_thumb, '"}]');
+        $ket_qua_hinh_anh =  str_replace($string_replace , '+', $cat_ben_phai);
+        $duong_dan_hinh_anh_chua_cat = $url.$ket_qua_hinh_anh.'+'.$ten_hinh_anh;
+        return json_encode($duong_dan_hinh_anh_chua_cat, JSON_UNESCAPED_SLASHES);
+    }
+    public function LayMotThumb2($id_dich_vu)
+    {
+        $url  = 'thumbnails/';
+        $string_replace = '","id":';
+        $ha_thumb = DB::table('dlct_hinhanh') ->select('chitiet2','id')
         ->where('dv_iddichvu', $id_dich_vu)->get();
         $chuoi_can_cat_thumb = $ha_thumb;
         $chuoi_da_cat_thumb = substr ( $chuoi_can_cat_thumb ,14);
