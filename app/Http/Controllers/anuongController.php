@@ -39,7 +39,7 @@ class anuongController extends Controller
         $an_uong = DB::table('dlct_anuong')
         ->select('dlct_anuong.id','au_ten', 'dlct_diadiem.dd_diachi','dlct_diadiem.dd_sodienthoai',
             'dlct_dichvu.dv_giathapnhat', 'dlct_dichvu.dv_giacaonhat', 'dlct_dichvu.dv_giomocua','dlct_dichvu.dv_giodongcua',
-            'dlct_dichvu.dv_gioithieu')
+            'dlct_dichvu.dv_gioithieu','dlct_anuong.dv_iddichvu')
         ->join('dlct_dichvu', 'dlct_dichvu.id', '=', 'dlct_anuong.dv_iddichvu')
         ->join('dlct_diadiem', 'dlct_dichvu.dd_iddiadiem', '=', 'dlct_diadiem.id')
         

@@ -25,18 +25,18 @@ class nguoidungController extends Controller
  
     public function store(Request $request)
     {
-        $nguoidung                    = new nguoidungModel();
-        $nguoidung->nd_tendangnhap = $request->input('nd_tendoanhnghiep');
-        $nguoidung->nd_matkhau    = $request->input('nd_tendangnhap');
-        $nguoidung->nd_sodienthoai    = $request->input('nd_sodienthoai');
-        $nguoidung->nd_website        = $request->input('nd_website');
-        $nguoidung->nd_matkhau        = $request->input('nd_matkhau');
-        $nguoidung->nd_email          = $request->input('nd_email');
-        $nguoidung->nd_diachi         = $request->input('nd_diachi');
-        $nguoidung->nd_ngonngu        = $request->input('nd_ngonngu');
-        $nguoidung->nd_quocgia        = $request->input('nd_quocgia');
-        $nguoidung->nd_ghichu         = $request->input('nd_ghichu');
-        $nguoidung->nd_loainguoidung  = $request->input('nd_loainguoidung');
+        $nguoidung                      = new nguoidungModel();
+        $nguoidung->nd_tendangnhap      = $request->input('nd_tendoanhnghiep');
+        $nguoidung->nd_matkhau          = $request->encrypt(input('nd_tendangnhap'));
+        $nguoidung->nd_sodienthoai      = $request->input('nd_sodienthoai');
+        $nguoidung->nd_website          = $request->input('nd_website');
+        $nguoidung->nd_matkhau          = $request->input('nd_matkhau');
+        $nguoidung->nd_email            = $request->input('nd_email');
+        $nguoidung->nd_diachi           = $request->input('nd_diachi');
+        $nguoidung->nd_ngonngu          = $request->input('nd_ngonngu');
+        $nguoidung->nd_quocgia          = $request->input('nd_quocgia');
+        $nguoidung->nd_ghichu           = $request->input('nd_ghichu');
+        $nguoidung->nd_loainguoidung    = $request->input('nd_loainguoidung');
         $nguoidung->save();
     }
  
