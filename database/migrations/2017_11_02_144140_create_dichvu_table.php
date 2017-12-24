@@ -15,7 +15,7 @@ class CreateDichvuTable extends Migration
     {
         Schema::create('dlct_dichvu', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('dv_gioithieu',255);
+            $table->text('dv_gioithieu');
             $table->string('dv_giomocua', 10); 
             $table->string('dv_giodongcua', 10); 
             $table->integer('dv_giacaonhat'); 

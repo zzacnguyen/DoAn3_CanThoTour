@@ -18,7 +18,6 @@ class CreateKhachsanTable extends Migration
             $table->string('ks_tenkhachsan', 255);
             $table->string('ks_website', 255);
             $table->text('ks_gioithieu');
-            
             $table->integer('dv_iddichvu')->unsigned();
             $table->foreign('dv_iddichvu')->references('id')->on('dlct_dichvu')->onDelete('cascade');
             $table->timestamps();

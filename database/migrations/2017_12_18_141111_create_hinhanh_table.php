@@ -15,7 +15,9 @@ class CreateHinhanhTable extends Migration
     {
         Schema::create('dlct_hinhanh', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('hinhanh', 255);
+            $table->string('banner', 255);
+            $table->string('chitiet1', 255);
+            $table->string('chitiet2', 255);
             $table->integer('dv_iddichvu')->unsigned();
             $table->foreign('dv_iddichvu')->references('id')->on('dlct_dichvu')->onDelete('cascade');
             

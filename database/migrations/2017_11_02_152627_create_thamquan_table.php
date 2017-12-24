@@ -16,7 +16,7 @@ class CreateThamquanTable extends Migration
         Schema::create('dlct_thamquan', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tq_tendiemthamquan', 255);
-            $table->text('tq_gioithieu');
+            
             $table->integer('dv_iddichvu')->unsigned();
             $table->foreign('dv_iddichvu')->references('id')->on('dlct_dichvu')->onDelete('cascade');
             $table->timestamps();

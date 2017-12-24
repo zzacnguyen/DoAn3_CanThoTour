@@ -18,7 +18,7 @@ class CreateDiadiemTable extends Migration
             $table->string('dd_tendiadiem', 100);
             $table->text('dd_gioithieu');
             $table->string('dd_diachi',255);
-            $table->string('dd_sodienthoai',20);             
+            $table->string('dd_sodienthoai',25);             
             $table->string('dd_kinhdo',255);
             $table->string('dd_vido',255);
             $table->integer('nd_idnguoidung')->unsigned();

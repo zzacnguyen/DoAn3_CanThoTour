@@ -15,10 +15,8 @@ class CreateYeuthichTable extends Migration
     {
         Schema::create('dlct_yeuthich', function (Blueprint $table) {
             $table->increments('id');
-
             $table->integer('dd_iddiadiem')->unsigned();
             $table->foreign('dd_iddiadiem')->references('id')->on('dlct_diadiem')->onDelete('cascade');   
-
             $table->integer('nd_idnguoidung')->unsigned();
             $table->foreign('nd_idnguoidung')->references('id')->on('dlct_nguoidung')->onDelete('cascade');
             $table->unique('dd_iddiadiem', 'nd_idnguoidung');

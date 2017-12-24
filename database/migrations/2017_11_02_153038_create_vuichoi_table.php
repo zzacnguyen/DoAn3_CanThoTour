@@ -15,9 +15,7 @@ class CreateVuichoiTable extends Migration
     {
         Schema::create('dlct_vuichoi', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('vc_tendiemvuichoi', 255);
-            $table->text('vc_gioithieu');
-            
+            $table->string('vc_tendiemvuichoi', 255);        
             $table->integer('dv_iddichvu')->unsigned();
             $table->foreign('dv_iddichvu')->references('id')->on('dlct_dichvu')->onDelete('cascade');
             $table->timestamps();

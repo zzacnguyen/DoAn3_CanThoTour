@@ -17,7 +17,7 @@ class CreatePhuongtienTable extends Migration
             $table->increments('id');
             $table->string('pt_tenphuongtien', 255);
             $table->string('pt_loaihinh', 255);
-            
+
             $table->integer('dv_iddichvu')->unsigned();
             $table->foreign('dv_iddichvu')->references('id')->on('dlct_dichvu')->onDelete('cascade');
             $table->timestamps();

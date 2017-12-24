@@ -15,9 +15,7 @@ class CreateAnuongTable extends Migration
     {
         Schema::create('dlct_anuong', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('au_ten', 255);
-            $table->text('au_gioithieu');
-            
+            $table->string('au_ten', 255);            
             $table->integer('dv_iddichvu')->unsigned();
             $table->foreign('dv_iddichvu')->references('id')->on('dlct_dichvu')->onDelete('cascade');
             $table->timestamps();

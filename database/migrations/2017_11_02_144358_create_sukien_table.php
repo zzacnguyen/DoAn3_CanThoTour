@@ -18,8 +18,8 @@ class CreateSukienTable extends Migration
             $table->string('sk_tensukien', 255); 
             $table->date('sk_ngaybatdau', 20); 
             $table->date('sk_ngayketthuc', 20); 
-            $table->integer('dd_iddiadiem')->unsigned();
-            $table->foreign('dd_iddiadiem')->references('id')->on('dlct_diadiem')->onDelete('cascade');
+            $table->integer('dv_iddichvu')->unsigned();
+            $table->foreign('dv_iddichvu')->references('id')->on('dlct_dichvu')->onDelete('cascade');
             
             $table->integer('lhsk_idloaihinhsukien')->unsigned();
             $table->foreign('lhsk_idloaihinhsukien')->references('id')->on('dlct_loaihinhsukien')->onDelete('cascade');
