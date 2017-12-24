@@ -28,7 +28,6 @@ class anuongController extends Controller
     {
         $anuong               = new anuongModel();
         $anuong->au_ten       = $request->input('au_ten');
-        $anuong->au_gioithieu = $request->input('au_gioithieu');
         $anuong->dv_iddichvu  = $request->input('dv_iddichvu');
         $anuong->save();
     }
@@ -65,7 +64,6 @@ class anuongController extends Controller
     {
         $anuong               = anuongModel::findOrFail($id);
         $anuong->au_ten       = $request->input('au_ten');
-        $anuong->au_gioithieu = $request->input('au_gioithieu');
         $anuong->dv_iddichvu  = $request->input('dv_iddichvu');
         $anuong->save();
     }

@@ -31,7 +31,6 @@ class thamquanController extends Controller
     {
         $thamquan                     = new thamquanModel();
         $thamquan->tq_tendiemthamquan = $request->input('tq_tendiemthamquan');
-        $thamquan->tq_gioithieu       = $request->input('tq_gioithieu');
         $thamquan->dv_iddichvu        = $request->input('dv_iddichvu');
         $thamquan->save();
     }
@@ -65,7 +64,6 @@ class thamquanController extends Controller
     {
         $thamquan                     = thamquanModel::findOrFail($id);
         $thamquan->tq_tendiemthamquan = $request->input('tq_tendiemthamquan');
-        $thamquan->tq_gioithieu       = $request->input('tq_gioithieu');
         $thamquan->dv_iddichvu        = $request->input('dv_iddichvu');
         $thamquan->save();
     }

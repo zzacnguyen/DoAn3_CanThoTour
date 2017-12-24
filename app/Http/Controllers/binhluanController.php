@@ -34,11 +34,12 @@ class binhluanController extends Controller
     }
 
     
-    public function show($id)
+    public function show($id_dich_vu)
     {
         $binh_luan = DB::table('dlct_binhluan')
-        ->select('id','bl_binhluan', 'bl_trangthai','dv_iddichvu','nd_idnguoidung')
-        ->where('id', $id)
+        ->select('id','bl_binhluan')
+        ->join('dlct_dichvu', 'dlct_dichvu.id','=', 'dlct_binhluan.dv_iddichvu')
+        ->where('dv_iddichvu', $id_dich_vu)
         ->get();
         $encode=json_encode($binh_luan);
         return $encode;

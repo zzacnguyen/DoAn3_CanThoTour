@@ -31,11 +31,12 @@ class danhgiaController extends Controller
         $danhgia->save();
     }
 
-    public function show($id)
+    public function show($id_dich_vu)
     {
         $danh_gia = DB::table('dlct_danhgia')
-        ->select('id','dv_iddichvu', 'nd_idnguoidung','dg_diem')
-        ->where('id', $id)
+        ->select('dlct_danhgia.id', DB::raw('AVG( dlct_danhgia.dg_diem )'))
+        ->join('dlct_dichvu', 'dlct_dichvu.id','=', 'dlct_danhgia.dv_iddichvu')
+        ->where('dv_iddichvu', $id_dich_vu)
         ->get();
         $encode=json_encode($danh_gia);
         return $encode;

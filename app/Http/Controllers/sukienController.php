@@ -17,7 +17,7 @@ class sukienController extends Controller
         $thang_hien_tai = $dt->month;
         $ngay_hien_tai = $dt->day;
         $su_kien = DB::table('dlct_sukien')
-        ->select('id','sk_tensukien', 'sk_ngaybatdau','sk_ngayketthuc', 'dd_iddiadiem', 'lhsk_idloaihinhsukien')
+        ->select('dv_iddichvu as id','sk_tensukien', DB::raw('DATE_FORMAT(sk_ngaybatdau, "%d-%m-%Y") as sk_ngaybatdau'),DB::raw('DATE_FORMAT(sk_ngayketthuc, "%d-%m-%Y") as sk_ngayketthuc'))
         ->whereYear('sk_ngayketthuc', '>=', $nam_hien_tai)
         ->whereDay('sk_ngayketthuc', '>=',$ngay_hien_tai)
         ->whereMonth('sk_ngayketthuc', '>=', $thang_hien_tai)
@@ -34,11 +34,17 @@ class sukienController extends Controller
  
     public function store(Request $request)
     {
+
+        // $this->validate($request,
+        //  [
+        //     'sk_ngaybatdau' => 'date_format:"d-m-Y',
+        //     'sk_ngayketthuc' => 'date_format:"d-m-Y'
+        // ]);
         $sukien                        = new sukienModel();
         $sukien->sk_tensukien          = $request->input('sk_tensukien');
         $sukien->sk_ngaybatdau         = $request->input('sk_ngaybatdau');
-        $sukien->sk_trangthai          = $request->input('sk_trangthai');
-        $sukien->dd_iddiadiem          = $request->input('dd_iddiadiem');
+        $sukien->sk_ngayketthuc        = $request->input('sk_ngayketthuc');
+        $sukien->dv_iddichvu           = $request->input('dv_iddichvu');
         $sukien->lhsk_idloaihinhsukien = $request->input('lhsk_idloaihinhsukien');
         $sukien->save();
 
@@ -47,7 +53,7 @@ class sukienController extends Controller
     public function show($id)
     {
         $su_kien = DB::table('dlct_sukien')
-        ->select('id','sk_tensukien', 'sk_ngaybatdau','sk_trangthai', 'dd_iddiadiem', 'lhsk_idloaihinhsukien')
+        ->select('id','sk_tensukien', 'sk_ngaybatdau')
         ->where('id', $id)
         ->get();
         $encode=json_encode($su_kien);
@@ -57,7 +63,7 @@ class sukienController extends Controller
     public function edit($id)
     {
         $su_kien = DB::table('dlct_sukien')
-        ->select('id','sk_tensukien', 'sk_ngaybatdau','sk_trangthai', 'dd_iddiadiem', 'lhsk_idloaihinhsukien')
+        ->select('id','sk_tensukien', 'sk_ngaybatdau','sk_ngayketthuc', 'dv_iddichvu', 'lhsk_idloaihinhsukien')
         ->where('id', $id)
         ->get();
         $encode=json_encode($su_kien);
@@ -69,8 +75,8 @@ class sukienController extends Controller
         $sukien                        = sukienModel::findOrFail($id);
         $sukien->sk_tensukien          = $request->input('sk_tensukien');
         $sukien->sk_ngaybatdau         = $request->input('sk_ngaybatdau');
-        $sukien->sk_trangthai          = $request->input('sk_trangthai');
-        $sukien->dd_iddiadiem          = $request->input('dd_iddiadiem');
+        $sukien->sk_ngaybatdau         = $request->input('sk_ngayketthuc');
+        $sukien->dd_iddiadiem          = $request->input('dv_iddichvu');
         $sukien->lhsk_idloaihinhsukien = $request->input('lhsk_idloaihinhsukien');     $sukien->save();
     }
  

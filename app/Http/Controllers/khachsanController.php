@@ -30,7 +30,6 @@ class khachsanController extends Controller
         $khachsan                 = new khachsanModel();
         $khachsan->ks_tenkhachsan = $request->input('ks_tenkhachsan');
         $khachsan->ks_website     = $request->input('ks_website');
-        $khachsan->ks_gioithieu   = $request->input('ks_gioithieu');
         $khachsan->dv_iddichvu    = $request->input('dv_iddichvu'); 
         $khachsan->save();
     }
@@ -65,7 +64,6 @@ class khachsanController extends Controller
         $khachsan                 = khachsanModel::findOrFail($id);
         $khachsan->ks_tenkhachsan = $request->input('ks_tenkhachsan');
         $khachsan->ks_website     = $request->input('ks_website');
-        $khachsan->ks_gioithieu   = $request->input('ks_gioithieu');
         $khachsan->dv_iddichvu    = $request->input('dv_iddichvu');  
         $khachsan->save();
     

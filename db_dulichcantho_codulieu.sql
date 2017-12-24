@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 24, 2017 lúc 03:34 PM
+-- Thời gian đã tạo: Th12 24, 2017 lúc 04:40 PM
 -- Phiên bản máy phục vụ: 10.1.28-MariaDB
 -- Phiên bản PHP: 7.1.10
 
@@ -35,6 +35,16 @@ CREATE TABLE `dlct_anuong` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `dlct_anuong`
+--
+
+INSERT INTO `dlct_anuong` (`id`, `au_ten`, `dv_iddichvu`, `created_at`, `updated_at`) VALUES
+(1, 'Senior Coffee', 8, NULL, NULL),
+(2, 'Cafe English', 9, NULL, NULL),
+(3, 'Nhà hàng Phương Nam', 10, NULL, NULL),
+(4, 'DU THUYỀN NINH KIỀU', 15, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -142,22 +152,22 @@ CREATE TABLE `dlct_dichvu` (
 -- Đang đổ dữ liệu cho bảng `dlct_dichvu`
 --
 
-INSERT INTO `dlct_dichvu` (`id`, `dv_gioithieu`, `dv_giomocua`, `dv_giodongcua`, `dv_giacaonhat`, `dv_giathapnhat`, `dv_trangthai`, `dd_iddiadiem`, `created_at`, `updated_at`) VALUES
-(5, 'Chợ Cần Thơ còn gọi là chợ Hàng Dương hay \" chợ lục tỉnh\", nằm trên đường Hai Bà Trưng. Chợ có từ hơn một trăm năm được xây dựng cùng thời với hai ngôi chợ lớn ở Sài Gòn là chợ Bến Thành và chợ Bình Tây theo kiến trúc truyền thống rất đẹp và độc đáo, đặc biệt là vào ban đêm. Đây là nơi mua sắm sầm uất nằm ngay trung tâm thành phố, tập trung nhiều du khách...', '6:00 AM', '11:00 PM', 0, 0, 1, 1, '2017-12-22 03:00:00', '2017-12-22 03:00:00'),
+INSERT INTO `dlct_dichvu` (`id`, `dv_gioithieu`, `dv_giomocua`, `dv_giodongcua`, `dv_giacaonhat`, `dv_giathapnhat`, `dd_iddiadiem`, `created_at`, `updated_at`) VALUES
+(5, 'Chợ Cần Thơ còn gọi là chợ Hàng Dương hay \" chợ lục tỉnh\", nằm trên đường Hai Bà Trưng. Chợ có từ hơn một trăm năm được xây dựng cùng thời với hai ngôi chợ lớn ở Sài Gòn là chợ Bến Thành và chợ Bình Tây theo kiến trúc truyền thống rất đẹp và độc đáo, đặc biệt là vào ban đêm. Đây là nơi mua sắm sầm uất nằm ngay trung tâm thành phố, tập trung nhiều du khách...', '6:00 AM', '11:00 PM', 0,  1, 1, '2017-12-22 03:00:00', '2017-12-22 03:00:00'),
 (6, 'Bến phà Xóm Chài nằm trong Thành phố Cần Thơ. Bến phà Xóm Chài', '6:00 AM', '11:00 PM', 0, 0, 1, 1, NULL, NULL),
-(7, 'Chùa Ông (Cần Thơ), tên gốc là Quảng Triệu Hội Quán (chữ Hán: 廣肇會館；广肇会馆） )[1]; tọa lạc tại số 32 đường Hai Bà Trưng, thuộc phường Tân An, quận Ninh Kiều, thành phố Cần Thơ, Việt Nam. Đây là một ngôi chùa của người Hoa gốc Quảng Đông tại Cần Thơ, và là một di tích lịch sử cấp quốc gia kể từ năm 1993[2].', '6:00 AM', '11:00 PM', 0, 0, 1, 1, NULL, NULL),
-(8, 'Quán này nằm ngay đường Ngô gia tự luôn, sát bên khám lớn, và kế bên Hợp phố. quán có không gian hơi bị được, nhưng giá hơi bị cao. điều đặc biệt khiến mình lại đây là ở đây có pokeshop, nên thích ở đây lì lợm bắt pokemon. nước uống không ngon gì hết. nhà vệ sinh sạch sẽ. phục vụ cũng lịch sự. mà quán mới 9h30 gì là nhân viên lại xin tính tiền, tự hiểu phải đi về. ở đây buổi sáng có bán điểm tâm, nên buổi sáng gia đình có thể lại đây thưởng thức.', '6:00 AM', '11:00 PM', 15000, 35000, 1, 1, NULL, NULL),
-(9, 'Lựa chọn ăn uống: Đêm muộn, Bữa trưa, Bữa tối, Bữa nửa buổi, Bữa sáng, Đồ uống, Giao hàng, Wifi miễn phí, Quầy bar đầy đủ, Ngồi ngoài trời, Có bãi đỗ xe, Đặt chỗ, Chỗ ngồi, Phục vụ đồ uống có cồn, Bãi đỗ xe đường phố, Cửa hàng bán thức ăn mang về, Nhân viên phục vụ, Lối vào ra cho xe lăn', '7:00 AM', '11:00 PM', 0, 0, 1, 1, NULL, NULL),
-(10, 'Quán nằm ngay trung tâm quận ninh kiều, công tác vài lần ở Cần Thơ nhưng đây là lần đầu tiên ghé quán này, không gian quám không rộng nhưng ấm cúng, nhân viên phục vụ nhiệt tình mà nhanh nữa, gọi 3 món : canh chua tôm, heo kho tiêu, rau muống xào, phải nói là món ăn rất ngon, nước chấm vừa miệng, cơm trắng dẻo mà lại thơm ngon lạ lùng, phục vụ tốt mà đồ ăn lại rẻ nữa, chắc chắn sẽ ghé nữa', '11:00 AM', '11:00 PM', 0, 0, 1, 1, NULL, NULL),
-(11, 'Công viên bến ninh kiều ến Ninh Kiều ngày nay trở thành công viên Ninh Kiều, nằm bên bờ sông Hậu hiền hòa, ngay trung tâm thành phố Cần Thơ. Nơi đây vốn là niềm tự hào đối với người dân địa phương qua đôi câu ví - Cần Thơ có bến Ninh Kiều, có dòng sông đẹp với nhiều giai nhân.\r\n\r\nCông viên Ninh Kiều rộng lớn và khang trang, có bờ kè tản bộ dọc sông, cùng những chiếc ghế đá kê dưới hàng dừa lao xao theo gió. Bên trong công viên được trồng nhiều cây kiểng, hoa kiểng đẹp mắt, điểm tô những thảm cỏ xanh mọc len lỏi giữa những tấm xi măng trắng, và có tượng Bác Hồ bằng đồng cao 7.2m, bố trí tôn nghiêm trên bệ cao 3.6m. Xung quanh công viên là các nhà hàng thủy tạ, phục vụ nhiều món ăn đặc sản địa phương.', '6:00 AM', '11:00 PM', 0, 0, 1, 1, NULL, NULL),
+(7, 'Chùa Ông (Cần Thơ), tên gốc là Quảng Triệu Hội Quán (chữ Hán: 廣肇會館；广肇会馆） )[1]; tọa lạc tại số 32 đường Hai Bà Trưng, thuộc phường Tân An, quận Ninh Kiều, thành phố Cần Thơ, Việt Nam. Đây là một ngôi chùa của người Hoa gốc Quảng Đông tại Cần Thơ, và là một di tích lịch sử cấp quốc gia kể từ năm 1993[2].', '6:00 AM', '11:00 PM', 0,  1, 1, NULL, NULL),
+(8, 'Quán này nằm ngay đường Ngô gia tự luôn, sát bên khám lớn, và kế bên Hợp phố. quán có không gian hơi bị được, nhưng giá hơi bị cao. điều đặc biệt khiến mình lại đây là ở đây có pokeshop, nên thích ở đây lì lợm bắt pokemon. nước uống không ngon gì hết. nhà vệ sinh sạch sẽ. phục vụ cũng lịch sự. mà quán mới 9h30 gì là nhân viên lại xin tính tiền, tự hiểu phải đi về. ở đây buổi sáng có bán điểm tâm, nên buổi sáng gia đình có thể lại đây thưởng thức.', '6:00 AM', '11:00 PM', 15000, 35000,  1, NULL, NULL),
+(9, 'Lựa chọn ăn uống: Đêm muộn, Bữa trưa, Bữa tối, Bữa nửa buổi, Bữa sáng, Đồ uống, Giao hàng, Wifi miễn phí, Quầy bar đầy đủ, Ngồi ngoài trời, Có bãi đỗ xe, Đặt chỗ, Chỗ ngồi, Phục vụ đồ uống có cồn, Bãi đỗ xe đường phố, Cửa hàng bán thức ăn mang về, Nhân viên phục vụ, Lối vào ra cho xe lăn', '7:00 AM', '11:00 PM', 0,  1, 1, NULL, NULL),
+(10, 'Quán nằm ngay trung tâm quận ninh kiều, công tác vài lần ở Cần Thơ nhưng đây là lần đầu tiên ghé quán này, không gian quám không rộng nhưng ấm cúng, nhân viên phục vụ nhiệt tình mà nhanh nữa, gọi 3 món : canh chua tôm, heo kho tiêu, rau muống xào, phải nói là món ăn rất ngon, nước chấm vừa miệng, cơm trắng dẻo mà lại thơm ngon lạ lùng, phục vụ tốt mà đồ ăn lại rẻ nữa, chắc chắn sẽ ghé nữa', '11:00 AM', '11:00 PM', 0,  1, 1, NULL, NULL),
+(11, 'Công viên bến ninh kiều ến Ninh Kiều ngày nay trở thành công viên Ninh Kiều, nằm bên bờ sông Hậu hiền hòa, ngay trung tâm thành phố Cần Thơ. Nơi đây vốn là niềm tự hào đối với người dân địa phương qua đôi câu ví - Cần Thơ có bến Ninh Kiều, có dòng sông đẹp với nhiều giai nhân.\r\n\r\nCông viên Ninh Kiều rộng lớn và khang trang, có bờ kè tản bộ dọc sông, cùng những chiếc ghế đá kê dưới hàng dừa lao xao theo gió. Bên trong công viên được trồng nhiều cây kiểng, hoa kiểng đẹp mắt, điểm tô những thảm cỏ xanh mọc len lỏi giữa những tấm xi măng trắng, và có tượng Bác Hồ bằng đồng cao 7.2m, bố trí tôn nghiêm trên bệ cao 3.6m. Xung quanh công viên là các nhà hàng thủy tạ, phục vụ nhiều món ăn đặc sản địa phương.', '6:00 AM', '11:00 PM', 0, 1, 1, NULL, NULL),
 (12, 'Cathedral Diocese of Can Tho - 14 Nguyễn Thị Minh Khai, Tân An, Ninh Kiều, Cần Thơ, Vietnam\r\n', '6:00 AM', '11:00 PM', 0, 0, 1, 1, NULL, NULL),
-(13, 'Chợ Cần Thơ còn gọi là chợ Hàng Dương hay \" chợ lục tỉnh\", nằm trên đường Hai Bà Trưng. Chợ có từ hơn một trăm năm được xây dựng cùng thời với hai ngôi chợ lớn ở Sài Gòn là chợ Bến Thành và chợ Bình Tây theo kiến trúc truyền thống rất đẹp và độc đáo, đặc biệt là vào ban đêm. Đây là nơi mua sắm sầm uất nằm ngay trung tâm thành phố, tập trung nhiều du khách...', '6:00 AM', '11:00 PM', 0, 0, 1, 1, NULL, NULL),
+(13, 'Chợ Cần Thơ còn gọi là chợ Hàng Dương hay \" chợ lục tỉnh\", nằm trên đường Hai Bà Trưng. Chợ có từ hơn một trăm năm được xây dựng cùng thời với hai ngôi chợ lớn ở Sài Gòn là chợ Bến Thành và chợ Bình Tây theo kiến trúc truyền thống rất đẹp và độc đáo, đặc biệt là vào ban đêm. Đây là nơi mua sắm sầm uất nằm ngay trung tâm thành phố, tập trung nhiều du khách...', '6:00 AM', '11:00 PM', 0,  1, 1, NULL, NULL),
 (14, 'Chiều cuối tuần xuống “du thuyền” ngắm cảnh trên sông Hậu', '6:00 PM', '0:00 AM', 0, 0, 1, 1, NULL, NULL),
-(15, 'Du Thuyền Ninh Kiều nằm ngay Bến Ninh Kiều trên dòng Sông Hậu. Du Thuyền Ninh Kiều được thiết kế hiện đại sang trọng, trang thiết bị nội thất cao cấp, sức chứa 500 khách. Tầng trệt được thiết kế chuyên để phục vụ tiệc cưới, sinh nhật, liên hoan..., tầng 1 thiết kế các phòng ăn VIP có máy lạnh, rất thích hợp cho các buổi tiệc chiêu đãi sang trọng. Sân thượng tầng 2 không gian thoáng mát khí hậu sông nước rất trong lành sẽ mang đến cho quý khách không gian thưởng thức ẩm thực hoàn hảo. Với đội ngũ nhân viên chuyên nghiệp được đào tạo từ các trường du lịch, có nhiều năm kinh nghiệm phục tận tình chu đáo chắc chắn sẽ làm hài lòng quý khách.', '6:00 PM', '0:00 AM', 0, 0, 1, 1, NULL, NULL),
+(15, 'Du Thuyền Ninh Kiều nằm ngay Bến Ninh Kiều trên dòng Sông Hậu. Du Thuyền Ninh Kiều được thiết kế hiện đại sang trọng, trang thiết bị nội thất cao cấp, sức chứa 500 khách. Tầng trệt được thiết kế chuyên để phục vụ tiệc cưới, sinh nhật, liên hoan..., tầng 1 thiết kế các phòng ăn VIP có máy lạnh, rất thích hợp cho các buổi tiệc chiêu đãi sang trọng. Sân thượng tầng 2 không gian thoáng mát khí hậu sông nước rất trong lành sẽ mang đến cho quý khách không gian thưởng thức ẩm thực hoàn hảo. Với đội ngũ nhân viên chuyên nghiệp được đào tạo từ các trường du lịch, có nhiều năm kinh nghiệm phục tận tình chu đáo chắc chắn sẽ làm hài lòng quý khách.', '6:00 PM', '0:00 AM', 0, 0,  1, NULL, NULL),
 (16, 'Cầu đi bộ bến Ninh Kiều – điểm dừng chân mới cho du khách đến Cần Thơ', '6:00 AM', '11:00 PM', 0, 0, 1, 2, NULL, NULL),
-(17, 'Khách sạn Ninh Kiều 1 tọa lạc ngay trung tâm của Thành phố Cần Thơ, vị trí nằm ngay trên Bến Ninh kiều\r\n+ Cách TPHCM khoảng 168km.\r\n+ Sân bay Quốc tế Cần Thơ khoảng 10.8km, cách bến xe khách Cần Thơ khoảng 4.7km.\r\n+ Cách Chợ nổi Cái Răng khoảng 7.0km, cách Nhà Cổ Bình Thủy khoảng 6.7km, cách Làng du lịch Mỹ Khánh khoảng 12.2km, cách Vườn Cò Bằng Lăng khoảng 48.7km.', '6:00 AM', '11:00 PM', 500000, 3000000, 1, 1, NULL, NULL),
+(17, 'Khách sạn Ninh Kiều 1 tọa lạc ngay trung tâm của Thành phố Cần Thơ, vị trí nằm ngay trên Bến Ninh kiều\r\n+ Cách TPHCM khoảng 168km.\r\n+ Sân bay Quốc tế Cần Thơ khoảng 10.8km, cách bến xe khách Cần Thơ khoảng 4.7km.\r\n+ Cách Chợ nổi Cái Răng khoảng 7.0km, cách Nhà Cổ Bình Thủy khoảng 6.7km, cách Làng du lịch Mỹ Khánh khoảng 12.2km, cách Vườn Cò Bằng Lăng khoảng 48.7km.', '6:00 AM', '11:00 PM', 500000, 3000000,  1, NULL, NULL),
 (18, '  HỆ THỐNG TTC HOTEL', '6:00 AM', '11:00 PM', 0, 0, 1, 1, NULL, NULL),
-(19, 'Du khách có thể tìm thấy các suite và phòng nghỉ hiện đại với Wi-Fi miễn phí cùng máy lạnh tại Hau Giang Hotel. Nằm ở thành phố Cần Thơ, khách sạn có nhà hàng riêng và cung cấp chỗ đỗ xe miễn phí.', '6:00 AM', '11:00 PM', 0, 0, 1, 1, NULL, NULL);
+(19, 'Du khách có thể tìm thấy các suite và phòng nghỉ hiện đại với Wi-Fi miễn phí cùng máy lạnh tại Hau Giang Hotel. Nằm ở thành phố Cần Thơ, khách sạn có nhà hàng riêng và cung cấp chỗ đỗ xe miễn phí.', '6:00 AM', '11:00 PM', 0, 0,  1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -654,7 +664,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `dlct_anuong`
 --
 ALTER TABLE `dlct_anuong`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `dlct_binhluan`

@@ -27,7 +27,6 @@ class vuichoiController extends Controller
     {
         $vuichoi                    = new vuichoiModel();  
         $vuichoi->vc_tendiemvuichoi = $request->input('vc_tendiemvuichoi');
-        $vuichoi->vc_gioithieu      = $request->input('vc_gioithieu');
         $vuichoi->dv_iddichvu       = $request->input('dv_iddichvu');
         $vuichoi->save();
     }
@@ -59,7 +58,6 @@ class vuichoiController extends Controller
     {
         $vuichoi                    = vuichoiModel::findOrFail($id);
         $vuichoi->vc_tendiemvuichoi = $request->input('vc_tendiemvuichoi');
-        $vuichoi->vc_gioithieu      = $request->input('vc_gioithieu');
         $vuichoi->dv_iddichvu       = $request->input('dv_iddichvu');
         $vuichoi->save();
     }
