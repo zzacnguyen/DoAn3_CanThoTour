@@ -45,7 +45,7 @@ class dichvuController extends Controller
     {
         $dich_vu = DB::table('dlct_dichvu')
         ->select('dlct_dichvu.id','ks_tenkhachsan','vc_tendiemvuichoi', 'tq_tendiemthamquan', 'ks_website',
-                 'au_ten','dv_gioithieu', 'dv_giomocua','dv_giodongcua','dv_giathapnhat','dv_giacaonhat', 'dv_trangthai', 'dd_iddiadiem')
+                 'au_ten','dv_gioithieu', 'dv_giomocua','dv_giodongcua','dv_giathapnhat','dv_giacaonhat', 'dd_iddiadiem')
         ->leftJoin('dlct_sukien', 'dlct_sukien.dv_iddichvu', '=', 'dlct_dichvu.id')
         ->leftJoin('dlct_loaihinhsukien', 'dlct_loaihinhsukien.id', '=','dlct_sukien.lhsk_idloaihinhsukien')
         ->leftJoin('dlct_khachsan', 'dlct_khachsan.dv_iddichvu', '=', 'dlct_dichvu.id')
