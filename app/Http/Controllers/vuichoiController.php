@@ -11,7 +11,7 @@ class vuichoiController extends Controller
     public function index()
     {
         $vui_choi = DB::table('dlct_vuichoi')
-        ->select('dlct_vuichoi.id','vc_tendiemvuichoi','dlct_hinhanh.id AS id_hinhanh','dlct_hinhanh.chitiet1')
+        ->select('dlct_vuichoi.dv_iddichvu AS id','vc_tendiemvuichoi','dlct_hinhanh.id AS id_hinhanh','dlct_hinhanh.chitiet1')
         ->leftJoin('dlct_hinhanh', 'dlct_hinhanh.dv_iddichvu', '=', 'dlct_vuichoi.dv_iddichvu')
         ->paginate(10);
         $encode=json_encode($vui_choi);
@@ -34,12 +34,12 @@ class vuichoiController extends Controller
     public function show($id)
     {
         $vui_choi = DB::table('dlct_vuichoi')
-        ->select('dlct_vuichoi.id','vc_tendiemvuichoi', 'dlct_diadiem.dd_diachi','dlct_diadiem.dd_sodienthoai',
+        ->select('dlct_vuichoi.dv_iddichvu AS id','vc_tendiemvuichoi', 'dlct_diadiem.dd_diachi','dlct_diadiem.dd_sodienthoai',
             'dlct_dichvu.dv_giathapnhat', 'dlct_dichvu.dv_giacaonhat', 'dlct_dichvu.dv_giomocua','dlct_dichvu.dv_giodongcua',
             'dlct_dichvu.dv_gioithieu','dlct_vuichoi.dv_iddichvu')
         ->join('dlct_dichvu', 'dlct_dichvu.id', '=', 'dlct_vuichoi.dv_iddichvu')
         ->join('dlct_diadiem', 'dlct_dichvu.dd_iddiadiem', '=', 'dlct_diadiem.id')
-        ->where('dlct_vuichoi.id', $id)
+        ->where('dlct_vuichoi.dv_iddichvu', $id)
         ->get();
         $encode=json_encode($vui_choi);
         return $encode;

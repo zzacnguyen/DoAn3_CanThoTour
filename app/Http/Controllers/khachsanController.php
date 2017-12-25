@@ -11,7 +11,7 @@ class khachsanController extends Controller
     public function index()
     {   
         $khach_san = DB::table('dlct_khachsan')
-        ->select('dlct_khachsan.id','ks_tenkhachsan','dlct_hinhanh.id AS id_hinhanh','dlct_hinhanh.chitiet1')
+        ->select('dlct_khachsan.dv_iddichvu AS id','ks_tenkhachsan','dlct_hinhanh.id AS id_hinhanh','dlct_hinhanh.chitiet1')
         ->leftJoin('dlct_hinhanh', 'dlct_hinhanh.dv_iddichvu', '=', 'dlct_khachsan.dv_iddichvu')
         
         ->paginate(10);
@@ -37,13 +37,13 @@ class khachsanController extends Controller
     public function show($id)
     {
         $khach_san = DB::table('dlct_khachsan')
-        ->select('dlct_khachsan.id','ks_tenkhachsan','ks_website', 'dlct_diadiem.dd_diachi','dlct_diadiem.dd_sodienthoai',
+        ->select('dlct_khachsan.dv_iddichvu AS id','ks_tenkhachsan','ks_website', 'dlct_diadiem.dd_diachi','dlct_diadiem.dd_sodienthoai',
             'dlct_dichvu.dv_giathapnhat', 'dlct_dichvu.dv_giacaonhat', 'dlct_dichvu.dv_giomocua','dlct_dichvu.dv_giodongcua',
             'dlct_dichvu.dv_gioithieu','dlct_khachsan.dv_iddichvu')
         ->join('dlct_dichvu', 'dlct_dichvu.id', '=', 'dlct_khachsan.dv_iddichvu')
         ->join('dlct_diadiem', 'dlct_dichvu.dd_iddiadiem', '=', 'dlct_diadiem.id')
         
-        ->where('dlct_khachsan.id', $id)
+        ->where('dlct_khachsan.dv_iddichvu', $id)
         ->get();
         $encode=json_encode($khach_san);
         return $encode;

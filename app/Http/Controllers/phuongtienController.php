@@ -11,7 +11,7 @@ class phuongtienController extends Controller
     public function index()
     {
         $phuong_tien = DB::table('dlct_phuongtien')
-        ->select('dlct_phuongtien.id','pt_tenphuongtien','dlct_hinhanh.id AS id_hinhanh','dlct_hinhanh.chitiet1')
+        ->select('dlct_phuongtien.dv_iddichvu AS id','pt_tenphuongtien','dlct_hinhanh.id AS id_hinhanh','dlct_hinhanh.chitiet1')
         ->leftJoin('dlct_hinhanh', 'dlct_hinhanh.dv_iddichvu', '=', 'dlct_phuongtien.dv_iddichvu')
         
         ->paginate(10);
@@ -37,14 +37,14 @@ class phuongtienController extends Controller
     public function show($id)
     {
         $phuong_tien = DB::table('dlct_phuongtien')
-        ->select('dlct_phuongtien.id','pt_tenphuongtien', 'dlct_diadiem.dd_diachi','dlct_diadiem.dd_sodienthoai',
+        ->select('dlct_phuongtien.dv_iddichvu AS id','pt_tenphuongtien', 'dlct_diadiem.dd_diachi','dlct_diadiem.dd_sodienthoai',
         'dlct_dichvu.dv_giathapnhat', 'dlct_dichvu.dv_giacaonhat', 'dlct_dichvu.dv_giomocua','dlct_dichvu.dv_giodongcua',
         'dlct_dichvu.dv_gioithieu', 'dlct_phuongtien.dv_iddichvu')
         ->join('dlct_dichvu', 'dlct_dichvu.id', '=', 'dlct_phuongtien.dv_iddichvu')
         ->join('dlct_diadiem', 'dlct_dichvu.dd_iddiadiem', '=', 'dlct_diadiem.id')
         
 
-        ->where('dlct_phuongtien.id', $id)
+        ->where('dlct_phuongtien.dv_iddichvu', $id)
         ->get();
         $encode=json_encode($phuong_tien);
         return $encode;
