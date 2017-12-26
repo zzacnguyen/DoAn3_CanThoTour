@@ -19,7 +19,7 @@ class yeuthichController extends Controller
         ->leftJoin('dlct_thamquan', 'dlct_thamquan.dv_iddichvu', '=', 'dlct_yeuthich.dv_iddichvu')
         ->leftJoin('dlct_phuongtien', 'dlct_phuongtien.dv_iddichvu', '=', 'dlct_yeuthich.dv_iddichvu')
         ->join('dlct_dichvu', 'dlct_dichvu.id', '=', 'dlct_yeuthich.dv_iddichvu')
-        ->get();
+        ->paginate (10);
         $encode=json_encode($yeu_thich);
         return $encode;
     }
@@ -43,7 +43,7 @@ class yeuthichController extends Controller
     public function show($id_nguoi_dung)
     {
         $yeu_thich = DB::table('dlct_yeuthich')
-        ->select('dlct_yeuthich.dv_iddichvu as id','dlct_yeuthich.nd_idnguoidung','ks_tenkhachsan','vc_tendiemvuichoi','pt_tenphuongtien', 'tq_tendiemthamquan', 'dlct_yeuthich.nd_idnguoidung', 'dlct_hinhanh.id AS id_hinhanh','dlct_hinhanh.chitiet1')
+        ->select('dlct_yeuthich.dv_iddichvu as id', 'ks_tenkhachsan','vc_tendiemvuichoi', 'pt_tenphuongtien', 'tq_tendiemthamquan', 'au_ten', 'dlct_hinhanh.id AS id_hinhanh', 'dlct_hinhanh.chitiet1')
         ->leftJoin('dlct_hinhanh', 'dlct_hinhanh.dv_iddichvu', '=', 'dlct_yeuthich.dv_iddichvu')
         ->leftJoin('dlct_khachsan', 'dlct_khachsan.dv_iddichvu', '=', 'dlct_yeuthich.dv_iddichvu')
         ->leftJoin('dlct_anuong', 'dlct_anuong.dv_iddichvu', '=', 'dlct_yeuthich.dv_iddichvu')
@@ -53,7 +53,7 @@ class yeuthichController extends Controller
         ->join('dlct_dichvu', 'dlct_dichvu.id', '=', 'dlct_yeuthich.dv_iddichvu')
      
         ->where('dlct_yeuthich.nd_idnguoidung',$id_nguoi_dung)
-        ->get();
+        ->paginate (10);
         $encode=json_encode($yeu_thich);
         return $encode;
     }
