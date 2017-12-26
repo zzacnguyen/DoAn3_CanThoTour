@@ -10,12 +10,15 @@ use App\Http\Controllers\lib_Search;
 use DB;
 class timkiemController extends Controller
 {
+
+
 	// Tinh khoang cach dua vao cong thuc 
 	// d = sqrt((x2 - x1)^2 + (y2  - y1)^2 )
     public function euclideDistance($latitude, $longitude, $latitude2, $longitude2)
     {
         $euclideDistance = sqrt(pow(($latitude2-$latitude),2) + pow(($longitude2 - $longitude),2));
     	return $euclideDistance;
+        // return ($latitude - $latitude2)*($latitude - $latitude2);
    	}
 
 
@@ -53,13 +56,14 @@ class timkiemController extends Controller
     public function search_lancan($user_latitude, $user_longitude,$radius)
     {
         $dia_diem = diadiemModel::all();
+        $dia_diem = dichvuModel::all();
 
         foreach ($dia_diem as $l) {
-            $euclideDistance = $this::euclideDistance($user_latitude,$user_longitude,$l['dd_vido'],$l['dd_kinhdo']);
-
+            $vido = (double)$l['dd_vido'];
+            $kinhdo = (double)$l['dd_kinhdo'];
+            $mang[] = $kinhdo*$kinhdo;
+            $euclideDistance = $this::euclideDistance($user_latitude,$user_longitude,$vido,$kinhdo);
             if ($euclideDistance <= $radius && $euclideDistance > 0) {
-                // echo $euclideDistance ;
-                // echo "</br>";
                 $list_result[] = array('id' => $l['id'],'dd_tendiadiem' => $l['dd_tendiadiem'],'khoangcach' => $euclideDistance, 'vido' => $l['dd_vido'],'kinhdo' => $l['dd_kinhdo']);
             }
         }
@@ -80,6 +84,44 @@ class timkiemController extends Controller
             return json_encode("Không tìm thấy địa điểm phù hợp");
     }
     
+
+    //tìm dịch vụ lân cận
+    public function search_dichvu_lancan($id_dichvu)
+    {
+        $dich_vu_1 = DB::table('dlct_dichvu')->where('id',$id_dichvu)->first();
+        $id_diadiem = $dich_vu_1->dd_iddiadiem;
+        $dia_diem = DB::table('dlct_diadiem')->where('id',$id_diadiem)->first();
+        $vd_diadiem = (double)$dia_diem->dd_vido;
+        $kd_diadiem = (double)$dia_diem->dd_kinhdo;
+        $dia_diem_all = diadiemModel::all();
+        foreach ($dia_diem_all as $l) {
+            $vido = (double)$l['dd_vido'];
+            $kinhdo = (double)$l['dd_kinhdo'];
+            $euclideDistance = $this::euclideDistance($vd_diadiem,$kd_diadiem,$vido,$kinhdo);
+            
+            if ($euclideDistance <= 0.01 && $euclideDistance > 0) {
+                $mang_khoangcach[] = array($l['id']=>$euclideDistance);
+            }
+        }
+        $minn = min($mang_khoangcach);
+        $id_min_diadiem = key($minn);
+        $dich_vu = DB::table('dlct_dichvu')->where('dd_iddiadiem', $id_min_diadiem)->get();
+        // return json_encode($dich_vu);
+        if (empty($dich_vu))
+            return json_encode("Không tìm thấy dịch vụ");
+        else
+            return json_encode($dich_vu);
+    }
+
+
+    public function search_dichvu_all($keyword)
+    {
+        $keyword_handing = str_replace("+", " ", $keyword);
+        $result = dichvuModel::where('dv_gioithieu','like',"%$keyword_handing%")->take(30)->paginate(5);
+        return json_encode($result);
+    }
+
+
     // tìm kiếm dưa theo loại và từ khoá
     public function search_type_keyword($type, $keyword)
     {

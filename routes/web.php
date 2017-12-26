@@ -35,19 +35,10 @@ Route::resource('tukhoa_dichvu', 'tukhoa_dichvu_Controller');
 Route::resource('yeuthich', 'yeuthichController');
 
 
+// TIM KIEM
+Route::get('timkiem/dichvulancan/id={iddiadiem}','timkiemController@search_dichvu_lancan');
 
-// Route::get('timkiem/type={type}&keyword={key}','timkiemController@search_type_keyword');
-
-Route::get('timkiemSort/location={latiitude},{longitude}&radius={radius}&keyword={key}','timkiemController@searchLocationByRadiusAndKeyword');
-
-// Route::get('timkiem/keyword={key}','timkiemController@search_keyword_location');
-
-Route::get('timkiem/type={type}&keyword={keyword}','timkiemController@search');
-
-Route::get('timkiem/keyword={keyword}','timkiemController@search_all');
-
-Route::get('timkiemlancan/location={latiitude},{longitude}&radius={radius}','timkiemController@search_lancan');
-// 
+Route::get('timkiem/dichvuall/keyword={keyword}','timkiemController@search_dichvu_all');
 
 
 Route::get('test', 'timkiemController@test');
@@ -60,8 +51,7 @@ Route::get('test', 'timkiemController@test');
 Route::post('upload-image','hinhanhController@Upload');
 Route::get('lay-mot-hinh-icon/{id}', 'hinhanhController@LayMotIcon');
 Route::get('lay-mot-hinh-banner/{id}', 'hinhanhController@LayMotBanner');
-Route::get('lay-mot-hinh-thumb-1/{id}', 'hinhanhController@LayMotThumb1');
-Route::get('lay-mot-hinh-thumb-2/{id}', 'hinhanhController@LayMotThumb2');
+Route::get('lay-mot-hinh-thumb/{id}', 'hinhanhController@LayMotThumb');
 Route::get('lay-mot-hinh-chi-tiet-1/{id}', 'hinhanhController@LayMotHinhChiTiet1');
 Route::get('lay-mot-hinh-chi-tiet-2/{id}', 'hinhanhController@LayMotHinhChiTiet2');
 
