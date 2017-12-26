@@ -17,7 +17,8 @@ class sukienController extends Controller
         $thang_hien_tai = $dt->month;
         $ngay_hien_tai = $dt->day;
         $su_kien = DB::table('dlct_sukien')
-        ->select('dv_iddichvu as id','sk_tensukien', DB::raw('DATE_FORMAT(sk_ngaybatdau, "%d-%m-%Y") as sk_ngaybatdau'),DB::raw('DATE_FORMAT(sk_ngayketthuc, "%d-%m-%Y") as sk_ngayketthuc'))
+        ->select('dlct_sukien.dv_iddichvu as id', 'dlct_sukien.sk_tensukien', 'dlct_hinhanh.id as id_hinhanh','dlct_hinhanh.chitiet1', DB::raw('DATE_FORMAT(sk_ngaybatdau, "%d-%m-%Y") as sk_ngaybatdau'),DB::raw('DATE_FORMAT(sk_ngayketthuc, "%d-%m-%Y") as sk_ngayketthuc'))
+        ->leftJoin('dlct_hinhanh', 'dlct_hinhanh.dv_iddichvu', '=', 'dlct_sukien.dv_iddichvu')
         ->whereYear('sk_ngayketthuc', '>=', $nam_hien_tai)
         ->whereDay('sk_ngayketthuc', '>=',$ngay_hien_tai)
         ->whereMonth('sk_ngayketthuc', '>=', $thang_hien_tai)
