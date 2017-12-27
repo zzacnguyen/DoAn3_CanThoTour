@@ -37,8 +37,9 @@ class binhluanController extends Controller
     public function show($id_dich_vu)
     {
         $binh_luan = DB::table('dlct_binhluan')
-        ->select('id','bl_binhluan')
-        ->join('dlct_dichvu', 'dlct_dichvu.id','=', 'dlct_binhluan.dv_iddichvu')
+        ->select('dlct_binhluan.id as id_binhluan','bl_binhluan', 'nd_tendangnhap')
+        ->join('dlct_dichvu','dlct_dichvu.id','=','dlct_binhluan.dv_iddichvu')
+        ->join('dlct_nguoidung','dlct_nguoidung.id','=','dlct_binhluan.nd_idnguoidung')
         ->where('dv_iddichvu', $id_dich_vu)
 
         ->get();
