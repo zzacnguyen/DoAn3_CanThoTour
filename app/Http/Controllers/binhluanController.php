@@ -10,7 +10,7 @@ class binhluanController extends Controller
     public function index()
     {
         $binh_luan = DB::table('dlct_binhluan')
-        ->select('id','bl_binhluan', 'bl_trangthai','dv_iddichvu','nd_idnguoidung')
+        ->select('id','bl_binhluan','dv_iddichvu','nd_idnguoidung')
         ->where('bl_trangthai', 1)
         ->paginate(10);
         $encode=json_encode($binh_luan);
@@ -40,6 +40,7 @@ class binhluanController extends Controller
         ->select('id','bl_binhluan')
         ->join('dlct_dichvu', 'dlct_dichvu.id','=', 'dlct_binhluan.dv_iddichvu')
         ->where('dv_iddichvu', $id_dich_vu)
+
         ->get();
         $encode=json_encode($binh_luan);
         return $encode;
@@ -49,7 +50,7 @@ class binhluanController extends Controller
     public function edit($id)
     {
         $binh_luan = DB::table('dlct_binhluan')
-        ->select('id','bl_binhluan', 'bl_trangthai','dv_iddichvu','nd_idnguoidung')
+        ->select('id','bl_binhluan','dv_iddichvu','nd_idnguoidung')
         ->where('id', $id)
         ->get();
         $encode=json_encode($binh_luan);
@@ -61,8 +62,9 @@ class binhluanController extends Controller
     {
         $binhluan               = binhluanModel::find($id);
         $binhluan->bl_binhluan  = $request->input('bl_binhluan');
-        $binhluan->bl_trangthai = $request->input('bl_trangthai');
+        $binhluan->bl_trangthai = 1;
         $binhluan->dv_iddichvu  = $request->input('dv_iddichvu');
+        $binhluan->dv_iddichvu  = $request->input('nd_idnguoidung');
         $binhluan->save();
 
     
