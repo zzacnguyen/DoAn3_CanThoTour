@@ -58,6 +58,7 @@ class dichvuController extends Controller
         ->leftJoin('dlct_yeuthich', 'dlct_yeuthich.dv_iddichvu', '=', 'dlct_dichvu.id')
         
         ->where('dlct_dichvu.id', $id)
+        
         ->get();
         $encode=json_encode($dich_vu);
         return $encode;

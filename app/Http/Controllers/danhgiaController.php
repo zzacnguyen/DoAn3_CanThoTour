@@ -34,9 +34,11 @@ class danhgiaController extends Controller
     public function show($id_dich_vu)
     {
         $danh_gia = DB::table('dlct_danhgia')
-        ->select('dlct_danhgia.id', DB::raw('AVG( dlct_danhgia.dg_diem )'))
+        ->select(DB::raw('AVG( dlct_danhgia.dg_diem ) as rating'))
+        
         ->join('dlct_dichvu', 'dlct_dichvu.id','=', 'dlct_danhgia.dv_iddichvu')
         ->where('dv_iddichvu', $id_dich_vu)
+        ->groupBy('dlct_danhgia.id')
         ->get();
         $encode=json_encode($danh_gia);
         return $encode;
@@ -44,12 +46,11 @@ class danhgiaController extends Controller
 
     public function edit($id)
     {
-        $danh_gia = DB::table('dlct_danhgia')
+        $danh_gia[] = DB::table('dlct_danhgia')
         ->select('id','dv_iddichvu', 'nd_idnguoidung','dg_diem')
         ->where('id', $id)
         ->get();
-        $encode=json_encode($danh_gia);
-        return $encode;
+    
     }
 
     public function update(Request $request, $id)
