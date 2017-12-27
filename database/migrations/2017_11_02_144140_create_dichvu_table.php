@@ -20,6 +20,7 @@ class CreateDichvuTable extends Migration
             $table->string('dv_giodongcua', 10); 
             $table->integer('dv_giacaonhat'); 
             $table->integer('dv_giathapnhat'); 
+            $table->integer('dv_loaihinh');
             $table->integer('dd_iddiadiem')->unsigned();
             $table->foreign('dd_iddiadiem')->references('id')->on('dlct_diadiem')->onDelete('cascade');  
             $table->timestamps();

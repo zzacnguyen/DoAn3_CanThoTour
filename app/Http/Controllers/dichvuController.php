@@ -11,7 +11,7 @@ class dichvuController extends Controller
     public function index()
     {
         $dich_vu = DB::table('dlct_dichvu')
-        ->select('dlct_dichvu.id','dv_gioithieu', 'dv_giomocua','dv_giodongcua','dv_giathapnhat','dv_giacaonhat',  'dd_iddiadiem')
+        ->select('dlct_dichvu.id','dv_gioithieu', 'dv_giomocua','dv_giodongcua','dv_giathapnhat','dv_giacaonhat',  'dd_iddiadiem', 'dv_loaihinh')
         ->paginate(10);
         $encode=json_encode($dich_vu);
         return $encode;
@@ -46,7 +46,7 @@ class dichvuController extends Controller
         $dich_vu = DB::table('dlct_dichvu')
         ->select('dlct_dichvu.id','ks_tenkhachsan','vc_tendiemvuichoi','pt_tenphuongtien', 'tq_tendiemthamquan', 'ks_website',
                  'au_ten','dv_gioithieu', 'dv_giomocua','dv_giodongcua','dv_giathapnhat','dv_giacaonhat', 'dlct_diadiem.dd_sodienthoai',
-                 'dlct_diadiem.dd_diachi', 'lhsk_ten', 'dlct_yeuthich.nd_idnguoidung as id_nd_yeuthich_dv')
+                 'dlct_diadiem.dd_diachi', 'lhsk_ten', 'dlct_yeuthich.nd_idnguoidung as id_nd_yeuthich_dv', 'dlct_yeuthich.id as id_yeuthich')
         ->leftJoin('dlct_sukien', 'dlct_sukien.dv_iddichvu', '=', 'dlct_dichvu.id')
         ->leftJoin('dlct_loaihinhsukien', 'dlct_loaihinhsukien.id', '=','dlct_sukien.lhsk_idloaihinhsukien')
         ->leftJoin('dlct_khachsan', 'dlct_khachsan.dv_iddichvu', '=', 'dlct_dichvu.id')
