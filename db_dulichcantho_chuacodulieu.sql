@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 24, 2017 lúc 02:39 PM
+-- Thời gian đã tạo: Th12 27, 2017 lúc 04:48 AM
 -- Phiên bản máy phục vụ: 10.1.28-MariaDB
 -- Phiên bản PHP: 7.1.10
 
@@ -115,7 +115,6 @@ CREATE TABLE `dlct_dichvu` (
   `dv_giodongcua` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `dv_giacaonhat` int(11) NOT NULL,
   `dv_giathapnhat` int(11) NOT NULL,
-  `dv_trangthai` tinyint(1) NOT NULL,
   `dd_iddiadiem` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -129,7 +128,9 @@ CREATE TABLE `dlct_dichvu` (
 
 CREATE TABLE `dlct_hinhanh` (
   `id` int(10) UNSIGNED NOT NULL,
-  `hinhanh` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `banner` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `chitiet1` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `chitiet2` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `dv_iddichvu` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -188,12 +189,13 @@ CREATE TABLE `dlct_loaihinhsukien` (
 CREATE TABLE `dlct_nguoidung` (
   `id` int(10) UNSIGNED NOT NULL,
   `nd_tendangnhap` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `nd_matkhau` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `nd_facebook_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `nd_email_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `nd_avatar` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `nd_quocgia` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `nd_ngonngu` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -311,7 +313,6 @@ CREATE TABLE `dlct_tukhoa_dichvu` (
 CREATE TABLE `dlct_vuichoi` (
   `id` int(10) UNSIGNED NOT NULL,
   `vc_tendiemvuichoi` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `vc_gioithieu` text COLLATE utf8_unicode_ci NOT NULL,
   `dv_iddichvu` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -325,7 +326,7 @@ CREATE TABLE `dlct_vuichoi` (
 
 CREATE TABLE `dlct_yeuthich` (
   `id` int(10) UNSIGNED NOT NULL,
-  `dd_iddiadiem` int(10) UNSIGNED NOT NULL,
+  `dv_iddichvu` int(10) UNSIGNED NOT NULL,
   `nd_idnguoidung` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -348,26 +349,39 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(103, '2017_11_02_142109_create_nguoidung_table', 1),
-(104, '2017_11_02_143248_create_diadiem_table', 1),
-(105, '2017_11_02_143901_create_lichtrinh_table', 1),
-(106, '2017_11_02_144022_create_chitietlichtrinh_table', 1),
-(107, '2017_11_02_144140_create_dichvu_table', 1),
-(108, '2017_11_02_144243_create_loaihinhsukien_table', 1),
-(109, '2017_11_02_144358_create_sukien_table', 1),
-(110, '2017_11_02_144540_create_binhluan_table', 1),
-(111, '2017_11_02_151955_create_danhgia_table', 1),
-(112, '2017_11_02_152627_create_thamquan_table', 1),
-(113, '2017_11_02_152802_create_phuongtien_table', 1),
-(114, '2017_11_02_152910_create_anuong_table', 1),
-(115, '2017_11_02_152958_create_khachsan_table', 1),
-(116, '2017_11_02_153038_create_vuichoi_table', 1),
-(117, '2017_11_09_123423_create_yeuthich_table', 1),
-(118, '2017_11_13_141540_create_tukhoa_table', 1),
-(119, '2017_11_13_144257_create_tukhoa_dichvu_table', 1),
-(120, '2017_12_13_233705_create_nguoidungcanhan_table', 1),
-(121, '2017_12_13_235129_create_nguoidungdoanhnghiep_table', 1),
-(122, '2017_12_18_141111_create_hinhanh_table', 1);
+(208, '2014_10_12_100000_create_password_resets_table', 1),
+(209, '2017_11_02_142109_create_nguoidung_table', 1),
+(210, '2017_11_02_143248_create_diadiem_table', 1),
+(211, '2017_11_02_143901_create_lichtrinh_table', 1),
+(212, '2017_11_02_144022_create_chitietlichtrinh_table', 1),
+(213, '2017_11_02_144140_create_dichvu_table', 1),
+(214, '2017_11_02_144243_create_loaihinhsukien_table', 1),
+(215, '2017_11_02_144358_create_sukien_table', 1),
+(216, '2017_11_02_144540_create_binhluan_table', 1),
+(217, '2017_11_02_151955_create_danhgia_table', 1),
+(218, '2017_11_02_152627_create_thamquan_table', 1),
+(219, '2017_11_02_152802_create_phuongtien_table', 1),
+(220, '2017_11_02_152910_create_anuong_table', 1),
+(221, '2017_11_02_152958_create_khachsan_table', 1),
+(222, '2017_11_02_153038_create_vuichoi_table', 1),
+(223, '2017_11_09_123423_create_yeuthich_table', 1),
+(224, '2017_11_13_141540_create_tukhoa_table', 1),
+(225, '2017_11_13_144257_create_tukhoa_dichvu_table', 1),
+(226, '2017_12_13_233705_create_nguoidungcanhan_table', 1),
+(227, '2017_12_13_235129_create_nguoidungdoanhnghiep_table', 1),
+(228, '2017_12_18_141111_create_hinhanh_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -513,7 +527,7 @@ ALTER TABLE `dlct_vuichoi`
 --
 ALTER TABLE `dlct_yeuthich`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nd_idnguoidung` (`dd_iddiadiem`),
+  ADD UNIQUE KEY `nd_idnguoidung` (`dv_iddichvu`),
   ADD KEY `dlct_yeuthich_nd_idnguoidung_foreign` (`nd_idnguoidung`);
 
 --
@@ -521,6 +535,12 @@ ALTER TABLE `dlct_yeuthich`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -650,7 +670,7 @@ ALTER TABLE `dlct_yeuthich`
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=229;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -755,7 +775,7 @@ ALTER TABLE `dlct_vuichoi`
 -- Các ràng buộc cho bảng `dlct_yeuthich`
 --
 ALTER TABLE `dlct_yeuthich`
-  ADD CONSTRAINT `dlct_yeuthich_dd_iddiadiem_foreign` FOREIGN KEY (`dd_iddiadiem`) REFERENCES `dlct_diadiem` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `dlct_yeuthich_dv_iddichvu_foreign` FOREIGN KEY (`dv_iddichvu`) REFERENCES `dlct_dichvu` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `dlct_yeuthich_nd_idnguoidung_foreign` FOREIGN KEY (`nd_idnguoidung`) REFERENCES `dlct_nguoidung` (`id`) ON DELETE CASCADE;
 COMMIT;
 

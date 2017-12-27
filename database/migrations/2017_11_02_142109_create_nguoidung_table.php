@@ -16,12 +16,13 @@ class CreateNguoidungTable extends Migration
         Schema::create('dlct_nguoidung', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nd_tendangnhap', 30)->unique(); 
-            $table->string('nd_matkhau',255); 
+            $table->string('password',255); 
             $table->string('nd_facebook_id',255);
             $table->string('nd_email_id',255);
             $table->string('nd_avatar',255);
             $table->string('nd_quocgia',255);
             $table->string('nd_ngonngu',255);
+            $table->rememberToken();
             $table->timestamps();
         });
     }
