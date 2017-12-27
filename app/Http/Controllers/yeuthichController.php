@@ -51,7 +51,6 @@ class yeuthichController extends Controller
         ->leftJoin('dlct_thamquan', 'dlct_thamquan.dv_iddichvu', '=', 'dlct_yeuthich.dv_iddichvu')
         ->leftJoin('dlct_phuongtien', 'dlct_phuongtien.dv_iddichvu', '=', 'dlct_yeuthich.dv_iddichvu')
         ->join('dlct_dichvu', 'dlct_dichvu.id', '=', 'dlct_yeuthich.dv_iddichvu')
-     
         ->where('dlct_yeuthich.nd_idnguoidung',$id_nguoi_dung)
         ->paginate (10);
         $encode=json_encode($yeu_thich);
