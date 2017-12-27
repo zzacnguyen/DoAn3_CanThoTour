@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 24, 2017 lúc 04:40 PM
+-- Thời gian đã tạo: Th12 24, 2017 lúc 07:08 PM
 -- Phiên bản máy phục vụ: 10.1.28-MariaDB
 -- Phiên bản PHP: 7.1.10
 
@@ -93,6 +93,15 @@ CREATE TABLE `dlct_danhgia` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `dlct_danhgia`
+--
+
+INSERT INTO `dlct_danhgia` (`id`, `dv_iddichvu`, `nd_idnguoidung`, `dg_diem`, `created_at`, `updated_at`) VALUES
+(1, 5, 1, 5, '2017-12-24 16:36:06', '2017-12-24 16:36:06'),
+(2, 6, 1, 2, '2017-12-24 16:36:54', '2017-12-24 16:36:54'),
+(3, 5, 2, 5, '2017-12-24 16:38:02', '2017-12-24 16:38:02');
+
 -- --------------------------------------------------------
 
 --
@@ -142,7 +151,6 @@ CREATE TABLE `dlct_dichvu` (
   `dv_giodongcua` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `dv_giacaonhat` int(11) NOT NULL,
   `dv_giathapnhat` int(11) NOT NULL,
-  `dv_trangthai` tinyint(1) NOT NULL,
   `dd_iddiadiem` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -153,21 +161,21 @@ CREATE TABLE `dlct_dichvu` (
 --
 
 INSERT INTO `dlct_dichvu` (`id`, `dv_gioithieu`, `dv_giomocua`, `dv_giodongcua`, `dv_giacaonhat`, `dv_giathapnhat`, `dd_iddiadiem`, `created_at`, `updated_at`) VALUES
-(5, 'Chợ Cần Thơ còn gọi là chợ Hàng Dương hay \" chợ lục tỉnh\", nằm trên đường Hai Bà Trưng. Chợ có từ hơn một trăm năm được xây dựng cùng thời với hai ngôi chợ lớn ở Sài Gòn là chợ Bến Thành và chợ Bình Tây theo kiến trúc truyền thống rất đẹp và độc đáo, đặc biệt là vào ban đêm. Đây là nơi mua sắm sầm uất nằm ngay trung tâm thành phố, tập trung nhiều du khách...', '6:00 AM', '11:00 PM', 0,  1, 1, '2017-12-22 03:00:00', '2017-12-22 03:00:00'),
-(6, 'Bến phà Xóm Chài nằm trong Thành phố Cần Thơ. Bến phà Xóm Chài', '6:00 AM', '11:00 PM', 0, 0, 1, 1, NULL, NULL),
-(7, 'Chùa Ông (Cần Thơ), tên gốc là Quảng Triệu Hội Quán (chữ Hán: 廣肇會館；广肇会馆） )[1]; tọa lạc tại số 32 đường Hai Bà Trưng, thuộc phường Tân An, quận Ninh Kiều, thành phố Cần Thơ, Việt Nam. Đây là một ngôi chùa của người Hoa gốc Quảng Đông tại Cần Thơ, và là một di tích lịch sử cấp quốc gia kể từ năm 1993[2].', '6:00 AM', '11:00 PM', 0,  1, 1, NULL, NULL),
-(8, 'Quán này nằm ngay đường Ngô gia tự luôn, sát bên khám lớn, và kế bên Hợp phố. quán có không gian hơi bị được, nhưng giá hơi bị cao. điều đặc biệt khiến mình lại đây là ở đây có pokeshop, nên thích ở đây lì lợm bắt pokemon. nước uống không ngon gì hết. nhà vệ sinh sạch sẽ. phục vụ cũng lịch sự. mà quán mới 9h30 gì là nhân viên lại xin tính tiền, tự hiểu phải đi về. ở đây buổi sáng có bán điểm tâm, nên buổi sáng gia đình có thể lại đây thưởng thức.', '6:00 AM', '11:00 PM', 15000, 35000,  1, NULL, NULL),
-(9, 'Lựa chọn ăn uống: Đêm muộn, Bữa trưa, Bữa tối, Bữa nửa buổi, Bữa sáng, Đồ uống, Giao hàng, Wifi miễn phí, Quầy bar đầy đủ, Ngồi ngoài trời, Có bãi đỗ xe, Đặt chỗ, Chỗ ngồi, Phục vụ đồ uống có cồn, Bãi đỗ xe đường phố, Cửa hàng bán thức ăn mang về, Nhân viên phục vụ, Lối vào ra cho xe lăn', '7:00 AM', '11:00 PM', 0,  1, 1, NULL, NULL),
-(10, 'Quán nằm ngay trung tâm quận ninh kiều, công tác vài lần ở Cần Thơ nhưng đây là lần đầu tiên ghé quán này, không gian quám không rộng nhưng ấm cúng, nhân viên phục vụ nhiệt tình mà nhanh nữa, gọi 3 món : canh chua tôm, heo kho tiêu, rau muống xào, phải nói là món ăn rất ngon, nước chấm vừa miệng, cơm trắng dẻo mà lại thơm ngon lạ lùng, phục vụ tốt mà đồ ăn lại rẻ nữa, chắc chắn sẽ ghé nữa', '11:00 AM', '11:00 PM', 0,  1, 1, NULL, NULL),
+(5, 'Chợ Cần Thơ còn gọi là chợ Hàng Dương hay \" chợ lục tỉnh\", nằm trên đường Hai Bà Trưng. Chợ có từ hơn một trăm năm được xây dựng cùng thời với hai ngôi chợ lớn ở Sài Gòn là chợ Bến Thành và chợ Bình Tây theo kiến trúc truyền thống rất đẹp và độc đáo, đặc biệt là vào ban đêm. Đây là nơi mua sắm sầm uất nằm ngay trung tâm thành phố, tập trung nhiều du khách...', '6:00 AM', '11:00 PM', 0, 1, 1, '2017-12-21 20:00:00', '2017-12-21 20:00:00'),
+(6, 'Bến phà Xóm Chài nằm trong Thành phố Cần Thơ. Bến phà Xóm Chài', '6:00 AM', '11:00 PM', 0, 0, 1, NULL, NULL),
+(7, 'Chùa Ông (Cần Thơ), tên gốc là Quảng Triệu Hội Quán (chữ Hán: 廣肇會館；广肇会馆） )[1]; tọa lạc tại số 32 đường Hai Bà Trưng, thuộc phường Tân An, quận Ninh Kiều, thành phố Cần Thơ, Việt Nam. Đây là một ngôi chùa của người Hoa gốc Quảng Đông tại Cần Thơ, và là một di tích lịch sử cấp quốc gia kể từ năm 1993[2].', '6:00 AM', '11:00 PM', 0, 1, 1, NULL, NULL),
+(8, 'Quán này nằm ngay đường Ngô gia tự luôn, sát bên khám lớn, và kế bên Hợp phố. quán có không gian hơi bị được, nhưng giá hơi bị cao. điều đặc biệt khiến mình lại đây là ở đây có pokeshop, nên thích ở đây lì lợm bắt pokemon. nước uống không ngon gì hết. nhà vệ sinh sạch sẽ. phục vụ cũng lịch sự. mà quán mới 9h30 gì là nhân viên lại xin tính tiền, tự hiểu phải đi về. ở đây buổi sáng có bán điểm tâm, nên buổi sáng gia đình có thể lại đây thưởng thức.', '6:00 AM', '11:00 PM', 15000, 35000, 1, NULL, NULL),
+(9, 'Lựa chọn ăn uống: Đêm muộn, Bữa trưa, Bữa tối, Bữa nửa buổi, Bữa sáng, Đồ uống, Giao hàng, Wifi miễn phí, Quầy bar đầy đủ, Ngồi ngoài trời, Có bãi đỗ xe, Đặt chỗ, Chỗ ngồi, Phục vụ đồ uống có cồn, Bãi đỗ xe đường phố, Cửa hàng bán thức ăn mang về, Nhân viên phục vụ, Lối vào ra cho xe lăn', '7:00 AM', '11:00 PM', 0, 1, 1, NULL, NULL),
+(10, 'Quán nằm ngay trung tâm quận ninh kiều, công tác vài lần ở Cần Thơ nhưng đây là lần đầu tiên ghé quán này, không gian quám không rộng nhưng ấm cúng, nhân viên phục vụ nhiệt tình mà nhanh nữa, gọi 3 món : canh chua tôm, heo kho tiêu, rau muống xào, phải nói là món ăn rất ngon, nước chấm vừa miệng, cơm trắng dẻo mà lại thơm ngon lạ lùng, phục vụ tốt mà đồ ăn lại rẻ nữa, chắc chắn sẽ ghé nữa', '11:00 AM', '11:00 PM', 0, 1, 1, NULL, NULL),
 (11, 'Công viên bến ninh kiều ến Ninh Kiều ngày nay trở thành công viên Ninh Kiều, nằm bên bờ sông Hậu hiền hòa, ngay trung tâm thành phố Cần Thơ. Nơi đây vốn là niềm tự hào đối với người dân địa phương qua đôi câu ví - Cần Thơ có bến Ninh Kiều, có dòng sông đẹp với nhiều giai nhân.\r\n\r\nCông viên Ninh Kiều rộng lớn và khang trang, có bờ kè tản bộ dọc sông, cùng những chiếc ghế đá kê dưới hàng dừa lao xao theo gió. Bên trong công viên được trồng nhiều cây kiểng, hoa kiểng đẹp mắt, điểm tô những thảm cỏ xanh mọc len lỏi giữa những tấm xi măng trắng, và có tượng Bác Hồ bằng đồng cao 7.2m, bố trí tôn nghiêm trên bệ cao 3.6m. Xung quanh công viên là các nhà hàng thủy tạ, phục vụ nhiều món ăn đặc sản địa phương.', '6:00 AM', '11:00 PM', 0, 1, 1, NULL, NULL),
-(12, 'Cathedral Diocese of Can Tho - 14 Nguyễn Thị Minh Khai, Tân An, Ninh Kiều, Cần Thơ, Vietnam\r\n', '6:00 AM', '11:00 PM', 0, 0, 1, 1, NULL, NULL),
-(13, 'Chợ Cần Thơ còn gọi là chợ Hàng Dương hay \" chợ lục tỉnh\", nằm trên đường Hai Bà Trưng. Chợ có từ hơn một trăm năm được xây dựng cùng thời với hai ngôi chợ lớn ở Sài Gòn là chợ Bến Thành và chợ Bình Tây theo kiến trúc truyền thống rất đẹp và độc đáo, đặc biệt là vào ban đêm. Đây là nơi mua sắm sầm uất nằm ngay trung tâm thành phố, tập trung nhiều du khách...', '6:00 AM', '11:00 PM', 0,  1, 1, NULL, NULL),
-(14, 'Chiều cuối tuần xuống “du thuyền” ngắm cảnh trên sông Hậu', '6:00 PM', '0:00 AM', 0, 0, 1, 1, NULL, NULL),
-(15, 'Du Thuyền Ninh Kiều nằm ngay Bến Ninh Kiều trên dòng Sông Hậu. Du Thuyền Ninh Kiều được thiết kế hiện đại sang trọng, trang thiết bị nội thất cao cấp, sức chứa 500 khách. Tầng trệt được thiết kế chuyên để phục vụ tiệc cưới, sinh nhật, liên hoan..., tầng 1 thiết kế các phòng ăn VIP có máy lạnh, rất thích hợp cho các buổi tiệc chiêu đãi sang trọng. Sân thượng tầng 2 không gian thoáng mát khí hậu sông nước rất trong lành sẽ mang đến cho quý khách không gian thưởng thức ẩm thực hoàn hảo. Với đội ngũ nhân viên chuyên nghiệp được đào tạo từ các trường du lịch, có nhiều năm kinh nghiệm phục tận tình chu đáo chắc chắn sẽ làm hài lòng quý khách.', '6:00 PM', '0:00 AM', 0, 0,  1, NULL, NULL),
-(16, 'Cầu đi bộ bến Ninh Kiều – điểm dừng chân mới cho du khách đến Cần Thơ', '6:00 AM', '11:00 PM', 0, 0, 1, 2, NULL, NULL),
-(17, 'Khách sạn Ninh Kiều 1 tọa lạc ngay trung tâm của Thành phố Cần Thơ, vị trí nằm ngay trên Bến Ninh kiều\r\n+ Cách TPHCM khoảng 168km.\r\n+ Sân bay Quốc tế Cần Thơ khoảng 10.8km, cách bến xe khách Cần Thơ khoảng 4.7km.\r\n+ Cách Chợ nổi Cái Răng khoảng 7.0km, cách Nhà Cổ Bình Thủy khoảng 6.7km, cách Làng du lịch Mỹ Khánh khoảng 12.2km, cách Vườn Cò Bằng Lăng khoảng 48.7km.', '6:00 AM', '11:00 PM', 500000, 3000000,  1, NULL, NULL),
-(18, '  HỆ THỐNG TTC HOTEL', '6:00 AM', '11:00 PM', 0, 0, 1, 1, NULL, NULL),
-(19, 'Du khách có thể tìm thấy các suite và phòng nghỉ hiện đại với Wi-Fi miễn phí cùng máy lạnh tại Hau Giang Hotel. Nằm ở thành phố Cần Thơ, khách sạn có nhà hàng riêng và cung cấp chỗ đỗ xe miễn phí.', '6:00 AM', '11:00 PM', 0, 0,  1, NULL, NULL);
+(12, 'Cathedral Diocese of Can Tho - 14 Nguyễn Thị Minh Khai, Tân An, Ninh Kiều, Cần Thơ, Vietnam\r\n', '6:00 AM', '11:00 PM', 0, 0, 1, NULL, NULL),
+(13, 'Chợ Cần Thơ còn gọi là chợ Hàng Dương hay \" chợ lục tỉnh\", nằm trên đường Hai Bà Trưng. Chợ có từ hơn một trăm năm được xây dựng cùng thời với hai ngôi chợ lớn ở Sài Gòn là chợ Bến Thành và chợ Bình Tây theo kiến trúc truyền thống rất đẹp và độc đáo, đặc biệt là vào ban đêm. Đây là nơi mua sắm sầm uất nằm ngay trung tâm thành phố, tập trung nhiều du khách...', '6:00 AM', '11:00 PM', 0, 1, 1, NULL, NULL),
+(14, 'Chiều cuối tuần xuống “du thuyền” ngắm cảnh trên sông Hậu', '6:00 PM', '0:00 AM', 0, 0, 1, NULL, NULL),
+(15, 'Du Thuyền Ninh Kiều nằm ngay Bến Ninh Kiều trên dòng Sông Hậu. Du Thuyền Ninh Kiều được thiết kế hiện đại sang trọng, trang thiết bị nội thất cao cấp, sức chứa 500 khách. Tầng trệt được thiết kế chuyên để phục vụ tiệc cưới, sinh nhật, liên hoan..., tầng 1 thiết kế các phòng ăn VIP có máy lạnh, rất thích hợp cho các buổi tiệc chiêu đãi sang trọng. Sân thượng tầng 2 không gian thoáng mát khí hậu sông nước rất trong lành sẽ mang đến cho quý khách không gian thưởng thức ẩm thực hoàn hảo. Với đội ngũ nhân viên chuyên nghiệp được đào tạo từ các trường du lịch, có nhiều năm kinh nghiệm phục tận tình chu đáo chắc chắn sẽ làm hài lòng quý khách.', '6:00 PM', '0:00 AM', 0, 0, 1, NULL, NULL),
+(16, 'Cầu đi bộ bến Ninh Kiều – điểm dừng chân mới cho du khách đến Cần Thơ', '6:00 AM', '11:00 PM', 0, 0, 2, NULL, NULL),
+(17, 'Khách sạn Ninh Kiều 1 tọa lạc ngay trung tâm của Thành phố Cần Thơ, vị trí nằm ngay trên Bến Ninh kiều\r\n+ Cách TPHCM khoảng 168km.\r\n+ Sân bay Quốc tế Cần Thơ khoảng 10.8km, cách bến xe khách Cần Thơ khoảng 4.7km.\r\n+ Cách Chợ nổi Cái Răng khoảng 7.0km, cách Nhà Cổ Bình Thủy khoảng 6.7km, cách Làng du lịch Mỹ Khánh khoảng 12.2km, cách Vườn Cò Bằng Lăng khoảng 48.7km.', '6:00 AM', '11:00 PM', 500000, 3000000, 1, NULL, NULL),
+(18, '  HỆ THỐNG TTC HOTEL', '6:00 AM', '11:00 PM', 0, 0, 1, NULL, NULL),
+(19, 'Du khách có thể tìm thấy các suite và phòng nghỉ hiện đại với Wi-Fi miễn phí cùng máy lạnh tại Hau Giang Hotel. Nằm ở thành phố Cần Thơ, khách sạn có nhà hàng riêng và cung cấp chỗ đỗ xe miễn phí.', '6:00 AM', '11:00 PM', 0, 0, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -190,20 +198,20 @@ CREATE TABLE `dlct_hinhanh` (
 --
 
 INSERT INTO `dlct_hinhanh` (`id`, `banner`, `chitiet1`, `chitiet2`, `dv_iddichvu`, `created_at`, `updated_at`) VALUES
-(22, 'banner__2017_12_23_12_14_42.jpg', 'chitiet1__2017_12_23_12_14_42.jpg', 'chitiet2__2017_12_23_12_14_42.jpg', 5, '2017-12-22 03:14:43', '2017-12-22 03:14:43'),
-(23, 'banner__2017_12_23_12_25_39.jpg', 'chitiet1__2017_12_23_12_25_39.jpg', 'chitiet2__2017_12_23_12_25_39.jpg', 6, '2017-12-22 03:25:40', '2017-12-22 03:25:40'),
-(24, 'banner__2017_12_23_12_32_21.jpg', 'chitiet1__2017_12_23_12_32_21.jpg', 'chitiet2__2017_12_23_12_32_21.jpg', 7, '2017-12-22 03:32:22', '2017-12-22 03:32:22'),
-(25, 'banner__2017_12_23_12_38_51.jpg', 'chitiet1__2017_12_23_12_38_51.jpg', 'chitiet2__2017_12_23_12_38_51.jpg', 8, '2017-12-22 03:38:52', '2017-12-22 03:38:52'),
-(26, 'banner__2017_12_23_12_42_25.jpg', 'chitiet1__2017_12_23_12_42_25.jpg', 'chitiet2__2017_12_23_12_42_25.jpg', 9, '2017-12-22 03:42:26', '2017-12-22 03:42:26'),
-(27, 'banner__2017_12_23_12_47_23.jpg', 'chitiet1__2017_12_23_12_47_23.jpg', 'chitiet2__2017_12_23_12_47_23.jpg', 10, '2017-12-22 03:47:24', '2017-12-22 03:47:24'),
-(28, 'banner__2017_12_23_12_49_54.jpg', 'chitiet1__2017_12_23_12_49_54.jpg', 'chitiet2__2017_12_23_12_49_54.jpg', 11, '2017-12-22 03:49:55', '2017-12-22 03:49:55'),
-(29, 'banner__2017_12_23_12_55_09.jpg', 'chitiet1__2017_12_23_12_55_09.jpg', 'chitiet2__2017_12_23_12_55_09.jpg', 12, '2017-12-22 03:55:12', '2017-12-22 03:55:12'),
-(30, 'banner__2017_12_23_12_57_29.jpg', 'chitiet1__2017_12_23_12_57_29.jpg', 'chitiet2__2017_12_23_12_57_29.jpg', 13, '2017-12-22 03:57:31', '2017-12-22 03:57:31'),
-(31, 'banner__2017_12_23_01_01_07.jpg', 'chitiet1__2017_12_23_01_01_07.jpg', 'chitiet2__2017_12_23_01_01_07.jpg', 14, '2017-12-22 04:01:08', '2017-12-22 04:01:08'),
-(33, 'banner__2017_12_23_01_03_38.jpg', 'chitiet1__2017_12_23_01_03_38.jpg', 'chitiet2__2017_12_23_01_03_38.jpg', 15, '2017-12-22 04:03:40', '2017-12-22 04:03:40'),
-(34, 'banner__2017_12_23_01_23_09.jpg', 'chitiet1__2017_12_23_01_23_09.jpg', 'chitiet2__2017_12_23_01_23_09.jpg', 17, '2017-12-22 04:23:10', '2017-12-22 04:23:10'),
-(35, 'banner__2017_12_23_01_26_30.jpg', 'chitiet1__2017_12_23_01_26_30.jpg', 'chitiet2__2017_12_23_01_26_30.jpg', 18, '2017-12-22 04:26:32', '2017-12-22 04:26:32'),
-(36, 'banner__2017_12_23_01_32_01.jpg', 'chitiet1__2017_12_23_01_32_01.jpg', 'chitiet2__2017_12_23_01_32_01.jpg', 19, '2017-12-22 04:32:02', '2017-12-22 04:32:02');
+(22, 'banner__2017_12_23_12_14_42.jpg', 'chitiet1__2017_12_23_12_14_42.jpg', 'chitiet2__2017_12_23_12_14_42.jpg', 5, '2017-12-21 20:14:43', '2017-12-21 20:14:43'),
+(23, 'banner__2017_12_23_12_25_39.jpg', 'chitiet1__2017_12_23_12_25_39.jpg', 'chitiet2__2017_12_23_12_25_39.jpg', 6, '2017-12-21 20:25:40', '2017-12-21 20:25:40'),
+(24, 'banner__2017_12_23_12_32_21.jpg', 'chitiet1__2017_12_23_12_32_21.jpg', 'chitiet2__2017_12_23_12_32_21.jpg', 7, '2017-12-21 20:32:22', '2017-12-21 20:32:22'),
+(25, 'banner__2017_12_23_12_38_51.jpg', 'chitiet1__2017_12_23_12_38_51.jpg', 'chitiet2__2017_12_23_12_38_51.jpg', 8, '2017-12-21 20:38:52', '2017-12-21 20:38:52'),
+(26, 'banner__2017_12_23_12_42_25.jpg', 'chitiet1__2017_12_23_12_42_25.jpg', 'chitiet2__2017_12_23_12_42_25.jpg', 9, '2017-12-21 20:42:26', '2017-12-21 20:42:26'),
+(27, 'banner__2017_12_23_12_47_23.jpg', 'chitiet1__2017_12_23_12_47_23.jpg', 'chitiet2__2017_12_23_12_47_23.jpg', 10, '2017-12-21 20:47:24', '2017-12-21 20:47:24'),
+(28, 'banner__2017_12_23_12_49_54.jpg', 'chitiet1__2017_12_23_12_49_54.jpg', 'chitiet2__2017_12_23_12_49_54.jpg', 11, '2017-12-21 20:49:55', '2017-12-21 20:49:55'),
+(29, 'banner__2017_12_23_12_55_09.jpg', 'chitiet1__2017_12_23_12_55_09.jpg', 'chitiet2__2017_12_23_12_55_09.jpg', 12, '2017-12-21 20:55:12', '2017-12-21 20:55:12'),
+(30, 'banner__2017_12_23_12_57_29.jpg', 'chitiet1__2017_12_23_12_57_29.jpg', 'chitiet2__2017_12_23_12_57_29.jpg', 13, '2017-12-21 20:57:31', '2017-12-21 20:57:31'),
+(31, 'banner__2017_12_23_01_01_07.jpg', 'chitiet1__2017_12_23_01_01_07.jpg', 'chitiet2__2017_12_23_01_01_07.jpg', 14, '2017-12-21 21:01:08', '2017-12-21 21:01:08'),
+(33, 'banner__2017_12_23_01_03_38.jpg', 'chitiet1__2017_12_23_01_03_38.jpg', 'chitiet2__2017_12_23_01_03_38.jpg', 15, '2017-12-21 21:03:40', '2017-12-21 21:03:40'),
+(34, 'banner__2017_12_23_01_23_09.jpg', 'chitiet1__2017_12_23_01_23_09.jpg', 'chitiet2__2017_12_23_01_23_09.jpg', 17, '2017-12-21 21:23:10', '2017-12-21 21:23:10'),
+(35, 'banner__2017_12_23_01_26_30.jpg', 'chitiet1__2017_12_23_01_26_30.jpg', 'chitiet2__2017_12_23_01_26_30.jpg', 18, '2017-12-21 21:26:32', '2017-12-21 21:26:32'),
+(36, 'banner__2017_12_23_01_32_01.jpg', 'chitiet1__2017_12_23_01_32_01.jpg', 'chitiet2__2017_12_23_01_32_01.jpg', 19, '2017-12-21 21:32:02', '2017-12-21 21:32:02');
 
 -- --------------------------------------------------------
 
@@ -295,7 +303,8 @@ CREATE TABLE `dlct_nguoidung` (
 --
 
 INSERT INTO `dlct_nguoidung` (`id`, `nd_tendangnhap`, `nd_matkhau`, `nd_facebook_id`, `nd_email_id`, `nd_avatar`, `nd_quocgia`, `nd_ngonngu`, `created_at`, `updated_at`) VALUES
-(1, 'js1smiller', '123456', '1968517156765124', '1968517156765124', 'https://www.facebook.com/photo.php?fbid=1968517156765124&set=a.1377120442571468.1073741825.100008205754126&type=3&source=11&referrer_profile_id=100008205754126', 'Việt Nam', 'Tiếng Việt', NULL, NULL);
+(1, 'js1smiller', '123456', '1968517156765124', '1968517156765124', 'https://www.facebook.com/photo.php?fbid=1968517156765124&set=a.1377120442571468.1073741825.100008205754126&type=3&source=11&referrer_profile_id=100008205754126', 'Việt Nam', 'Tiếng Việt', NULL, NULL),
+(2, 'js2smiller', '123456', '89835001800374', '89835001800374', 'http://localhost/phpmyadmin/sql.php?server=1&db=db_dulichcantho&table=dlct_yeuthich&pos=0', 'vietnamese', 'vietnamese', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -375,7 +384,10 @@ INSERT INTO `dlct_sukien` (`id`, `sk_tensukien`, `sk_ngaybatdau`, `sk_ngayketthu
 (2, 'Cần Thơ lần đầu tiên tổ chức Đêm hoa đăng Ninh Kiều', '2017-12-23', '2017-12-30', 5, 6, NULL, NULL),
 (3, 'Đêm hoa đăng Ninh Kiều 2017', '2017-12-29', '2017-12-31', 6, 6, NULL, NULL),
 (4, ' Lễ Khánh Thành Cầu Đi Bộ Ninh Kiều - Cần Thơ', '2017-12-23', '2017-12-30', 7, 3, NULL, NULL),
-(5, 'Chiếu sáng nghệ thuật', '2017-12-29', '2017-12-30', 8, 4, NULL, NULL);
+(5, 'Chiếu sáng nghệ thuật', '2017-12-29', '2017-12-30', 8, 4, NULL, NULL),
+(7, 'test', '2017-12-23', '2017-12-23', 6, 2, '2017-12-24 17:45:08', '2017-12-24 17:45:08'),
+(8, 'test', '2017-12-23', '2017-12-23', 6, 2, '2017-12-24 17:57:34', '2017-12-24 17:57:34'),
+(9, 'test', '2017-12-23', '2017-12-23', 6, 2, '2017-12-24 18:01:35', '2017-12-24 18:01:35');
 
 -- --------------------------------------------------------
 
@@ -459,11 +471,18 @@ INSERT INTO `dlct_vuichoi` (`id`, `vc_tendiemvuichoi`, `dv_iddichvu`, `created_a
 
 CREATE TABLE `dlct_yeuthich` (
   `id` int(10) UNSIGNED NOT NULL,
-  `dd_iddiadiem` int(10) UNSIGNED NOT NULL,
+  `dv_iddichvu` int(10) UNSIGNED NOT NULL,
   `nd_idnguoidung` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `dlct_yeuthich`
+--
+
+INSERT INTO `dlct_yeuthich` (`id`, `dv_iddichvu`, `nd_idnguoidung`, `created_at`, `updated_at`) VALUES
+(1, 5, 2, '2017-12-24 17:05:06', '2017-12-24 17:05:06');
 
 -- --------------------------------------------------------
 
@@ -482,26 +501,26 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(143, '2017_11_02_142109_create_nguoidung_table', 1),
-(144, '2017_11_02_143248_create_diadiem_table', 1),
-(145, '2017_11_02_143901_create_lichtrinh_table', 1),
-(146, '2017_11_02_144022_create_chitietlichtrinh_table', 1),
-(147, '2017_11_02_144140_create_dichvu_table', 1),
-(148, '2017_11_02_144243_create_loaihinhsukien_table', 1),
-(149, '2017_11_02_144358_create_sukien_table', 1),
-(150, '2017_11_02_144540_create_binhluan_table', 1),
-(151, '2017_11_02_151955_create_danhgia_table', 1),
-(152, '2017_11_02_152627_create_thamquan_table', 1),
-(153, '2017_11_02_152802_create_phuongtien_table', 1),
-(154, '2017_11_02_152910_create_anuong_table', 1),
-(155, '2017_11_02_152958_create_khachsan_table', 1),
-(156, '2017_11_02_153038_create_vuichoi_table', 1),
-(157, '2017_11_09_123423_create_yeuthich_table', 1),
-(158, '2017_11_13_141540_create_tukhoa_table', 1),
-(159, '2017_11_13_144257_create_tukhoa_dichvu_table', 1),
-(160, '2017_12_13_233705_create_nguoidungcanhan_table', 1),
-(161, '2017_12_13_235129_create_nguoidungdoanhnghiep_table', 1),
-(162, '2017_12_18_141111_create_hinhanh_table', 1);
+(183, '2017_11_02_142109_create_nguoidung_table', 1),
+(184, '2017_11_02_143248_create_diadiem_table', 1),
+(185, '2017_11_02_143901_create_lichtrinh_table', 1),
+(186, '2017_11_02_144022_create_chitietlichtrinh_table', 1),
+(187, '2017_11_02_144140_create_dichvu_table', 1),
+(188, '2017_11_02_144243_create_loaihinhsukien_table', 1),
+(189, '2017_11_02_144358_create_sukien_table', 1),
+(190, '2017_11_02_144540_create_binhluan_table', 1),
+(191, '2017_11_02_151955_create_danhgia_table', 1),
+(192, '2017_11_02_152627_create_thamquan_table', 1),
+(193, '2017_11_02_152802_create_phuongtien_table', 1),
+(194, '2017_11_02_152910_create_anuong_table', 1),
+(195, '2017_11_02_152958_create_khachsan_table', 1),
+(196, '2017_11_02_153038_create_vuichoi_table', 1),
+(197, '2017_11_09_123423_create_yeuthich_table', 1),
+(198, '2017_11_13_141540_create_tukhoa_table', 1),
+(199, '2017_11_13_144257_create_tukhoa_dichvu_table', 1),
+(200, '2017_12_13_233705_create_nguoidungcanhan_table', 1),
+(201, '2017_12_13_235129_create_nguoidungdoanhnghiep_table', 1),
+(202, '2017_12_18_141111_create_hinhanh_table', 1);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -647,7 +666,7 @@ ALTER TABLE `dlct_vuichoi`
 --
 ALTER TABLE `dlct_yeuthich`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nd_idnguoidung` (`dd_iddiadiem`),
+  ADD UNIQUE KEY `nd_idnguoidung` (`dv_iddichvu`),
   ADD KEY `dlct_yeuthich_nd_idnguoidung_foreign` (`nd_idnguoidung`);
 
 --
@@ -682,7 +701,7 @@ ALTER TABLE `dlct_chitietlichtrinh`
 -- AUTO_INCREMENT cho bảng `dlct_danhgia`
 --
 ALTER TABLE `dlct_danhgia`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `dlct_diadiem`
@@ -724,7 +743,7 @@ ALTER TABLE `dlct_loaihinhsukien`
 -- AUTO_INCREMENT cho bảng `dlct_nguoidung`
 --
 ALTER TABLE `dlct_nguoidung`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `dlct_nguoidungcanhan`
@@ -748,7 +767,7 @@ ALTER TABLE `dlct_phuongtien`
 -- AUTO_INCREMENT cho bảng `dlct_sukien`
 --
 ALTER TABLE `dlct_sukien`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `dlct_thamquan`
@@ -778,13 +797,13 @@ ALTER TABLE `dlct_vuichoi`
 -- AUTO_INCREMENT cho bảng `dlct_yeuthich`
 --
 ALTER TABLE `dlct_yeuthich`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -889,7 +908,7 @@ ALTER TABLE `dlct_vuichoi`
 -- Các ràng buộc cho bảng `dlct_yeuthich`
 --
 ALTER TABLE `dlct_yeuthich`
-  ADD CONSTRAINT `dlct_yeuthich_dd_iddiadiem_foreign` FOREIGN KEY (`dd_iddiadiem`) REFERENCES `dlct_diadiem` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `dlct_yeuthich_dv_iddichvu_foreign` FOREIGN KEY (`dv_iddichvu`) REFERENCES `dlct_dichvu` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `dlct_yeuthich_nd_idnguoidung_foreign` FOREIGN KEY (`nd_idnguoidung`) REFERENCES `dlct_nguoidung` (`id`) ON DELETE CASCADE;
 COMMIT;
 
