@@ -12,17 +12,13 @@ class nguoidungSeeder extends Seeder
     public function run()
     {
         DB::table('dlct_nguoidung')->insert([
-            'nd_tendoanhnghiep' => str_random(10),
-            'nd_tendangnhap' => str_random(10),
-            'nd_email' => str_random(10).'@gmail.com',
-            'nd_sodienthoai' =>1234567789,
-            'nd_matkhau' => bcrypt('123'),
-            'nd_diachi' => str_random(10),
+            'nd_tendangnhap' => 'lam',
+            'nd_email_id' => str_random(10).'@gmail.com',
+            'nd_facebook_id' => str_random(10).'@gmail.com',
+            'password' => bcrypt('123456'),
             'nd_quocgia' => str_random(10),
-            'nd_ngonngu' => str_random(10),
-            'nd_ghichu' => str_random(10),
-            'nd_loainguoidung' => 1,
-            'nd_website' => str_random(10),            
+            'nd_avatar' => str_random(10),
+            'nd_ngonngu' => str_random(10), 
         ]);
     }
 }

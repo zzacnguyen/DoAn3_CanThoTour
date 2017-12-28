@@ -11,7 +11,6 @@ use DB;
 class timkiemController extends Controller
 {
 
-
 	// Tinh khoang cach dua vao cong thuc 
 	// d = sqrt((x2 - x1)^2 + (y2  - y1)^2 )
     public function euclideDistance($latitude, $longitude, $latitude2, $longitude2)
@@ -90,27 +89,51 @@ class timkiemController extends Controller
     {
         $dich_vu_1 = DB::table('dlct_dichvu')->where('id',$id_dichvu)->first();
         $id_diadiem = $dich_vu_1->dd_iddiadiem;
+        $loai_hinh_dv = $dich_vu_1->dv_loaihinh;
         $dia_diem = DB::table('dlct_diadiem')->where('id',$id_diadiem)->first();
         $vd_diadiem = (double)$dia_diem->dd_vido;
         $kd_diadiem = (double)$dia_diem->dd_kinhdo;
         $dia_diem_all = diadiemModel::all();
-        foreach ($dia_diem_all as $l) {
+        foreach ($dia_diem_all as $l) 
+        {
             $vido = (double)$l['dd_vido'];
             $kinhdo = (double)$l['dd_kinhdo'];
             $euclideDistance = $this::euclideDistance($vd_diadiem,$kd_diadiem,$vido,$kinhdo);
             
-            if ($euclideDistance <= 0.01 && $euclideDistance > 0) {
-                $mang_khoangcach[] = array($l['id']=>$euclideDistance);
+            if ($euclideDistance <= 500 && $euclideDistance > 0) {  
+                // $mang_khoangcach[$l['id']] = $euclideDistance; 
+                $mang_khoangcach2[] = array($l['id']=>$euclideDistance); 
             }
         }
-        $minn = min($mang_khoangcach);
+
+        // for ($i=0; $i < 3; $i++) 
+        // { 
+        //     $minn = min($mang_khoangcach2);
+        //     $mang_sapxep[] = $minn;
+        //     unset($mang_khoangcach[key($minn)]);
+        //     $minn2 = min($mang_khoangcach);
+        // }
+        // echo '<pre>';
+        // print_r($mang_khoangcach);
+        // // print_r($minn);
+        // // print_r($mang_sapxep);
+        // echo '</pre>';
+
+        $minn = min($mang_khoangcach2);
         $id_min_diadiem = key($minn);
-        $dich_vu = DB::table('dlct_dichvu')->where('dd_iddiadiem', $id_min_diadiem)->get();
-        // return json_encode($dich_vu);
-        if (empty($dich_vu))
+
+        $dich_vu_search = DB::table('dlct_dichvu')
+                        ->leftJoin('dlct_anuong', 'dlct_dichvu.id', '=', 'dlct_anuong.dv_iddichvu')
+                        ->leftJoin('dlct_khachsan', 'dlct_dichvu.id', '=', 'dlct_khachsan.dv_iddichvu')
+                        ->leftJoin('dlct_vuichoi', 'dlct_dichvu.id', '=', 'dlct_vuichoi.dv_iddichvu')
+                        ->leftJoin('dlct_phuongtien', 'dlct_dichvu.id', '=', 'dlct_phuongtien.dv_iddichvu')
+                        ->leftJoin('dlct_hinhanh', 'dlct_dichvu.id', '=', 'dlct_hinhanh.dv_iddichvu')
+                        ->select('dlct_dichvu.id', 'dlct_khachsan.ks_tenkhachsan', 'dlct_anuong.au_ten','dlct_vuichoi.vc_tendiemvuichoi','dlct_phuongtien.pt_tenphuongtien','dlct_hinhanh.id as id_hinhanh','dlct_hinhanh.chitiet1')
+                        ->where('dd_iddiadiem',$id_min_diadiem)->paginate(10);
+        if (empty($dich_vu_search))
             return json_encode("Không tìm thấy dịch vụ");
         else
-            return json_encode($dich_vu);
+            return json_encode($dich_vu_search);
     }
 
 
@@ -121,6 +144,55 @@ class timkiemController extends Controller
         return json_encode($result);
     }
 
+
+
+    public function search_dichvu_type($keyword, $type)
+    {
+        $keyword_handing = str_replace("+"," ", $keyword);
+        switch ($type) {
+            case '1':
+                $result = dichvuModel::where('dv_gioithieu','like',"%$keyword_handing%")
+                                        ->where('dv_loaihinh',1)
+                                        ->take(30)->paginate(5);
+                return json_encode($result);
+                break;
+
+            case '2':
+                $result = dichvuModel::where('dv_gioithieu','like',"%$keyword_handing%")
+                                        ->where('dv_loaihinh',2)
+                                        ->take(30)->paginate(5);
+                return json_encode($result);
+                break;
+
+            case '3':
+                $result = dichvuModel::where('dv_gioithieu','like',"%$keyword_handing%")
+                                        ->where('dv_loaihinh',3)
+                                        ->take(30)->paginate(5);
+                return json_encode($result);
+                break;
+
+            case '4':
+                $result = dichvuModel::where('dv_gioithieu','like',"%$keyword_handing%")
+                                        ->where('dv_loaihinh',4)
+                                        ->take(30)->paginate(5);
+                return json_encode($result);
+                break;
+
+            case '5':
+                $result = dichvuModel::where('dv_gioithieu','like',"%$keyword_handing%")
+                                        ->where('dv_loaihinh',5)
+                                        ->take(30)->paginate(5);
+                return json_encode($result);
+                break;
+
+            default:
+                $result = dichvuModel::where('dv_gioithieu','like',"%$keyword_handing%")
+                                        ->where('dv_loaihinh',1)
+                                        ->take(30)->paginate(5);
+                return json_encode($result);
+                break;
+        }
+    }
 
     // tìm kiếm dưa theo loại và từ khoá
     public function search_type_keyword($type, $keyword)

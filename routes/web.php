@@ -40,7 +40,10 @@ Route::get('timkiem/dichvulancan/id={iddiadiem}','timkiemController@search_dichv
 
 Route::get('timkiem/dichvuall/keyword={keyword}','timkiemController@search_dichvu_all');
 
-
+Route::get('timkiem/dichvunangcao/type={type}&keyword={keyword}','timkiemController@search_dichvu_type');
+//
+Route::post('login','dangnhapController@login_api');
+Route::get('logout','dangnhapController@logout_api')->middleware('auth:api');
 Route::get('test', 'timkiemController@test');
 
 Route::get('get-only-icon-image', 'hinhanhController@GetOnlyIconImage');

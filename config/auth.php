@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'nguoidungModel',
     ],
 
     /*
@@ -35,15 +35,27 @@ return [
     |
     */
 
+    // 'guards' => [
+    //     'web' => [
+    //         'driver' => 'session',
+    //         'provider' => 'nguoidungModel',
+    //     ],
+
+    //     'api' => [
+    //         'driver' => 'token',
+    //         'provider' => 'users',
+    //     ],
+    // ],
+
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'nguoidungModel',
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
+            'provider' => 'nguoidungModel',
         ],
     ],
 
@@ -65,9 +77,9 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'dlct_nguoidung' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\nguoidungModel::class,
         ],
 
         // 'users' => [
@@ -93,7 +105,7 @@ return [
 
     'passwords' => [
         'users' => [
-            'provider' => 'users',
+            'provider' => 'nguoidungModel',
             'table' => 'password_resets',
             'expire' => 60,
         ],
