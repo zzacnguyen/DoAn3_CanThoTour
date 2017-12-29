@@ -10,7 +10,7 @@ class danhgiaController extends Controller
     public function index()
     {
         $danh_gia = DB::table('dlct_danhgia')
-        ->select('id','dv_iddichvu', 'nd_idnguoidung','dg_diem')
+        ->select('id','dv_iddichvu', 'nd_idnguoidung','dg_diem','dg_noidung', 'dg_tieude')
         ->paginate(10);
         $encode=json_encode($danh_gia);
         return $encode;
@@ -28,6 +28,8 @@ class danhgiaController extends Controller
         $danhgia->dv_iddichvu    = $request->input('dv_iddichvu');
         $danhgia->nd_idnguoidung = $request->input('nd_idnguoidung');
         $danhgia->dg_diem        = $request->input('dg_diem');
+        $danhgia->dg_tieude      = $request->input('dg_tieude');
+        $danhgia->dg_noidung     = $request->input('dg_noidung');
         $danhgia->save();
     }
 
@@ -47,7 +49,8 @@ class danhgiaController extends Controller
     public function edit($id)
     {
         $danh_gia[] = DB::table('dlct_danhgia')
-        ->select('id','dv_iddichvu', 'nd_idnguoidung','dg_diem')
+        ->select('id','dv_iddichvu', 'nd_idnguoidung','dg_diem', 'dg_noidung', 'dg_tieude')
+
         ->where('id', $id)
         ->get();
     
@@ -59,6 +62,8 @@ class danhgiaController extends Controller
         $danhgia->dv_iddichvu    = $request->input('dv_iddichvu');
         $danhgia->nd_idnguoidung = $request->input('nd_idnguoidung');
         $danhgia->dg_diem        = $request->input('dg_diem');
+        $danhgia->dg_tieude      = $request->input('dg_tieude');
+        $danhgia->dg_noidung     = $request->input('dg_noidung');
         $danhgia->save();
     }
 
