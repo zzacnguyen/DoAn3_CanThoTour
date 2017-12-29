@@ -36,12 +36,15 @@ Route::resource('yeuthich', 'yeuthichController');
 
 
 // TIM KIEM
+// tìm kiếm địa điểm lân cận giới hạn 10 địa điểm
 Route::get('timkiem/diadiemlancan/location={latitude},{longitude}&radius={radius}','timkiemController@search_lancan');
 
 Route::get('timkiem/dichvulancan/id={iddiadiem}&radius={radius}','timkiemController@search_dichvu_lancan');
+Route::get('timkiem/dichvu/id={iddiadiem}','timkiemController@get_dichvu');
 
 Route::get('timkiem/dichvuall/keyword={keyword}','timkiemController@search_dichvu_all');
 
+Route::get('timkiem/dichvunangcao/type={type}&keyword={keyword}','timkiemController@search_dichvu_type');
 Route::get('timkiem/dichvunangcao/type={type}&keyword={keyword}','timkiemController@search_dichvu_type');
 //
 // Route::post('login','dangnhapController@login_api');

@@ -11,28 +11,23 @@ use DB;
 class timkiemController extends Controller
 {
 
-    function distance($lat1, $lon1, $lat2, $lon2, $unit) 
+    function distance($lat1, $lon1, $lat2, $lon2) 
     {
-
+        // có thế thêm tham số $unit vào hàm để tính theo các đơn vị khác 
         $theta = $lon1 - $lon2;
         $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
         $dist = acos($dist);
         $dist = rad2deg($dist);
         $miles = $dist * 60 * 1.1515;
-        $unit = strtoupper($unit);
+        // $unit = strtoupper($unit);
 
-        if ($unit == "K") 
-        {
-            return ($miles * 1.609344);
-        } 
-        else if ($unit == "N") 
-        {
-            return ($miles * 0.8684);
-        } 
-        else
-        {
-            return $miles;
-        }
+        return ($miles * 1.609344)*1000; //trả về mét
+        // if ($unit == "K") //trả về kilomet 
+        //     return ($miles * 1.609344);
+        // else if ($unit == "N") //trả về khoảng cách tính theo hải lý 
+        //     return ($miles * 0.8684);
+        // else
+        //     return $miles;
     }
 
 	// Tinh khoang cach dua vao cong thuc 
@@ -55,7 +50,7 @@ class timkiemController extends Controller
                                        ->orwhere('dd_diachi','like','%'.$keyword_handing.'%')->get();
         $list_result = array(); 
         foreach ($list_Location as $l) {
-            $euclideDistance = $this::euclideDistance($user_latitude,$user_longitude,$l['dd_vido'],$l['dd_kinhdo']);
+            $euclideDistance = $this::distance($user_latitude,$user_longitude,$l['dd_vido'],$l['dd_kinhdo']);
             if ($euclideDistance <= $radius && $euclideDistance >0) {
                 $list_result[$euclideDistance] = array('id' => $l['id'],'dd_tendiadiem' => $l['dd_tendiadiem'],'khoangcach' => $euclideDistance, 'vido' => $l['dd_vido'],'kinhdo' => $l['dd_kinhdo']);
             }
@@ -79,34 +74,52 @@ class timkiemController extends Controller
     public function search_lancan($user_latitude, $user_longitude,$radius)
     {
         $dia_diem = diadiemModel::all();
-        // $dia_diem = dichvuModel::all();
 
         foreach ($dia_diem as $l) {
             $vido = (double)$l['dd_vido'];
             $kinhdo = (double)$l['dd_kinhdo'];
-            $mang[] = $kinhdo*$kinhdo;
-            $euclideDistance = $this::euclideDistance($user_latitude,$user_longitude,$vido,$kinhdo);
+            $euclideDistance = $this::distance($user_latitude,$user_longitude,$vido,$kinhdo);
             if ($euclideDistance <= $radius && $euclideDistance > 0) {
-                $list_result[] = array('id' => $l['id'],'dd_tendiadiem' => $l['dd_tendiadiem'],'khoangcach' => $euclideDistance, 'vido' => $l['dd_vido'],'kinhdo' => $l['dd_kinhdo']);
+                $list_result[$euclideDistance] = array('id' => $l['id'],'dd_tendiadiem' => $l['dd_tendiadiem'],'khoangcach' => $euclideDistance, 'vido' => $l['dd_vido'],'kinhdo' => $l['dd_kinhdo']);
             }
         }
 
         if(!empty($list_result))
         {
             ksort($list_result); // sap xep mang theo thu tu tang dan theo khoang cach
-            foreach ($list_result as $new) {
-                $json_list[] = $new;
+            $dem = 0;
+            foreach ($list_result as $new) 
+            {
+                if ($dem < 10)
+                {
+                    $json_list[] = $new;
+                    $dem++;
+                }
+                else
+                    break;
             }
-            if (!empty($list_result)) {
-                return json_encode($json_list);
-            }
-            else
-                return json_encode("Không tìm thấy địa điểm phù hợp");
         }
         else
             return json_encode("Không tìm thấy địa điểm phù hợp");
     }
     
+    public function get_dichvu(int $id_diadiem)
+    {
+        $dich_vu_search = DB::table('dlct_dichvu')
+                        ->leftJoin('dlct_anuong', 'dlct_dichvu.id', '=', 'dlct_anuong.dv_iddichvu')
+                        ->leftJoin('dlct_khachsan', 'dlct_dichvu.id', '=', 'dlct_khachsan.dv_iddichvu')
+                        ->leftJoin('dlct_vuichoi', 'dlct_dichvu.id', '=', 'dlct_vuichoi.dv_iddichvu')
+                        ->leftJoin('dlct_phuongtien', 'dlct_dichvu.id', '=', 'dlct_phuongtien.dv_iddichvu')
+                        ->leftJoin('dlct_hinhanh', 'dlct_dichvu.id', '=', 'dlct_hinhanh.dv_iddichvu')
+                        ->select('dlct_dichvu.id', 'dlct_khachsan.ks_tenkhachsan', 'dlct_anuong.au_ten','dlct_vuichoi.vc_tendiemvuichoi','dlct_phuongtien.pt_tenphuongtien','dlct_hinhanh.id as id_hinhanh','dlct_hinhanh.chitiet1')
+                        ->where('dd_iddiadiem',$id_diadiem)->take(3)->get();
+        if (!empty($dich_vu_search)) {
+            return $dich_vu_search;
+        }
+        else
+            return null;
+        
+    }
 
     //tìm dịch vụ lân cận
     public function search_dichvu_lancan($id_dichvu, $radius)
@@ -122,30 +135,63 @@ class timkiemController extends Controller
         {
             $vido = (double)$l['dd_vido'];
             $kinhdo = (double)$l['dd_kinhdo'];
-            $euclideDistance = $this::euclideDistance($vd_diadiem,$kd_diadiem,$vido,$kinhdo);
-            
+            $euclideDistance = $this::distance($vd_diadiem,$kd_diadiem,$vido,$kinhdo);
+            // $mang_khoangcach[$euclideDistance] = $l['id'];
             if ($euclideDistance <= $radius && $euclideDistance > 0) {  
-                // $mang_khoangcach[$l['id']] = $euclideDistance; 
-                $mang_khoangcach2[] = array($l['id']=>$euclideDistance); 
+                // $mang_khoangcach2[] = array($l['id']=>$euclideDistance); 
+                 $mang_khoangcach[$euclideDistance] = $l['id'];
             }
         }
+        
+        echo '<pre>';
+        print_r($mang_khoangcach);
+        // print_r($id_diadiem_gannhat);
+        echo '</pre>';
 
+        if (!empty($mang_khoangcach)) 
+        {
+            if (count($mang_khoangcach) > 1) 
+            {
+                ksort($mang_khoangcach); // sắp xếp mảng theo khoảng cách tăng dần
+                $dem = 0;
+                foreach ($mang_khoangcach as $new_list) 
+                {
+                    if ($dem < 3) 
+                    {
+                        // $id_diadiem_gannhat[] = $new_list;
+                        $dich_vu_search[] = $this::get_dichvu($new_list);
+                        $dem++;
+                    }
+                    else
+                        break;
+                }
+                return json_encode($dich_vu_search);
+            }
+            else
+            {
+                $id_diadiem_gannhat = array_values($new_list);
+                $dich_vu_search = $this::get_dichvu($new_list);
+                return json_encode($dich_vu_search);
+            }
+                
+        }
+        echo '<pre>';
+        // print_r($mang_khoangcach);
+        print_r($id_diadiem_gannhat);
+        echo '</pre>';
 
-        $minn = min($mang_khoangcach2);
-        $id_min_diadiem = key($minn);
-
-        $dich_vu_search = DB::table('dlct_dichvu')
-                        ->leftJoin('dlct_anuong', 'dlct_dichvu.id', '=', 'dlct_anuong.dv_iddichvu')
-                        ->leftJoin('dlct_khachsan', 'dlct_dichvu.id', '=', 'dlct_khachsan.dv_iddichvu')
-                        ->leftJoin('dlct_vuichoi', 'dlct_dichvu.id', '=', 'dlct_vuichoi.dv_iddichvu')
-                        ->leftJoin('dlct_phuongtien', 'dlct_dichvu.id', '=', 'dlct_phuongtien.dv_iddichvu')
-                        ->leftJoin('dlct_hinhanh', 'dlct_dichvu.id', '=', 'dlct_hinhanh.dv_iddichvu')
-                        ->select('dlct_dichvu.id', 'dlct_khachsan.ks_tenkhachsan', 'dlct_anuong.au_ten','dlct_vuichoi.vc_tendiemvuichoi','dlct_phuongtien.pt_tenphuongtien','dlct_hinhanh.id as id_hinhanh','dlct_hinhanh.chitiet1')
-                        ->where('dd_iddiadiem',$id_min_diadiem)->paginate(10);
-        if (empty($dich_vu_search))
-            return json_encode("Không tìm thấy dịch vụ");
-        else
-            return json_encode($dich_vu_search);
+        // $dich_vu_search = DB::table('dlct_dichvu')
+        //                 ->leftJoin('dlct_anuong', 'dlct_dichvu.id', '=', 'dlct_anuong.dv_iddichvu')
+        //                 ->leftJoin('dlct_khachsan', 'dlct_dichvu.id', '=', 'dlct_khachsan.dv_iddichvu')
+        //                 ->leftJoin('dlct_vuichoi', 'dlct_dichvu.id', '=', 'dlct_vuichoi.dv_iddichvu')
+        //                 ->leftJoin('dlct_phuongtien', 'dlct_dichvu.id', '=', 'dlct_phuongtien.dv_iddichvu')
+        //                 ->leftJoin('dlct_hinhanh', 'dlct_dichvu.id', '=', 'dlct_hinhanh.dv_iddichvu')
+        //                 ->select('dlct_dichvu.id', 'dlct_khachsan.ks_tenkhachsan', 'dlct_anuong.au_ten','dlct_vuichoi.vc_tendiemvuichoi','dlct_phuongtien.pt_tenphuongtien','dlct_hinhanh.id as id_hinhanh','dlct_hinhanh.chitiet1')
+        //                 ->where('dd_iddiadiem',$id_min_diadiem)->paginate(10);
+        // if (empty($dich_vu_search))
+        //     return json_encode("Không tìm thấy dịch vụ");
+        // else
+        //     return json_encode($dich_vu_search);
     }
 
 
