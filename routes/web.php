@@ -36,15 +36,18 @@ Route::resource('yeuthich', 'yeuthichController');
 
 
 // TIM KIEM
-Route::get('timkiem/dichvulancan/id={iddiadiem}','timkiemController@search_dichvu_lancan');
+Route::get('timkiem/diadiemlancan/location={latitude},{longitude}&radius={radius}','timkiemController@search_lancan');
+
+Route::get('timkiem/dichvulancan/id={iddiadiem}&radius={radius}','timkiemController@search_dichvu_lancan');
 
 Route::get('timkiem/dichvuall/keyword={keyword}','timkiemController@search_dichvu_all');
 
 Route::get('timkiem/dichvunangcao/type={type}&keyword={keyword}','timkiemController@search_dichvu_type');
 //
-Route::post('login','dangnhapController@login_api');
+// Route::post('login','dangnhapController@login_api');
+Route::post('login','dangnhapController@postLogin');
 Route::get('logout','dangnhapController@logout_api')->middleware('auth:api');
-Route::get('test', 'timkiemController@test');
+Route::get('test','timkiemController@test');
 
 Route::get('get-only-icon-image', 'hinhanhController@GetOnlyIconImage');
 

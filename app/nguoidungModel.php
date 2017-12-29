@@ -4,14 +4,12 @@ namespace App;
 
 // use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-// use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Eloquent;
-use Illuminate\Auth\Authenticatable as AuthenticableTrait;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Auth\User as AuthenticableTrait;
 
-class nguoidungModel extends Eloquent implements Authenticatable
+class nguoidungModel extends Authenticatable
 {
-	use AuthenticableTrait;
+	use Notifiable;
 
     protected $table = 'dlct_nguoidung';
     protected $fillable=[

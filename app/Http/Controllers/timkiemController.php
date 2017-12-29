@@ -11,6 +11,30 @@ use DB;
 class timkiemController extends Controller
 {
 
+    function distance($lat1, $lon1, $lat2, $lon2, $unit) 
+    {
+
+        $theta = $lon1 - $lon2;
+        $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+        $dist = acos($dist);
+        $dist = rad2deg($dist);
+        $miles = $dist * 60 * 1.1515;
+        $unit = strtoupper($unit);
+
+        if ($unit == "K") 
+        {
+            return ($miles * 1.609344);
+        } 
+        else if ($unit == "N") 
+        {
+            return ($miles * 0.8684);
+        } 
+        else
+        {
+            return $miles;
+        }
+    }
+
 	// Tinh khoang cach dua vao cong thuc 
 	// d = sqrt((x2 - x1)^2 + (y2  - y1)^2 )
     public function euclideDistance($latitude, $longitude, $latitude2, $longitude2)
@@ -55,7 +79,7 @@ class timkiemController extends Controller
     public function search_lancan($user_latitude, $user_longitude,$radius)
     {
         $dia_diem = diadiemModel::all();
-        $dia_diem = dichvuModel::all();
+        // $dia_diem = dichvuModel::all();
 
         foreach ($dia_diem as $l) {
             $vido = (double)$l['dd_vido'];
@@ -85,7 +109,7 @@ class timkiemController extends Controller
     
 
     //tìm dịch vụ lân cận
-    public function search_dichvu_lancan($id_dichvu)
+    public function search_dichvu_lancan($id_dichvu, $radius)
     {
         $dich_vu_1 = DB::table('dlct_dichvu')->where('id',$id_dichvu)->first();
         $id_diadiem = $dich_vu_1->dd_iddiadiem;
@@ -100,24 +124,12 @@ class timkiemController extends Controller
             $kinhdo = (double)$l['dd_kinhdo'];
             $euclideDistance = $this::euclideDistance($vd_diadiem,$kd_diadiem,$vido,$kinhdo);
             
-            if ($euclideDistance <= 500 && $euclideDistance > 0) {  
+            if ($euclideDistance <= $radius && $euclideDistance > 0) {  
                 // $mang_khoangcach[$l['id']] = $euclideDistance; 
                 $mang_khoangcach2[] = array($l['id']=>$euclideDistance); 
             }
         }
 
-        // for ($i=0; $i < 3; $i++) 
-        // { 
-        //     $minn = min($mang_khoangcach2);
-        //     $mang_sapxep[] = $minn;
-        //     unset($mang_khoangcach[key($minn)]);
-        //     $minn2 = min($mang_khoangcach);
-        // }
-        // echo '<pre>';
-        // print_r($mang_khoangcach);
-        // // print_r($minn);
-        // // print_r($mang_sapxep);
-        // echo '</pre>';
 
         $minn = min($mang_khoangcach2);
         $id_min_diadiem = key($minn);
@@ -146,52 +158,23 @@ class timkiemController extends Controller
 
 
 
-    public function search_dichvu_type($keyword, $type)
+    public function search_dichvu_type($type,$keyword)
     {
         $keyword_handing = str_replace("+"," ", $keyword);
-        switch ($type) {
-            case '1':
-                $result = dichvuModel::where('dv_gioithieu','like',"%$keyword_handing%")
-                                        ->where('dv_loaihinh',1)
-                                        ->take(30)->paginate(5);
-                return json_encode($result);
-                break;
-
-            case '2':
-                $result = dichvuModel::where('dv_gioithieu','like',"%$keyword_handing%")
-                                        ->where('dv_loaihinh',2)
-                                        ->take(30)->paginate(5);
-                return json_encode($result);
-                break;
-
-            case '3':
-                $result = dichvuModel::where('dv_gioithieu','like',"%$keyword_handing%")
-                                        ->where('dv_loaihinh',3)
-                                        ->take(30)->paginate(5);
-                return json_encode($result);
-                break;
-
-            case '4':
-                $result = dichvuModel::where('dv_gioithieu','like',"%$keyword_handing%")
-                                        ->where('dv_loaihinh',4)
-                                        ->take(30)->paginate(5);
-                return json_encode($result);
-                break;
-
-            case '5':
-                $result = dichvuModel::where('dv_gioithieu','like',"%$keyword_handing%")
-                                        ->where('dv_loaihinh',5)
-                                        ->take(30)->paginate(5);
-                return json_encode($result);
-                break;
-
-            default:
-                $result = dichvuModel::where('dv_gioithieu','like',"%$keyword_handing%")
-                                        ->where('dv_loaihinh',1)
-                                        ->take(30)->paginate(5);
-                return json_encode($result);
-                break;
-        }
+        $result = DB::table('dlct_dichvu')
+                                    ->leftJoin('dlct_anuong', 'dlct_anuong.id', '=', 'dlct_anuong.dv_iddichvu')
+                                    ->join('dlct_diadiem','dlct_dichvu.dd_iddiadiem','dlct_diadiem.id')
+                                    ->leftJoin('dlct_khachsan', 'dlct_dichvu.id', '=', 'dlct_khachsan.dv_iddichvu')
+                                    ->leftJoin('dlct_sukien','dlct_dichvu.id','dlct_sukien.dv_iddichvu')
+                                    ->leftJoin('dlct_yeuthich','dlct_dichvu.id','dlct_yeuthich.dv_iddichvu')
+                                    ->select('dlct_dichvu.id', 'dlct_anuong.au_ten','dlct_dichvu.dv_gioithieu','dlct_dichvu.dv_giomocua','dlct_dichvu.dv_giodongcua','dlct_dichvu.dv_giacaonhat','dlct_dichvu.dv_giathapnhat','dlct_diadiem.dd_sodienthoai','dlct_diadiem.dd_diachi','dlct_sukien.sk_tensukien','dlct_khachsan.ks_website','dlct_yeuthich.nd_idnguoidung as id_nguoidung_yeuthich_dv','dlct_yeuthich.id as id_yeuthich')
+                                    ->where('dv_gioithieu','like',"%$keyword_handing%")
+                                    ->where('dv_loaihinh',$type)
+                                    ->paginate(10);
+        if (empty($result))
+            return json_encode("Không tìm thấy dịch vụ phù hợp");
+        else
+            return json_encode($result);
     }
 
     // tìm kiếm dưa theo loại và từ khoá

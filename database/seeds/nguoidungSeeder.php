@@ -12,7 +12,7 @@ class nguoidungSeeder extends Seeder
     public function run()
     {
         DB::table('dlct_nguoidung')->insert([
-            'nd_tendangnhap' => 'lam',
+            'nd_tendangnhap' => 'lamthemen',
             'nd_email_id' => str_random(10).'@gmail.com',
             'nd_facebook_id' => str_random(10).'@gmail.com',
             'password' => bcrypt('123456'),

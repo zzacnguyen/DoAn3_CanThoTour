@@ -18,18 +18,17 @@ class dangnhapController extends Controller
     	$validator = Validator::make($request->all(), $rules);
 
     	if ($validator->fails()) {
-    		return "sai roif";
-    	} else {
-
+    		return "";
+    	} 
+        else 
+        {
     		$email = $request->input('taikhoan');
     		$matkhau = $request->input('password');
-
     		if( Auth::attempt(['nd_tendangnhap' => $email, 'password' =>$matkhau])) {
-    			return "dang nhap thanh cong";
+    			return Auth::user();
     		} else {
     			return json_encode("Tài khoản hoặc mật khẩu không đúng");
     		}
-    		return 'chuan roi';
     	}
     }
 
@@ -45,12 +44,20 @@ class dangnhapController extends Controller
            $user->save();
            return $user;
         }
+        else
+            echo "sai";
     }
     public function logout_api()
     {
+        // if (Auth::check()) {
+        //     $user = Auth::logout();
+        //     return "Bạn đã đăng xuất"; 
+        // }
+        // else
+        //     echo "loi";
         $user = Auth::user();
-        $user->api_token = null;
+        $user->remember_token = null;
         $user->save();
-        return $this->outputJSON(null,"Successfully Logged Out"); 
+        return ("Bạn đã đăng xuất"); 
     }
 }

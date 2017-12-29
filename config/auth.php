@@ -50,12 +50,12 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'nguoidungModel',
+            'provider' => 'dlct_nguoidung',
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'nguoidungModel',
+            'provider' => 'dlct_nguoidung',
         ],
     ],
 
@@ -82,10 +82,10 @@ return [
             'model' => App\nguoidungModel::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        /*'users' => [ ok cấu hình vậy là đc, giờ ông thiết kế nguoidungModel cho phù hợp 
+            'driver' => 'database',
+            'table' => 'dlct_nguoidung',
+        ],*/
     ],
 
     /*
