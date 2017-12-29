@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 27, 2017 lúc 04:48 AM
+-- Thời gian đã tạo: Th12 29, 2017 lúc 02:12 PM
 -- Phiên bản máy phục vụ: 10.1.28-MariaDB
 -- Phiên bản PHP: 7.1.10
 
@@ -78,6 +78,8 @@ CREATE TABLE `dlct_danhgia` (
   `id` int(10) UNSIGNED NOT NULL,
   `dv_iddichvu` int(10) UNSIGNED NOT NULL,
   `nd_idnguoidung` int(10) UNSIGNED NOT NULL,
+  `dg_tieude` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `dg_noidung` text COLLATE utf8_unicode_ci NOT NULL,
   `dg_diem` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -115,6 +117,7 @@ CREATE TABLE `dlct_dichvu` (
   `dv_giodongcua` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `dv_giacaonhat` int(11) NOT NULL,
   `dv_giathapnhat` int(11) NOT NULL,
+  `dv_loaihinh` int(11) NOT NULL,
   `dd_iddiadiem` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -349,27 +352,27 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(208, '2014_10_12_100000_create_password_resets_table', 1),
-(209, '2017_11_02_142109_create_nguoidung_table', 1),
-(210, '2017_11_02_143248_create_diadiem_table', 1),
-(211, '2017_11_02_143901_create_lichtrinh_table', 1),
-(212, '2017_11_02_144022_create_chitietlichtrinh_table', 1),
-(213, '2017_11_02_144140_create_dichvu_table', 1),
-(214, '2017_11_02_144243_create_loaihinhsukien_table', 1),
-(215, '2017_11_02_144358_create_sukien_table', 1),
-(216, '2017_11_02_144540_create_binhluan_table', 1),
-(217, '2017_11_02_151955_create_danhgia_table', 1),
-(218, '2017_11_02_152627_create_thamquan_table', 1),
-(219, '2017_11_02_152802_create_phuongtien_table', 1),
-(220, '2017_11_02_152910_create_anuong_table', 1),
-(221, '2017_11_02_152958_create_khachsan_table', 1),
-(222, '2017_11_02_153038_create_vuichoi_table', 1),
-(223, '2017_11_09_123423_create_yeuthich_table', 1),
-(224, '2017_11_13_141540_create_tukhoa_table', 1),
-(225, '2017_11_13_144257_create_tukhoa_dichvu_table', 1),
-(226, '2017_12_13_233705_create_nguoidungcanhan_table', 1),
-(227, '2017_12_13_235129_create_nguoidungdoanhnghiep_table', 1),
-(228, '2017_12_18_141111_create_hinhanh_table', 1);
+(250, '2014_10_12_100000_create_password_resets_table', 1),
+(251, '2017_11_02_142109_create_nguoidung_table', 1),
+(252, '2017_11_02_143248_create_diadiem_table', 1),
+(253, '2017_11_02_143901_create_lichtrinh_table', 1),
+(254, '2017_11_02_144022_create_chitietlichtrinh_table', 1),
+(255, '2017_11_02_144140_create_dichvu_table', 1),
+(256, '2017_11_02_144243_create_loaihinhsukien_table', 1),
+(257, '2017_11_02_144358_create_sukien_table', 1),
+(258, '2017_11_02_144540_create_binhluan_table', 1),
+(259, '2017_11_02_151955_create_danhgia_table', 1),
+(260, '2017_11_02_152627_create_thamquan_table', 1),
+(261, '2017_11_02_152802_create_phuongtien_table', 1),
+(262, '2017_11_02_152910_create_anuong_table', 1),
+(263, '2017_11_02_152958_create_khachsan_table', 1),
+(264, '2017_11_02_153038_create_vuichoi_table', 1),
+(265, '2017_11_09_123423_create_yeuthich_table', 1),
+(266, '2017_11_13_141540_create_tukhoa_table', 1),
+(267, '2017_11_13_144257_create_tukhoa_dichvu_table', 1),
+(268, '2017_12_13_233705_create_nguoidungcanhan_table', 1),
+(269, '2017_12_13_235129_create_nguoidungdoanhnghiep_table', 1),
+(270, '2017_12_18_141111_create_hinhanh_table', 1);
 
 -- --------------------------------------------------------
 
@@ -670,7 +673,7 @@ ALTER TABLE `dlct_yeuthich`
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=229;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=271;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
