@@ -17,6 +17,8 @@ class CreateDanhgiaTable extends Migration
             $table->increments('id');
             $table->integer('dv_iddichvu')->unsigned();
             $table->integer('nd_idnguoidung')->unsigned();
+            $table->string('dg_tieude', 25);
+            $table->text('dg_noidung');
             $table->integer('dg_diem');
 
             $table->unique(['dv_iddichvu', 'nd_idnguoidung']);
