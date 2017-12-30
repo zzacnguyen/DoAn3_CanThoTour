@@ -110,9 +110,10 @@ class timkiemController extends Controller
                         ->leftJoin('dlct_khachsan', 'dlct_dichvu.id', '=', 'dlct_khachsan.dv_iddichvu')
                         ->leftJoin('dlct_vuichoi', 'dlct_dichvu.id', '=', 'dlct_vuichoi.dv_iddichvu')
                         ->leftJoin('dlct_phuongtien', 'dlct_dichvu.id', '=', 'dlct_phuongtien.dv_iddichvu')
+                        ->leftJoin('dlct_thamquan', 'dlct_dichvu.id', '=', 'dlct_thamquan.dv_iddichvu')
                         ->leftJoin('dlct_hinhanh', 'dlct_dichvu.id', '=', 'dlct_hinhanh.dv_iddichvu')
-                        ->select('dlct_dichvu.id', 'dlct_khachsan.ks_tenkhachsan', 'dlct_anuong.au_ten','dlct_vuichoi.vc_tendiemvuichoi','dlct_phuongtien.pt_tenphuongtien','dlct_hinhanh.id as id_hinhanh','dlct_hinhanh.chitiet1')
-                        ->where('dd_iddiadiem',$id_diadiem)->take(3)->get();
+                        ->select('dlct_dichvu.id', 'dlct_khachsan.ks_tenkhachsan', 'dlct_anuong.au_ten','dlct_vuichoi.vc_tendiemvuichoi','dlct_phuongtien.pt_tenphuongtien','dlct_thamquan.tq_tendiemthamquan','dlct_hinhanh.id as id_hinhanh','dlct_hinhanh.chitiet1')
+                        ->where('dd_iddiadiem',$id_diadiem)->take(5)->get();
         return $dich_vu_search;
     }
 
@@ -146,9 +147,9 @@ class timkiemController extends Controller
                 {
                     ksort($mang_khoangcach); // sắp xếp mảng theo khoảng cách tăng dần
                     $dem = 0;
-                    foreach ($mang_khoangcach as $new_list) 
+                    foreach ($mang_khoangcach as $key => $new_list) 
                     {
-                        if ($dem < 5) 
+                        if ($dem < 3) 
                         {
                             // $id_diadiem_gannhat[] = $new_list;
                             if (!empty($this::get_dichvu($new_list))) {
