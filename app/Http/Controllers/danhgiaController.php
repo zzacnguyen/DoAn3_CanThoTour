@@ -10,7 +10,8 @@ class danhgiaController extends Controller
     public function index()
     {
         $danh_gia = DB::table('dlct_danhgia')
-        ->select('id','dv_iddichvu', 'nd_idnguoidung','dg_diem','dg_noidung', 'dg_tieude')
+        ->select('dlct_nguoidung.nd_tendangnhap','dg_diem','dg_noidung', 'dg_tieude')
+        ->join('dlct_nguoidung', 'dlct_danhgia.nd_idnguoidung', '=', 'dlct_nguoidung.id')
         ->paginate(10);
         $encode=json_encode($danh_gia);
         return $encode;
@@ -37,7 +38,6 @@ class danhgiaController extends Controller
     {
         $danh_gia = DB::table('dlct_danhgia')
         ->select(DB::raw('AVG( dlct_danhgia.dg_diem ) as rating'))
-        
         ->join('dlct_dichvu', 'dlct_dichvu.id','=', 'dlct_danhgia.dv_iddichvu')
         ->where('dv_iddichvu', $id_dich_vu)
         ->groupBy('dlct_danhgia.id')
