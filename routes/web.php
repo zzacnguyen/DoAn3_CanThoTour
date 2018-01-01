@@ -44,8 +44,8 @@ Route::get('timkiem/dichvu/id={iddiadiem}','timkiemController@get_dichvu');
 
 Route::get('timkiem/dichvuall/keyword={keyword}','timkiemController@search_dichvu_all');
 
-Route::get('timkiem/dichvunangcao/type={type}&keyword={keyword}','timkiemController@search_dichvu_type');
-Route::get('timkiem/dichvunangcao/type={type}&keyword={keyword}','timkiemController@search_dichvu_type');
+Route::get('timkiem/dichvunangcao/idtype={type}&keyword={keyword}','timkiemController@search_dichvu_type');
+// Route::get('timkiem/dichvunangcao/type={type}&keyword={keyword}','timkiemController@search_dichvu_type');
 //
 // Route::post('login','dangnhapController@login_api');
 Route::post('login','dangnhapController@postLogin');

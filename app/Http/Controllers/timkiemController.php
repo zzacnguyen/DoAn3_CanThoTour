@@ -154,6 +154,7 @@ class timkiemController extends Controller
                             // $id_diadiem_gannhat[] = $new_list;
                             if (!empty($this::get_dichvu($new_list))) {
                                 $dich_vu_search[] = $this::get_dichvu($new_list);
+                                // $dich_vu_search[] = array('khoangcach' => $key);
                             }
                             $dem++;
                         }
