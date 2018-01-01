@@ -46,7 +46,7 @@ class dichvuController extends Controller
         $dich_vu = DB::table('dlct_dichvu')
         ->select('dlct_dichvu.id','ks_tenkhachsan','vc_tendiemvuichoi','pt_tenphuongtien', 'tq_tendiemthamquan', 'ks_website',
                  'au_ten','dv_gioithieu', 'dv_giomocua','dv_giodongcua','dv_giathapnhat','dv_giacaonhat', 'dlct_diadiem.dd_sodienthoai',
-                 'dlct_diadiem.dd_diachi', 'lhsk_ten', 'dlct_yeuthich.nd_idnguoidung as id_nd_yeuthich_dv', 'dlct_yeuthich.id as id_yeuthich')
+                 'dlct_diadiem.dd_diachi', 'lhsk_ten', 'dlct_yeuthich.nd_idnguoidung as id_nd_yeuthich_dv', 'dlct_yeuthich.id as id_yeuthich', DB::raw('AVG(dlct_danhgia.dg_diem) as danhgia'))
         ->leftJoin('dlct_sukien', 'dlct_sukien.dv_iddichvu', '=', 'dlct_dichvu.id')
         ->leftJoin('dlct_loaihinhsukien', 'dlct_loaihinhsukien.id', '=','dlct_sukien.lhsk_idloaihinhsukien')
         ->leftJoin('dlct_khachsan', 'dlct_khachsan.dv_iddichvu', '=', 'dlct_dichvu.id')
@@ -56,8 +56,12 @@ class dichvuController extends Controller
         ->leftJoin('dlct_phuongtien', 'dlct_phuongtien.dv_iddichvu', '=', 'dlct_dichvu.id')
         ->leftJoin('dlct_diadiem', 'dlct_diadiem.id', '=', 'dlct_dichvu.dd_iddiadiem')
         ->leftJoin('dlct_yeuthich', 'dlct_yeuthich.dv_iddichvu', '=', 'dlct_dichvu.id')
+        ->leftjoin('dlct_danhgia', 'dlct_danhgia.dv_iddichvu','=', 'dlct_dichvu.id')
         
         ->where('dlct_dichvu.id', $id)
+        ->groupBy('dlct_dichvu.id','ks_tenkhachsan','vc_tendiemvuichoi','pt_tenphuongtien', 'tq_tendiemthamquan', 'ks_website',
+                 'au_ten','dv_gioithieu', 'dv_giomocua','dv_giodongcua','dv_giathapnhat','dv_giacaonhat', 'dlct_diadiem.dd_sodienthoai',
+                 'dlct_diadiem.dd_diachi', 'lhsk_ten', 'dlct_yeuthich.nd_idnguoidung', 'dlct_yeuthich.id')
         
         ->get();
         $encode=json_encode($dich_vu);
