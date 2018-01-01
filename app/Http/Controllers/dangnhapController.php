@@ -18,14 +18,14 @@ class dangnhapController extends Controller
     	$validator = Validator::make($request->all(), $rules);
 
     	if ($validator->fails()) {
-    		return "";
+    		return "loi";
     	} 
         else 
         {
-    		$email = $request->input('taikhoan');
+    		$taikhoan = $request->input('taikhoan');
     		$matkhau = $request->input('password');
-    		if( Auth::attempt(['nd_tendangnhap' => $email, 'password' =>$matkhau])) {
-    			return Auth::user();
+    		if( Auth::attempt(['nd_tendangnhap' => $taikhoan, 'password' =>$matkhau])) {
+    			return json_encode(Auth::user());
     		} else {
     			return json_encode("Tài khoản hoặc mật khẩu không đúng");
     		}

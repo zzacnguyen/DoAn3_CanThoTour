@@ -192,20 +192,72 @@ class timkiemController extends Controller
     public function search_dichvu_type($type,$keyword)
     {
         $keyword_handing = str_replace("+"," ", $keyword);
-        $result = DB::table('dlct_dichvu')
-                                    ->leftJoin('dlct_anuong', 'dlct_anuong.id', '=', 'dlct_anuong.dv_iddichvu')
-                                    ->join('dlct_diadiem','dlct_dichvu.dd_iddiadiem','dlct_diadiem.id')
-                                    ->leftJoin('dlct_khachsan', 'dlct_dichvu.id', '=', 'dlct_khachsan.dv_iddichvu')
-                                    ->leftJoin('dlct_sukien','dlct_dichvu.id','dlct_sukien.dv_iddichvu')
-                                    ->leftJoin('dlct_yeuthich','dlct_dichvu.id','dlct_yeuthich.dv_iddichvu')
-                                    ->select('dlct_dichvu.id', 'dlct_anuong.au_ten','dlct_dichvu.dv_gioithieu','dlct_dichvu.dv_giomocua','dlct_dichvu.dv_giodongcua','dlct_dichvu.dv_giacaonhat','dlct_dichvu.dv_giathapnhat','dlct_diadiem.dd_sodienthoai','dlct_diadiem.dd_diachi','dlct_sukien.sk_tensukien','dlct_khachsan.ks_website','dlct_yeuthich.nd_idnguoidung as id_nguoidung_yeuthich_dv','dlct_yeuthich.id as id_yeuthich')
+        // $result = DB::table('dlct_dichvu') // ăn uống
+        //                             ->leftJoin('dlct_anuong', 'dlct_anuong.id', '=', 'dlct_anuong.dv_iddichvu')
+        //                             ->join('dlct_diadiem','dlct_dichvu.dd_iddiadiem','dlct_diadiem.id')
+        //                             ->leftJoin('dlct_khachsan', 'dlct_dichvu.id', '=', 'dlct_khachsan.dv_iddichvu')
+        //                             ->leftJoin('dlct_sukien','dlct_dichvu.id','dlct_sukien.dv_iddichvu')
+        //                             ->leftJoin('dlct_yeuthich','dlct_dichvu.id','dlct_yeuthich.dv_iddichvu')
+        //                             ->select('dlct_dichvu.id', 'dlct_anuong.au_ten','dlct_dichvu.dv_gioithieu','dlct_dichvu.dv_giomocua','dlct_dichvu.dv_giodongcua','dlct_dichvu.dv_giacaonhat','dlct_dichvu.dv_giathapnhat','dlct_diadiem.dd_sodienthoai','dlct_diadiem.dd_diachi','dlct_sukien.sk_tensukien','dlct_khachsan.ks_website','dlct_yeuthich.nd_idnguoidung as id_nguoidung_yeuthich_dv','dlct_yeuthich.id as id_yeuthich')
+        //                             ->where('dv_gioithieu','like',"%$keyword_handing%")
+        //                             ->where('dv_loaihinh',$type)
+        //                             ->paginate(10);
+        // if (empty($result))
+        //     return json_encode("Không tìm thấy dịch vụ phù hợp");
+        // else
+        //     return json_encode($result);
+
+        switch ($type) {
+            case 1: // ăn uống
+                $result = DB::table('dlct_dichvu')
+                                    ->leftJoin('dlct_anuong', 'dlct_dichvu.id', '=', 'dlct_anuong.dv_iddichvu')
+                                    ->join('dlct_diadiem','dlct_dichvu.dd_iddiadiem','=','dlct_diadiem.id')
+                                    ->leftJoin('dlct_sukien','dlct_dichvu.id','=','dlct_sukien.dv_iddichvu')
+                                    ->leftJoin('dlct_yeuthich','dlct_dichvu.id','=','dlct_yeuthich.dv_iddichvu')
+                                    ->select('dlct_dichvu.id', 'dlct_anuong.au_ten','dlct_dichvu.dv_gioithieu','dlct_dichvu.dv_giomocua','dlct_dichvu.dv_giodongcua','dlct_dichvu.dv_giacaonhat','dlct_dichvu.dv_giathapnhat','dlct_diadiem.dd_diachi','dlct_sukien.sk_tensukien','dlct_yeuthich.nd_idnguoidung as id_nguoidung_yeuthich_dv','dlct_yeuthich.id as id_yeuthich')
                                     ->where('dv_gioithieu','like',"%$keyword_handing%")
                                     ->where('dv_loaihinh',$type)
                                     ->paginate(10);
-        if (empty($result))
-            return json_encode("Không tìm thấy dịch vụ phù hợp");
-        else
-            return json_encode($result);
+                if (empty($result))
+                    return json_encode("Không tìm thấy dịch vụ phù hợp");
+                else
+                    return json_encode($result);
+                break;
+
+            case 2: // khách sạn
+                $result = DB::table('dlct_dichvu')
+                                    ->join('dlct_diadiem','dlct_dichvu.dd_iddiadiem','=','dlct_diadiem.id')
+                                    ->leftJoin('dlct_khachsan', 'dlct_dichvu.id', '=', 'dlct_khachsan.dv_iddichvu')
+                                    ->leftJoin('dlct_sukien','dlct_dichvu.id','=','dlct_sukien.dv_iddichvu')
+                                    ->leftJoin('dlct_yeuthich','dlct_dichvu.id','=','dlct_yeuthich.dv_iddichvu')
+                                    ->select('dlct_dichvu.id','dlct_khachsan.ks_tenkhachsan','dlct_khachsan.ks_website','dlct_dichvu.dv_gioithieu','dlct_dichvu.dv_giomocua','dlct_dichvu.dv_giodongcua','dlct_dichvu.dv_giacaonhat','dlct_dichvu.dv_giathapnhat','dlct_sukien.sk_tensukien','dlct_yeuthich.nd_idnguoidung as id_nguoidung_yeuthich_dv','dlct_yeuthich.id as id_yeuthich')
+                                    ->where('dv_gioithieu','like',"%$keyword_handing%")
+                                    ->where('dv_loaihinh',$type)
+                                    ->paginate(10);
+                if (empty($result))
+                    return json_encode("Không tìm thấy dịch vụ phù hợp");
+                else
+                    return json_encode($result);
+                break;
+
+            case 3: // phương tiện
+                $result = DB::table('dlct_dichvu')
+                                    ->join('dlct_phuongtien','dlct_dichvu.id','=','dlct_phuongtien.dv_iddichvu')
+                                    ->leftJoin('dlct_yeuthich','dlct_dichvu.id','=','dlct_yeuthich.dv_iddichvu')
+                                    ->select('dlct_dichvu.id','dlct_phuongtien.pt_tenphuongtien','dlct_dichvu.dv_gioithieu','dlct_dichvu.dv_giomocua','dlct_dichvu.dv_giodongcua','dlct_dichvu.dv_giacaonhat','dlct_dichvu.dv_giathapnhat','dlct_yeuthich.nd_idnguoidung as id_nguoidung_yeuthich_dv','dlct_yeuthich.id as id_yeuthich')
+                                    ->where('dv_gioithieu','like',"%$keyword_handing%")
+                                    ->where('dv_loaihinh',$type)
+                                    ->paginate(10);
+                if (empty($result))
+                    return json_encode("Không tìm thấy dịch vụ phù hợp");
+                else
+                    return json_encode($result);
+                break;
+
+            default:
+                # code...
+                break;
+        }
     }
 
     // tìm kiếm dưa theo loại và từ khoá
