@@ -254,6 +254,33 @@ class timkiemController extends Controller
                     return json_encode($result);
                 break;
 
+            case 4: // phương tiện
+                $result = DB::table('dlct_dichvu')
+                                    ->join('dlct_thamquan','dlct_dichvu.id','=','dlct_thamquan.dv_iddichvu')
+                                    ->leftJoin('dlct_yeuthich','dlct_dichvu.id','=','dlct_yeuthich.dv_iddichvu')
+                                    ->select('dlct_dichvu.id','dlct_thamquan.tq_tendiadiemthamquan','dlct_dichvu.dv_gioithieu','dlct_dichvu.dv_giomocua','dlct_dichvu.dv_giodongcua','dlct_dichvu.dv_giacaonhat','dlct_dichvu.dv_giathapnhat','dlct_yeuthich.nd_idnguoidung as id_nguoidung_yeuthich_dv','dlct_yeuthich.id as id_yeuthich')
+                                    ->where('dv_gioithieu','like',"%$keyword_handing%")
+                                    ->where('dv_loaihinh',$type)
+                                    ->paginate(10);
+                if (empty($result))
+                    return json_encode("Không tìm thấy dịch vụ phù hợp");
+                else
+                    return json_encode($result);
+                break;
+
+            case 5: // phương tiện
+                $result = DB::table('dlct_dichvu')
+                                    ->join('dlct_vuichoi','dlct_dichvu.id','=','dlct_vuichoi.dv_iddichvu')
+                                    ->leftJoin('dlct_yeuthich','dlct_dichvu.id','=','dlct_yeuthich.dv_iddichvu')
+                                    ->select('dlct_dichvu.id','dlct_vuichoi.vc_tendiemvuichoi','dlct_dichvu.dv_gioithieu','dlct_dichvu.dv_giomocua','dlct_dichvu.dv_giodongcua','dlct_dichvu.dv_giacaonhat','dlct_dichvu.dv_giathapnhat','dlct_yeuthich.nd_idnguoidung as id_nguoidung_yeuthich_dv','dlct_yeuthich.id as id_yeuthich')
+                                    ->where('dv_gioithieu','like',"%$keyword_handing%")
+                                    ->where('dv_loaihinh',$type)
+                                    ->paginate(10);
+                if (empty($result))
+                    return json_encode("Không tìm thấy dịch vụ phù hợp");
+                else
+                    return json_encode($result);
+                break;
             default:
                 # code...
                 break;
