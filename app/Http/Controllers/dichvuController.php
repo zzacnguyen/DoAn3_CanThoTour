@@ -86,6 +86,7 @@ class dichvuController extends Controller
                  'dlct_diadiem.dd_diachi', 'lhsk_ten', 'dlct_yeuthich.nd_idnguoidung', 'dlct_yeuthich.id')
         
         ->get();
+<<<<<<< HEAD
 
         foreach ($dich_vu as $value) 
         {
@@ -95,6 +96,15 @@ class dichvuController extends Controller
         print_r($d);
         echo "</pre>";
         // $encode=json_encode($d);
+=======
+      
+        for($i=0; $i<=sizeof($dich_vu); $i++)
+        {
+            $dv[] = array('dichvu'=>$dich_vu[1]);
+        }
+        return $dv;
+        // $encode=json_encode($dich_vu);
+>>>>>>> c863ea8e5c80d287c15b2a7ac2d08ea5828836a2
         // return $encode;
     }
 

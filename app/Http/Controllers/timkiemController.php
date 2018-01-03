@@ -105,17 +105,6 @@ class timkiemController extends Controller
     
     public function get_dichvu($id_diadiem, $type)
     {
-        // $dich_vu_search = DB::table('dlct_dichvu')
-        //                 ->leftJoin('dlct_anuong', 'dlct_dichvu.id', '=', 'dlct_anuong.dv_iddichvu')
-        //                 ->leftJoin('dlct_khachsan', 'dlct_dichvu.id', '=', 'dlct_khachsan.dv_iddichvu')
-        //                 ->leftJoin('dlct_vuichoi', 'dlct_dichvu.id', '=', 'dlct_vuichoi.dv_iddichvu')
-        //                 ->leftJoin('dlct_phuongtien', 'dlct_dichvu.id', '=', 'dlct_phuongtien.dv_iddichvu')
-        //                 ->leftJoin('dlct_thamquan', 'dlct_dichvu.id', '=', 'dlct_thamquan.dv_iddichvu')
-        //                 ->leftJoin('dlct_hinhanh', 'dlct_dichvu.id', '=', 'dlct_hinhanh.dv_iddichvu')
-        //                 ->select('dlct_dichvu.id', 'dlct_khachsan.ks_tenkhachsan', 'dlct_anuong.au_ten','dlct_vuichoi.vc_tendiemvuichoi','dlct_phuongtien.pt_tenphuongtien','dlct_thamquan.tq_tendiemthamquan','dlct_hinhanh.id as id_hinhanh','dlct_hinhanh.chitiet1')
-        //                 ->where('dd_iddiadiem',$id_diadiem)
-        //                 ->where('dv_loaihinh',$type)->take(5)->get();
-        // return $dich_vu_search;
         switch ($type) {
             case 1: // ăn uống
                 $result = DB::table('dlct_dichvu') // idhinhanh, anhchitiet1
@@ -127,7 +116,7 @@ class timkiemController extends Controller
                 if (empty($result))
                     return json_encode("Không tìm thấy dịch vụ phù hợp");
                 else
-                    return json_encode($result);
+                    return $result;
                 break;
 
             case 2: // khách sạn
@@ -140,7 +129,7 @@ class timkiemController extends Controller
                 if (empty($result))
                     return json_encode("Không tìm thấy dịch vụ phù hợp");
                 else
-                    return json_encode($result);
+                    return $result;
                 break;
 
             case 3: // phương tiện
@@ -153,7 +142,7 @@ class timkiemController extends Controller
                 if (empty($result))
                     return json_encode("Không tìm thấy dịch vụ phù hợp");
                 else
-                    return json_encode($result);
+                    return $result;
                 break;
 
             case 4: // phương tiện
@@ -166,7 +155,7 @@ class timkiemController extends Controller
                 if (empty($result))
                     return json_encode("Không tìm thấy dịch vụ phù hợp");
                 else
-                    return json_encode($result);
+                    return $result;
                 break;
 
             case 5: // phương tiện
@@ -179,7 +168,7 @@ class timkiemController extends Controller
                 if (empty($result))
                     return json_encode("Không tìm thấy dịch vụ phù hợp");
                 else
-                    return json_encode($result);
+                    return $result;
                 break;
         }
     }
@@ -217,14 +206,22 @@ class timkiemController extends Controller
                         {
                             // $id_diadiem_gannhat[] = $new_list;
                             if (!empty($this::get_dichvu($new_list,$loaihinh))) {
-                                $dich_vu_search[] = $this::get_dichvu($new_list,$loaihinh);
+                                // $dich_vu_search[] = $this::get_dichvu($new_list,$loaihinh);
+                                foreach ($this::get_dichvu($new_list,$loaihinh) as $key => $value) {
+                                    $dich_vu_vu[] = $value;
+                                }
                             }
                             $dem++;
                         }
                         else
                             break;
                     }
-                    return json_encode($dich_vu_search);
+                    // // $en = json_encode($dich_vu_search);
+                    // return json_encode($dich_vu_search);
+                    return json_encode($dich_vu_vu);
+                    echo "<pre>";
+                    print_r($dich_vu_vu);
+                    echo "</pre>";
                 }
                 else
                 {
