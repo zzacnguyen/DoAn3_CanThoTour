@@ -22,6 +22,7 @@ class CreateNguoidungTable extends Migration
             $table->string('nd_avatar',255);
             $table->string('nd_quocgia',255);
             $table->string('nd_ngonngu',255);
+            $table->integer('level');
             $table->rememberToken();
             $table->timestamps();
         });
