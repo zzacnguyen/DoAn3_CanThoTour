@@ -103,31 +103,93 @@ class timkiemController extends Controller
             return json_encode("Không tìm thấy địa điểm phù hợp");
     }
     
-    public function get_dichvu(int $id_diadiem)
+    public function get_dichvu($id_diadiem, $type)
     {
-        $dich_vu_search = DB::table('dlct_dichvu')
-                        ->leftJoin('dlct_anuong', 'dlct_dichvu.id', '=', 'dlct_anuong.dv_iddichvu')
-                        ->leftJoin('dlct_khachsan', 'dlct_dichvu.id', '=', 'dlct_khachsan.dv_iddichvu')
-                        ->leftJoin('dlct_vuichoi', 'dlct_dichvu.id', '=', 'dlct_vuichoi.dv_iddichvu')
-                        ->leftJoin('dlct_phuongtien', 'dlct_dichvu.id', '=', 'dlct_phuongtien.dv_iddichvu')
-                        ->leftJoin('dlct_thamquan', 'dlct_dichvu.id', '=', 'dlct_thamquan.dv_iddichvu')
-                        ->leftJoin('dlct_hinhanh', 'dlct_dichvu.id', '=', 'dlct_hinhanh.dv_iddichvu')
-                        ->select('dlct_dichvu.id', 'dlct_khachsan.ks_tenkhachsan', 'dlct_anuong.au_ten','dlct_vuichoi.vc_tendiemvuichoi','dlct_phuongtien.pt_tenphuongtien','dlct_thamquan.tq_tendiemthamquan','dlct_hinhanh.id as id_hinhanh','dlct_hinhanh.chitiet1')
-                        ->where('dd_iddiadiem',$id_diadiem)->take(5)->get();
-        return $dich_vu_search;
-    }
+        // $dich_vu_search = DB::table('dlct_dichvu')
+        //                 ->leftJoin('dlct_anuong', 'dlct_dichvu.id', '=', 'dlct_anuong.dv_iddichvu')
+        //                 ->leftJoin('dlct_khachsan', 'dlct_dichvu.id', '=', 'dlct_khachsan.dv_iddichvu')
+        //                 ->leftJoin('dlct_vuichoi', 'dlct_dichvu.id', '=', 'dlct_vuichoi.dv_iddichvu')
+        //                 ->leftJoin('dlct_phuongtien', 'dlct_dichvu.id', '=', 'dlct_phuongtien.dv_iddichvu')
+        //                 ->leftJoin('dlct_thamquan', 'dlct_dichvu.id', '=', 'dlct_thamquan.dv_iddichvu')
+        //                 ->leftJoin('dlct_hinhanh', 'dlct_dichvu.id', '=', 'dlct_hinhanh.dv_iddichvu')
+        //                 ->select('dlct_dichvu.id', 'dlct_khachsan.ks_tenkhachsan', 'dlct_anuong.au_ten','dlct_vuichoi.vc_tendiemvuichoi','dlct_phuongtien.pt_tenphuongtien','dlct_thamquan.tq_tendiemthamquan','dlct_hinhanh.id as id_hinhanh','dlct_hinhanh.chitiet1')
+        //                 ->where('dd_iddiadiem',$id_diadiem)
+        //                 ->where('dv_loaihinh',$type)->take(5)->get();
+        // return $dich_vu_search;
+        switch ($type) {
+            case 1: // ăn uống
+                $result = DB::table('dlct_dichvu') // idhinhanh, anhchitiet1
+                                    ->leftJoin('dlct_anuong', 'dlct_dichvu.id', '=', 'dlct_anuong.dv_iddichvu')
+                                    ->leftJoin('dlct_hinhanh','dlct_dichvu.id','=','dlct_hinhanh.dv_iddichvu')
+                                    ->select('dlct_dichvu.id', 'dlct_anuong.au_ten','dlct_hinhanh.id as id_hinhanh','dlct_hinhanh.chitiet1')
+                                    ->where('dd_iddiadiem',$id_diadiem)
+                                    ->where('dv_loaihinh',$type)->take(5)->get();
+                if (empty($result))
+                    return json_encode("Không tìm thấy dịch vụ phù hợp");
+                else
+                    return json_encode($result);
+                break;
 
+            case 2: // khách sạn
+                $result = DB::table('dlct_dichvu')
+                                    ->leftJoin('dlct_khachsan', 'dlct_dichvu.id', '=', 'dlct_khachsan.dv_iddichvu')
+                                    ->leftJoin('dlct_hinhanh','dlct_dichvu.id','=','dlct_hinhanh.dv_iddichvu')
+                                    ->select('dlct_dichvu.id','dlct_khachsan.ks_tenkhachsan','dlct_khachsan.ks_website','dlct_hinhanh.id as id_hinhanh','dlct_hinhanh.chitiet1')
+                                    ->where('dd_iddiadiem',$id_diadiem)
+                                    ->where('dv_loaihinh',$type)->take(5)->get();
+                if (empty($result))
+                    return json_encode("Không tìm thấy dịch vụ phù hợp");
+                else
+                    return json_encode($result);
+                break;
+
+            case 3: // phương tiện
+                $result = DB::table('dlct_dichvu')
+                                    ->join('dlct_phuongtien','dlct_dichvu.id','=','dlct_phuongtien.dv_iddichvu')
+                                    ->leftJoin('dlct_hinhanh','dlct_dichvu.id','=','dlct_hinhanh.dv_iddichvu')
+                                    ->select('dlct_dichvu.id','dlct_phuongtien.pt_tenphuongtien','dlct_hinhanh.id as id_hinhanh','dlct_hinhanh.chitiet1')
+                                    ->where('dd_iddiadiem',$id_diadiem)
+                                    ->where('dv_loaihinh',$type)->take(5)->get();
+                if (empty($result))
+                    return json_encode("Không tìm thấy dịch vụ phù hợp");
+                else
+                    return json_encode($result);
+                break;
+
+            case 4: // phương tiện
+                $result = DB::table('dlct_dichvu')
+                                    ->join('dlct_thamquan','dlct_dichvu.id','=','dlct_thamquan.dv_iddichvu')
+                                    ->leftJoin('dlct_hinhanh','dlct_dichvu.id','=','dlct_hinhanh.dv_iddichvu')
+                                    ->select('dlct_dichvu.id','dlct_thamquan.tq_tendiemthamquan','dlct_hinhanh.id as id_hinhanh','dlct_hinhanh.chitiet1')
+                                    ->where('dd_iddiadiem',$id_diadiem)
+                                    ->where('dv_loaihinh',$type)->take(5)->get();
+                if (empty($result))
+                    return json_encode("Không tìm thấy dịch vụ phù hợp");
+                else
+                    return json_encode($result);
+                break;
+
+            case 5: // phương tiện
+                $result = DB::table('dlct_dichvu')
+                                    ->join('dlct_vuichoi','dlct_dichvu.id','=','dlct_vuichoi.dv_iddichvu')
+                                    ->leftJoin('dlct_hinhanh','dlct_dichvu.id','=','dlct_hinhanh.dv_iddichvu')
+                                    ->select('dlct_dichvu.id','dlct_vuichoi.vc_tendiemvuichoi','dlct_hinhanh.id as id_hinhanh','dlct_hinhanh.chitiet1')
+                                    ->where('dd_iddiadiem',$id_diadiem)
+                                    ->where('dv_loaihinh',$type)->take(5)->get();
+                if (empty($result))
+                    return json_encode("Không tìm thấy dịch vụ phù hợp");
+                else
+                    return json_encode($result);
+                break;
+        }
+    }
     //tìm dịch vụ lân cận
-    public function search_dichvu_lancan(int $id_dichvu,int $radius)
+    public function search_dichvu_lancan($vido,$kinhdo, $loaihinh,int $radius)
     {
-        if (is_int($id_dichvu) && is_int($radius) && $radius >=100) 
+        if ($radius >=100) 
         {
-            $dich_vu_1 = DB::table('dlct_dichvu')->where('id',$id_dichvu)->first();
-            $id_diadiem = $dich_vu_1->dd_iddiadiem;
-            $loai_hinh_dv = $dich_vu_1->dv_loaihinh;
-            $dia_diem = DB::table('dlct_diadiem')->where('id',$id_diadiem)->first();
-            $vd_diadiem = (double)$dia_diem->dd_vido;
-            $kd_diadiem = (double)$dia_diem->dd_kinhdo;
+            $vd_diadiem = (double)$vido;
+            $kd_diadiem = (double)$kinhdo;
             $dia_diem_all = diadiemModel::all();
             foreach ($dia_diem_all as $l) 
             {
@@ -140,7 +202,9 @@ class timkiemController extends Controller
                      $mang_khoangcach[$euclideDistance] = $l['id'];
                 }
             }
-            
+            echo "<pre>";
+            print_r($mang_khoangcach);
+            echo "</pre>";
             if (!empty($mang_khoangcach)) 
             {
                 if (count($mang_khoangcach) > 1) 
@@ -152,9 +216,8 @@ class timkiemController extends Controller
                         if ($dem < 3) 
                         {
                             // $id_diadiem_gannhat[] = $new_list;
-                            if (!empty($this::get_dichvu($new_list))) {
-                                $dich_vu_search[] = $this::get_dichvu($new_list);
-                                // $dich_vu_search[] = array('khoangcach' => $key);
+                            if (!empty($this::get_dichvu($new_list,$loaihinh))) {
+                                $dich_vu_search[] = $this::get_dichvu($new_list,$loaihinh);
                             }
                             $dem++;
                         }
@@ -168,8 +231,7 @@ class timkiemController extends Controller
                     $id_diadiem_gannhat = array_values($mang_khoangcach)[0];
                     $dich_vu_search = $this::get_dichvu($id_diadiem_gannhat);
                     return json_encode($dich_vu_search);
-                }
-                    
+                }  
             }
             else
                 return json_encode("Không có tìm thấy địa điểm lân cận");

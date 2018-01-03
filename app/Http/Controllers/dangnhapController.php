@@ -25,9 +25,11 @@ class dangnhapController extends Controller
     		$taikhoan = $request->input('taikhoan');
     		$matkhau = $request->input('password');
     		if( Auth::attempt(['nd_tendangnhap' => $taikhoan, 'password' =>$matkhau])) {
-    			return json_encode(Auth::user());
+                $user_dn[] = array('id' => Auth::user()->id,'nd_avatar' => Auth::user()->nd_avatar,'level' => Auth::user()->level); 
+                return json_encode($user_dn); 
     		} else {
-    			return json_encode("Tài khoản hoặc mật khẩu không đúng");
+                $erro = "Tài khoản hoặc mật khẩu không đúng";
+    			return json_encode('Tài khoản hoặc mật khẩu không đúng');
     		}
     	}
     }
