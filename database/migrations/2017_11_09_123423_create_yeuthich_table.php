@@ -19,7 +19,7 @@ class CreateYeuthichTable extends Migration
             $table->foreign('dv_iddichvu')->references('id')->on('dlct_dichvu')->onDelete('cascade');   
             $table->integer('nd_idnguoidung')->unsigned();
             $table->foreign('nd_idnguoidung')->references('id')->on('dlct_nguoidung')->onDelete('cascade');
-            $table->unique('dv_iddichvu', 'nd_idnguoidung');
+            
             $table->timestamps();
         });
     }

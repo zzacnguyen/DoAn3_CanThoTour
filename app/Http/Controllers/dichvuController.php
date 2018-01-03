@@ -64,8 +64,14 @@ class dichvuController extends Controller
                  'dlct_diadiem.dd_diachi', 'lhsk_ten', 'dlct_yeuthich.nd_idnguoidung', 'dlct_yeuthich.id')
         
         ->get();
-        $encode=json_encode($dich_vu);
-        return $encode;
+      
+        for($i=0; $i<=sizeof($dich_vu); $i++)
+        {
+            $dv[] = array('dichvu'=>$dich_vu[1]);
+        }
+        return $dv;
+        // $encode=json_encode($dich_vu);
+        // return $encode;
     }
 
     public function edit($id)
