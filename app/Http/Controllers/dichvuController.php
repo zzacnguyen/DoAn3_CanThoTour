@@ -47,7 +47,9 @@ class dichvuController extends Controller
         $dich_vu = DB::table('dlct_dichvu')
         ->select('dlct_dichvu.id','ks_tenkhachsan','vc_tendiemvuichoi','pt_tenphuongtien', 'tq_tendiemthamquan', 'ks_website',
                  'au_ten','dv_gioithieu', 'dv_giomocua','dv_giodongcua','dv_giathapnhat','dv_giacaonhat', 'dlct_diadiem.dd_sodienthoai',
-                 'dlct_diadiem.dd_diachi', DB::raw('AVG(dlct_danhgia.dg_diem) as danhgia'))
+                 'dlct_diadiem.dd_diachi', DB::raw('AVG(dlct_danhgia.dg_diem) as danhgia'),
+                 'dlct_diadiem.dd_kinhdo', 'dlct_diadiem.dd_vido'
+                 )
         ->leftJoin('dlct_sukien', 'dlct_sukien.dv_iddichvu', '=', 'dlct_dichvu.id')
         ->leftJoin('dlct_khachsan', 'dlct_khachsan.dv_iddichvu', '=', 'dlct_dichvu.id')
         ->leftJoin('dlct_anuong', 'dlct_anuong.dv_iddichvu', '=', 'dlct_dichvu.id')
@@ -60,7 +62,7 @@ class dichvuController extends Controller
         ->where('dlct_dichvu.id', $id)
         ->groupBy('dlct_dichvu.id','ks_tenkhachsan','vc_tendiemvuichoi','pt_tenphuongtien', 'tq_tendiemthamquan', 'ks_website',
                  'au_ten','dv_gioithieu', 'dv_giomocua','dv_giodongcua','dv_giathapnhat','dv_giacaonhat', 'dlct_diadiem.dd_sodienthoai',
-                 'dlct_diadiem.dd_diachi')
+                 'dlct_diadiem.dd_diachi', 'dlct_diadiem.dd_kinhdo', 'dlct_diadiem.dd_vido')
         
         ->get();
 
@@ -74,12 +76,12 @@ class dichvuController extends Controller
 
 
         $yeuthich = DB::table('dlct_yeuthich')
-        ->select('dlct_yeuthich.nd_idnguoidung')
+        ->select('dlct_yeuthich.id as id_yeuthich','dlct_yeuthich.nd_idnguoidung')
         ->where('dv_iddichvu','=', $id)
         ->get();
 
         $danhgia = DB::table('dlct_danhgia')
-        ->select('dlct_danhgia.nd_idnguoidung')
+        ->select('dlct_danhgia.id as id_danhgia','dlct_danhgia.nd_idnguoidung')
         ->where('dv_iddichvu', '=', $id)
         
         ->get();
