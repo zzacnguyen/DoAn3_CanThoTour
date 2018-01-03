@@ -87,6 +87,7 @@ class dichvuController extends Controller
         
         ->get();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         foreach ($dich_vu as $value) 
         {
@@ -97,6 +98,8 @@ class dichvuController extends Controller
         echo "</pre>";
         // $encode=json_encode($d);
 =======
+=======
+>>>>>>> 4522dfbd72edf98e41868ac199c2fd6489f3d99d
       
         for($i=0; $i<=sizeof($dich_vu); $i++)
         {
@@ -104,7 +107,10 @@ class dichvuController extends Controller
         }
         return $dv;
         // $encode=json_encode($dich_vu);
+<<<<<<< HEAD
 >>>>>>> c863ea8e5c80d287c15b2a7ac2d08ea5828836a2
+=======
+>>>>>>> 4522dfbd72edf98e41868ac199c2fd6489f3d99d
         // return $encode;
     }
 

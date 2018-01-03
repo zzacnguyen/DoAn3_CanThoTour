@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 29, 2017 lúc 02:12 PM
+-- Thời gian đã tạo: Th1 03, 2018 lúc 05:18 AM
 -- Phiên bản máy phục vụ: 10.1.28-MariaDB
 -- Phiên bản PHP: 7.1.10
 
@@ -118,6 +118,7 @@ CREATE TABLE `dlct_dichvu` (
   `dv_giacaonhat` int(11) NOT NULL,
   `dv_giathapnhat` int(11) NOT NULL,
   `dv_loaihinh` int(11) NOT NULL,
+  `dv_sodienthoai` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `dd_iddiadiem` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -198,6 +199,7 @@ CREATE TABLE `dlct_nguoidung` (
   `nd_avatar` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `nd_quocgia` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `nd_ngonngu` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `level` int(11) NOT NULL,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -352,27 +354,27 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(250, '2014_10_12_100000_create_password_resets_table', 1),
-(251, '2017_11_02_142109_create_nguoidung_table', 1),
-(252, '2017_11_02_143248_create_diadiem_table', 1),
-(253, '2017_11_02_143901_create_lichtrinh_table', 1),
-(254, '2017_11_02_144022_create_chitietlichtrinh_table', 1),
-(255, '2017_11_02_144140_create_dichvu_table', 1),
-(256, '2017_11_02_144243_create_loaihinhsukien_table', 1),
-(257, '2017_11_02_144358_create_sukien_table', 1),
-(258, '2017_11_02_144540_create_binhluan_table', 1),
-(259, '2017_11_02_151955_create_danhgia_table', 1),
-(260, '2017_11_02_152627_create_thamquan_table', 1),
-(261, '2017_11_02_152802_create_phuongtien_table', 1),
-(262, '2017_11_02_152910_create_anuong_table', 1),
-(263, '2017_11_02_152958_create_khachsan_table', 1),
-(264, '2017_11_02_153038_create_vuichoi_table', 1),
-(265, '2017_11_09_123423_create_yeuthich_table', 1),
-(266, '2017_11_13_141540_create_tukhoa_table', 1),
-(267, '2017_11_13_144257_create_tukhoa_dichvu_table', 1),
-(268, '2017_12_13_233705_create_nguoidungcanhan_table', 1),
-(269, '2017_12_13_235129_create_nguoidungdoanhnghiep_table', 1),
-(270, '2017_12_18_141111_create_hinhanh_table', 1);
+(89, '2014_10_12_100000_create_password_resets_table', 1),
+(90, '2017_11_02_142109_create_nguoidung_table', 1),
+(91, '2017_11_02_143248_create_diadiem_table', 1),
+(92, '2017_11_02_143901_create_lichtrinh_table', 1),
+(93, '2017_11_02_144022_create_chitietlichtrinh_table', 1),
+(94, '2017_11_02_144140_create_dichvu_table', 1),
+(95, '2017_11_02_144243_create_loaihinhsukien_table', 1),
+(96, '2017_11_02_144358_create_sukien_table', 1),
+(97, '2017_11_02_144540_create_binhluan_table', 1),
+(98, '2017_11_02_151955_create_danhgia_table', 1),
+(99, '2017_11_02_152627_create_thamquan_table', 1),
+(100, '2017_11_02_152802_create_phuongtien_table', 1),
+(101, '2017_11_02_152910_create_anuong_table', 1),
+(102, '2017_11_02_152958_create_khachsan_table', 1),
+(103, '2017_11_02_153038_create_vuichoi_table', 1),
+(104, '2017_11_09_123423_create_yeuthich_table', 1),
+(105, '2017_11_13_141540_create_tukhoa_table', 1),
+(106, '2017_11_13_144257_create_tukhoa_dichvu_table', 1),
+(107, '2017_12_13_233705_create_nguoidungcanhan_table', 1),
+(108, '2017_12_13_235129_create_nguoidungdoanhnghiep_table', 1),
+(109, '2017_12_18_141111_create_hinhanh_table', 1);
 
 -- --------------------------------------------------------
 
@@ -530,7 +532,7 @@ ALTER TABLE `dlct_vuichoi`
 --
 ALTER TABLE `dlct_yeuthich`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nd_idnguoidung` (`dv_iddichvu`),
+  ADD KEY `dlct_yeuthich_dv_iddichvu_foreign` (`dv_iddichvu`),
   ADD KEY `dlct_yeuthich_nd_idnguoidung_foreign` (`nd_idnguoidung`);
 
 --
@@ -673,7 +675,7 @@ ALTER TABLE `dlct_yeuthich`
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=271;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
