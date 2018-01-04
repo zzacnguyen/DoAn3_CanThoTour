@@ -65,14 +65,23 @@ class dichvuController extends Controller
                  'dlct_diadiem.dd_diachi', 'dlct_diadiem.dd_kinhdo', 'dlct_diadiem.dd_vido')
         
         ->get();
-
+        $dt = Carbon::now();
+        $nam_hien_tai = $dt->year;
+        $thang_hien_tai = $dt->month;
+        $ngay_hien_tai = $dt->day;
+        
+        
         $loaihinhsukien = DB::table('dlct_loaihinhsukien')
         ->select('lhsk_ten')
         ->join('dlct_sukien','dlct_sukien.lhsk_idloaihinhsukien','=','dlct_loaihinhsukien.id')
         ->join('dlct_dichvu', 'dlct_sukien.dv_iddichvu', '=', 'dlct_dichvu.id')
+        ->whereYear('sk_ngayketthuc', '>=', $nam_hien_tai)
+        ->whereDay('sk_ngayketthuc', '>=',$ngay_hien_tai)
+        ->whereMonth('sk_ngayketthuc', '>=', $thang_hien_tai)
         ->where('dlct_dichvu.id',$id)
-        ->orderBy('dlct_sukien.created_at', 'desc')->first();
         
+        ->orderBy('dlct_sukien.created_at', 'desc')->first();
+         
 
 
         $yeuthich = DB::table('dlct_yeuthich')
