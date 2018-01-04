@@ -66,3 +66,4 @@ Route::get('lay-mot-hinh-thumb-2/{id}', 'hinhanhController@LayMotThumb2');
 Route::get('lay-mot-hinh-chi-tiet-1/{id}', 'hinhanhController@LayMotHinhChiTiet1');
 Route::get('lay-mot-hinh-chi-tiet-2/{id}', 'hinhanhController@LayMotHinhChiTiet2');
 
+Route::get('danhgia-dichvu/{id}','danhgia_dichvu_controller@danhgia');
