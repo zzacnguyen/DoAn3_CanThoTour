@@ -244,8 +244,9 @@ class timkiemController extends Controller
                                     ->leftJoin('dlct_khachsan', 'dlct_dichvu.id', '=', 'dlct_khachsan.dv_iddichvu')
                                     ->leftJoin('dlct_phuongtien', 'dlct_dichvu.id', '=', 'dlct_phuongtien.dv_iddichvu')
                                     ->leftJoin('dlct_vuichoi', 'dlct_dichvu.id', '=', 'dlct_vuichoi.dv_iddichvu')
+                                    ->leftJoin('dlct_thamquan', 'dlct_dichvu.id', '=', 'dlct_thamquan.dv_iddichvu')
                                     ->leftJoin('dlct_hinhanh','dlct_dichvu.id','=','dlct_hinhanh.dv_iddichvu')
-                                    ->select('dlct_dichvu.id', 'dlct_anuong.au_ten','dlct_khachsan.ks_tenkhachsan','dlct_khachsan.ks_website','dlct_phuongtien.pt_tenphuongtien','dlct_vuichoi.vc_tendiemvuichoi','dlct_hinhanh.id as id_hinhanh','dlct_hinhanh.chitiet1')
+                                    ->select('dlct_dichvu.id', 'dlct_anuong.au_ten','dlct_khachsan.ks_tenkhachsan','dlct_thamquan.tq_tendiemthamquan','dlct_phuongtien.pt_tenphuongtien','dlct_vuichoi.vc_tendiemvuichoi','dlct_hinhanh.id as id_hinhanh','dlct_hinhanh.chitiet1')
                                     ->where('dv_gioithieu','like',"%$keyword_handing%")->take(30)->paginate(10);
         return json_encode($result);
     }
