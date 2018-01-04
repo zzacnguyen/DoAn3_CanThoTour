@@ -30,15 +30,6 @@ class timkiemController extends Controller
         //     return $miles;
     }
 
-	// Tinh khoang cach dua vao cong thuc 
-	// d = sqrt((x2 - x1)^2 + (y2  - y1)^2 )
-    public function euclideDistance($latitude, $longitude, $latitude2, $longitude2)
-    {
-        $euclideDistance = sqrt(pow(($latitude2-$latitude),2) + pow(($longitude2 - $longitude),2));
-    	return $euclideDistance;
-        // return ($latitude - $latitude2)*($latitude - $latitude2);
-   	}
-
 
     // trả về danh sách địa điểm sắp xếp tăng dần theo khoảng cách
     public function searchLocationByRadiusAndKeyword($user_latitude, $user_longitude, $radius, $keyword)
@@ -103,7 +94,7 @@ class timkiemController extends Controller
             return json_encode("Không tìm thấy địa điểm phù hợp");
     }
     
-    public function get_dichvu($id_diadiem, $type)
+    public function get_dichvu($id_diadiem, $type, $khoangcach)
     {
         switch ($type) {
             case 1: // ăn uống
@@ -134,7 +125,7 @@ class timkiemController extends Controller
 
             case 3: // phương tiện
                 $result = DB::table('dlct_dichvu')
-                                    ->join('dlct_phuongtien','dlct_dichvu.id','=','dlct_phuongtien.dv_iddichvu')
+                                    ->leftJoin('dlct_phuongtien','dlct_dichvu.id','=','dlct_phuongtien.dv_iddichvu')
                                     ->leftJoin('dlct_hinhanh','dlct_dichvu.id','=','dlct_hinhanh.dv_iddichvu')
                                     ->select('dlct_dichvu.id','dlct_phuongtien.pt_tenphuongtien','dlct_hinhanh.id as id_hinhanh','dlct_hinhanh.chitiet1')
                                     ->where('dd_iddiadiem',$id_diadiem)
@@ -191,9 +182,9 @@ class timkiemController extends Controller
                      $mang_khoangcach[$euclideDistance] = $l['id'];
                 }
             }
-            echo "<pre>";
-            print_r($mang_khoangcach);
-            echo "</pre>";
+            // echo "<pre>";
+            // print_r($mang_khoangcach);
+            // echo "</pre>";
             if (!empty($mang_khoangcach)) 
             {
                 if (count($mang_khoangcach) > 1) 
@@ -205,10 +196,12 @@ class timkiemController extends Controller
                         if ($dem < 3) 
                         {
                             // $id_diadiem_gannhat[] = $new_list;
-                            if (!empty($this::get_dichvu($new_list,$loaihinh))) {
+                            if (!empty($this::get_dichvu($new_list,$loaihinh, $key))) {
                                 // $dich_vu_search[] = $this::get_dichvu($new_list,$loaihinh);
-                                foreach ($this::get_dichvu($new_list,$loaihinh) as $key => $value) {
+
+                                foreach ($this::get_dichvu($new_list,$loaihinh,$key) as $key1 => $value) {
                                     $dich_vu_vu[] = $value;
+                                    $dich_vu_vu[] = array('khoangcach' => $key);
                                 }
                             }
                             $dem++;
@@ -216,12 +209,14 @@ class timkiemController extends Controller
                         else
                             break;
                     }
-                    // // $en = json_encode($dich_vu_search);
-                    // return json_encode($dich_vu_search);
-                    return json_encode($dich_vu_vu);
-                    echo "<pre>";
-                    print_r($dich_vu_vu);
-                    echo "</pre>";
+                    if (isset($dich_vu_vu)) {
+                        return json_encode($dich_vu_vu);
+                    }
+                    else
+                    {
+                        $err[] = array('loi' => "Không tìm thấy dịch vụ phù hợp");
+                        return json_encode($err);
+                    }
                 }
                 else
                 {
@@ -242,7 +237,16 @@ class timkiemController extends Controller
     public function search_dichvu_all($keyword)
     {
         $keyword_handing = str_replace("+", " ", $keyword);
-        $result = dichvuModel::where('dv_gioithieu','like',"%$keyword_handing%")->take(30)->paginate(5);
+        // $result = dichvuModel::where('dv_gioithieu','like',"%$keyword_handing%")
+        //                         ->select('')->take(30)->paginate(5);
+        $result = DB::table('dlct_dichvu') // idhinhanh, anhchitiet1
+                                    ->leftJoin('dlct_anuong', 'dlct_dichvu.id', '=', 'dlct_anuong.dv_iddichvu')
+                                    ->leftJoin('dlct_khachsan', 'dlct_dichvu.id', '=', 'dlct_khachsan.dv_iddichvu')
+                                    ->leftJoin('dlct_phuongtien', 'dlct_dichvu.id', '=', 'dlct_phuongtien.dv_iddichvu')
+                                    ->leftJoin('dlct_vuichoi', 'dlct_dichvu.id', '=', 'dlct_vuichoi.dv_iddichvu')
+                                    ->leftJoin('dlct_hinhanh','dlct_dichvu.id','=','dlct_hinhanh.dv_iddichvu')
+                                    ->select('dlct_dichvu.id', 'dlct_anuong.au_ten','dlct_khachsan.ks_tenkhachsan','dlct_khachsan.ks_website','dlct_phuongtien.pt_tenphuongtien','dlct_vuichoi.vc_tendiemvuichoi','dlct_hinhanh.id as id_hinhanh','dlct_hinhanh.chitiet1')
+                                    ->where('dv_gioithieu','like',"%$keyword_handing%")->take(30)->paginate(10);
         return json_encode($result);
     }
 
@@ -465,9 +469,3 @@ class timkiemController extends Controller
     }
 
 }
-
-// sửa đường dẫn search lại
-// tính khoảng cách trước rồi mới select
-// tinh khoang cach giua 2 toa do thuc te
-// load du lieu mau và test 
-//KẾT QUẢ TRẢ VỀ TỌA ĐỘ, ĐỊA CHỈ, KHOẢNG CÁCH 
