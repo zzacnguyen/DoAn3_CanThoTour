@@ -82,7 +82,7 @@ class timkiemController extends Controller
                 $result = DB::table('dlct_dichvu')
                                     ->leftJoin('dlct_khachsan', 'dlct_dichvu.id', '=', 'dlct_khachsan.dv_iddichvu')
                                     ->leftJoin('dlct_hinhanh','dlct_dichvu.id','=','dlct_hinhanh.dv_iddichvu')
-                                    ->select('dlct_dichvu.id','dlct_khachsan.ks_tenkhachsan','dlct_khachsan.ks_website','dlct_hinhanh.id as id_hinhanh','dlct_hinhanh.chitiet1')
+                                    ->select('dlct_dichvu.id','dlct_khachsan.ks_tenkhachsan','dlct_hinhanh.id as id_hinhanh','dlct_hinhanh.chitiet1')
                                     ->where('dd_iddiadiem',$id_diadiem)
                                     ->where('dv_loaihinh',$type)->take(5)->get();
                 if (empty($result))
@@ -194,11 +194,16 @@ class timkiemController extends Controller
                 }  
             }
             else
-                return json_encode("Không có tìm thấy địa điểm lân cận");
+            {
+                $err[] = array('loi' => "Không có tìm thấy địa điểm lân cận");
+                return json_encode($err);
+            }
         }
         else
-            return json_encode("Định dạng không đúng");
-            
+        {
+            $err[] = array('loi' => "Định dạng không đúng");
+            return json_encode($err);
+        } 
     }
 
     public function search_dichvu_all($keyword)
