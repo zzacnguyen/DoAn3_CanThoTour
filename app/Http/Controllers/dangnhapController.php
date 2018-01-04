@@ -82,13 +82,13 @@ class dangnhapController extends Controller
         $ngonngu  = $request->input('ngonngu');
 
         if (empty($taikhoan) && empty($password)) // kiểm tra rỗng
-            return json_encode($erro['1']);
+            return $erro['1'];
         else if (strlen($password) < 6 || strlen($password) > 20) //kiểm tra độ dài pass
-            return json_encode($erro['2']);
+            return $erro['2'];
         else if (strlen($taikhoan) < 5 || strlen($taikhoan) > 25) // kiểm tra độ dài tên tài khoản
-            return json_encode($erro['4']);
+            return $erro['4'];
         else if ($this->kiemtra_taikhoan($taikhoan) == "false") // kiểm tra tài khoản tồn tại
-            return json_encode($erro['3']);
+            return $erro['3'];
         else
         {
             $nguoidung                      = new nguoidungModel();
@@ -97,7 +97,7 @@ class dangnhapController extends Controller
             $nguoidung->nd_ngonngu          = $ngonngu;
             $nguoidung->nd_quocgia          = $quocgia;
             $nguoidung->save();
-            return json_encode($erro['5']);
+            return $erro['5'];
         }
     }
 
