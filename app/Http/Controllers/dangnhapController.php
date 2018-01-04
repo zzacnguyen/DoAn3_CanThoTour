@@ -73,7 +73,7 @@ class dangnhapController extends Controller
             '2' => 'Mật khẩu phải có độ dài từ 6-20 ký tự',
             '3' => 'Tên tài khoản đã tồn tại',
             '4' => 'Tài khoản có độ dài từ 5-25 ký tự',
-            '5' => 'Đăng nhập thành công'
+            '5' => 'Đăng ký thành công'
         );
 
         $taikhoan = $request->input('taikhoan');
