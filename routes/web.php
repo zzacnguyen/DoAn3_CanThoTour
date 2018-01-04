@@ -47,10 +47,11 @@ Route::get('timkiem/dichvuall/keyword={keyword}','timkiemController@search_dichv
 Route::get('timkiem/dichvunangcao/idtype={type}&keyword={keyword}','timkiemController@search_dichvu_type');
 // Route::get('timkiem/dichvunangcao/type={type}&keyword={keyword}','timkiemController@search_dichvu_type');
 //
-// Route::post('login','dangnhapController@login_api');
+// LOGIN
+
 Route::post('login','dangnhapController@postLogin');
 Route::get('logout','dangnhapController@logout_api')->middleware('auth:api');
-Route::get('test','timkiemController@test');
+Route::post('dangky','dangnhapController@dangky');
 
 Route::get('get-only-icon-image', 'hinhanhController@GetOnlyIconImage');
 

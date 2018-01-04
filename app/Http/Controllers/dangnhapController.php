@@ -62,4 +62,15 @@ class dangnhapController extends Controller
         $user->save();
         return ("Bạn đã đăng xuất"); 
     }
+
+    public function dangky(Request $request)
+    {
+        // kiểm tra tên đăng nhập có bị trùng hay không
+        //mật khẩu có độ dài 4-20 ký tự
+        $nguoidung                      = new nguoidungModel();
+        $nguoidung->nd_tendangnhap      = $request->input('taikhoan');
+        $nguoidung->password            = bcrypt($request->input('password'));
+        $nguoidung->save();
+        return json_encode("Dang ky thanh cong");
+    }
 }
