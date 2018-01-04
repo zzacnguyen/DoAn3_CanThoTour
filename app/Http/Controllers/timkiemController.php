@@ -42,8 +42,7 @@ class timkiemController extends Controller
                 $list_result[$euclideDistance] = array('id' => $l['id'],'dd_tendiadiem' => $l['dd_tendiadiem'],'khoangcach' => $euclideDistance, 'vido' => $l['dd_vido'],'kinhdo' => $l['dd_kinhdo']);
             }
         }
-
-        if(!empty($list_result))
+        if(isset($list_result))
         {
             ksort($list_result); // sap xep mang theo thu tu tang dan theo khoang cach
             $dem = 0;
@@ -57,6 +56,7 @@ class timkiemController extends Controller
                 else
                     break;
             }
+            return json_encode($json_list);
         }
         else
             return json_encode("Không tìm thấy địa điểm phù hợp");
