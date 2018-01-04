@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\dichvuModel;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 class dichvuController extends Controller
 {
@@ -43,75 +44,65 @@ class dichvuController extends Controller
 
     public function show($id)
     {
-        // $dich_vu = DB::table('dlct_dichvu')
-        // ->select('dlct_dichvu.id','ks_tenkhachsan','vc_tendiemvuichoi','pt_tenphuongtien', 'tq_tendiemthamquan', 'ks_website',
-        //          'au_ten','dv_gioithieu', 'dv_giomocua','dv_giodongcua','dv_giathapnhat','dv_giacaonhat', 'dlct_diadiem.dd_sodienthoai',
-        //          'dlct_diadiem.dd_diachi', 'lhsk_ten', 'dlct_yeuthich.nd_idnguoidung as id_nd_yeuthich_dv', 'dlct_yeuthich.id as id_yeuthich', DB::raw('AVG(dlct_danhgia.dg_diem) as danhgia'))
-        // ->leftJoin('dlct_sukien', 'dlct_sukien.dv_iddichvu', '=', 'dlct_dichvu.id')
-        // ->leftJoin('dlct_loaihinhsukien', 'dlct_loaihinhsukien.id', '=','dlct_sukien.lhsk_idloaihinhsukien')
-        // ->leftJoin('dlct_khachsan', 'dlct_khachsan.dv_iddichvu', '=', 'dlct_dichvu.id')
-        // ->leftJoin('dlct_anuong', 'dlct_anuong.dv_iddichvu', '=', 'dlct_dichvu.id')
-        // ->leftJoin('dlct_vuichoi', 'dlct_vuichoi.dv_iddichvu', '=', 'dlct_dichvu.id')
-        // ->leftJoin('dlct_thamquan', 'dlct_thamquan.dv_iddichvu', '=', 'dlct_dichvu.id')
-        // ->leftJoin('dlct_phuongtien', 'dlct_phuongtien.dv_iddichvu', '=', 'dlct_dichvu.id')
-        // ->leftJoin('dlct_diadiem', 'dlct_diadiem.id', '=', 'dlct_dichvu.dd_iddiadiem')
-        // ->leftJoin('dlct_yeuthich', 'dlct_yeuthich.dv_iddichvu', '=', 'dlct_dichvu.id')
-        // ->leftjoin('dlct_danhgia', 'dlct_danhgia.dv_iddichvu','=', 'dlct_dichvu.id')
-        
-        // ->where('dlct_dichvu.id', $id)
-        // ->groupBy('dlct_dichvu.id','ks_tenkhachsan','vc_tendiemvuichoi','pt_tenphuongtien', 'tq_tendiemthamquan', 'ks_website',
-        //          'au_ten','dv_gioithieu', 'dv_giomocua','dv_giodongcua','dv_giathapnhat','dv_giacaonhat', 'dlct_diadiem.dd_sodienthoai',
-        //          'dlct_diadiem.dd_diachi', 'lhsk_ten', 'dlct_yeuthich.nd_idnguoidung', 'dlct_yeuthich.id')
-        
-        // ->get();
-
-        $dich_vu[] = DB::table('dlct_dichvu')
+        $dich_vu = DB::table('dlct_dichvu')
         ->select('dlct_dichvu.id','ks_tenkhachsan','vc_tendiemvuichoi','pt_tenphuongtien', 'tq_tendiemthamquan', 'ks_website',
                  'au_ten','dv_gioithieu', 'dv_giomocua','dv_giodongcua','dv_giathapnhat','dv_giacaonhat', 'dlct_diadiem.dd_sodienthoai',
-                 'dlct_diadiem.dd_diachi', 'lhsk_ten', 'dlct_yeuthich.nd_idnguoidung as id_nd_yeuthich_dv', 'dlct_yeuthich.id as id_yeuthich', DB::raw('AVG(dlct_danhgia.dg_diem) as danhgia'))
+                 'dlct_diadiem.dd_diachi', DB::raw('AVG(dlct_danhgia.dg_diem) as danhgia'))
         ->leftJoin('dlct_sukien', 'dlct_sukien.dv_iddichvu', '=', 'dlct_dichvu.id')
-        ->leftJoin('dlct_loaihinhsukien', 'dlct_loaihinhsukien.id', '=','dlct_sukien.lhsk_idloaihinhsukien')
         ->leftJoin('dlct_khachsan', 'dlct_khachsan.dv_iddichvu', '=', 'dlct_dichvu.id')
         ->leftJoin('dlct_anuong', 'dlct_anuong.dv_iddichvu', '=', 'dlct_dichvu.id')
         ->leftJoin('dlct_vuichoi', 'dlct_vuichoi.dv_iddichvu', '=', 'dlct_dichvu.id')
         ->leftJoin('dlct_thamquan', 'dlct_thamquan.dv_iddichvu', '=', 'dlct_dichvu.id')
         ->leftJoin('dlct_phuongtien', 'dlct_phuongtien.dv_iddichvu', '=', 'dlct_dichvu.id')
         ->leftJoin('dlct_diadiem', 'dlct_diadiem.id', '=', 'dlct_dichvu.dd_iddiadiem')
-        ->leftJoin('dlct_yeuthich', 'dlct_yeuthich.dv_iddichvu', '=', 'dlct_dichvu.id')
         ->leftjoin('dlct_danhgia', 'dlct_danhgia.dv_iddichvu','=', 'dlct_dichvu.id')
         
         ->where('dlct_dichvu.id', $id)
         ->groupBy('dlct_dichvu.id','ks_tenkhachsan','vc_tendiemvuichoi','pt_tenphuongtien', 'tq_tendiemthamquan', 'ks_website',
                  'au_ten','dv_gioithieu', 'dv_giomocua','dv_giodongcua','dv_giathapnhat','dv_giacaonhat', 'dlct_diadiem.dd_sodienthoai',
-                 'dlct_diadiem.dd_diachi', 'lhsk_ten', 'dlct_yeuthich.nd_idnguoidung', 'dlct_yeuthich.id')
+                 'dlct_diadiem.dd_diachi')
         
         ->get();
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-        foreach ($dich_vu as $value) 
-        {
-            $d[] = $value[0]['id'];
-        }
-        echo "<pre>";
-        print_r($d);
-        echo "</pre>";
-        // $encode=json_encode($d);
-=======
-=======
->>>>>>> 4522dfbd72edf98e41868ac199c2fd6489f3d99d
-      
-        for($i=0; $i<=sizeof($dich_vu); $i++)
-        {
-            $dv[] = array('dichvu'=>$dich_vu[1]);
-        }
-        return $dv;
-        // $encode=json_encode($dich_vu);
-<<<<<<< HEAD
->>>>>>> c863ea8e5c80d287c15b2a7ac2d08ea5828836a2
-=======
->>>>>>> 4522dfbd72edf98e41868ac199c2fd6489f3d99d
-        // return $encode;
+        $loaihinhsukien = DB::table('dlct_loaihinhsukien')
+        ->select('lhsk_ten')
+        ->join('dlct_sukien','dlct_sukien.lhsk_idloaihinhsukien','=','dlct_loaihinhsukien.id')
+        ->join('dlct_dichvu', 'dlct_sukien.dv_iddichvu', '=', 'dlct_dichvu.id')
+        ->where('dlct_dichvu.id',$id)
+        ->orderBy('dlct_sukien.created_at', 'desc')->first();
+        
+
+
+        $yeuthich = DB::table('dlct_yeuthich')
+        ->select('dlct_yeuthich.nd_idnguoidung')
+        ->where('dv_iddichvu','=', $id)
+        ->get();
+
+        $danhgia = DB::table('dlct_danhgia')
+        ->select('dlct_danhgia.nd_idnguoidung')
+        ->where('dv_iddichvu', '=', $id)
+        
+        ->get();
+        
+
+
+        $merge[] = ["yeuthich"=>$yeuthich];  
+        $merge2[]= ["danhgia"=>$danhgia];
+        $merge3[] = ["dichvu"=>$dich_vu];
+        $merge4[]=["loaihinhsukien"=>$loaihinhsukien];
+        $merge5[] = array_merge($merge, $merge2, $merge3,$merge4 );
+        $tmp = json_encode($merge5);
+        $str_find_1 = '[[{';
+        $str_find_2 = '}]]';
+        $str_replace_1 = '[{';
+        $str_replace_2 = '}]';
+            
+        $result_1 = str_replace($str_find_1, $str_replace_1,$tmp);
+        $result_2 = str_replace($str_find_2, $str_replace_2,$result_1);
+        return $result_2;
+        $encode = json_decode($dich_vu);
+        return $encode;
+        
     }
 
     public function edit($id)
