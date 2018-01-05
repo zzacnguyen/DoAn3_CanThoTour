@@ -46,7 +46,6 @@ Route::get('timkiem/dichvuall/keyword={keyword}','timkiemController@search_dichv
 
 Route::get('timkiem/dichvunangcao/idtype={type}&keyword={keyword}','timkiemController@search_dichvu_type');
 
-Route::get('tinhkc/location={latitude},{longitude}&location2={latitude},{longitude}','timkiemController@distance');
 // LOGIN-LOGOUT-REGISTER
 Route::post('login','dangnhapController@postLogin');
 Route::get('logout','dangnhapController@logout_api')->middleware('auth:api');
