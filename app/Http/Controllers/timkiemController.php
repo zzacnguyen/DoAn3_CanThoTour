@@ -22,12 +22,7 @@ class timkiemController extends Controller
         // $unit = strtoupper($unit);
 
         return ($miles * 1.609344)*1000; //trả về mét
-        // if ($unit == "K") //trả về kilomet 
-        //     return ($miles * 1.609344);
-        // else if ($unit == "N") //trả về khoảng cách tính theo hải lý 
-        //     return ($miles * 0.8684);
-        // else
-        //     return $miles;
+        
     }
 
     public function search_lancan($user_latitude, $user_longitude,$radius)
@@ -155,8 +150,8 @@ class timkiemController extends Controller
             // echo "</pre>";
             if (!empty($mang_khoangcach)) 
             {
-                if (count($mang_khoangcach) > 1) 
-                {
+                // if (count($mang_khoangcach) > 1) 
+                // {
                     ksort($mang_khoangcach); // sắp xếp mảng theo khoảng cách tăng dần
                     $dem = 0;
                     foreach ($mang_khoangcach as $key => $new_list) 
@@ -185,13 +180,13 @@ class timkiemController extends Controller
                         $err[] = array('loi' => "Không tìm thấy dịch vụ phù hợp");
                         return json_encode($err);
                     }
-                }
-                else
-                {
-                    $id_diadiem_gannhat = array_values($mang_khoangcach)[0];
-                    $dich_vu_search = $this::get_dichvu($id_diadiem_gannhat);
-                    return json_encode($dich_vu_search);
-                }  
+                // }
+                // else
+                // {
+                //     $id_diadiem_gannhat = array_values($mang_khoangcach)[0];
+                //     $dich_vu_search = $this::get_dichvu($id_diadiem_gannhat);
+                //     return json_encode($dich_vu_search);
+                // }  
             }
             else
             {
