@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 05, 2018 lúc 03:37 AM
--- Phiên bản máy phục vụ: 10.1.28-MariaDB
--- Phiên bản PHP: 7.1.10
+-- Thời gian đã tạo: Th1 05, 2018 lúc 03:58 AM
+-- Phiên bản máy phục vụ: 10.1.26-MariaDB
+-- Phiên bản PHP: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `db_dulichcantho`
+-- Cơ sở dữ liệu: `db_dulichcantho10`
 --
 
 -- --------------------------------------------------------
@@ -125,31 +125,31 @@ CREATE TABLE `dlct_diadiem` (
 --
 
 INSERT INTO `dlct_diadiem` (`id`, `dd_tendiadiem`, `dd_gioithieu`, `dd_diachi`, `dd_sodienthoai`, `dd_kinhdo`, `dd_vido`, `nd_idnguoidung`, `created_at`, `updated_at`) VALUES
-(1, 'Nhà hàng du thuyền ninh kiều', '', 'Bến Ninh Kiều, P. Tân An,  Quận Ninh Kiều, Cần Thơ', '', '105,788074', '10,032165', 1, NULL, NULL),
-(2, 'pizza hut ', '', 'Lô 1 KDC Hưng Phú 1, P. Hưng Phú,  Quận Cái Răng, Cần Thơ', '', '105,784712', '10,014363', 1, NULL, NULL),
-(3, 'Ốc mẹt ', '', '206/92 Lê Lợi, P. Cái Khế,  Quận Ninh Kiều, Cần Thơ', '', '105,789451', '10,044601', 1, NULL, NULL),
-(4, 'Kichi kichi vincom', '', 'Vincom Cần Thơ, 2 Hùng Vương,  Quận Ninh Kiều, Cần Thơ', '', '105,779695', '10,045209', 1, NULL, NULL),
-(5, 'bamboo disum', '', 'Tầng 1, Lotte Mart Cần Thơ, 84 Mậu Thân, P. An Hòa,  Quận Ninh Kiều, Cần Thơ', '', '105,766648', '10,042589', 1, NULL, NULL),
-(6, 'daruma vincom', '', 'Lầu 4 Vincom Cần Thơ, 2 Hùng Vương,  Quận Ninh Kiều, Cần Thơ', '', '105,779695', '10,045209', 1, NULL, NULL),
-(7, 'Ca phe meo', '', '72 Nguyễn Cư Trinh, P. An Nghiệp,  Quận Ninh Kiều, Cần Thơ', '', '105,772886', '10,037299', 1, NULL, NULL),
-(8, 'cà phê bar Mường Thanh', '', 'Lê Lợi,  Quận Ninh Kiều, Cần Thơ', '', '105,790601', '10,042169', 1, NULL, NULL),
-(9, 'Rễ tranh mậu thân', '', '11C Mậu Thân,  Quận Ninh Kiều, Cần Thơ', '', '105,772505', '10,035333', 1, NULL, NULL),
-(10, 'gỏi cuốn mỹ phụng', '', '164 Nguyễn Việt Hồng, P. An Phú,  Quận Ninh Kiều, Cần Thơ', '', '105,776318', '10,030385', 1, NULL, NULL),
-(21, '', '', '1/2A Đường 30 Tháng 4, P. Xuân Khánh,  Quận Ninh Kiều, Cần Thơ', '', '105,775116', '10,025405', 1, NULL, NULL),
-(22, '', '', '59-61-63-65 Phạm Ngọc Thạch, Phường Cái Khế, Quận Ninh Kiều, 900000, Cần Thơ, Việt Nam', '', '105,786160', '10,043751', 1, NULL, NULL),
-(23, '', '', '2, Hai Bà Trưng, Tân An , 900000, Cần Thơ, Việt Nam', '', '105,789856', '10,036186', 1, NULL, NULL),
-(24, '', '', 'Số 3 Hòa Bình, Tân An , 901803, Cần Thơ, Việt Nam', '', '105,785999', '10,034956', 1, NULL, NULL),
-(25, '', '', '199 Nguyễn Trãi, Ninh Kiều, 270000, Cần Thơ, Việt Nam', '', '105,781759', '10,043694', 1, NULL, NULL),
-(26, '', '', 'Khu E1 Cồn Cái Khế, Phường Cái Khế, Ninh Kiều, Cần Thơ', '', '105,790753', '10,042154', 1, NULL, NULL),
-(27, '', '', 'số 2 Nguyên Văn Cừ, Khu vực 3, Cồn Khương, Phường Cái Khế, Ninh Kiều, Cần Thơ', '', '105,783306', '10,060977', 1, NULL, NULL),
-(28, '', '', '141 Tran Van Kheo Street, Cai Khe Ward, Ninh Kieu, Cái Khế, Cần Thơ, Việt Nam ', '', '105,786659', '10,046392', 1, NULL, NULL),
-(29, '', '', 'Số 209, Đường 30/4, Ninh Kiều, Cần Thơ, Việt Nam, Trung tâm thành phố Cần Thơ, Cần Thơ, Việt Nam', '', '105,774412', '10,024793', 1, NULL, NULL),
-(30, '', '', '52 Quang Trung, An Lạc, Ninh Kiều, Cần Thơ', '', '105,780422', '10,027171', 1, NULL, NULL),
-(31, '', '', '79B Phạm Ngọc Thạch,Cai Khe, Ninh Kieu, Cái Khế, Cần Thơ, Việt Nam ', '', '105,786665', '10,043091', 1, NULL, NULL),
-(32, '', '', 'Hem 142, duong Mau Than, Quan Ninh Kieu., Trung tâm thành phố Cần Thơ, Cần Thơ, Việt Nam ', '', '105,775264', '10,031290', 1, NULL, NULL),
-(33, '', '', 'Lô 91B, Nguyễn Văn Linh, P. Hưng Lợi, Q.Ninh Kiều, Tp. Cần Thơ.', '', '105,759213', '10,025229\r\n', 1, NULL, NULL),
-(34, '', '', 'Hưng Thanh, Cái Răng, Cần Thơ', '', '105,772505', '10,005464', 1, NULL, NULL),
-(35, 'taxi Mai linh', '', 'Cần thơ', '02923828282', '', '', 1, NULL, NULL),
+(1, 'Nhà hàng du thuyền ninh kiều', '', 'Bến Ninh Kiều, P. Tân An,  Quận Ninh Kiều, Cần Thơ', '', '105.788074', '10.032165', 1, NULL, NULL),
+(2, 'pizza hut ', '', 'Lô 1 KDC Hưng Phú 1, P. Hưng Phú,  Quận Cái Răng, Cần Thơ', '', '105.784712', '10.014363', 1, NULL, NULL),
+(3, 'Ốc mẹt ', '', '206/92 Lê Lợi, P. Cái Khế,  Quận Ninh Kiều, Cần Thơ', '', '105.789451', '10.044601', 1, NULL, NULL),
+(4, 'Kichi kichi vincom', '', 'Vincom Cần Thơ, 2 Hùng Vương,  Quận Ninh Kiều, Cần Thơ', '', '105.779695', '10.045209', 1, NULL, NULL),
+(5, 'bamboo disum', '', 'Tầng 1, Lotte Mart Cần Thơ, 84 Mậu Thân, P. An Hòa,  Quận Ninh Kiều, Cần Thơ', '', '105.766648', '10.042589', 1, NULL, NULL),
+(6, 'daruma vincom', '', 'Lầu 4 Vincom Cần Thơ, 2 Hùng Vương,  Quận Ninh Kiều, Cần Thơ', '', '105.779695', '10.045209', 1, NULL, NULL),
+(7, 'Ca phe meo', '', '72 Nguyễn Cư Trinh, P. An Nghiệp,  Quận Ninh Kiều, Cần Thơ', '', '105.772886', '10.037299', 1, NULL, NULL),
+(8, 'cà phê bar Mường Thanh', '', 'Lê Lợi,  Quận Ninh Kiều, Cần Thơ', '', '105.790601', '10.042169', 1, NULL, NULL),
+(9, 'Rễ tranh mậu thân', '', '11C Mậu Thân,  Quận Ninh Kiều, Cần Thơ', '', '105.772505', '10.035333', 1, NULL, NULL),
+(10, 'gỏi cuốn mỹ phụng', '', '164 Nguyễn Việt Hồng, P. An Phú,  Quận Ninh Kiều, Cần Thơ', '', '105.776318', '10.030385', 1, NULL, NULL),
+(21, '', '', '1/2A Đường 30 Tháng 4, P. Xuân Khánh,  Quận Ninh Kiều, Cần Thơ', '', '105.775116', '10.025405', 1, NULL, NULL),
+(22, '', '', '59-61-63-65 Phạm Ngọc Thạch, Phường Cái Khế, Quận Ninh Kiều, 900000, Cần Thơ, Việt Nam', '', '105.786160', '10.043751', 1, NULL, NULL),
+(23, '', '', '2, Hai Bà Trưng, Tân An , 900000, Cần Thơ, Việt Nam', '', '105.789856', '10.036186', 1, NULL, NULL),
+(24, '', '', 'Số 3 Hòa Bình, Tân An , 901803, Cần Thơ, Việt Nam', '', '105.785999', '10.034956', 1, NULL, NULL),
+(25, '', '', '199 Nguyễn Trãi, Ninh Kiều, 270000, Cần Thơ, Việt Nam', '', '105.781759', '10.043694', 1, NULL, NULL),
+(26, '', '', 'Khu E1 Cồn Cái Khế, Phường Cái Khế, Ninh Kiều, Cần Thơ', '', '105.790753', '10.042154', 1, NULL, NULL),
+(27, '', '', 'số 2 Nguyên Văn Cừ, Khu vực 3, Cồn Khương, Phường Cái Khế, Ninh Kiều, Cần Thơ', '', '105.783306', '10.060977', 1, NULL, NULL),
+(28, '', '', '141 Tran Van Kheo Street, Cai Khe Ward, Ninh Kieu, Cái Khế, Cần Thơ, Việt Nam ', '', '105.786659', '10.046392', 1, NULL, NULL),
+(29, '', '', 'Số 209, Đường 30/4, Ninh Kiều, Cần Thơ, Việt Nam, Trung tâm thành phố Cần Thơ, Cần Thơ, Việt Nam', '', '105.774412', '10.024793', 1, NULL, NULL),
+(30, '', '', '52 Quang Trung, An Lạc, Ninh Kiều, Cần Thơ', '', '105.780422', '10.027171', 1, NULL, NULL),
+(31, '', '', '79B Phạm Ngọc Thạch,Cai Khe, Ninh Kieu, Cái Khế, Cần Thơ, Việt Nam ', '', '105.786665', '10.043091', 1, NULL, NULL),
+(32, '', '', 'Hem 142, duong Mau Than, Quan Ninh Kieu., Trung tâm thành phố Cần Thơ, Cần Thơ, Việt Nam ', '', '105.775264', '10.031290', 1, NULL, NULL),
+(33, '', '', 'Lô 91B, Nguyễn Văn Linh, P. Hưng Lợi, Q.Ninh Kiều, Tp. Cần Thơ.', '', '105.759213', '10.025229\r\n', 1, NULL, NULL),
+(34, '', '', 'Hưng Thanh, Cái Răng, Cần Thơ', '', '105.772505', '10.005464', 1, NULL, NULL),
+(35, 'taxi Mai linh', '', 'Cần thơ', '02923828282', '105.772505', '10.005464', 1, NULL, NULL),
 (36, 'Taxi Green', '', 'Cằn thơ', '02923739739', '', '', 1, NULL, NULL),
 (37, 'Taxi Happy', '', 'Cần Thơ', '02923777777', '', '', 1, NULL, NULL),
 (38, 'Taxi hoàng anh', '', 'Cần Thơ', '02923797979', '', '', 1, NULL, NULL),
@@ -796,127 +796,106 @@ ALTER TABLE `password_resets`
 --
 ALTER TABLE `dlct_anuong`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
 --
 -- AUTO_INCREMENT cho bảng `dlct_binhluan`
 --
 ALTER TABLE `dlct_binhluan`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT cho bảng `dlct_chitietlichtrinh`
 --
 ALTER TABLE `dlct_chitietlichtrinh`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT cho bảng `dlct_danhgia`
 --
 ALTER TABLE `dlct_danhgia`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT cho bảng `dlct_diadiem`
 --
 ALTER TABLE `dlct_diadiem`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
-
 --
 -- AUTO_INCREMENT cho bảng `dlct_dichvu`
 --
 ALTER TABLE `dlct_dichvu`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
-
 --
 -- AUTO_INCREMENT cho bảng `dlct_hinhanh`
 --
 ALTER TABLE `dlct_hinhanh`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
 --
 -- AUTO_INCREMENT cho bảng `dlct_khachsan`
 --
 ALTER TABLE `dlct_khachsan`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
 --
 -- AUTO_INCREMENT cho bảng `dlct_lichtrinh`
 --
 ALTER TABLE `dlct_lichtrinh`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT cho bảng `dlct_loaihinhsukien`
 --
 ALTER TABLE `dlct_loaihinhsukien`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
 --
 -- AUTO_INCREMENT cho bảng `dlct_nguoidung`
 --
 ALTER TABLE `dlct_nguoidung`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT cho bảng `dlct_nguoidungcanhan`
 --
 ALTER TABLE `dlct_nguoidungcanhan`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT cho bảng `dlct_nguoidungdoanhnghiep`
 --
 ALTER TABLE `dlct_nguoidungdoanhnghiep`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT cho bảng `dlct_phuongtien`
 --
 ALTER TABLE `dlct_phuongtien`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT cho bảng `dlct_sukien`
 --
 ALTER TABLE `dlct_sukien`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT cho bảng `dlct_thamquan`
 --
 ALTER TABLE `dlct_thamquan`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
 --
 -- AUTO_INCREMENT cho bảng `dlct_tukhoa`
 --
 ALTER TABLE `dlct_tukhoa`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT cho bảng `dlct_tukhoa_dichvu`
 --
 ALTER TABLE `dlct_tukhoa_dichvu`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT cho bảng `dlct_vuichoi`
 --
 ALTER TABLE `dlct_vuichoi`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT cho bảng `dlct_yeuthich`
 --
 ALTER TABLE `dlct_yeuthich`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
-
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
