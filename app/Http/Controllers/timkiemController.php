@@ -201,6 +201,82 @@ class timkiemController extends Controller
         } 
     }
 
+    public function search_dichvu_lancan2($vido,$kinhdo, $loaihinh,int $radius)
+    {
+        if ($radius >=100) 
+        {
+            $vd_diadiem = (double)$vido;
+            $kd_diadiem = (double)$kinhdo;
+            $dia_diem_all = diadiemModel::all();
+            foreach ($dia_diem_all as $l) 
+            {
+                $vido = (double)$l['dd_vido'];
+                $kinhdo = (double)$l['dd_kinhdo'];
+                $euclideDistance = $this::distance($vd_diadiem,$kd_diadiem,$vido,$kinhdo);
+                // $mang_khoangcach[$euclideDistance] = $l['id'];
+                if ($euclideDistance <= $radius && $euclideDistance > 0) {  
+                    // $mang_khoangcach2[] = array($l['id']=>$euclideDistance); 
+                     $mang_khoangcach[$euclideDistance] = $l['id'];
+                }
+            }
+            // echo "<pre>";
+            // print_r($mang_khoangcach);
+            // echo "</pre>";
+            if (!empty($mang_khoangcach)) 
+            {
+                // if (count($mang_khoangcach) > 1) 
+                // {
+                    ksort($mang_khoangcach); // sắp xếp mảng theo khoảng cách tăng dần
+                    $dem = 0;
+                    $demm = 0;
+                    foreach ($mang_khoangcach as $key => $new_list) 
+                    {
+                        if ($dem < 3) 
+                        {
+                            // $id_diadiem_gannhat[] = $new_list;
+                            if (!empty($this::get_dichvu($new_list,$loaihinh, $key))) {
+                                // $dich_vu_search[] = $this::get_dichvu($new_list,$loaihinh);
+                                $ketqua = $this::get_dichvu($new_list,$loaihinh,$key);
+                                foreach ($ketqua as $value) {
+                                    $dich_vu_vu[] = $value;
+                                    $dich_vu_vu[] = array('khoangcach' => $key);
+                                }
+                            }
+                            $dem++;
+                        }
+                        else
+                            break;
+                    }
+                    if (isset($dich_vu_vu)) {
+                        $result[] = $dich_vu_vu;
+                        return json_encode($result);
+                    }
+                    else
+                    {
+                        $result = array('result' => null,'error' => 1,'status' => "ZERO_RESULTS");
+                        return json_encode($result);
+                    }
+                // }
+                // else
+                // {
+                //     $id_diadiem_gannhat = array_values($mang_khoangcach)[0];
+                //     $dich_vu_search = $this::get_dichvu($id_diadiem_gannhat);
+                //     return json_encode($dich_vu_search);
+                // }  
+            }
+            else
+            {
+                $result = array('result' => null,'error' => 1,'status' => "ZERO_RESULTS");
+                return json_encode($result);
+            }
+        }
+        else
+        {
+            $result = array('result' => null,'error' => 1,'status' => "ZERO_RESULTS");
+                return json_encode($result);
+        } 
+    }
+
     public function search_dichvu_all($keyword)
     {
         $keyword_handing = str_replace("+", " ", $keyword);
