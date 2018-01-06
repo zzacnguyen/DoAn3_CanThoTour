@@ -82,13 +82,13 @@ class dangnhapController extends Controller
         $ngonngu  = $request->input('ngonngu');
 
         if (empty($taikhoan) || empty($password)) // kiểm tra rỗng
-            $erro['error'] = "Tên tài khoản và mật khẩu không được để trống";
+            $erro['error'] = 1;
         else if (strlen($password) < 6 || strlen($password) > 20) //kiểm tra độ dài pass
-            $erro['error'] = "Mật khẩu phải có độ dài từ 6-20 ký tự";
+            $erro['error'] = 2;
         else if (strlen($taikhoan) < 5 || strlen($taikhoan) > 25) // kiểm tra độ dài tên tài khoản
-            $erro['error'] = "Tài khoản có độ dài từ 5-25 ký tự";
+            $erro['error'] = 4;
         else if ($this->kiemtra_taikhoan($taikhoan) == "false") // kiểm tra tài khoản tồn tại
-            $erro['error'] = "Tên tài khoản đã tồn tại";
+            $erro['error'] = 3;
         if (isset($erro)) {
             $erro['status'] = "ERROR";
             return json_encode($erro);
