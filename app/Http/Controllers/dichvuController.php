@@ -136,7 +136,6 @@ class dichvuController extends Controller
         $dichvu->dv_giacaonhat  = $request->input('dv_giacaonhat');
         $dichvu->dv_giathapnhat = $request->input('dv_giathapnhat');
         $dichvu->dd_iddiadiem   = $request->input('dd_iddiadiem');
-        
         $dichvu->save();
     
     }
