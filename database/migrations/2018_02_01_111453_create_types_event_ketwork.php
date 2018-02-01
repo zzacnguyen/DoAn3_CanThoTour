@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVuichoiTable extends Migration
+class CreateTypesEventKetwork extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateVuichoiTable extends Migration
      */
     public function up()
     {
-        Schema::create('dlct_vuichoi', function (Blueprint $table) {
+        Schema::create('vnt_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('vc_tendiemvuichoi', 255);        
-            $table->integer('dv_iddichvu')->unsigned();
-            $table->foreign('dv_iddichvu')->references('id')->on('dlct_dichvu')->onDelete('cascade');
+            $table->string('type_name', 50);
+            $table->string('type_status', 10);
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateVuichoiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dlct_vuichoi');
+        Schema::dropIfExists('vnt_types');
     }
 }

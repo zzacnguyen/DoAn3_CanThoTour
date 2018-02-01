@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateThamquanTable extends Migration
+class CreateEntertainmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateThamquanTable extends Migration
      */
     public function up()
     {
-        Schema::create('dlct_thamquan', function (Blueprint $table) {
+        Schema::create('vnt_entertainments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tq_tendiemthamquan', 255);
-            
-            $table->integer('dv_iddichvu')->unsigned();
-            $table->foreign('dv_iddichvu')->references('id')->on('dlct_dichvu')->onDelete('cascade');
+            $table->string('entertainments_name', 50);
+            $table->string('entertainments_status', 10);
+            $table->integer('service_id')->unsigned();
+            $table->foreign('service_id')->references('id')->on('vnt_services');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateThamquanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dlct_thamquan');
+        Schema::dropIfExists('vnt_entertainments');
     }
 }

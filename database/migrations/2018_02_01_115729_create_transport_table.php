@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNguoidungcanhanTable extends Migration
+class CreateTransportTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateNguoidungcanhanTable extends Migration
      */
     public function up()
     {
-        Schema::create('dlct_nguoidungcanhan', function (Blueprint $table) {
+        Schema::create('vnt_transport', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cn_tennguoidung', '40');
-            $table->integer('nd_idnguoidung')->unsigned();
-            $table->foreign('nd_idnguoidung')->references('id')->on('dlct_nguoidung')->onDelete('cascade');
+            
+            $table->string('transport_name',50);
+            $table->string('transport_status',10);
+            $table->integer('service_id')->unsigned();
+            $table->foreign('service_id')->references('id')->on('vnt_services');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateNguoidungcanhanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dlct_nguoidungcanhan');
+        Schema::dropIfExists('vnt_transport');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLichtrinhTable extends Migration
+class CreateSightseeingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateLichtrinhTable extends Migration
      */
     public function up()
     {
-        Schema::create('dlct_lichtrinh', function (Blueprint $table) {
+        Schema::create('vnt_sightseeing', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('lt_ngaylichtrinh', 10);
-            $table->string('lt_tenlichtrinh', 255);
-            $table->text('lt_gioithieu');
+            $table->string('sightseeing_name',50);
+            $table->string('sightseeing_status',10);
+            $table->integer('service_id')->unsigned();
+            $table->foreign('service_id')->references('id')->on('vnt_services');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateLichtrinhTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dlct_lichtrinh');
+        Schema::dropIfExists('vnt_sightseeing');
     }
 }

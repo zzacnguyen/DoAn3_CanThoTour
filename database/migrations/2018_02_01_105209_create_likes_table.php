@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLoaihinhsukienTable extends Migration
+class CreateLikesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateLoaihinhsukienTable extends Migration
      */
     public function up()
     {
-        Schema::create('dlct_loaihinhsukien', function (Blueprint $table) {
+        Schema::create('vnt_likes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('lhsk_ten', 255); 
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('vnt_users');
+            $table->integer('service_id')->unsigned();
+            $table->foreign('service_id')->references('id')->on('vnt_services');
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ class CreateLoaihinhsukienTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dlct_loaihinhsukien');
+        Schema::dropIfExists('vnt_likes');
     }
 }

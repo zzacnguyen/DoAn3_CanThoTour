@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTukhoaTable extends Migration
+class CreatePersionalUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateTukhoaTable extends Migration
      */
     public function up()
     {
-        Schema::create('dlct_tukhoa', function (Blueprint $table) {
+        Schema::create('vnt_persional_users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tk_tukhoa', 50);
+            $table->string('pu_name', 30);
+            $table->string('ep_status', 10);
+
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('vnt_users');
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ class CreateTukhoaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dlct_tukhoa');
+        Schema::dropIfExists('vnt_persional_users');
     }
 }
