@@ -45,6 +45,9 @@ Route::resource('thamquan', 'thamquanController');
 Route::resource('vuichoi', 'vuichoiController');
 Route::resource('tukhoa', 'tukhoaController');
 Route::resource('tukhoa_dichvu', 'tukhoa_dichvu_Controller');
+
+Route::resource('like', 'LikeController');
+//thay thế
 Route::resource('yeuthich', 'yeuthichController');
 
 
