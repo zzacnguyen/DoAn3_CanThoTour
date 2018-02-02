@@ -19,6 +19,8 @@ class CreateEventsTable extends Migration
             $table->date('event_start');
             $table->date('event_end');
             $table->string('event_status', 10);
+            $table->integer('type_id')->unsigned();
+            $table->foreign('type_id')->references('id')->on('vnt_types');
             $table->integer('service_id')->unsigned();
             $table->foreign('service_id')->references('id')->on('vnt_services');
             $table->timestamps();

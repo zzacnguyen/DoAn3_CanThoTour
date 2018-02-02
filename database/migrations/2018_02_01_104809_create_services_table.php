@@ -22,7 +22,7 @@ class CreateServicesTable extends Migration
             $table->string('sv_lowest_price', 15);
             $table->string('sv_phone_number', 25);
             $table->string('sv_status', 10);
-            
+            $table->integer('sv_types');
             $table->integer('tourist_places_id')->unsigned();
             $table->foreign('tourist_places_id')->references('id')->on('vnt_tourist_places');
             $table->timestamps();

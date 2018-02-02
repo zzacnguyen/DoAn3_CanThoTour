@@ -55,9 +55,8 @@ class danhgiaController extends Controller
 
     public function edit($id)
     {
-        $danh_gia[] = DB::table('dlct_danhgia')
+        $danh_gia = DB::table('dlct_danhgia')
         ->select('id','dv_iddichvu', 'nd_idnguoidung','dg_diem', 'dg_noidung', 'dg_tieude')
-
         ->where('id', $id)
         ->get();
     
