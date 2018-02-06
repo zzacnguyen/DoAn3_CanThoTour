@@ -3,7 +3,8 @@ body{
 }
 
 #content-left{
-	min-height: 300px; 
+	min-height: 300px;
+	/*position: fixed;*/
 }
 
 #content-left .panel-default{
@@ -35,18 +36,22 @@ body{
 	border: none;
 	color: black;
 }
-
+#content-left .panel-body ul li a i{
+	color: #23ded5;
+}
 #content-left ul li a:hover{
 	color: red;
 }
 
 /*================= CONTENT PLACE =====================*/
 #content-place .thumbnail{
-	width: 262px;
-	/*height: 357px;*/
+	min-width: 262px;
 }
 #content-place .thumbnail a{
-	padding: 5px;
+	margin-top: 1px;
+}
+#content-place .thumbnail a img{
+	margin-top: 11px;
 }
 
 #content-place{
@@ -57,7 +62,7 @@ body{
 	
 }
 #content-place .item-place{
-	margin-right: 68px;
+	margin-right: 65px;
 	padding-left: 0px;
 }
 
@@ -85,20 +90,22 @@ body{
 }
 
 #sapxep-content{
-	background-color: #e7e7e7;
+	background-color: whitesmoke;
 }
 
 .nav-tabs>li>a{
 	border-radius: 0px;
+	/*border: solid 1px black;*/
+    color: black;
 }
 
 #sapxep-content .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active{
-	border-bottom: solid 1px red;
-	color: red;
+	/*border-bottom: solid 1px red;*/
+	font-weight: 700;
 }
 
 #sapxep-content .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
-	border-bottom: solid 1px red;
+	/*border-bottom: solid 1px red;*/
 }
 
 #sapxep-content select{ 
@@ -109,4 +116,29 @@ body{
 	margin-right: 10px;
 }
 
+.fixed{
+	position: fixed;
+	top: 0;
+	left: 420px;
+	z-index: 100000;/*Hiển thị lớp trên cùng*/
+	width: 820px;
+	background-color: red;
+	box-shadow: 10px;
+}
+
+.fixed2{
+	position: fixed;
+	top: 0;
+	z-index: 100000;/*Hiển thị lớp trên cùng*/
+}
+
+.tab-content .panel-place .panel{
+	background-color: transparent;
+	border: none;
+	border-radius: 0px;
+}
+
+.tab-content .panel-place .panel-default{
+	border-color: transparent;
+}
 /*================= CONTENT PLACE =====================*/
