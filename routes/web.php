@@ -33,7 +33,6 @@ Route::resource('service','ServicesController');
 //thay thế
 Route::resource('dichvu', 'dichvuController');
 
-
 Route::resource('khachsan', 'khachsanController');
 Route::resource('lichtrinh', 'lichtrinhController');
 Route::resource('diadiem', 'diadiemController');
@@ -69,17 +68,16 @@ Route::post('dangky','dangnhapController@dangky');
 
 
 
-Route::get('get-only-icon-image', 'hinhanhController@GetOnlyIconImage');
 
 Route::get('test', 'timkiemController@test');
-Route::post('upload-image','hinhanhController@Upload');
-Route::get('lay-mot-hinh-icon/{id}', 'hinhanhController@LayMotIcon');
-Route::get('lay-mot-hinh-banner/{id}', 'hinhanhController@LayMotBanner');
-Route::get('lay-mot-hinh-thumb-1/{id}', 'hinhanhController@LayMotThumb1');
-Route::get('lay-mot-hinh-thumb-2/{id}', 'hinhanhController@LayMotThumb2');
-Route::get('lay-mot-hinh-chi-tiet-1/{id}', 'hinhanhController@LayMotHinhChiTiet1');
-Route::get('lay-mot-hinh-chi-tiet-2/{id}', 'hinhanhController@LayMotHinhChiTiet2');
-
+Route::post('upload-image','ImagesController@Upload');
+Route::get('get-icon/{id}', 'ImagesController@getIcon');
+Route::get('get-banner/{id}', 'ImagesController@getBanner');
+Route::get('get-thumb-1/{id}', 'ImagesController@getThumbnail1');
+Route::get('get-thumb-2/{id}', 'ImagesController@getThumbnail2');
+Route::get('get-detail-1/{id}', 'ImagesController@getImageDetail1');
+Route::get('get-detail-2/{id}', 'ImagesController@getImageDetail2');
+Route::get('get-only-icon-image', 'ImagesController@GetOnlyIconImage');
 Route::get('rating-service/{id}','Rating_Service_Controller@rating');
 //thay-the
 Route::get('danhgia-dichvu/{id}','danhgia_dichvu_controller@danhgia');

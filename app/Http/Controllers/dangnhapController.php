@@ -80,7 +80,7 @@ class dangnhapController extends Controller
         $password = $request->input('password');
         $quocgia  = $request->input('quocgia');
         $ngonngu  = $request->input('ngonngu');
-
+ 
         if (empty($taikhoan) || empty($password)) // kiểm tra rỗng
             $erro['error'] = 1;
         else if (strlen($password) < 6 || strlen($password) > 20) //kiểm tra độ dài pass
