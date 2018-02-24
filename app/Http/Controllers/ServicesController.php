@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
+use App\servicesModel;
+use Carbon\Carbon;
 class ServicesController extends Controller
 {
     /**
@@ -53,21 +56,21 @@ class ServicesController extends Controller
         ->select('vnt_services.id','hotel_name','sightseeing_name','entertainments_name', 'transport_name', 'hotel_website',
                  'eat_name','sv_description', 'sv_open','sv_close','sv_lowest_price','sv_highest_price', 'pl_phone_number',
                  'pl_address', DB::raw('AVG(vnt_visitor_ratings.vr_rating) as rating'),
-                 'pl_latitude', 'pl_longitude'
+                 'pl_latitude', 'pl_longitude','pl_name'
                  )
         ->leftJoin('vnt_events', 'vnt_events.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_hotels', 'vnt_hotels.service_id', '=', 'vnt_services.id')
-        ->leftJoin('vnt_eating', 'dlct_anuong.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_eating', 'vnt_eating.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_entertainments', 'vnt_entertainments.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_sightseeing', 'vnt_sightseeing.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_transport', 'vnt_transport.service_id', '=', 'vnt_services.id')
-        ->leftJoin('vnt_tourist_places', 'vnt_tourist_places.id', '=', 'vnt_services.dd_iddiadiem')
+        ->leftJoin('vnt_tourist_places', 'vnt_tourist_places.id', '=', 'vnt_services.tourist_places_id')
         ->leftjoin('vnt_visitor_ratings', 'vnt_visitor_ratings.service_id','=', 'vnt_services.id')
         
         ->where('vnt_services.id', $id)
-        ->groupBy('vnt_services.id','hotel_name','entertainments_name','pt_tenphuongtien', 'sightseeing_name', 'hotel_website',
+        ->groupBy('vnt_services.id','hotel_name','entertainments_name','transport_name', 'sightseeing_name', 'hotel_website',
                  'eat_name','sv_description', 'sv_open','sv_close','sv_lowest_price','sv_highest_price', 'vnt_tourist_places.pl_phone_number',
-                 'vnt_tourist_places.pl_address', 'vnt_tourist_places.pl_latitude', 'vnt_tourist_places.pl_longitude')
+                 'vnt_tourist_places.pl_address', 'vnt_tourist_places.pl_latitude', 'vnt_tourist_places.pl_longitude','pl_name')
         
         ->get();
         $date = Carbon::now();
@@ -78,12 +81,12 @@ class ServicesController extends Controller
         
         $type_events = DB::table('vnt_types')
         ->select('type_name')
-        ->join('vnt_events','vnt_events.lhsk_idloaihinhsukien','=','dlct_loaihinhsukien.id')
-        ->join('dlct_dichvu', 'vnt_events.service_id', '=', 'type_id.id')
+        ->join('vnt_events','vnt_events.type_id','=','vnt_types.id')
+        ->join('vnt_services', 'vnt_events.service_id', '=', 'vnt_services.id')
         ->whereYear('event_end', '>=', $year_now)
         ->whereDay('event_end', '>=',$today)
         ->whereMonth('event_end', '>=', $month_now)
-        ->where('dlct_dichvu.id',$id)
+        ->where('vnt_services.id',$id)
         
         ->orderBy('vnt_events.created_at', 'desc')->first();
          

@@ -34,15 +34,26 @@ Route::resource('service','ServicesController');
 Route::resource('dichvu', 'dichvuController');
 
 Route::resource('khachsan', 'khachsanController');
+
 Route::resource('lichtrinh', 'lichtrinhController');
+
 Route::resource('diadiem', 'diadiemController');
+
 Route::resource('loaihinhsukien', 'loaihinhsukienController');
+
 Route::resource('nguoidung', 'nguoidungController');
+
 Route::resource('phuongtien', 'phuongtienController');
+
+Route::resource('events', 'EventsController');
 Route::resource('sukien', 'sukienController');
+
 Route::resource('thamquan', 'thamquanController');
+
 Route::resource('vuichoi', 'vuichoiController');
+
 Route::resource('tukhoa', 'tukhoaController');
+
 Route::resource('tukhoa_dichvu', 'tukhoa_dichvu_Controller');
 
 Route::resource('like', 'LikeController');
