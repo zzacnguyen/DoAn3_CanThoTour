@@ -58,7 +58,7 @@ Route::resource('sightseeing', 'sightseeingController');
 //thay thế
 Route::resource('thamquan', 'thamquanController');
 
-
+Route::resource('entertainments', 'vnt_entertainmentsController');
 Route::resource('vuichoi', 'vuichoiController');
 
 Route::resource('tukhoa', 'tukhoaController');
