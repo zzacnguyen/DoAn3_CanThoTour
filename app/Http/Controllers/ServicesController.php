@@ -19,7 +19,7 @@ class ServicesController extends Controller
         $services = DB::table('vnt_services')
         ->select('vnt_services.id','sv_description', 'sv_open','sv_close','sv_lowest_price','sv_highest_price',  'tourist_places_id', 'sv_types')
         ->paginate(10);
-        $encode=json_encode($dich_vu);
+        $encode=json_encode($services);
         return $encode;
     } 
 

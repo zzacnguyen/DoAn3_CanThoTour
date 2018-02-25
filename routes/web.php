@@ -48,7 +48,12 @@ Route::resource('phuongtien', 'phuongtienController');
 Route::resource('events', 'EventsController');
 Route::resource('sukien', 'sukienController');
 
+
+
+Route::resource('sightseeing', 'sightseeingController');
+//thay thế
 Route::resource('thamquan', 'thamquanController');
+
 
 Route::resource('vuichoi', 'vuichoiController');
 
