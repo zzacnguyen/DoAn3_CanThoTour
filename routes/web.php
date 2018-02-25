@@ -33,6 +33,8 @@ Route::resource('service','ServicesController');
 //thay thế
 Route::resource('dichvu', 'dichvuController');
 
+
+Route::resource('hotels', 'vnt_hotelsController');
 Route::resource('khachsan', 'khachsanController');
 
 Route::resource('lichtrinh', 'lichtrinhController');
@@ -44,6 +46,7 @@ Route::resource('loaihinhsukien', 'loaihinhsukienController');
 Route::resource('nguoidung', 'nguoidungController');
 
 Route::resource('transport', 'transportController');
+//thay thế
 Route::resource('phuongtien', 'phuongtienController');
 
 Route::resource('events', 'EventsController');
