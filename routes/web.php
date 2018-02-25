@@ -43,6 +43,7 @@ Route::resource('loaihinhsukien', 'loaihinhsukienController');
 
 Route::resource('nguoidung', 'nguoidungController');
 
+Route::resource('transport', 'transportController');
 Route::resource('phuongtien', 'phuongtienController');
 
 Route::resource('events', 'EventsController');
