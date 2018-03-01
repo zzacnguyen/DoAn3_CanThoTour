@@ -33,12 +33,12 @@ Route::resource('service','ServicesController');
 //thay thế
 Route::resource('dichvu', 'dichvuController');
 
-
 Route::resource('hotels', 'vnt_hotelsController');
 Route::resource('khachsan', 'khachsanController');
 
 Route::resource('lichtrinh', 'lichtrinhController');
 
+Route::resource('tourist-places', 'tourist_places_Controller');
 Route::resource('diadiem', 'diadiemController');
 
 Route::resource('loaihinhsukien', 'loaihinhsukienController');
