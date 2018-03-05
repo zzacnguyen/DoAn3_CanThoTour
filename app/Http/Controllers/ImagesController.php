@@ -70,7 +70,7 @@ class ImagesController extends Controller
         $string_replace = '","id":';
         $thumb_image = DB::table('vnt_images') ->select('image_details_2','id')
         ->where('service_id', $service_id)->get();
-        $string_cutting_icons = $ha_thumb;
+        $string_cutting_icons = $thumb_image;
         $string_cutted_icons = substr ( $string_cutting_icons ,21);
         $arr[]= (explode ('","' , $string_cutted_icons));
         $image_name = ($arr[0][0]);

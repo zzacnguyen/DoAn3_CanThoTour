@@ -38,6 +38,8 @@ Route::resource('khachsan', 'khachsanController');
 
 Route::resource('lichtrinh', 'lichtrinhController');
 
+
+Route::post('add-places', 'tourist_places_controller@AddPlace');
 Route::resource('tourist-places', 'tourist_places_Controller');
 Route::resource('diadiem', 'diadiemController');
 
