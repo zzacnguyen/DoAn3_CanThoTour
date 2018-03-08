@@ -33,23 +33,34 @@ Route::resource('service','ServicesController');
 //thay thế
 Route::resource('dichvu', 'dichvuController');
 
+Route::resource('hotels', 'vnt_hotelsController');
 Route::resource('khachsan', 'khachsanController');
 
 Route::resource('lichtrinh', 'lichtrinhController');
 
+
+Route::post('add-places/{number_types}', 'tourist_places_controller@AddPlace');
+Route::resource('tourist-places', 'tourist_places_Controller');
 Route::resource('diadiem', 'diadiemController');
 
 Route::resource('loaihinhsukien', 'loaihinhsukienController');
 
 Route::resource('nguoidung', 'nguoidungController');
 
+Route::resource('transport', 'transportController');
+//thay thế
 Route::resource('phuongtien', 'phuongtienController');
 
 Route::resource('events', 'EventsController');
 Route::resource('sukien', 'sukienController');
 
+
+
+Route::resource('sightseeing', 'sightseeingController');
+//thay thế
 Route::resource('thamquan', 'thamquanController');
 
+Route::resource('entertainments', 'vnt_entertainmentsController');
 Route::resource('vuichoi', 'vuichoiController');
 
 Route::resource('tukhoa', 'tukhoaController');

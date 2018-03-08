@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use App\servicesModel;
+use App\touristPlacesModel;
+
+use App\imagesModel;
+use App\eatingModel;
+use App\sightseeingModel;
+use App\transportModel;
+use App\hotelsModel;
 use Carbon\Carbon;
 class ServicesController extends Controller
 {
@@ -19,7 +26,7 @@ class ServicesController extends Controller
         $services = DB::table('vnt_services')
         ->select('vnt_services.id','sv_description', 'sv_open','sv_close','sv_lowest_price','sv_highest_price',  'tourist_places_id', 'sv_types')
         ->paginate(10);
-        $encode=json_encode($dich_vu);
+        $encode=json_encode($services);
         return $encode;
     } 
 
@@ -41,7 +48,148 @@ class ServicesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $vnt_services                 = new servicesModel;
+        $vnt_services->sv_description   = $request->input('sv_description');
+        $vnt_services->sv_open    = $request->input('sv_open');
+        $vnt_services->sv_close  = $request->input('sv_close');
+        $vnt_services->sv_highest_price  = $request->input('sv_highest_price');
+        $vnt_services->sv_lowest_price = $request->input('sv_lowest_price');
+        $vnt_services->sv_phone_number   = $request->input('sv_phone_number');
+        $vnt_services->sv_status   = "Active";
+        $vnt_services->sv_types   = $request->input('sv_types');
+        $vnt_services->tourist_places_id   =$request->input('tourist_places_id');
+        $vnt_services->save();
+        $lastServices = DB::table('vnt_services')->orderBy('id', 'desc')->first();
+        $convert = (array)$lastServices;
+        $id_service =  $convert['id'];
+        $id_type =  $convert['sv_types'];
+
+        $date = date("Y_m_d");
+        $timedate = date("h_i_s");
+        $time = '_'.$date.'_'.$timedate;
+        
+        $path_banner = public_path().'/banners/';
+        $path_details1 = public_path().'/details1/';
+        $path_details2 = public_path().'/details2/';
+        $path_icon = public_path().'/icons/';
+        $path_thumb = public_path().'/thumbnails/';
+
+        //upload banner
+        $file_banner = $request->file('banner');
+        $image_banner = \Image::make($file_banner);
+     
+        $image_banner->resize(768,720);
+        $image_banner->save($path_banner.'banner_'.$time.'.'.$file_banner->getClientOriginalExtension());
+        $image_banner->resize(600,400);
+        $image_banner->save($path_thumb.'banner_'.$time.'.'.$file_banner->getClientOriginalExtension());
+        $image_banner->resize(50,50);
+        $image_banner->save($path_icon.'banner_'.$time.'.'.$file_banner->getClientOriginalExtension());
+        
+
+        //upload chi tiet 1
+        $file_details_1 = $request->file('details1');
+        $image_details1 = \Image::make($file_details_1);
+        $image_details1->resize(1280,720);
+        $image_details1->save($path_details1.'details1_'.$time.'.'.$file_details_1->getClientOriginalExtension());
+        $image_details1->resize(600,400);
+        $image_details1->save($path_thumb.'details1_'.$time.'.'.$file_details_1->getClientOriginalExtension());
+        $image_details1->resize(50,50);
+        $image_details1->save($path_icon.'details1_'.$time.'.'.$file_details_1->getClientOriginalExtension());
+        
+
+        //upload chi tiet 2
+        $file_details_2 = $request->file('details2');
+        $image_details2 = \Image::make($file_details_2);
+        $image_details2->resize(1280,720);
+        $image_details2->save($path_details2.'details2_'.$time.'.'.$file_details_2->getClientOriginalExtension());
+        $image_details2->resize(600,400);
+        $image_details2->save($path_thumb.'details2_'.$time.'.'.$file_details_2->getClientOriginalExtension());
+        $image_details2->resize(50,50);
+        $image_details2->save($path_icon.'details2_'.$time.'.'.$file_details_2->getClientOriginalExtension());
+                 
+
+       // create images in model
+        $thumbnail = new imagesModel();
+        $thumbnail->image_banner = "banner_".$time.'.'.$file_banner->getClientOriginalExtension();
+        $thumbnail->image_details_1 ="details1_".$time.'.'.$file_details_1->getClientOriginalExtension();
+        $thumbnail->image_details_2 = "details2_".$time.'.'.$file_details_2->getClientOriginalExtension();
+        $thumbnail->image_status ="Active";
+        $thumbnail->service_id=$id_service;
+        $thumbnail->save();
+
+        if($id_type == 1)
+        {
+            $vnt_eating = new eatingModel;
+            $vnt_eating->eat_name =  $request->input('eat_name');
+            $vnt_eating->eat_status =  "Active";
+            $vnt_eating->service_id =  $id_service;
+            if($vnt_eating->save()){
+                    return json_encode("status:200");
+            }
+            else
+            {
+                return json_encode("status:500");
+            }
+
+        }
+        else if($id_type == 2)
+        {
+            $vnt_hotels = new hotelsModel;
+            $vnt_hotels->hotel_name =  $request->input('hotel_name');
+            $vnt_hotels->hotel_website =  $request->input('hotel_website');
+            $vnt_hotels->hotel_number_star =  $request->input('hotel_number_star');
+            $vnt_hotels->hotel_status =  "Active";
+            $vnt_hotels->service_id =  $id_service;
+            if($vnt_hotels->save()){
+                    return json_encode("status:200");
+            }
+            else
+            {
+                return json_encode("status:500");
+            }
+        }
+        else if($id_type == 3)
+        {
+            $vnt_transport = new transportModel;
+            $vnt_transport->transport_name =  $request->input('transport_name');
+            $vnt_transport->transport_status =  "Active";
+            $vnt_transport->service_id =  $id_service;
+            if($vnt_transport->save()){
+                    return json_encode("status:200");
+            }
+            else
+            {
+                return json_encode("status:500");
+            }
+        }
+        else if($id_type == 4)
+        {
+            $vnt_sightseeing = new sightseeingModel;
+            $vnt_sightseeing->sightseeing_name =  $request->input('sightseeing_name');
+            $vnt_sightseeing->sightseeing_status	 =  "Active";
+            $vnt_sightseeing->service_id =  $id_service;
+            if($vnt_sightseeing->save()){
+                    return json_encode("status:200");
+            }
+            else
+            {
+                return json_encode("status:500");
+            }
+        }
+        else if($id_type == 5)
+        {
+            $vnt_entertainments = new sightseeingModel;
+            $vnt_entertainments->entertainments_name =  $request->input('entertainments_name');
+            $vnt_entertainments->entertainments_status		 =  "Active";
+            $vnt_entertainments->service_id =  $id_service;
+            if($vnt_entertainments->save()){
+                    return json_encode("status:200");
+            }
+            else
+            {
+                return json_encode("status:500");
+            }
+        }
     }
 
     /**
