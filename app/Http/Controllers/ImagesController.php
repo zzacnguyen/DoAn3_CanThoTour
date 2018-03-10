@@ -113,7 +113,7 @@ class ImagesController extends Controller
     }
 
 
-    public function Upload(Request $request)
+    public function Upload(Request $request, $id_service)
     {
         $date = date("Y_m_d");
         $timedate = date("h_i_s");
@@ -165,8 +165,9 @@ class ImagesController extends Controller
         $thumbnail->image_details_1 ="details1_".$time.'.'.$file_details_1->getClientOriginalExtension();
         $thumbnail->image_details_2 = "details2_".$time.'.'.$file_details_2->getClientOriginalExtension();
         $thumbnail->image_status ="Active";
-        $thumbnail->service_id=$request->input('service');
+        $thumbnail->service_id=$id_service;
         $thumbnail->save();
+        return json_encode("status:200");
         
     } 
 }
