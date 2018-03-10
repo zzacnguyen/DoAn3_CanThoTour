@@ -770,3 +770,92 @@ footer .footer-text a:hover{
 }
 
 /*==============END FOOTER==============*/
+
+
+/*============================= body search =================================*/
+
+.body-search{
+	position: absolute;
+    top: 42px;
+    left: 0;
+    width: 100%;
+    background: white;
+    height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s;
+}
+
+.body-search .item-search{
+
+}
+
+.body-search .title-search{
+	background-color: #ddd;
+}
+
+.body-search .title-search h5{
+    font-size: 14px;
+    padding: 5px 10px;
+}
+
+.body-search .content-search{
+	width: auto;
+	height: 57px;
+}
+
+.body-search .content-search a{
+	color: black !important;
+    display: inline-flex;
+    width: 100%;
+    border: none !important;
+    padding: 3px 5px !important;
+    margin-top: -3px !important;
+    text-decoration: none;
+    cursor: pointer;
+    border-bottom: 1px solid #eee !important;
+}
+
+.body-search .content-search .left-content-search{
+	height: 50px;
+    width: 50px;
+}
+
+.body-search .content-search .left-content-search img{
+	height: 50px;
+    width: 50px;
+}
+
+.body-search .content-search .right-content-search{
+	width: auto;
+    height: auto;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 2px 10px;
+    overflow: hidden;
+}
+
+.body-search .content-search .right-content-search p{
+	width: auto;
+    height: auto;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.active-search{
+	opacity: 1;
+	visibility: visible;
+	transition: 0.5s;
+}
+
+.active-search2 {
+	opacity: 1;
+	visibility: visible;
+	transition: 0.5s;
+}
+/*============================= end body search ============================*/

@@ -1,4 +1,19 @@
 document.addEventListener("DOMContentLoaded",function () {
+	//click search
+	var clickSearch = 0;
+	var tttt = document.getElementById('text-search-top');
+	var bodySearch = document.getElementsByClassName('body-search');
+	tttt.onclick = function(){
+		bodySearch[0].classList.add('active-search');
+		clickSearch = 1;
+	}
+	console.log(bodySearch[0].classList);
+	
+	var tttt2 = document.getElementById('text-search-top-2');
+	tttt2.onclick = function(){
+		bodySearch[1].classList.add('active-search2');	
+	}
+
 	//cuon chuot
 	window.addEventListener("scroll",function(){
 		var flag = false;
@@ -9,6 +24,10 @@ document.addEventListener("DOMContentLoaded",function () {
 			document.getElementById('hidden-formSearch').style.display = "block";
 			document.getElementById('id-icon-scroll-top').classList.add('hienthi-icon');
 			flag = true;
+			//
+			if (clickSearch > 0 ) {
+				bodySearch[1].classList.add('active-search2');
+			}
 		}
 		else
 		{
@@ -17,6 +36,7 @@ document.addEventListener("DOMContentLoaded",function () {
 			document.getElementById('hidden-formSearch').style.display = "none";
 			document.getElementById('id-icon-scroll-top').classList.remove('hienthi-icon');
 			flag = false;
+			//
 		}
 	});
 
@@ -154,4 +174,15 @@ document.addEventListener("DOMContentLoaded",function () {
 		},3000);
 	}
 
+	
+
+
+
+
+
+
+	window.onclick = function(event) {
+	    if (event.target != tttt) { bodySearch[0].classList.remove('active-search'); clickSearch = 0;}
+	    if (event.target != tttt2) { bodySearch[1].classList.remove('active-search2'); }
+	}
 },false);
