@@ -125,6 +125,11 @@ return [
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
+
+
+
+
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -177,6 +182,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        
         
     ],
 
@@ -230,7 +237,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Input' => Illuminate\Support\Facades\Input::class,
-
+        'MultiLang' => Longman\LaravelMultiLang\Facades\MultiLang::class,
     ],
 
 ];

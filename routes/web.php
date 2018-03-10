@@ -31,7 +31,7 @@ Route::resource('danhgia', 'danhgiaController');
 
 Route::resource('service','ServicesController');
 //thay thế
-Route::resource('dichvu', 'dichvuController');
+Route::resource('usersearch', 'userSearch');
 
 Route::resource('hotels', 'vnt_hotelsController');
 Route::resource('khachsan', 'khachsanController');
