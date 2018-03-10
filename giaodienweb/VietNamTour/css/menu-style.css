@@ -859,3 +859,46 @@ footer .footer-text a:hover{
 	transition: 0.5s;
 }
 /*============================= end body search ============================*/
+
+/*============================= user form ===================================*/
+
+.user-form{
+	position: absolute;
+    top: 39px;
+    right: 0px;
+    width: 160px;
+    background-color: white;
+    z-index: 999999999;
+    border: 1px solid #ddd;
+    box-shadow: 1px 2px 5px 1px #000000b0;
+    display: none;
+    transition: 0.5s;
+}
+
+.user-form ul{
+	padding: 0;
+    list-style: none;
+}
+
+.user-form ul li{
+	border-bottom: 1px solid #ddd;
+}
+
+#navbarSupportedContent .user-form ul li a{
+	display: inline-block;
+	width: 100%;
+	border: none;
+    font-size: 13px;
+    text-decoration: none;
+    color: black !important;
+}
+
+#navbarSupportedContent .user-form ul li a:hover{
+	background-color: #eee;
+}
+
+.hienthi-search-form{
+	display: block !important;
+}
+
+/*============================= end user form ===============================*/

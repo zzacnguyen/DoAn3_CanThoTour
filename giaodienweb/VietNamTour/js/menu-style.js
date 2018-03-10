@@ -7,12 +7,18 @@ document.addEventListener("DOMContentLoaded",function () {
 		bodySearch[0].classList.add('active-search');
 		clickSearch = 1;
 	}
-	console.log(bodySearch[0].classList);
 	
 	var tttt2 = document.getElementById('text-search-top-2');
 	tttt2.onclick = function(){
 		bodySearch[1].classList.add('active-search2');	
 	}
+
+	// hien thi user form
+	var clickUser = document.getElementById('id-user-form');
+	clickUser.onclick = function () {
+		document.getElementsByClassName('user-form')[0].classList.toggle("hienthi-search-form");
+	};
+
 
 	//cuon chuot
 	window.addEventListener("scroll",function(){
@@ -24,7 +30,7 @@ document.addEventListener("DOMContentLoaded",function () {
 			document.getElementById('hidden-formSearch').style.display = "block";
 			document.getElementById('id-icon-scroll-top').classList.add('hienthi-icon');
 			flag = true;
-			//
+			// khi cuon chuot ma da click vao form search
 			if (clickSearch > 0 ) {
 				bodySearch[1].classList.add('active-search2');
 			}
@@ -145,6 +151,12 @@ document.addEventListener("DOMContentLoaded",function () {
 	    }
 	}
 
+	// form register
+	var modal = document.getElementById('id02');
+	document.getElementById('btn-dangky').onclick = function(){
+		document.getElementById('id02').style.display = "block";
+	}
+
 	// call auto slide
 	autoSlide();
 
@@ -184,5 +196,6 @@ document.addEventListener("DOMContentLoaded",function () {
 	window.onclick = function(event) {
 	    if (event.target != tttt) { bodySearch[0].classList.remove('active-search'); clickSearch = 0;}
 	    if (event.target != tttt2) { bodySearch[1].classList.remove('active-search2'); }
+	    if (event.target != clickUser) {document.getElementsByClassName('user-form')[0].classList.remove("hienthi-search-form");}
 	}
 },false);

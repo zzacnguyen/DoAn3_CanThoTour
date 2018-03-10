@@ -49,21 +49,21 @@
 	
 	<!-- ================== header ============= -->
 	<section class="header">
-		<div class="img-carolsel" hidden="hidden">
+		<div class="img-carolsel">
 			<ul>
 				<li class="active-img">
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('../cmm/images/background/3.jpg');"></div>
+						<div class="img-content" style="background-image: url('../VietNamTour/images/background/3.jpg');"></div>
 					</div>
 				</li>
 				<li>
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('../cmm/images/background/2.jpg');"></div>
+						<div class="img-content" style="background-image: url('../VietNamTour/images/background/2.jpg');"></div>
 					</div>
 				</li>
 				<li >
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('../cmm/images/background/1.jpg');"></div>
+						<div class="img-content" style="background-image: url('../VietNamTour/images/background/1.jpg');"></div>
 					</div>
 				</li>
 			</ul>
@@ -153,17 +153,109 @@
 						  				</ul>
 									</div>
 								</li><!-- end btn-select -->
-								<li class="nav-item">
+								<li class="nav-item" style="position: relative;">
 									<form class="form-inline form-search">
 										<label class="boloc"><i class="fas fa-search"></i></label>
-										<input class="form-control input-search" type="search" placeholder="Search" aria-label="Search">
+										<input id="text-search-top" class="form-control input-search" type="search" placeholder="Search" aria-label="Search">
 										<button class="btn btn-outline-success btn-search" type="submit">Tìm kiếm</button>
 									</form>
+									<div class="body-search">
+										<div class="item-search">
+											<div class="title-search">
+												<h5>Từ khóa tìm kiếm nhiều nhất</h5>
+											</div>
+											<div class="content-search">
+												<a href="#">
+													<div class="left-content-search">
+														<img src="images/hotel/1.jpg" alt="">
+													</div>
+													<div class="right-content-search">
+														<p>Mường Thanh Cần Thơ</p>
+														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+													</div>
+												</a>		
+											</div>
+											<div class="content-search">
+												<a href="#">
+													<div class="left-content-search">
+														<img src="images/hotel/1.jpg" alt="">
+													</div>
+													<div class="right-content-search">
+														<p>Mường Thanh Cần Thơ</p>
+														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+													</div>
+												</a>		
+											</div>
+											<div class="content-search">
+												<a href="#">
+													<div class="left-content-search">
+														<img src="images/hotel/1.jpg" alt="">
+													</div>
+													<div class="right-content-search">
+														<p>Mường Thanh Cần Thơ</p>
+														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+													</div>
+												</a>		
+											</div>
+										</div>
+
+										<div class="item-search">
+											<div class="title-search">
+												<h5>Lịch sử tìm kiếm</h5>
+											</div>
+											<div class="content-search">
+												<a href="#">
+													<div class="left-content-search">
+														<img src="images/hotel/1.jpg" alt="">
+													</div>
+													<div class="right-content-search">
+														<p>Mường Thanh Cần Thơ</p>
+														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+													</div>
+												</a>		
+											</div>
+											<div class="content-search">
+												<a href="#">
+													<div class="left-content-search">
+														<img src="images/hotel/1.jpg" alt="">
+													</div>
+													<div class="right-content-search">
+														<p>Mường Thanh Cần Thơ</p>
+														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+													</div>
+												</a>		
+											</div>
+											<div class="content-search">
+												<a href="#">
+													<div class="left-content-search">
+														<img src="images/hotel/1.jpg" alt="">
+													</div>
+													<div class="right-content-search">
+														<p>Mường Thanh Cần Thơ</p>
+														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+													</div>
+												</a>		
+											</div>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<div class="form-inline my-2 my-lg-0" id="dangnhap-dangky">
 								<ul class="navbar-nav mr-auto">
-									<li class="nav-item"><a class="nav-link btn-login" id="btn-dangnhap">Đăng nhập</a></li>
+									<li class="nav-item" style="position: relative;">
+										<a class="nav-link btn-login hidden" id="btn-dangnhap">Đăng nhập</a>
+										<a class="nav-link btn-login" style="padding: 0; border: none !important;" id="id-user-form">
+											<img src="images/avatar1.jpg" alt="" style="height: 33px; width: 33px;">
+											lamthemen <i class="fas fa-caret-down"></i>
+										</a>
+										<div class="user-form">
+											<ul>
+												<li><a href=""><i class="fas fa-info-circle"></i> Thông tin tài khoản</a></li>
+												<li><a href=""><i class="fas fa-book"></i> Góp ý</a></li>
+												<li><a href=""><i class="fas fa-power-off"></i> Đăng xuất</a></li>
+											</ul>
+										</div>
+									</li>
 									<!-- Modal login -->
 									<div id="id01" class="modal-login">
 										<div class="container">
@@ -205,7 +297,7 @@
 											</div>
 										</div>
 									</div><!-- end Modal login -->
-									<li class="nav-item"><a class="nav-link btn-login">Đăng ký</a></li>
+									<li class="nav-item hidden"><a class="nav-link btn-login">Đăng ký</a></li>
 								</ul>
 							</div>
 						</div>
@@ -223,12 +315,91 @@
 								</div>
 							</div>
 							<div class="col-md-5">
-								<div class="ssearch" id="hidden-formSearch" style="display: none; transition: 0.5s; margin-top: -2px;">
+								<div class="ssearch" id="hidden-formSearch" style="position: relative; display: none; transition: 0.5s; margin-top: -2px;">
 									<form action="" class="form-search-menu">
 										<label class="boloc2"><i class="fas fa-search"></i></label>
-										<input type="text" class="input-search2">
+										<input type="text" class="input-search2" id="text-search-top-2">
 										<button class="btn-search2">Tìm kiếm</button>
 									</form>
+									<div class="body-search" style="top: 48px; left: 20px;">
+										<div class="item-search">
+											<div class="title-search">
+												<h5>Từ khóa tìm kiếm nhiều nhất 2</h5>
+											</div>
+											<div class="content-search">
+												<a href="#">
+													<div class="left-content-search">
+														<img src="images/hotel/1.jpg" alt="">
+													</div>
+													<div class="right-content-search">
+														<p>Mường Thanh Cần Thơ</p>
+														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+													</div>
+												</a>		
+											</div>
+											<div class="content-search">
+												<a href="#">
+													<div class="left-content-search">
+														<img src="images/hotel/1.jpg" alt="">
+													</div>
+													<div class="right-content-search">
+														<p>Mường Thanh Cần Thơ</p>
+														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+													</div>
+												</a>		
+											</div>
+											<div class="content-search">
+												<a href="#">
+													<div class="left-content-search">
+														<img src="images/hotel/1.jpg" alt="">
+													</div>
+													<div class="right-content-search">
+														<p>Mường Thanh Cần Thơ</p>
+														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+													</div>
+												</a>		
+											</div>
+										</div>
+
+										<div class="item-search">
+											<div class="title-search">
+												<h5>Lịch sử tìm kiếm</h5>
+											</div>
+											<div class="content-search">
+												<a href="#">
+													<div class="left-content-search">
+														<img src="images/hotel/1.jpg" alt="">
+													</div>
+													<div class="right-content-search">
+														<p>Mường Thanh Cần Thơ</p>
+														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+													</div>
+												</a>		
+											</div>
+											<div class="content-search">
+												<a href="#">
+													<div class="left-content-search">
+														<img src="images/hotel/1.jpg" alt="">
+													</div>
+													<div class="right-content-search">
+														<p>Mường Thanh Cần Thơ</p>
+														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+													</div>
+												</a>		
+											</div>
+											<div class="content-search">
+												<a href="#">
+													<div class="left-content-search">
+														<img src="images/hotel/1.jpg" alt="">
+													</div>
+													<div class="right-content-search">
+														<p>Mường Thanh Cần Thơ</p>
+														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+													</div>
+												</a>		
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div class="col-md-2 col-12">

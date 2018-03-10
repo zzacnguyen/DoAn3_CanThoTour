@@ -244,7 +244,21 @@
 							</ul>
 							<div class="form-inline my-2 my-lg-0" id="dangnhap-dangky">
 								<ul class="navbar-nav mr-auto">
-									<li class="nav-item"><a class="nav-link btn-login" id="btn-dangnhap">Đăng nhập</a></li>
+									<li class="nav-item" style="position: relative;">
+										<a class="nav-link btn-login" id="btn-dangnhap">Đăng nhập</a>
+										<!-- hien thi khi dang nhap thanh cong -->
+										<a class="nav-link btn-login hidden" style="padding: 0; border: none !important;" id="id-user-form">
+											<img src="images/avatar1.jpg" alt="" style="height: 33px; width: 33px;">
+											lamthemen <i class="fas fa-caret-down"></i>
+										</a>
+										<div class="user-form">
+											<ul>
+												<li><a href=""><i class="fas fa-info-circle"></i> Thông tin tài khoản</a></li>
+												<li><a href=""><i class="fas fa-book"></i> Góp ý</a></li>
+												<li><a href=""><i class="fas fa-power-off"></i> Đăng xuất</a></li>
+											</ul>
+										</div> <!-- end hien thi khi dang nhap thanh cong -->
+									</li>
 									<!-- Modal login -->
 									<div id="id01" class="modal-login">
 										<div class="container">
@@ -286,7 +300,48 @@
 											</div>
 										</div>
 									</div><!-- end Modal login -->
-									<li class="nav-item"><a class="nav-link btn-login">Đăng ký</a></li>
+									<li class="nav-item"><a class="nav-link btn-login" id="btn-dangky">Đăng ký</a></li>
+									<!-- Modal register -->
+									<div id="id02" class="modal-login">
+										<div class="container">
+											<div class="row">
+												<div class="col"></div>
+												<div class="col-6">
+													<form action="" class="modal-content-dangky animate">
+														<span onclick="document.getElementById('id01').style.display='none'" 
+														class="close" title="Close Modal">&times;</span>
+														<h3 class="text-center">Login</h3>
+														<div class="content-login">
+															<input type="text" placeholder="Username..." class="text-login">
+															<input type="password" placeholder="Password..." class="text-login">
+															<div class="row">
+																<div class="col">
+																	<button type="submit" class="btn btn-success" style="width: 100%; font-weight: 500; margin-top: 10px;">Register</button>
+																</div>
+															</div>
+														</div>
+														<div class="content-login-with">
+															<h4 class="text-center">Login</h4>
+															<p class="text-center">With your social media acconut</p>
+															<div class="row text-center">
+																<div class="col"><a href="" class="btn" style="background-color: #3b5998;"><i class="fab fa-facebook-f"></i> Facebook</a></div>
+																<div class="col"><a href="" class="btn" style="background-color: #d34836;"><i class="fab fa-google-plus-g"></i> Google+</a></div>
+															</div>
+														</div>
+														<div class="content-register">
+															<h6 class="text-center">Đăng ký tài khoản mới tại đây</h6>
+															<div class="row">
+																<div class="col">
+																	<a class="btn btn-info" style="width: 100%; font-weight: 500;">Register</a>
+																</div>
+															</div>
+														</div>
+													</form>
+												</div>
+												<div class="col"></div>
+											</div>
+										</div>
+									</div><!-- end Modal register -->
 								</ul>
 							</div>
 						</div>
