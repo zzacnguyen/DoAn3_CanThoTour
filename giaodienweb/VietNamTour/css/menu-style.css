@@ -690,11 +690,13 @@ p.text-nofi{
 
 input[type=text].text-login, input[type=password].text-login {
     width: 100%;
-    padding: 12px 20px;
+    padding: 12px 35px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-position: 10px;
 }
 
 .modal-login .modal-content-dangky .content-register{
