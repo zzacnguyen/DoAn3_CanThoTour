@@ -84,6 +84,13 @@ Route::get('timkiem/dichvuall/keyword={keyword}','timkiemController@search_dichv
 
 Route::get('timkiem/dichvunangcao/idtype={type}&keyword={keyword}','timkiemController@search_dichvu_type');
 
+// search new
+Route::get('search/placevicinity/location={latitude},{longitude}&radius={radius}','SearchController@searchPlaceVicinity');
+
+Route::get('search/servicevicinity/location={latitude},{longtitude}&type={type}&radius={radius}','SearchController@searchServicesVicinity');
+
+Route::get('timkiem/search/keyword={keyword}','SearchController@searchServicesKeyword');
+
 // LOGIN-LOGOUT-REGISTER
 Route::post('login','dangnhapController@postLogin');
 Route::get('logout','dangnhapController@logout_api')->middleware('auth:api');
