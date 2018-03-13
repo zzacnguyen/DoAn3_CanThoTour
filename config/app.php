@@ -183,7 +183,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        
+        GoogleMaps\ServiceProvider\GoogleMapsServiceProvider::class,
         
     ],
 
@@ -238,6 +238,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Input' => Illuminate\Support\Facades\Input::class,
         'MultiLang' => Longman\LaravelMultiLang\Facades\MultiLang::class,
+        'GoogleMaps' => GoogleMaps\Facade\GoogleMapsFacade::class,
+
     ],
 
 ];
