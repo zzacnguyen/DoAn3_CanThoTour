@@ -904,3 +904,17 @@ footer .footer-text a:hover{
 }
 
 /*============================= end user form ===============================*/
+
+@media (max-width: 768px) 
+{ 
+	.hidden-xs{
+		display: none !important;
+	}
+}
+
+button#btnsearch-xs{
+	background-color: transparent;
+    color: white;
+    padding: 10px 10px;
+    margin-left: 183px;
+}
