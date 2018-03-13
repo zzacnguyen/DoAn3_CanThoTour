@@ -41,6 +41,7 @@ Route::resource('lichtrinh', 'lichtrinhController');
 
 Route::post('add-places', 'tourist_places_controller@AddPlace');
 Route::post('add-services/{id}','tourist_places_controller@AddServices');
+Route::get('get-name-services/{id}', 'tourist_places_controller@GetNamePlace');
 Route::resource('tourist-places', 'tourist_places_Controller');
 Route::resource('diadiem', 'diadiemController');
 
@@ -104,3 +105,4 @@ Route::get('get-only-icon-image', 'ImagesController@GetOnlyIconImage');
 Route::get('rating-service/{id}','Rating_Service_Controller@rating');
 //thay-the
 Route::get('danhgia-dichvu/{id}','danhgia_dichvu_controller@danhgia');
+Route::get('google-maps','testGoogleMapsApi@FunctionName');

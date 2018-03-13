@@ -131,4 +131,21 @@ class tourist_places_controller extends Controller
             }
         }
     }
+
+    public function GetNamePlace($id)
+    {
+        $service = DB::table('vnt_services')
+        ->select('vnt_services.id','hotel_name','sightseeing_name','entertainments_name', 'transport_name',                  'eat_name')         
+        ->leftJoin('vnt_events', 'vnt_events.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_hotels', 'vnt_hotels.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_eating', 'vnt_eating.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_entertainments', 'vnt_entertainments.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_sightseeing', 'vnt_sightseeing.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_transport', 'vnt_transport.service_id', '=', 'vnt_services.id')  
+        ->where('vnt_services.id', $id)
+        ->groupBy('vnt_services.id','hotel_name','entertainments_name','transport_name', 'sightseeing_name', 'hotel_website','eat_name')
+        ->get();
+        return json_encode($service);
+    }
+
 }
