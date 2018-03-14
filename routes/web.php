@@ -93,9 +93,13 @@ Route::get('search/servicevicinity/location={latitude},{longtitude}&type={type}&
 Route::get('search/services/keyword={keyword}','SearchController@searchServicesKeyword');
 
 // LOGIN-LOGOUT-REGISTER
-Route::post('login','dangnhapController@postLogin');
+// Route::post('login','dangnhapController@postLogin');
 Route::get('logout','dangnhapController@logout_api')->middleware('auth:api');
 Route::post('dangky','dangnhapController@dangky');
+
+Route::post('login','loginController@postLogin');
+Route::post('register','loginController@register');
+Route::get('logout','loginController@logout');
 
 
 
