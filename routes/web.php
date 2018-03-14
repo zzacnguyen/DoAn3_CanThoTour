@@ -90,7 +90,7 @@ Route::get('search/placevicinity/location={latitude},{longitude}&radius={radius}
 
 Route::get('search/servicevicinity/location={latitude},{longtitude}&type={type}&radius={radius}','SearchController@searchServicesVicinity');
 
-Route::get('timkiem/search/keyword={keyword}','SearchController@searchServicesKeyword');
+Route::get('search/services/keyword={keyword}','SearchController@searchServicesKeyword');
 
 // LOGIN-LOGOUT-REGISTER
 Route::post('login','dangnhapController@postLogin');
