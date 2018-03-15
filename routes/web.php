@@ -1,5 +1,5 @@
 <?php
-
+include 'website.php';
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::resource('eating', 'EatingController');
 //thay thế
