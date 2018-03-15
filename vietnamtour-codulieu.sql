@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 24, 2018 lúc 02:47 PM
--- Phiên bản máy phục vụ: 10.1.28-MariaDB
--- Phiên bản PHP: 7.1.10
+-- Thời gian đã tạo: Th3 15, 2018 lúc 02:23 PM
+-- Phiên bản máy phục vụ: 10.1.30-MariaDB
+-- Phiên bản PHP: 7.2.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `vienamtour`
+-- Cơ sở dữ liệu: `vietnamtour`
 --
 
 -- --------------------------------------------------------
@@ -57,7 +57,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (161, '2018_02_01_113545_create_sightseeing_table', 1),
 (162, '2018_02_01_115729_create_transport_table', 1),
 (163, '2018_02_01_115901_create_hotels_table', 1),
-(164, '2018_02_01_120151_create_entertainments_table', 1);
+(164, '2018_02_01_120151_create_entertainments_table', 1),
+(165, '2018_03_11_002527_create_user_search_table', 2);
 
 -- --------------------------------------------------------
 
@@ -96,7 +97,9 @@ INSERT INTO `vnt_eating` (`id`, `eat_name`, `eat_status`, `service_id`, `created
 (3, 'Jollibee - CoopMart Cần Thơ', 'Active', 5, '2018-02-23 17:00:00', '2018-02-23 17:00:00'),
 (4, 'Công Ty TNHH MTV Phân Phối Sài Gòn Co.op - Coopmart Cần Thơ', 'Active', 6, '2018-02-23 17:00:00', '2018-02-23 17:00:00'),
 (5, 'Cafe 59 Ngô Văn Sở', 'Active', 8, '2018-02-23 17:00:00', '2018-02-23 17:00:00'),
-(7, 'Cà Phê Gió và Nước', 'Active', 10, '2018-02-23 17:00:00', '2018-02-23 17:00:00');
+(7, 'Cà Phê Gió và Nước', 'Active', 10, '2018-02-23 17:00:00', '2018-02-23 17:00:00'),
+(8, 'ĂN UỐNG', 'Active', 12, '2018-03-07 15:02:49', '2018-03-07 15:02:49'),
+(9, 'TÊN QUÁN ĂN', 'Active', 16, '2018-03-10 07:02:06', '2018-03-10 07:02:06');
 
 -- --------------------------------------------------------
 
@@ -182,6 +185,13 @@ CREATE TABLE `vnt_hotels` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `vnt_hotels`
+--
+
+INSERT INTO `vnt_hotels` (`id`, `hotel_name`, `hotel_website`, `hotel_number_star`, `hotel_status`, `service_id`, `created_at`, `updated_at`) VALUES
+(1, 'TÊN KHÁCH SẠN', 'WEBSITE', 3, 'Active', 18, '2018-03-10 08:26:19', '2018-03-10 08:26:19');
+
 -- --------------------------------------------------------
 
 --
@@ -214,7 +224,10 @@ INSERT INTO `vnt_images` (`id`, `image_banner`, `image_details_1`, `image_detail
 (8, 'banner__2018_02_24_10_40_14.jpg', 'details1__2018_02_24_10_40_14.jpg', 'details2__2018_02_24_10_40_14.jpg', 'Active', 8, '2018-02-24 03:40:16', '2018-02-24 03:40:16'),
 (9, 'banner__2018_02_24_11_55_37.jpg', 'details1__2018_02_24_11_55_37.jpg', 'details2__2018_02_24_11_55_37.jpg', 'Active', 9, '2018-02-24 04:55:39', '2018-02-24 04:55:39'),
 (10, 'banner__2018_02_24_12_01_23.jpg', 'details1__2018_02_24_12_01_23.jpg', 'details2__2018_02_24_12_01_23.jpg', 'Active', 10, '2018-02-24 05:01:25', '2018-02-24 05:01:25'),
-(11, 'banner__2018_02_24_12_07_27.jpg', 'details1__2018_02_24_12_07_27.jpg', 'details2__2018_02_24_12_07_27.jpg', 'Active', 11, '2018-02-24 05:07:29', '2018-02-24 05:07:29');
+(11, 'banner__2018_02_24_12_07_27.jpg', 'details1__2018_02_24_12_07_27.jpg', 'details2__2018_02_24_12_07_27.jpg', 'Active', 11, '2018-02-24 05:07:29', '2018-02-24 05:07:29'),
+(12, 'banner__2018_03_07_10_02_47.jpg', 'details1__2018_03_07_10_02_47.jpg', 'details2__2018_03_07_10_02_47.jpg', 'Active', 12, '2018-03-07 15:02:49', '2018-03-07 15:02:49'),
+(13, 'banner__2018_03_08_11_29_01.png', 'details1__2018_03_08_11_29_01.png', 'details2__2018_03_08_11_29_01.png', 'Active', 1, '2018-03-08 04:29:05', '2018-03-08 04:29:05'),
+(14, 'banner__2018_03_08_11_29_36.png', 'details1__2018_03_08_11_29_36.png', 'details2__2018_03_08_11_29_36.png', 'Active', 1, '2018-03-08 04:29:39', '2018-03-08 04:29:39');
 
 -- --------------------------------------------------------
 
@@ -243,6 +256,13 @@ CREATE TABLE `vnt_likes` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `vnt_likes`
+--
+
+INSERT INTO `vnt_likes` (`id`, `user_id`, `service_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -295,7 +315,17 @@ INSERT INTO `vnt_services` (`id`, `sv_description`, `sv_open`, `sv_close`, `sv_h
 (8, 'Address: 4 Đồng Khởi, Tân An, Ninh Kiều, Cần Thơ\r\nPhone: 0123 418 0028', '8:00', '23:00', '50.000đ', '15.000đ', '0123 418 0028', 'Active', 1, 3, '2018-02-23 17:00:00', '2018-02-23 17:00:00'),
 (9, 'Nhà mình ở gần Hồ Xáng Thổi nên tối tối thường ra chỗ này tập thể dục với đi dạo cho mát. Sáng hay tối ngoài này cũng khá đông người đi tập thể dục hoặc mấy gia đình dắt con cháu ra hóng mát. Tuỳ hôm nếu nước cạn thì hồ có mùi hơi khó chịu, còn bình thường cũng ok lắm. Chuẩn bị Tết tới là trên mặt hồ có trang trí thêm mấy biểu tượng hình 12 con giáp sáng đèn, bắt mắt. Chợ Hoa mỗi năm bây giờ cũng tổ chức dọc theo 2 bên bờ hồ kéo dài ra đường Hoàng Văn Thụ, khá nhộn nhịp.', '0:00', '0:00', '0đ', '0đ', 'Đang cập nhật', 'Active', 4, 4, '2018-02-23 17:00:00', '2018-02-23 17:00:00'),
 (10, 'Gió và Nước Cafe Cuối tuần có dịp rãnh thì ông anh lại rũ rê qua quán này để ăn sáng uống cà phê với ổng miết à, mình và ổng gọi 2 tô hủ tiếu xương để ăn sáng và 1 ly cà phê đá với 1 ly cà phê sữa, phải nói hủ tiếu của quán ăn khá là ngon và vừa miệng lắm nước súp khá là đậm đà, giá cả cũng không quá cao hay thấp và tầm tầm à, nên mấy dịp cuối tuần quán này cũng đông khách cực kỳ luôn nhe, nhân viên thì lịch sự quán khá là mát mẻ', '07:00', '22:30 ', '55.000đ', '30.000đ', 'Đang cập nhật', 'Active', 1, 4, '2018-02-23 17:00:00', '0000-00-00 00:00:00'),
-(11, 'Thật sự không đánh giá cao về đồ uống của quán cả về trà sữa và các loại khác. Trà sữa tự chọn á mà giá combo khá cao nc là giá hơi chát. Trà sữa vị của quán không còn hấp dẫn hay nói đúng hơn là vị này quá bình thường rồi nhưng bữa mình có ghé thì có gọi soda chanh dây... Nói chung uống tạm nếu ko chọn trà sữa ha. \r\nMột điều mình vẫn công nhận không gian của quán rất tốt cho học tập, trò chuyện bạn bè này kia, bàn ghế dựa, rồi rộng rãi, mát đặc biệt trưa tránh nóng là cực êm.', ' 07:00', '22:30', '30.000đ', '10.000đ', '+84 292 6538 538', 'Active', 1, 5, '2018-02-23 17:00:00', '2018-02-23 17:00:00');
+(11, 'Thật sự không đánh giá cao về đồ uống của quán cả về trà sữa và các loại khác. Trà sữa tự chọn á mà giá combo khá cao nc là giá hơi chát. Trà sữa vị của quán không còn hấp dẫn hay nói đúng hơn là vị này quá bình thường rồi nhưng bữa mình có ghé thì có gọi soda chanh dây... Nói chung uống tạm nếu ko chọn trà sữa ha. \r\nMột điều mình vẫn công nhận không gian của quán rất tốt cho học tập, trò chuyện bạn bè này kia, bàn ghế dựa, rồi rộng rãi, mát đặc biệt trưa tránh nóng là cực êm.', ' 07:00', '22:30', '30.000đ', '10.000đ', '+84 292 6538 538', 'Active', 1, 5, '2018-02-23 17:00:00', '2018-02-23 17:00:00'),
+(12, 'MÔ TẢ DỊCH VỤ', 'GIỜ MỞ CỬA', 'GIỜ ĐÓNG CỬA', '10', '1', 'SỐ ĐIỆN THOẠI', 'Active', 1, 6, '2018-03-07 15:02:47', '2018-03-07 15:02:47'),
+(13, 'GIỚI THIỆU', 'GIỜ MỞ CỬA', 'GIỜ ĐÓNG CỬA', '10', '1', '12312312', 'Active', 2, 4, '2018-03-08 04:33:43', '2018-03-08 04:33:43'),
+(14, 'MÔ TẢ', 'GIỜ MỞ CỬA', 'GIỜ ĐÓNG CỬA', '0', '0', '123912', 'Active', 193129, 1, '2018-03-10 06:56:36', '2018-03-10 06:56:36'),
+(15, 'MÔ TẢ', 'GIỜ MỞ CỬA', 'GIỜ ĐÓNG CỬA', '0', '0', '123912', 'Active', 193129, 1, '2018-03-10 07:01:16', '2018-03-10 07:01:16'),
+(16, 'MÔ TẢ', 'GIỜ MỞ CỬA', 'GIỜ ĐÓNG CỬA', '0', '0', '123912', 'Active', 1, 1, '2018-03-10 07:02:06', '2018-03-10 07:02:06'),
+(17, 'MÔ TẢ', 'GIỜ MỞ CỬA', 'GIỜ ĐÓNG CỬA', '0', '0', '123912', 'Active', 1, 2, '2018-03-10 08:25:59', '2018-03-10 08:25:59'),
+(18, 'MÔ TẢ', 'GIỜ MỞ CỬA', 'GIỜ ĐÓNG CỬA', '0', '0', '123912', 'Active', 2, 2, '2018-03-10 08:26:19', '2018-03-10 08:26:19'),
+(19, 'a', '3', 'a', '21', '12', '12', 'Active', 3, 1, '2018-03-14 06:48:19', '2018-03-14 06:48:19'),
+(20, 'a', '3', 'a', '21', '12', '12', 'Active', 3, 1, '2018-03-14 06:48:39', '2018-03-14 06:48:39'),
+(21, 'a', '3', 'a', '21', '12', '12', 'Active', 3, 1, '2018-03-15 11:49:15', '2018-03-15 11:49:15');
 
 -- --------------------------------------------------------
 
@@ -362,7 +392,9 @@ INSERT INTO `vnt_tourist_places` (`id`, `pl_name`, `pl_details`, `pl_address`, `
 (2, 'Sense City Can Tho', 'Siêu thị co.opmart cần thơ', 'Đại Lộ Hòa Bình Tân An Cần Thơ Tân An Ninh Kiều, Tân An, Can Tho, Cần Thơ, Vietnam', '+84 292 3688 988', '105.7857849', '10.0342963', 'Active', 2, '2018-02-23 17:00:00', '2018-02-23 17:00:00'),
 (3, 'Cafe 59 Ngô Văn Sở', 'Cafe', '4 Đồng Khởi, Tân An, Ninh Kiều, Cần Thơ, Vietnam', '+84 123 418 0028', '105.7844896', '10.0338002', 'Active', 3, '2018-02-23 17:00:00', '2018-02-23 17:00:00'),
 (4, 'Hồ Xáng Thổi', '\r\nMấy bữa Tết Hồ Xáng Thổi trang trí đèn 12 con giáp giữa lòng hồ khá là đẹp và để đến giờ vẫn chưa tháo luôn. Tối bờ hồ giờ khá nhiều người đi tập thể dục. Trên mấy cây xanh cũng có trang trí đèn treo nữa, cực đẹp luôn. Giờ nước dưới hồ cũng trong hơn rồi, hồ đỡ dơ với ít rác hơn hẳn. Không khí buổi tối hơi lạnh với không trong lành bằng buổi sáng. 1 vòng bờ hồ tròn khoảng 700-800m, đêm nào mình cũng đi tầm 3 vòng là hơn 2 cây số ^^', 'Phường An Cư, Quận Ninh Kiều, Cần Thơ', 'Đang cập nhật', '105.779966', '10.0359292', 'Active', 5, '2018-02-23 17:00:00', '2018-02-23 17:00:00'),
-(5, 'Trà Sữa 2Tea - Mậu Thân', 'Lâu lắm rồi chưa ghé quán,, hôm nay mình mới ghe quán nè.\r\nGọi 1 ly trà thêm nhiều phần topping để thử món luôn nha,\r\nNhân viên vui vẻ, nhiệt tình từ cổng vào đến lên bàn phục vụ luôn nha. Không gian siêu rộng nè, muốn chọn góc nào để ngồi hoặc làm việc đều ổn hết nha.\r\nTrân châu sợi ăn lạ lạ ngon lắm, lại nhiều màu sắc bắt mắt nữa,\r\nNói chung rất thích quán và sẽ quay lại quán nữa nha', '3c Mậu Thân, An Phú, Ninh Kiều, Cần Thơ, Vietnam', '+84 292 6538 538', '105.7738654', '10.0329299', 'Active', 2, '2018-02-23 17:00:00', '2018-02-23 17:00:00');
+(5, 'Trà Sữa 2Tea - Mậu Thân', 'Lâu lắm rồi chưa ghé quán,, hôm nay mình mới ghe quán nè.\r\nGọi 1 ly trà thêm nhiều phần topping để thử món luôn nha,\r\nNhân viên vui vẻ, nhiệt tình từ cổng vào đến lên bàn phục vụ luôn nha. Không gian siêu rộng nè, muốn chọn góc nào để ngồi hoặc làm việc đều ổn hết nha.\r\nTrân châu sợi ăn lạ lạ ngon lắm, lại nhiều màu sắc bắt mắt nữa,\r\nNói chung rất thích quán và sẽ quay lại quán nữa nha', '3c Mậu Thân, An Phú, Ninh Kiều, Cần Thơ, Vietnam', '+84 292 6538 538', '105.7738654', '10.0329299', 'Active', 2, '2018-02-23 17:00:00', '2018-02-23 17:00:00'),
+(6, 'TÊN ĐỊA ĐIỂM', 'MÔ TẢ', 'ĐỊA CHỈ', 'SỐ ĐIỆN THOẠI', 'VĨ ĐỘ', 'KINH ĐỘ', 'Active', 1, '2018-03-07 14:53:55', '2018-03-07 14:53:55'),
+(7, 'TÊN ĐỊA ĐIỂM', 'MÔ TẢ', 'ĐỊA CHỈ', 'SỐ ĐIỆN THOẠI', 'VĨ ĐỘ', 'KINH ĐỘ', 'Active', 1, '2018-03-07 14:55:22', '2018-03-07 14:55:22');
 
 -- --------------------------------------------------------
 
@@ -378,6 +410,14 @@ CREATE TABLE `vnt_transport` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `vnt_transport`
+--
+
+INSERT INTO `vnt_transport` (`id`, `transport_name`, `transport_status`, `service_id`, `created_at`, `updated_at`) VALUES
+(1, 'a', 'Active', 20, '2018-03-14 06:48:39', '2018-03-14 06:48:39'),
+(2, 'a', 'Active', 21, '2018-03-15 11:49:15', '2018-03-15 11:49:15');
 
 -- --------------------------------------------------------
 
@@ -444,6 +484,30 @@ INSERT INTO `vnt_users` (`id`, `username`, `password`, `user_facebook_id`, `user
 (3, 'thaingochuy', '$2y$10$VPzqfoXTugXqKSFMlb2HFepdzru4qZjJ1WInmCJ3SY//E8JH4foYy', '15Y4Q7tvl1@facebook.com', 'GLOejaMgU6@facebook.com', 'vIyQUZZhLmpng', 'Jn3fSfGWih', 'RUrvFebMl6', 'active', 1, NULL, NULL),
 (4, 'tranduclam', '$2y$10$hzXp1cB43nFAK859vojeAuTcv4xLlf/EXfLMt14Cpb7PX1eWfSRtG', 'GNCkHA6Xcb@facebook.com', 'qfI2jJBVK1@facebook.com', 'LgVr8Yryk1png', 'QoxmKcZiAq', 'tPvgIl2hMT', 'active', 1, NULL, NULL),
 (5, 'vophantrongnghia', '$2y$10$B1BiwZZ5wyjCKYs9Dw3l4erEqba3WtbH/wKSKMKt8VTbYlhygE.5K', 'glfd6o6KC0@facebook.com', 'mTwDCNZjdk@facebook.com', 'j6PUDCePlnpng', 'l1bKEZsj1j', 'vUjQKE3SLk', 'active', 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `vnt_usersearch`
+--
+
+CREATE TABLE `vnt_usersearch` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `id_users` int(10) UNSIGNED NOT NULL,
+  `id_service` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `vnt_usersearch`
+--
+
+INSERT INTO `vnt_usersearch` (`id`, `id_users`, `id_service`, `created_at`, `updated_at`) VALUES
+(1, 3, 3, '2018-03-11 02:45:11', '2018-03-11 02:45:11'),
+(2, 1, 1, '2018-03-15 13:14:36', '2018-03-15 13:14:36'),
+(3, 3, 2, '2018-03-15 13:17:08', '2018-03-15 13:17:08'),
+(4, 3, 3, '2018-03-15 13:17:12', '2018-03-15 13:17:12');
 
 -- --------------------------------------------------------
 
@@ -612,6 +676,14 @@ ALTER TABLE `vnt_users`
   ADD KEY `vnt_users_user_groups_id_foreign` (`user_groups_id`);
 
 --
+-- Chỉ mục cho bảng `vnt_usersearch`
+--
+ALTER TABLE `vnt_usersearch`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `vnt_usersearch_id_users_foreign` (`id_users`),
+  ADD KEY `vnt_usersearch_id_service_foreign` (`id_service`);
+
+--
 -- Chỉ mục cho bảng `vnt_user_groups`
 --
 ALTER TABLE `vnt_user_groups`
@@ -633,13 +705,13 @@ ALTER TABLE `vnt_visitor_ratings`
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
 
 --
 -- AUTO_INCREMENT cho bảng `vnt_eating`
 --
 ALTER TABLE `vnt_eating`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `vnt_enterprise_users`
@@ -663,13 +735,13 @@ ALTER TABLE `vnt_events`
 -- AUTO_INCREMENT cho bảng `vnt_hotels`
 --
 ALTER TABLE `vnt_hotels`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `vnt_images`
 --
 ALTER TABLE `vnt_images`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT cho bảng `vnt_keyworks`
@@ -681,7 +753,7 @@ ALTER TABLE `vnt_keyworks`
 -- AUTO_INCREMENT cho bảng `vnt_likes`
 --
 ALTER TABLE `vnt_likes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `vnt_persional_users`
@@ -693,7 +765,7 @@ ALTER TABLE `vnt_persional_users`
 -- AUTO_INCREMENT cho bảng `vnt_services`
 --
 ALTER TABLE `vnt_services`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT cho bảng `vnt_service_keywork`
@@ -711,13 +783,13 @@ ALTER TABLE `vnt_sightseeing`
 -- AUTO_INCREMENT cho bảng `vnt_tourist_places`
 --
 ALTER TABLE `vnt_tourist_places`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `vnt_transport`
 --
 ALTER TABLE `vnt_transport`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `vnt_types`
@@ -730,6 +802,12 @@ ALTER TABLE `vnt_types`
 --
 ALTER TABLE `vnt_users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT cho bảng `vnt_usersearch`
+--
+ALTER TABLE `vnt_usersearch`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `vnt_user_groups`
@@ -833,6 +911,13 @@ ALTER TABLE `vnt_transport`
 --
 ALTER TABLE `vnt_users`
   ADD CONSTRAINT `vnt_users_user_groups_id_foreign` FOREIGN KEY (`user_groups_id`) REFERENCES `vnt_user_groups` (`id`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `vnt_usersearch`
+--
+ALTER TABLE `vnt_usersearch`
+  ADD CONSTRAINT `vnt_usersearch_id_service_foreign` FOREIGN KEY (`id_service`) REFERENCES `vnt_services` (`id`),
+  ADD CONSTRAINT `vnt_usersearch_id_users_foreign` FOREIGN KEY (`id_users`) REFERENCES `vnt_users` (`id`);
 
 --
 -- Các ràng buộc cho bảng `vnt_visitor_ratings`
