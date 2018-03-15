@@ -8,6 +8,7 @@ use Auth;
 use Validator;
 use DB;
 use Hash;
+use Socialite;
 
 class loginController extends Controller
 {
@@ -44,8 +45,6 @@ class loginController extends Controller
         Auth::logout();
         return redirect('index');
     }
-
-
 
     public function registerW()
     {
@@ -100,6 +99,17 @@ class loginController extends Controller
             return "false";
         else
             return "true";  
+    }
+    // login facebook
+    public function redirectToProvider()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('facebook')->user();
+        dd($user);
     }
 
     // app

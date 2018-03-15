@@ -170,6 +170,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        
         /*
          * Package Service Providers...
          */
@@ -239,6 +241,7 @@ return [
         'Input' => Illuminate\Support\Facades\Input::class,
         'MultiLang' => Longman\LaravelMultiLang\Facades\MultiLang::class,
         'GoogleMaps' => GoogleMaps\Facade\GoogleMapsFacade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 

@@ -20,7 +20,7 @@
 							<div class="login">
 								<input type="hidden" name="csrf-token" content="{{ csrf_token() }}">
 							</div>
-							
+
 								@if (count($errors) > 0)
 					              @foreach ($errors->all() as $error)
 					                  <small class="float-left" style="color: red;">{{ $error }}</small>
@@ -39,7 +39,7 @@
 								<h5 class="text-center">Login social</h5>
 								<div class="row">
 									<div class="col-md-6">
-										<a href="" class="btn btn-warning btnfacebook" style="background-color: #3b5999">Facebook</a>
+										<a href="{{route('loginfacebook')}}" class="btn btn-warning btnfacebook" style="background-color: #3b5999">Facebook</a>
 									</div>
 									<div class="col-md-6">
 										<a href="" class="btn btn-warning btngoogle" style="background-color: #dd4b39">Google+</a>

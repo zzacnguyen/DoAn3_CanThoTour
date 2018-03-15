@@ -13,4 +13,8 @@ Route::get('loginW','pageController@getlogin')->name('loginW');
 
 Route::post('loginpost','loginController@postLoginW')->name('loginpost');
 
+// login facebook
+Route::get('login/facebook/redirect', 'loginController@redirectToProvider')->name('loginfacebook');
+Route::get('login/facebook/callback', 'loginController@handleProviderCallback');
+
 ?>
