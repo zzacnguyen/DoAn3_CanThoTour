@@ -93,14 +93,14 @@ Route::get('search/servicevicinity/location={latitude},{longtitude}&type={type}&
 Route::get('search/services/keyword={keyword}','SearchController@searchServicesKeyword');
 
 // LOGIN-LOGOUT-REGISTER
-// Route::post('login','dangnhapController@postLogin');
-Route::get('logout','dangnhapController@logout_api')->middleware('auth:api');
-Route::post('dangky','dangnhapController@dangky');
-
-Route::post('login','loginController@postLogin');
+Route::post('login','loginController@postLogin')->name('loginW');
 Route::post('register','loginController@register');
 Route::get('logout','loginController@logout');
+// web
+Route::post('loginW','loginController@postLoginW');
+Route::get('registerW','pageController@getregister');
 
+Route::get('logoutW','loginController@logoutW')->name('logoutW');
 
 
 
@@ -117,3 +117,10 @@ Route::get('rating-service/{id}','Rating_Service_Controller@rating');
 //thay-the
 Route::get('danhgia-dichvu/{id}','danhgia_dichvu_controller@danhgia');
 Route::get('google-maps','testGoogleMapsApi@FunctionName');
+
+
+// 
+Route::get('index','pageController@getindex');
+
+// login view
+Route::get('login','pageController@getlogin');

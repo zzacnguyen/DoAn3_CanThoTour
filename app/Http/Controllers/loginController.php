@@ -11,36 +11,96 @@ use Hash;
 
 class loginController extends Controller
 {
-    //
-    // public function postLogin(Request $request)
-    // {
-    // 	$rules = [
-    // 		'user' =>'required',
-    // 		'password' => 'required|min:4'
-    // 	];
-   
-    // 	$validator = Validator::make($request->all(), $rules);
+    // web 
+    public function postLoginW(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|min:4',
+            'password' => 'required|min:4'
+        ]);
+        if ($validator->fails()) {
+            return view('VietNamTour.login');
+        } 
+        else 
+        {
+            $username = $request->input('username');
+            $pass = $request->input('password');
+            if( Auth::attempt(['username' => $username, 'password' =>$pass])) {
+                return view('VietNamTour.index');
+            } else {
+                return view('VietNamTour.login');
+            }
+        }
 
-    // 	if ($validator->fails()) {
-    // 		$erro = array('result' => null,'error' => 1, 'status' => 'ERROR');
-    //         return json_encode($erro);
-    // 	} 
-    //     else 
-    //     {
-    // 		$user = $request->input('user');
-    // 		$password = $request->input('password');
-    // 		if( Auth::attempt(['username' => $user, 'password' => $password])) {
-    //             $result['result'] = array('id' => Auth::vnt_users()->id,'username' => Auth::vnt_users()->username,'user_avatar' => Auth::vnt_users()->user_avatar,'user_groups_id' => Auth::vnt_users()->user_groups_id); 
-    //             $result['error'] = null;
-    //             $result['status'] = "OK";
-    //             return json_encode($result);
-    // 		} else {
-    //             $erro = array('result' => null,'error' => 1, 'status' => 'ERROR');
-    //             return json_encode($erro);
-    // 		}
-    // 	}
-    // }
+        return view('VietNamTour.index');
+    }
 
+    public function logoutW()
+    {
+        Auth::logout();
+        return view('VietNamTour.login');
+    }
+
+
+
+    public function registerW()
+    {
+        // $erro = (
+        //     '1' => 'Tên tài khoản và mật khẩu không được để trống',
+        //     '2' => 'Mật khẩu phải có độ dài từ 6-20 ký tự',
+        //     '3' => 'Tên tài khoản đã tồn tại',
+        //     '4' => 'Tài khoản có độ dài từ 5-25 ký tự',
+        //     '5' => 'Đăng ký thành công'
+        // )
+
+        $lam = array('ada' =>'dadad' , 'dada'=>'dada');
+        return view('VietNamTour.register',$lam => "a");
+        // $user = $request->input('username');
+        // $password = $request->input('password');
+        // $country  = $request->input('country');
+        // $language  = $request->input('language');
+ 
+        // if (empty($user) || empty($password)) // kiểm tra rỗng
+        //     $erro['error'] = 1;
+        // else if (strlen($password) < 6 || strlen($password) > 20) //kiểm tra độ dài pass
+        //     $erro['error'] = 2;
+        // else if (strlen($user) < 5 || strlen($user) > 25) // kiểm tra độ dài tên tài khoản
+        //     $erro['error'] = 4;
+        // else if ($this->check_username_exist($user) == "false") // kiểm tra tài khoản tồn tại
+        //     $erro['error'] = 3;
+        // if (isset($erro)) {
+        //     $erro['status'] = "ERROR";
+        //     return json_encode($erro);
+        // }
+        // else
+        // {
+        //     $userRegister                      = new usersModel();
+        //     $userRegister->username            = $user;
+        //     $userRegister->password            = bcrypt($password);
+        //     $userRegister->user_groups_id      = 1;
+        //     $userRegister->user_language       = $language;
+        //     $userRegister->user_country        = $country;
+        //     $userRegister->save();
+        //     $erro = array('error' => null, 'status' => 'OK');
+        //     return json_encode($erro);
+        // }
+    }
+
+    function check_username_existW($user){
+        $result = DB::table('vnt_users')
+                        ->select('username','user_language','user_country')
+                        ->where('username',$user)
+                        ->get();
+        foreach ($result as $value) {
+            $erro = $value;
+        }
+        if (isset($erro))
+            return "false";
+        else
+            return "true";  
+    }
+
+    // app
     public function postLogin(Request $request)
     {
         $rules = [
