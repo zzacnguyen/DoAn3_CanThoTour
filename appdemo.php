@@ -5,13 +5,13 @@
 </form> -->
 
 <!-- vui choi -->
-<form action="http://localhost:6789/doan3_canthotour/public/dangky" method="post" enctype="multipart/form-data">
+<form action="http://localhost:8080/doan3_canthotour/public/register" method="post" enctype="multipart/form-data">
 	<!-- <input type="hidden" name="_method" value="PUT"> -->
 	<input type="hidden" name="csrf-token" content="{{ csrf_token() }}">
-	<input type="text" name="taikhoan"> <br>
+	<input type="text" name="username"> <br>
 	<input type="text" name="password">	<br>
 	<label>Quốc gia:</label>
-	<select name="quocgia">
+	<select name="country">
 		<option value="viet nam">viet nam</option>
 		<option value="My">My</option>
 	</select>
@@ -19,7 +19,7 @@
 	<br>
 
 	<label>Ngôn ngữ:</label>
-	<select name="ngonngu">
+	<select name="language">
 		<option value="viet nam">viet nam</option>
 		<option value="My">My</option>
 	</select>

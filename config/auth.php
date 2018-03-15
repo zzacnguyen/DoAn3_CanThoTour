@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'nguoidungModel',
+        'passwords' => 'usersModel',
     ],
 
     /*
@@ -50,12 +50,12 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'dlct_nguoidung',
+            'provider' => 'vnt_users',
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'dlct_nguoidung',
+            'provider' => 'vnt_users',
         ],
     ],
 
@@ -77,9 +77,9 @@ return [
     */
 
     'providers' => [
-        'dlct_nguoidung' => [
+        'vnt_users' => [
             'driver' => 'eloquent',
-            'model' => App\nguoidungModel::class,
+            'model' => App\usersModel::class,
         ],
 
         /*'users' => [ ok cấu hình vậy là đc, giờ ông thiết kế nguoidungModel cho phù hợp 
@@ -105,7 +105,7 @@ return [
 
     'passwords' => [
         'users' => [
-            'provider' => 'nguoidungModel',
+            'vnt_users' => 'usersModel',
             'table' => 'password_resets',
             'expire' => 60,
         ],

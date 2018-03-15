@@ -193,7 +193,7 @@ class SearchController extends Controller
         else
         {
             $resultAll = array('data' => null,'status' => 'DISTANCE');
-                    return json_encode($resultAll);
+            return json_encode($resultAll);
         } 
     }
 
