@@ -85,77 +85,6 @@
 
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
 							<ul class="navbar-nav mr-auto">
-								<li class="nav-item btn-select" >
-									<a id="a-tinhTP" class="nav-link a-select" data-hienthi="tinhTP" href="#">Cần Thơ <i class="fas fa-angle-down"></i></a>
-
-									<div class="select-content" id="tinhTP">
-										<div class="caption-h5">
-						  					<h5><i class="fas fa-globe"></i> Tỉnh thành phố</h5>
-						  				</div>
-
-						  				<ul>
-						  					<li class="selectItem" data-name="Cần Thơ">
-						  						<a href="" class="selectItem-name">
-						  							<label>Cần Thơ</label>
-						  							<span class="float-right">12.000</span>
-						  						</a>
-						  					</li>
-						  					<li class="selectItem" data-name="HCM">
-						  						<a href="" class="selectItem-name">
-						  							<label>HCM</label>
-						  							<span class="float-right">12.000</span>
-						  						</a>
-						  					</li>
-						  					<li class="selectItem" data-name="Hà Nội">
-						  						<a href="" class="selectItem-name">
-						  							<label>Hà Nội</label>
-						  							<span class="float-right">12.000</span>
-						  						</a>
-						  					</li>
-						  				</ul>
-									</div>
-								</li> <!-- end btn-select -->
-								<li class="nav-item btn-select">
-									<a id="a-danhmuc" class="nav-link a-select" data-hienthi="danhmuc" href="#">Tham quan <i class="fas fa-angle-down"></i></a>
-									<div class="select-content" id="danhmuc">
-										<div class="caption-h5">
-						  					<h5><i class="fas fa-globe"></i> Danh mục</h5>
-						  				</div>
-
-						  				<ul>
-						  					<li class="selectItem2" data-name="Cân Thơ">
-						  						<a href="" class="selectItem-name2">
-						  							<label>Tham quan</label>
-						  							<span class="float-right">1234</span>
-						  						</a>
-						  					</li>
-						  					<li class="selectItem2" data-name="HCM">
-						  						<a href="" class="selectItem-name2">
-						  							<label>Ăn uống</label>
-						  							<span class="float-right">12.000</span>
-						  						</a>
-						  					</li>
-						  					<li class="selectItem2" data-name="Hà Nội">
-						  						<a href="" class="selectItem-name2">
-						  							<label>Khách sạn</label>
-						  							<span class="float-right">12.000</span>
-						  						</a>
-						  					</li>
-						  					<li class="selectItem2" data-name="Hà Nội">
-						  						<a href="" class="selectItem-name2">
-						  							<label>Vui chơi</label>
-						  							<span class="float-right">12.000</span>
-						  						</a>
-						  					</li>
-						  					<li class="selectItem2" data-name="Hà Nội">
-						  						<a href="" class="selectItem-name2">
-						  							<label>Phương tiện</label>
-						  							<span class="float-right">12.000</span>
-						  						</a>
-						  					</li>
-						  				</ul>
-									</div>
-								</li><!-- end btn-select -->
 								<li class="nav-item hidden-xs" style="position: relative;">
 									<form class="form-inline form-search">
 										<label class="boloc"><i class="fas fa-search"></i></label>
@@ -250,40 +179,20 @@
 											<!-- hien thi khi dang nhap thanh cong -->
 											<a class="nav-link btn-login" style="padding: 0; border: none !important;" id="id-user-form">
 												<img src="resourceVNT/images/avatar1.jpg" alt="" style="height: 33px; width: 33px;">
-												lamthemen <i class="fas fa-caret-down"></i>
+												{{Auth::user()->username}} <i class="fas fa-caret-down"></i>
 											</a>
 											<div class="user-form">
 												<ul>
 													<li><a href=""><i class="fas fa-info-circle"></i> Thông tin tài khoản</a></li>
 													<li><a href=""><i class="fas fa-book"></i> Góp ý</a></li>
-													<li><a href="{{ route('logoutW') }}"><i class="fas fa-power-off"></i> Đăng xuất</a></li>
+													<li><a href="{{ url('logoutW') }}"><i class="fas fa-power-off"></i> Đăng xuất</a></li>
 												</ul>
 											</div> <!-- end hien thi khi dang nhap thanh cong -->
 										</li>
 									@else
 										<li><a href="{{ route('loginW') }}" class="nav-link btn-login" id="btn-dangnhap">Đăng nhập</a></li>
-										<li class="nav-item"><a href="register.html" class="nav-link btn-login" id="btn-dangky">Đăng ký</a></li>
+										<li class="nav-item"><a href="{{route('registerW')}}" class="nav-link btn-login" id="btn-dangky">Đăng ký</a></li>
 									@endif
-									{{-- <li class="nav-item" style="position: relative;">
-										@if(Auth::check())
-											<!-- hien thi khi dang nhap thanh cong -->
-											<a class="nav-link btn-login" style="padding: 0; border: none !important;" id="id-user-form">
-												<img src="resourceVNT/images/avatar1.jpg" alt="" style="height: 33px; width: 33px;">
-												lamthemen <i class="fas fa-caret-down"></i>
-											</a>
-											<div class="user-form">
-												<ul>
-													<li><a href=""><i class="fas fa-info-circle"></i> Thông tin tài khoản</a></li>
-													<li><a href=""><i class="fas fa-book"></i> Góp ý</a></li>
-													<li><a href=""><i class="fas fa-power-off"></i> Đăng xuất</a></li>
-												</ul>
-											</div> <!-- end hien thi khi dang nhap thanh cong -->
-										@else
-											<a href="login.html" class="nav-link btn-login" id="btn-dangnhap">Đăng nhập</a>
-										@endif	
-									</li>
-									
-									<li class="nav-item"><a href="register.html" class="nav-link btn-login" id="btn-dangky">Đăng ký</a></li> --}}
 								</ul>
 							</div>
 						</div>

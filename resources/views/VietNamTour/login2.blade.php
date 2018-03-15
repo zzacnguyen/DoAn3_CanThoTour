@@ -19,19 +19,8 @@
 						<form action="{{route('loginpost')}}" method="post">
 							<div class="login">
 								<input type="hidden" name="csrf-token" content="{{ csrf_token() }}">
-							</div>
-							
-								@if (count($errors) > 0)
-					              @foreach ($errors->all() as $error)
-					                  <small class="float-left" style="color: red;">{{ $error }}</small>
-					              @endforeach
-							    @elseif(Session::has('erro'))
-									<small style="color: red;">Tên tài khoản hoặc mật khẩu không đúng</small>
-							    @endif
-
-								<input type="text" placeholder="Username..." name="username" required="required" 
-									value="">
-								<input type="password" placeholder="Password..." name="password" required="required">
+								<input type="text" placeholder="Username..." name="username">
+								<input type="password" placeholder="Password..." name="password">
 								<a href="" style="font-size: 14px;width: 100%;display: inline-block;"><i>Quên mật khẩu</i></a>
 								<button class="btn btn-success float-right btnlogin" type="submit">Login</button>
 							</div>
@@ -48,7 +37,7 @@
 							</div>
 							<div class="register text-center">
 								<h5 class="text-center">Đăng ký tài khoản mới tại đây</h5>
-								<a href="{{route('registerW')}}" class="btn btn-info btnregister">Register</a>
+								<a href="register.html" class="btn btn-info btnregister">Register</a>
 							</div>
 						</form>
 					</div>

@@ -90,14 +90,10 @@ Route::get('search/servicevicinity/location={latitude},{longtitude}&type={type}&
 Route::get('search/services/keyword={keyword}','SearchController@searchServicesKeyword');
 
 // LOGIN-LOGOUT-REGISTER
-Route::post('login','loginController@postLogin')->name('loginW');
+Route::post('login','loginController@postLogin');
 Route::post('register','loginController@register');
 Route::get('logout','loginController@logout');
 // web
-Route::post('loginW','loginController@postLoginW');
-Route::get('registerW','pageController@getregister');
-
-Route::get('logoutW','loginController@logoutW')->name('logoutW');
 
 
 
@@ -117,7 +113,3 @@ Route::get('google-maps','testGoogleMapsApi@FunctionName');
 
 
 // 
-Route::get('index','pageController@getindex');
-
-// login view
-Route::get('login','pageController@getlogin');

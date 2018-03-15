@@ -14,21 +14,25 @@ class loginController extends Controller
     // web 
     public function postLoginW(Request $request)
     {
+        $messages = [
+            'required' => 'Trường bắt buộc nhập',
+            'username.min'    => 'Tài khoản có độ dài từ 4-20 ký tự'
+        ];
         $validator = Validator::make($request->all(), [
             'username' => 'required|min:4',
-            'password' => 'required|min:4'
-        ]);
+            'password' => 'required'
+        ],$messages);
         if ($validator->fails()) {
-            return view('VietNamTour.login');
+            return redirect('loginW')->withErrors($validator)->withInput();
         } 
         else 
         {
             $username = $request->input('username');
             $pass = $request->input('password');
-            if( Auth::attempt(['username' => $username, 'password' =>$pass])) {
-                return view('VietNamTour.index');
+            if( Auth::attempt(['username' => $username, 'password' => $pass])) {
+                return redirect('index');
             } else {
-                return view('VietNamTour.login');
+                return redirect()->back()->with(['erro'=>'Tên tài khoản hoặc mật khẩu không đúng','userold'=>$username]);
             }
         }
 
@@ -38,7 +42,7 @@ class loginController extends Controller
     public function logoutW()
     {
         Auth::logout();
-        return view('VietNamTour.login');
+        return redirect('index');
     }
 
 
@@ -53,8 +57,6 @@ class loginController extends Controller
         //     '5' => 'Đăng ký thành công'
         // )
 
-        $lam = array('ada' =>'dadad' , 'dada'=>'dada');
-        return view('VietNamTour.register',$lam => "a");
         // $user = $request->input('username');
         // $password = $request->input('password');
         // $country  = $request->input('country');

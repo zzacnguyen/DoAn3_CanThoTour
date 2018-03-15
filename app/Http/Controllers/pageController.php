@@ -20,9 +20,6 @@ class pageController extends Controller
 
     public function getregister()
     {
-        $lam = 'adadsd';
-        $k = 'dadsada';
-        return view('VietNamTour.register')->with(['data',$lam]);
-	   	// return view('VietNamTour.register',);
+        return view('VietNamTour.register');
     }
 }

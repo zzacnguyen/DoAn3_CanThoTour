@@ -20,7 +20,7 @@
 						<form action="" method="post">
 							<input type="hidden" name="csrf-token" content="{{ csrf_token() }}">
 							
-								<small>{{ $data }}</small>
+								
 							
 							<div class="login">
 								<input type="text" placeholder="Tài khoản" name="username">
