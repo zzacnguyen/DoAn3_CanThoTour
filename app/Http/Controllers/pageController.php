@@ -22,4 +22,9 @@ class pageController extends Controller
     {
         return view('VietNamTour.register');
     }
+
+    public function getregisterSuccess()
+    {
+        return view('VietNamTour.registerSuccess');
+    }
 }

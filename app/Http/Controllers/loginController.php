@@ -31,60 +31,55 @@ class loginController extends Controller
             $username = $request->input('username');
             $pass = $request->input('password');
             if( Auth::attempt(['username' => $username, 'password' => $pass])) {
-                return redirect('index');
+                return redirect('/');
             } else {
                 return redirect()->back()->with(['erro'=>'Tên tài khoản hoặc mật khẩu không đúng','userold'=>$username]);
             }
         }
-
-        return view('VietNamTour.index');
     }
 
     public function logoutW()
     {
         Auth::logout();
-        return redirect('index');
+        return redirect('/');
     }
 
-    public function registerW()
+    public function registerW(Request $request)
     {
-        // $erro = (
-        //     '1' => 'Tên tài khoản và mật khẩu không được để trống',
-        //     '2' => 'Mật khẩu phải có độ dài từ 6-20 ký tự',
-        //     '3' => 'Tên tài khoản đã tồn tại',
-        //     '4' => 'Tài khoản có độ dài từ 5-25 ký tự',
-        //     '5' => 'Đăng ký thành công'
-        // )
+        $user = $request->input('username');
+        $pass     = $request->input('password');
+        $passold     = $request->input('passwordC');
 
-        // $user = $request->input('username');
-        // $password = $request->input('password');
-        // $country  = $request->input('country');
-        // $language  = $request->input('language');
- 
-        // if (empty($user) || empty($password)) // kiểm tra rỗng
-        //     $erro['error'] = 1;
-        // else if (strlen($password) < 6 || strlen($password) > 20) //kiểm tra độ dài pass
-        //     $erro['error'] = 2;
-        // else if (strlen($user) < 5 || strlen($user) > 25) // kiểm tra độ dài tên tài khoản
-        //     $erro['error'] = 4;
-        // else if ($this->check_username_exist($user) == "false") // kiểm tra tài khoản tồn tại
-        //     $erro['error'] = 3;
-        // if (isset($erro)) {
-        //     $erro['status'] = "ERROR";
-        //     return json_encode($erro);
-        // }
-        // else
-        // {
-        //     $userRegister                      = new usersModel();
-        //     $userRegister->username            = $user;
-        //     $userRegister->password            = bcrypt($password);
-        //     $userRegister->user_groups_id      = 1;
-        //     $userRegister->user_language       = $language;
-        //     $userRegister->user_country        = $country;
-        //     $userRegister->save();
-        //     $erro = array('error' => null, 'status' => 'OK');
-        //     return json_encode($erro);
-        // }
+        $messages = [
+            'username.email'        => 'Không đúng định dạng email',
+            'password.min'    => 'Tài khoản có độ dài từ 4-20 ký tự',
+        ];
+        $validator = Validator::make($request->all(), [
+            'username' => 'email|min:4',
+            'password' => 'required:min:4'
+        ],$messages);
+        if ($validator->fails()) {
+            return redirect('registerW')->withErrors($validator)->withInput();
+        } 
+        elseif ($this->check_username_existW($user)) {
+            return redirect('registerW')->with(['userexist' => 'exist']);
+        }
+        elseif($pass != $passold){
+            return redirect('registerW')->with(['password' => 'pass']);
+        }
+        else 
+        {
+            $username = $request->input('username');
+            $pass     = $request->input('password');
+            $userRegister                      = new usersModel();
+            $userRegister->username            = $user;
+            $userRegister->password            = bcrypt($pass);
+            $userRegister->user_groups_id      = 1;
+            // $userRegister->user_language       = $language;
+            // $userRegister->user_country        = $country;
+            $userRegister->save();
+            return redirect('registersuccess');
+        }
     }
 
     function check_username_existW($user){
@@ -96,9 +91,9 @@ class loginController extends Controller
             $erro = $value;
         }
         if (isset($erro))
-            return "false";
+            return true;
         else
-            return "true";  
+            return false;  
     }
     // login facebook
     public function redirectToProvider()
@@ -109,7 +104,22 @@ class loginController extends Controller
     public function handleProviderCallback()
     {
         $user = Socialite::driver('facebook')->user();
-        dd($user);
+        // dd($user);
+        $social = usersModel::where('user_facebook_id',$user->id)->orWhere('username',$user->email)->first();
+        if ($social) {
+            Auth::login($social);
+            return redirect('/');
+        }
+        else{
+            $u = usersModel::create([
+                'username'         => $user->email,
+                'user_facebook_id' => $user->id,
+                'user_groups_id'   => 1
+            ]);
+            $u->save();
+            Auth::login($u);
+            return redirect('/');
+        }
     }
 
     // app

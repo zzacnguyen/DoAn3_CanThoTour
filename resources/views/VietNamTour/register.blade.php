@@ -17,14 +17,20 @@
 						<h3 class="text-center">Đăng ký</h3>
 					</div>
 					<div class="body">
-						<form action="" method="post">
+						<form action="{{route('registerWpost')}}" method="post">
 							<input type="hidden" name="csrf-token" content="{{ csrf_token() }}">
-							
-								
-							
 							<div class="login">
-								<input type="text" placeholder="Tài khoản" name="username">
-								<input type="password" placeholder="Mật khẩu" name="password">
+								@if(Session::has('userexist'))
+									<small style="color: red;">Email này đã được sử dụng trước đó</small>
+								@elseif(count($errors) > 0)
+									@foreach ($errors->all() as $error)
+					                  <small class="float-left" style="color: red;">{{ $error }}</small>
+					              	@endforeach
+					            @elseif(Session::has('password'))
+					            	<small style="color: red;">Mật khẩu không trùng khớp</small>
+								@endif
+								<input type="text" placeholder="Email" name="username" required="required">
+								<input type="password" placeholder="Mật khẩu" name="password" required="required">
 								<input type="password" placeholder="Xác nhận mật khẩu" name="passwordC">
 								<button class="btn btn-info float-right btnlogin" type="submit" name="btnregister">Đăng ký</button>
 							</div>
