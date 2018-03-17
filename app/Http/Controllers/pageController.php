@@ -56,13 +56,55 @@ class pageController extends Controller
                                     ->leftJoin('vnt_hotels', 'vnt_services.id', '=', 'vnt_hotels.service_id')
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->join('vnt_tourist_places','vnt_services.tourist_places_id','=','vnt_tourist_places.id')
-                                    ->select('vnt_services.id','sv_description','sv_open','sv_close','sv_highest_price','sv_lowest_price','sv_phone_number','vnt_hotels.hotel_name','vnt_images.id as id_image','vnt_images.image_details_1', 'pl_latitude','pl_longitude')
+                                    ->select('vnt_services.id','sv_description','sv_open','sv_close','sv_highest_price','sv_lowest_price','sv_phone_number','vnt_hotels.hotel_name','hotel_number_star','vnt_images.id as id_image','vnt_images.image_details_1', 'pl_latitude','pl_longitude')
                                     ->where('tourist_places_id',$tourist_places_id)
+                                    ->where('hotel_status','Active')
                                     ->where('sv_types',$sv_types)->first();
                 return $result;
                 break;  
-            default:
-                # code...
+            case 1:
+                $result = DB::table('vnt_services')
+                                    ->leftJoin('vnt_eating', 'vnt_services.id', '=', 'vnt_eating.service_id')
+                                    ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
+                                    ->join('vnt_tourist_places','vnt_services.tourist_places_id','=','vnt_tourist_places.id')
+                                    ->select('vnt_services.id','sv_description','sv_open','sv_close','sv_highest_price','sv_lowest_price','sv_phone_number','vnt_eating.eat_name','vnt_images.id as id_image','vnt_images.image_details_1', 'pl_latitude','pl_longitude')
+                                    ->where('tourist_places_id',$tourist_places_id)
+                                    ->where('eat_status','Active')
+                                    ->where('sv_types',$sv_types)->first();
+                return $result;
+                break;  
+            case 3:
+                $result = DB::table('vnt_services')
+                                    ->leftJoin('vnt_transport','vnt_services.id','=','vnt_transport.service_id')
+                                    ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
+                                    ->join('vnt_tourist_places','vnt_services.tourist_places_id','=','vnt_tourist_places.id')
+                                    ->select('vnt_services.id','sv_description','sv_open','sv_close','sv_highest_price','sv_lowest_price','sv_phone_number','vnt_transport.transport_name','vnt_images.id as id_image','vnt_images.image_details_1', 'pl_latitude','pl_longitude')
+                                    ->where('tourist_places_id',$tourist_places_id)
+                                    ->where('transport_status','Active')
+                                    ->where('sv_types',$sv_types)->first();
+                return $result;
+                break;
+            case 4:
+                $result = DB::table('vnt_services')
+                                    ->join('vnt_sightseeing','vnt_services.id','=','vnt_sightseeing.service_id')
+                                    ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
+                                    ->join('vnt_tourist_places','vnt_services.tourist_places_id','=','vnt_tourist_places.id')
+                                    ->select('vnt_services.id','sv_description','sv_open','sv_close','sv_highest_price','sv_lowest_price','sv_phone_number','sightseeing_name','vnt_images.id as id_image','vnt_images.image_details_1', 'pl_latitude','pl_longitude')
+                                    ->where('tourist_places_id',$tourist_places_id)
+                                    ->where('sightseeing_status','Active')
+                                    ->where('sv_types',$sv_types)->first();
+                return $result;
+                break;
+            case 5:
+                $result = DB::table('vnt_services')
+                                    ->join('vnt_entertainments','vnt_services.id','=','vnt_entertainments.service_id')
+                                    ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
+                                    ->join('vnt_tourist_places','vnt_services.tourist_places_id','=','vnt_tourist_places.id')
+                                    ->select('vnt_services.id','sv_description','sv_open','sv_close','sv_highest_price','sv_lowest_price','sv_phone_number','entertainments_name','vnt_images.id as id_image','vnt_images.image_details_1', 'pl_latitude','pl_longitude')
+                                    ->where('tourist_places_id',$tourist_places_id)
+                                    ->where('entertainments_status','Active')
+                                    ->where('sv_types',$sv_types)->first();
+                return $result;
                 break;
         }
     }

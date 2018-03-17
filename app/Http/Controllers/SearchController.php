@@ -210,8 +210,64 @@ class SearchController extends Controller
                                     ->leftJoin('vnt_sightseeing', 'vnt_services.id', '=', 'vnt_sightseeing.service_id')
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->select('vnt_services.id', 'vnt_eating.eat_name','vnt_hotels.hotel_name','vnt_sightseeing.sightseeing_name','vnt_transport.transport_name','vnt_entertainments.entertainments_name','vnt_images.id as image','vnt_images.image_details_1')
-                                    ->where('sv_description','like',"%$keyword_handing%")->take(30)->paginate(10);
+                                    ->where('eat_name','like',"%$keyword_handing%")
+                                    ->orWhere('hotel_name','like',"%$keyword_handing%")
+                                    ->orWhere('sightseeing_name','like',"%$keyword_handing%")
+                                    ->orWhere('transport_name','like',"%$keyword_handing%")
+                                    ->orWhere('entertainments_name','like',"%$keyword_handing%")->take(30)->paginate(10);
         return json_encode($result);
+    }
+
+    public function searchServicesTypeKeyword($type,$keyword)
+    {
+        $keyword_handing = str_replace("+", " ", $keyword);
+        switch ($type) {
+            case '1':
+                $result = DB::table('vnt_services')
+                                    ->leftJoin('vnt_eating', 'vnt_services.id', '=', 'vnt_eating.service_id')
+                                    ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
+                                    ->select('vnt_services.id', 'vnt_eating.eat_name','vnt_images.id as id_image','vnt_images.image_details_1')
+                                    ->where('eat_name','like',"%$keyword_handing%")
+                                    ->where('sv_types',$type)->paginate(10);
+                return json_encode($result);
+                break;
+            case '2':
+                $result = DB::table('vnt_services')
+                                    ->leftJoin('vnt_hotels', 'vnt_services.id', '=', 'vnt_hotels.service_id')
+                                    ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
+                                    ->select('vnt_services.id','vnt_hotels.hotel_name','vnt_images.id as id_image','vnt_images.image_details_1')
+                                    ->where('hotel_name','like',"%$keyword_handing%")
+                                    ->where('sv_types',$type)->paginate(10);
+                return json_encode($result);
+                break;
+            case '3':
+                $result = DB::table('vnt_services')
+                                    ->leftJoin('vnt_transport','vnt_services.id','=','vnt_transport.service_id')
+                                    ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
+                                    ->select('vnt_services.id','vnt_transport.transport_name','vnt_images.id as id_image','vnt_images.image_details_1')
+                                    ->where('transport_name','like',"%$keyword_handing%")
+                                    ->where('sv_types',$type)->paginate(10);
+                return json_encode($result);
+                break;
+            case '4':
+                $result = DB::table('vnt_services')
+                                    ->join('vnt_sightseeing','vnt_services.id','=','vnt_sightseeing.service_id')
+                                    ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
+                                    ->select('vnt_services.id','vnt_sightseeing.sightseeing_name','vnt_images.id as id_image','vnt_images.image_details_1')
+                                    ->where('sightseeing_name','like',"%$keyword_handing%")
+                                    ->where('sv_types',$type)->paginate(10);
+                return json_encode($result);
+                break;
+            case '5':
+                $result = DB::table('vnt_services')
+                                    ->join('vnt_entertainments','vnt_services.id','=','vnt_entertainments.service_id')
+                                    ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
+                                    ->select('vnt_services.id','vnt_entertainments.entertainments_name','vnt_images.id as id_image','vnt_images.image_details_1')
+                                    ->where('entertainments_name','like',"%$keyword_handing%")
+                                    ->where('sv_types',$type)->paginate(10);
+                return json_encode($result);
+                break;
+        }
     }
     
 }

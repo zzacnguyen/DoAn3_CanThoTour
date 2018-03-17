@@ -5,7 +5,7 @@
 </form> -->
 
 <!-- vui choi -->
-<form action="http://localhost:8080/doan3_canthotour/public/register" method="post" enctype="multipart/form-data">
+<form action="http://localhost:8080/doan3_canthotour/public/login" method="post" enctype="multipart/form-data">
 	<!-- <input type="hidden" name="_method" value="PUT"> -->
 	<input type="hidden" name="csrf-token" content="{{ csrf_token() }}">
 	<input type="text" name="username"> <br>

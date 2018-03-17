@@ -89,6 +89,8 @@ Route::get('search/servicevicinity/location={latitude},{longtitude}&type={type}&
 
 Route::get('search/services/keyword={keyword}','SearchController@searchServicesKeyword');
 
+Route::get('search/searchServicesTypeKeyword/type={type}&keyword={keyword}','SearchController@searchServicesTypeKeyword');
+
 // LOGIN-LOGOUT-REGISTER
 Route::post('login','loginController@postLogin');
 Route::post('register','loginController@register');
