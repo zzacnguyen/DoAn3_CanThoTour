@@ -11,7 +11,7 @@
 			    			<div class="ribbon">
 			    				<span>Top 10</span>
 			    			</div>
-				    		<a href="#"><img src="images/img-BaiViet/4.jpg" alt=""></a>
+				    		<a href="#"><img src="resourceVNT/images/img-BaiViet/4.jpg" alt=""></a>
 				    	</div>
 				    	<div class="grid-content">
 				    		<div class="grid-price text-left">
@@ -37,7 +37,7 @@
 			    			<div class="ribbon">
 			    				<span>Top 2</span>
 			    			</div>
-				    		<a href="#"><img src="images/img-BaiViet/5.jpg" alt=""></a>
+				    		<a href="#"><img src="resourceVNT/images/img-BaiViet/5.jpg" alt=""></a>
 				    	</div>
 				    	<div class="grid-content">
 				    		<div class="grid-price text-left">
@@ -63,7 +63,7 @@
 			    			<div class="ribbon">
 			    				<span>Top 10</span>
 			    			</div>
-				    		<a href="#"><img src="images/img-BaiViet/6.jpg" alt=""></a>
+				    		<a href="#"><img src="resourceVNT/images/img-BaiViet/6.jpg" alt=""></a>
 				    	</div>
 				    	<div class="grid-content">
 				    		<div class="grid-price text-left">
@@ -89,7 +89,7 @@
 			    			<div class="ribbon">
 			    				<span>Top 10</span>
 			    			</div>
-				    		<a href="#"><img src="images/img-BaiViet/7.jpg" alt=""></a>
+				    		<a href="#"><img src="resourceVNT/images/img-BaiViet/7.jpg" alt=""></a>
 				    	</div>
 				    	<div class="grid-content">
 				    		<div class="grid-price text-left">
@@ -115,7 +115,7 @@
 			    			<div class="ribbon">
 			    				<span>Top 10</span>
 			    			</div>
-				    		<a href="#"><img src="images/img-BaiViet/8.jpg" alt=""></a>
+				    		<a href="#"><img src="resourceVNT/images/img-BaiViet/8.jpg" alt=""></a>
 				    	</div>
 				    	<div class="grid-content">
 				    		<div class="grid-price text-left">
@@ -141,7 +141,7 @@
 			    			<div class="ribbon">
 			    				<span>Top 10</span>
 			    			</div>
-				    		<a href="#"><img src="images/img-BaiViet/4.jpg" alt=""></a>
+				    		<a href="#"><img src="resourceVNT/images/img-BaiViet/4.jpg" alt=""></a>
 				    	</div>
 				    	<div class="grid-content">
 				    		<div class="grid-price text-left">
@@ -167,7 +167,7 @@
 			    			<div class="ribbon">
 			    				<span>Top 10</span>
 			    			</div>
-				    		<a href="#"><img src="images/img-BaiViet/4.jpg" alt=""></a>
+				    		<a href="#"><img src="resourceVNT/images/img-BaiViet/4.jpg" alt=""></a>
 				    	</div>
 				    	<div class="grid-content">
 				    		<div class="grid-price text-left">
@@ -193,7 +193,7 @@
 	<!-- ==================END TINH TP============= -->
 
 	<!-- ================== POPULAR DESTINATION============= -->
-	<section class="destination" style="background-image: url('../VietNamTour/images/background/1.jpg');">
+	<section class="destination" style="background-image: url('resourceVNT/images/background/1.jpg');">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 offset-md-3">
@@ -207,7 +207,7 @@
 			<div class="row">
 				<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 					<div class="destination-grid">
-						<a href=""><img src="images/img-BaiViet/9.jpg" alt=""></a>
+						<a href=""><img src="resourceVNT/images/img-BaiViet/9.jpg" alt=""></a>
 						<div class="destination-name">
 							<h4>Ha Long</h4>
 							<h5>Quang Ninh</h5>
@@ -222,7 +222,7 @@
 				</div>
 				<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 					<div class="destination-grid">
-						<a href=""><img src="images/img-BaiViet/7.jpg" alt=""></a>
+						<a href=""><img src="resourceVNT/images/img-BaiViet/7.jpg" alt=""></a>
 						<div class="destination-name">
 							<h4>Ben Ninh Kieu</h4>
 							<h5>Can Tho</h5>
@@ -237,9 +237,9 @@
 				</div>
 				<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 					<div class="destination-grid">
-						<a href=""><img src="images/img-BaiViet/9.jpg" alt=""></a>
+						<a href=""><img src="resourceVNT/images/img-BaiViet/9.jpg" alt=""></a>
 						<div class="destination-name">
-							<h4>Ben Ninh Kieu</h4>
+							<h4>Công Viên Bến Ninh Kiều Cần Thơ</h4>
 							<h5>Can Tho</h5>
 						</div>
 						<div class="destination-icon">	
@@ -252,9 +252,9 @@
 				</div>
 				<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 					<div class="destination-grid">
-						<a href=""><img src="images/img-BaiViet/4.jpg" alt=""></a>
+						<a href=""><img src="resourceVNT/images/img-BaiViet/4.jpg" alt=""></a>
 						<div class="destination-name">
-							<h4>Ben Ninh Kieu</h4>
+							<h4>Sense City Can Tho</h4>
 							<h5>Can Tho</h5>
 						</div>
 						<div class="destination-icon">	
@@ -267,9 +267,9 @@
 				</div>
 				<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 					<div class="destination-grid">
-						<a href=""><img src="images/img-BaiViet/7.jpg" alt=""></a>
+						<a href=""><img src="resourceVNT/images/img-BaiViet/7.jpg" alt=""></a>
 						<div class="destination-name">
-							<h4>Ben Ninh Kieu</h4>
+							<h4>Cafe 59 Ngô Văn Sở</h4>
 							<h5>Can Tho</h5>
 						</div>
 						<div class="destination-icon">	
@@ -282,9 +282,9 @@
 				</div>
 				<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 					<div class="destination-grid">
-						<a href=""><img src="images/img-BaiViet/6.jpg" alt=""></a>
+						<a href=""><img src="resourceVNT/images/img-BaiViet/6.jpg" alt=""></a>
 						<div class="destination-name">
-							<h4>Ben Ninh Kieu</h4>
+							<h4>Hồ Xáng Thổi</h4>
 							<h5>Can Tho</h5>
 						</div>
 						<div class="destination-icon">	
@@ -297,9 +297,9 @@
 				</div>
 				<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 					<div class="destination-grid">
-						<a href=""><img src="images/img-BaiViet/8.jpg" alt=""></a>
+						<a href=""><img src="resourceVNT/images/img-BaiViet/8.jpg" alt=""></a>
 						<div class="destination-name">
-							<h4>Ben Ninh Kieu</h4>
+							<h4>Trà Sữa 2Tea - Mậu Thân</h4>
 							<h5>Can Tho</h5>
 						</div>
 						<div class="destination-icon">	
@@ -312,9 +312,9 @@
 				</div>
 				<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 					<div class="destination-grid">
-						<a href=""><img src="images/img-BaiViet/5.jpg" alt=""></a>
+						<a href=""><img src="resourceVNT/images/img-BaiViet/5.jpg" alt=""></a>
 						<div class="destination-name">
-							<h4>Ben Ninh Kieu</h4>
+							<h4>Bãi cát</h4>
 							<h5>Can Tho</h5>
 						</div>
 						<div class="destination-icon">	
@@ -346,7 +346,7 @@
 					<div class="hotel-item">
 						<div class="hotel-image">
 							<div class="img">
-								<img src="images/hotel/1.jpg" alt="">
+								<img src="resourceVNT/images/hotel/1.jpg" alt="">
 							</div>
 						</div>
 						<div class="hotel-body">
@@ -374,7 +374,7 @@
 					</div>
 					<div class="hotel-item">
 						<div class="hotel-image">
-							<img src="images/hotel/2.jpg" alt="">
+							<img src="resourceVNT/images/hotel/2.jpg" alt="">
 						</div>
 						<div class="hotel-body">
 							<div class="ratting">
@@ -403,7 +403,7 @@
 					</div>
 					<div class="hotel-item">
 						<div class="hotel-image">
-							<img src="images/hotel/3.jpg" alt="">
+							<img src="resourceVNT/images/hotel/3.jpg" alt="">
 						</div>
 						<div class="hotel-body">
 							<div class="ratting">
@@ -434,7 +434,7 @@
 				<div class="col-md-6 col-sm-12 col-12">
 					<div class="hotel-item">
 						<div class="hotel-image">
-							<img src="images/hotel/4.jpg" alt="">
+							<img src="resourceVNT/images/hotel/4.jpg" alt="">
 						</div>
 						<div class="hotel-body">
 							<div class="ratting">
@@ -463,7 +463,7 @@
 					</div>
 					<div class="hotel-item">
 						<div class="hotel-image">
-							<img src="images/hotel/3.jpg" alt="">
+							<img src="resourceVNT/images/hotel/3.jpg" alt="">
 						</div>
 						<div class="hotel-body">
 							<div class="ratting">
@@ -492,7 +492,7 @@
 					</div>
 					<div class="hotel-item">
 						<div class="hotel-image">
-							<img src="images/hotel/1.jpg" alt="">
+							<img src="resourceVNT/images/hotel/1.jpg" alt="">
 						</div>
 						<div class="hotel-body">
 							<div class="ratting">
@@ -526,7 +526,7 @@
 	<!-- ================== END HOTEL ============= -->
 
 	<!-- ================== POST ============= -->
-	<section class="post" style="background-image: url('../VietNamTour/images/background/2.jpg');">
+	<section class="post" style="background-image: url('resourceVNT/images/background/2.jpg');">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 offset-md-3">
@@ -542,7 +542,7 @@
 						<a href="#">
 							<div class="post-image">
 								<figure>
-									<img src="images/post/1.jpg" alt="">
+									<img src="resourceVNT/images/post/1.jpg" alt="">
 									<figcaption>
 										<span><i>3 minutes ago</i></span>
 									</figcaption>
@@ -551,7 +551,7 @@
 							<div class="post-content">
 								<div class="caption">
 									<div class="post-user">
-										<img src="images/user/1.jpg" alt="">
+										<img src="resourceVNT/images/user/1.jpg" alt="">
 									</div>
 									<h5>Vui xuan tai Can Tho Chi Voi 500k Vui xuan tai Can Tho Chi Voi 500k</h5>
 								</div>
@@ -567,7 +567,7 @@
 						<a href="#">
 							<div class="post-image">
 								<figure>
-									<img src="images/post/2.png" alt="">
+									<img src="resourceVNT/images/post/2.png" alt="">
 									<figcaption>
 										<span><i>12 hours ago</i></span>
 									</figcaption>
@@ -577,7 +577,7 @@
 							<div class="post-content">
 								<div class="caption">
 									<div class="post-user">
-										<img src="images/user/2.jpg" alt="">
+										<img src="resourceVNT/images/user/2.jpg" alt="">
 									</div>
 									<h5>Thien duong ngan hoa ngay tai Viet Nam</h5>
 								</div>
@@ -593,7 +593,7 @@
 						<a href="#">
 							<div class="post-image">
 								<figure>
-									<img src="images/post/3.jpg" alt="">
+									<img src="resourceVNT/images/post/3.jpg" alt="">
 									<figcaption>
 										<span><i>24 November 2017</i></span>
 									</figcaption>
@@ -603,7 +603,7 @@
 							<div class="post-content">
 								<div class="caption">
 									<div class="post-user">
-										<img src="images/user/3.jpg" alt="">
+										<img src="resourceVNT/images/user/3.jpg" alt="">
 									</div>
 									<h5>Da Lat ngan hoa, thien nhien huu tinh</h5>
 								</div>
@@ -619,7 +619,7 @@
 						<a href="#">
 							<div class="post-image">
 								<figure>
-									<img src="images/post/1.jpg" alt="">
+									<img src="resourceVNT/images/post/1.jpg" alt="">
 									<figcaption>
 										<span><i>3 minutes ago</i></span>
 									</figcaption>
@@ -629,7 +629,7 @@
 							<div class="post-content">
 								<div class="caption">
 									<div class="post-user">
-										<img src="images/user/1.jpg" alt="">
+										<img src="resourceVNT/images/user/1.jpg" alt="">
 									</div>
 									<h5>Vui xuan tai Can Tho Chi Voi 500k Vui xuan tai Can Tho Chi Voi 500k</h5>
 								</div>
@@ -645,7 +645,7 @@
 						<a href="#">
 							<div class="post-image">
 								<figure>
-									<img src="images/post/1.jpg" alt="">
+									<img src="resourceVNT/images/post/1.jpg" alt="">
 									<figcaption>
 										<span><i>3 minutes ago</i></span>
 									</figcaption>
@@ -654,7 +654,7 @@
 							<div class="post-content">
 								<div class="caption">
 									<div class="post-user">
-										<img src="images/user/3.jpg" alt="">
+										<img src="resourceVNT/images/user/3.jpg" alt="">
 									</div>
 									<h5>Vui xuan tai Can Tho Chi Voi 500k Vui xuan tai Can Tho Chi Voi 500k</h5>
 								</div>
@@ -670,7 +670,7 @@
 						<a href="#">
 							<div class="post-image">
 								<figure>
-									<img src="images/post/1.jpg" alt="">
+									<img src="resourceVNT/images/post/1.jpg" alt="">
 									<figcaption>
 										<span><i>3 minutes ago</i></span>
 									</figcaption>
@@ -680,7 +680,7 @@
 							<div class="post-content">
 								<div class="caption">
 									<div class="post-user">
-										<img src="images/user/2.jpg" alt="">
+										<img src="resourceVNT/images/user/2.jpg" alt="">
 									</div>
 									<h5>Vui xuan tai Can Tho Chi Voi 500k Vui xuan tai Can Tho Chi Voi 500k</h5>
 								</div>
@@ -696,7 +696,7 @@
 						<a href="#">
 							<div class="post-image">
 								<figure>
-									<img src="images/post/1.jpg" alt="">
+									<img src="resourceVNT/images/post/1.jpg" alt="">
 									<figcaption>
 										<span><i>3 minutes ago</i></span>
 									</figcaption>
@@ -706,7 +706,7 @@
 							<div class="post-content">
 								<div class="caption">
 									<div class="post-user">
-										<img src="images/user/1.jpg" alt="">
+										<img src="resourceVNT/images/user/1.jpg" alt="">
 									</div>
 									<h5>Vui xuan tai Can Tho Chi Voi 500k Vui xuan tai Can Tho Chi Voi 500k</h5>
 								</div>
@@ -722,7 +722,7 @@
 						<a href="#">
 							<div class="post-image">
 								<figure>
-									<img src="images/post/1.jpg" alt="">
+									<img src="resourceVNT/images/post/1.jpg" alt="">
 									<figcaption>
 										<span><i>3 minutes ago</i></span>
 									</figcaption>
@@ -732,7 +732,7 @@
 							<div class="post-content">
 								<div class="caption">
 									<div class="post-user">
-										<img src="images/user/2.jpg" alt="">
+										<img src="resourceVNT/images/user/2.jpg" alt="">
 									</div>
 									<h5>Vui xuan tai Can Tho Chi Voi 500k Vui xuan tai Can Tho Chi Voi 500k</h5>
 								</div>

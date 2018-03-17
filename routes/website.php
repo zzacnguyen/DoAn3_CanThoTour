@@ -18,4 +18,7 @@ Route::post('registerWpost','loginController@registerW')->name('registerWpost');
 Route::get('login/facebook/redirect', 'loginController@redirectToProvider')->name('loginfacebook');
 Route::get('login/facebook/callback', 'loginController@handleProviderCallback');
 
+//user
+Route::get('user','pageController@getuser');
+
 ?>

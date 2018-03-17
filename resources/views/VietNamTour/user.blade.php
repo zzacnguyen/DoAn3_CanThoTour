@@ -4,14 +4,14 @@
 	<meta charset="UTF-8">
 	<title>VietNamTravel</title>
 
-	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.js"></script>
-	<script src="js/fontawesome-all.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="resourceVNT/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="resourceVNT/js/bootstrap.js"></script>
+	<script src="resourceVNT/js/fontawesome-all.min.js" type="text/javascript"></script>
 
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/style.index.css">
-	<link rel="stylesheet" href="css/menu-style.css">
-	<link rel="stylesheet" href="css/user.css">
+	<link rel="stylesheet" href="resourceVNT/css/bootstrap.css">
+	<link rel="stylesheet" href="resourceVNT/css/style.index.css">
+	<link rel="stylesheet" href="resourceVNT/css/menu-style.css">
+	<link rel="stylesheet" href="resourceVNT/css/user.css">
 </head>
 <body>
 	
@@ -546,7 +546,7 @@
 					<div class="col-md-3 ">
 						<div class="left-user">
 							<div class="avatar">
-								<img src="images/avatar1.jpg" alt="">
+								<img src="resourceVNT/images/avatar1.jpg" alt="">
 								<h5 class="text-center">Lam The Men</h5>
 							</div>
 							<div class="options">

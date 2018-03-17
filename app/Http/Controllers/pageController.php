@@ -27,4 +27,9 @@ class pageController extends Controller
     {
         return view('VietNamTour.registerSuccess');
     }
+
+    public function getuser()
+    {
+        return view('VietNamTour.user');
+    }
 }
