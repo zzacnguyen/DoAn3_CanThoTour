@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 use usersModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Carbon\Carbon;
+use App\servicesModel;
+// use App\Http\Controllers\ServicesController;
 
 class pageController extends Controller
 {
@@ -31,5 +33,37 @@ class pageController extends Controller
     public function getuser()
     {
         return view('VietNamTour.user');
+    }
+
+    public function getdetail($idservices)
+    {
+        $services = DB::table('vnt_services')
+        ->select('sv_types','tourist_places_id')->where('vnt_services.id',$idservices)->first();
+        $sv_types          = $services->sv_types;
+        $tourist_places_id = $services->tourist_places_id;
+        $detailServices = $this::getServiceType($sv_types,$tourist_places_id);
+        // echo $sv_types;
+        // echo $tourist_places_id;
+        // dd($result);
+        return view('VietNamTour.detail',compact('detailServices'));
+    }
+
+    public function getServiceType($sv_types,$tourist_places_id)
+    {
+        switch ($sv_types) {
+            case 2:
+                $result = DB::table('vnt_services')
+                                    ->leftJoin('vnt_hotels', 'vnt_services.id', '=', 'vnt_hotels.service_id')
+                                    ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
+                                    ->join('vnt_tourist_places','vnt_services.tourist_places_id','=','vnt_tourist_places.id')
+                                    ->select('vnt_services.id','sv_description','sv_open','sv_close','sv_highest_price','sv_lowest_price','sv_phone_number','vnt_hotels.hotel_name','vnt_images.id as id_image','vnt_images.image_details_1', 'pl_latitude','pl_longitude')
+                                    ->where('tourist_places_id',$tourist_places_id)
+                                    ->where('sv_types',$sv_types)->first();
+                return $result;
+                break;  
+            default:
+                # code...
+                break;
+        }
     }
 }

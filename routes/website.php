@@ -21,4 +21,7 @@ Route::get('login/facebook/callback', 'loginController@handleProviderCallback');
 //user
 Route::get('user','pageController@getuser');
 
+// load detail
+Route::get('detail/id={id}','pageController@getdetail');
+
 ?>
