@@ -140,7 +140,7 @@ class SearchController extends Controller
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->select('vnt_services.id','vnt_entertainments.entertainments_name','vnt_images.id as id_image','vnt_images.image_details_1')
                                     ->where('tourist_places_id',$place_id)
-                                    ->where('sv_types',$typeServices)->take(5)->get();
+                                    ->where('sv_types',$typeServices)->get();
                 if (!empty($result)) {
                     foreach ($result as $value) {
                         $resultCustom[] = array('id'=> $value->id,'entertainments_name' => $value->entertainments_name,'id_image' => $value->id_image,'image_details_1' => 'image_details_1','distance' => $distance);

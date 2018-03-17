@@ -76,7 +76,8 @@
 				<div class="container">
 					<nav class="navbar navbar-expand-lg navbar-light menuTop" id="id-menu-Top">
 						<a class="navbar-brand" href="#">VietNamTour</a>
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<!-- <button class="btn btn-success navbar-toggler" id="btnsearch-xs"><i class="fas fa-search"></i></button> -->
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="color: white; background-color: white;">
 							<span class="navbar-toggler-icon"></span>
 						</button>
 
@@ -92,19 +93,19 @@
 
 						  				<ul>
 						  					<li class="selectItem" data-name="Cần Thơ">
-						  						<a href="" class="selectItem-name">
+						  						<a href="https://www.google.com.vn" class="selectItem-name">
 						  							<label>Cần Thơ</label>
 						  							<span class="float-right">12.000</span>
 						  						</a>
 						  					</li>
 						  					<li class="selectItem" data-name="HCM">
-						  						<a href="" class="selectItem-name">
+						  						<a href="https://www.google.com.vn" class="selectItem-name">
 						  							<label>HCM</label>
 						  							<span class="float-right">12.000</span>
 						  						</a>
 						  					</li>
 						  					<li class="selectItem" data-name="Hà Nội">
-						  						<a href="" class="selectItem-name">
+						  						<a href="https://www.google.com.vn" class="selectItem-name">
 						  							<label>Hà Nội</label>
 						  							<span class="float-right">12.000</span>
 						  						</a>
@@ -153,7 +154,7 @@
 						  				</ul>
 									</div>
 								</li><!-- end btn-select -->
-								<li class="nav-item" style="position: relative;">
+								<li class="nav-item hidden-xs" style="position: relative;">
 									<form class="form-inline form-search">
 										<label class="boloc"><i class="fas fa-search"></i></label>
 										<input id="text-search-top" class="form-control input-search" type="search" placeholder="Search" aria-label="Search">
@@ -243,68 +244,31 @@
 							<div class="form-inline my-2 my-lg-0" id="dangnhap-dangky">
 								<ul class="navbar-nav mr-auto">
 									<li class="nav-item" style="position: relative;">
-										<a class="nav-link btn-login hidden" id="btn-dangnhap">Đăng nhập</a>
-										<!-- <a class="nav-link btn-login" style="padding: 0; border: none !important;" id="id-user-form">
+										<a href="login.html" class="nav-link btn-login" id="btn-dangnhap">Đăng nhập</a>
+										<!-- hien thi khi dang nhap thanh cong -->
+										<a class="nav-link btn-login d-none" style="padding: 0; border: none !important;" id="id-user-form">
 											<img src="images/avatar1.jpg" alt="" style="height: 33px; width: 33px;">
 											lamthemen <i class="fas fa-caret-down"></i>
-										</a> -->
+										</a>
 										<div class="user-form">
 											<ul>
 												<li><a href=""><i class="fas fa-info-circle"></i> Thông tin tài khoản</a></li>
 												<li><a href=""><i class="fas fa-book"></i> Góp ý</a></li>
 												<li><a href=""><i class="fas fa-power-off"></i> Đăng xuất</a></li>
 											</ul>
-										</div>
+										</div> <!-- end hien thi khi dang nhap thanh cong -->
 									</li>
-									<!-- Modal login -->
-									<div id="id01" class="modal-login">
-										<div class="container">
-											<div class="row">
-												<div class="col"></div>
-												<div class="col-6">
-													<form action="" class="modal-content-dangky animate">
-														<span onclick="document.getElementById('id01').style.display='none'" 
-														class="close" title="Close Modal">&times;</span>
-														<h3 class="text-center">Login</h3>
-														<div class="content-login">
-															<input type="text" placeholder="Username..." class="text-login">
-															<input type="password" placeholder="Password..." class="text-login">
-															<div class="row">
-																<div class="col">
-																	<button type="submit" class="btn btn-success" style="width: 100%; font-weight: 500; margin-top: 10px;">Log In</button>
-																</div>
-															</div>
-														</div>
-														<div class="content-login-with">
-															<h4 class="text-center">Login</h4>
-															<p class="text-center">With your social media acconut</p>
-															<div class="row text-center">
-																<div class="col"><a href="" class="btn" style="background-color: #3b5998;"><i class="fab fa-facebook-f"></i> Facebook</a></div>
-																<div class="col"><a href="" class="btn" style="background-color: #d34836;"><i class="fab fa-google-plus-g"></i> Google+</a></div>
-															</div>
-														</div>
-														<div class="content-register">
-															<h6 class="text-center">Đăng ký tài khoản mới tại đây</h6>
-															<div class="row">
-																<div class="col">
-																	<a class="btn btn-info" style="width: 100%; font-weight: 500;">Register</a>
-																</div>
-															</div>
-														</div>
-													</form>
-												</div>
-												<div class="col"></div>
-											</div>
-										</div>
-									</div><!-- end Modal login -->
-									<li class="nav-item hidden"><a class="nav-link btn-login">Đăng ký</a></li>
+									
+
+									<li class="nav-item"><a href="register.html" class="nav-link btn-login" id="btn-dangky">Đăng ký</a></li>
+									
 								</ul>
 							</div>
 						</div>
 					</nav>
 					<div class="con" id="id-con">
 						<div class="row">
-							<div class="col-md-5 col-12">
+							<div class="col-md-5 col-8">
 								<div class="right-menu-lam">
 									<ul class="float-left ul-right-menu-lam">
 										<li class="active-menu"><a href=""><i class="fas fa-home"></i></a></li>
@@ -314,7 +278,7 @@
 									</ul>
 								</div>
 							</div>
-							<div class="col-md-5">
+							<div class="col-md-5 hidden-xs">
 								<div class="ssearch" id="hidden-formSearch" style="position: relative; display: none; transition: 0.5s; margin-top: -2px;">
 									<form action="" class="form-search-menu">
 										<label class="boloc2"><i class="fas fa-search"></i></label>
@@ -402,7 +366,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-2 col-12">
+							<div class="col-md-2 col-4">
 								<ul class="float-right left-menu-lam">
 									<li class="cha-notification">
 										<a class="a-notification active-thongbao" data-id-hienthi="id-thongBao"><i class="fas fa-bell"></i></a>
@@ -518,7 +482,7 @@
 											</div>
 										</div>
 									</li>
-									<li><a href=""><img src="images/icons/vn.png" alt="" style="width: 20px; height: 20px;"></a></li>
+									<!-- <li><a href=""><img src="images/icons/vn.png" alt="" style="width: 20px; height: 20px;"></a></li> -->
 								</ul>
 							</div>
 						</div>
@@ -568,10 +532,13 @@
 								<i class="fas fa-star"></i>
 								<i class="fas fa-star"></i>
 								<i class="fas fa-star"></i>
+								<span style="color: black">Khách sạn</span>
 							</div>
 						</div>
 						<div class="hotel-body">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, distinctio doloribus excepturi fugit minus quisquam totam? Adipisci beatae debitis harum, laudantium optio sed. Distinctio ducimus itaque iusto, mollitia pariatur voluptatum.</p>
+							<p>Bustling riverfront park with a promenade, shade trees & nearby shops & restaurants.
+Công viên ven sông nhộn nhịp với lối đi dạo, cây bóng mát và các cửa hàng gần đó và nhà hàng.</p>
+							<a href="">Đánh giá</a>
 							<div class="service">
 								<ul>
 									<li>
