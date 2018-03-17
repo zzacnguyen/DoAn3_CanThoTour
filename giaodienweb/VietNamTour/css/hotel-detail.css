@@ -11,7 +11,18 @@ body{
 	margin-bottom: 50px;
 }
 
+a#like01{
+	color: #007bff;
+	cursor: pointer;
+}
 
+#like01:hover{
+	color: red !important;
+}
+
+.like{
+	color: red !important;
+}
 /*======================== style image =========================*/
 
 /*Time to apply widths for accordian to work

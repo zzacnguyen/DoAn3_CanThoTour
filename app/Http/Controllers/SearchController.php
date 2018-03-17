@@ -10,7 +10,7 @@ use DB;
 class SearchController extends Controller
 {
     //
-    function distance($lat1, $lon1, $lat2, $lon2) 
+    public static function distance($lat1, $lon1, $lat2, $lon2) 
     {
         // có thế thêm tham số $unit vào hàm để tính theo các đơn vị khác 
         $theta = $lon1 - $lon2;
@@ -165,9 +165,6 @@ class SearchController extends Controller
                 foreach ($arr_distance as $value) {
                     $arr_distancePlace[$value['id']] = $value['distantce'];
                 }
-                // echo "<pre>";
-                // print_r($arr_distancePlace);
-                // echo "</pre>";
                 foreach ($arr_distancePlace as $key => $value) {
                     if (!empty($this::getServicesAll($key,$type,$value))) {
                         foreach ($this::getServicesAll($key,$type,$value) as $k => $v) {

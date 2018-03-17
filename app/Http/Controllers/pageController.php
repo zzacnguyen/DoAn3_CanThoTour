@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\servicesModel;
-// use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\SearchController;
 
 class pageController extends Controller
 {
@@ -42,9 +42,6 @@ class pageController extends Controller
         $sv_types          = $services->sv_types;
         $tourist_places_id = $services->tourist_places_id;
         $detailServices = $this::getServiceType($sv_types,$tourist_places_id);
-        // echo $sv_types;
-        // echo $tourist_places_id;
-        // dd($result);
         return view('VietNamTour.detail',compact('detailServices'));
     }
 
@@ -107,5 +104,11 @@ class pageController extends Controller
                 return $result;
                 break;
         }
+    }
+
+    public function getServiceTypeVicinity()
+    {
+        $lam = SearchController::distance(1,2,3,4);
+        return $lam;
     }
 }
