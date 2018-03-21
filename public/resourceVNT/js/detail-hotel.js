@@ -32,4 +32,17 @@ document.addEventListener("DOMContentLoaded",function () {
             document.getElementById(hienthi).classList.add('active-content');
         }
     }
+
+    var likelike = document.getElementById('like01');
+    var luotkick = 0;
+    likelike.onclick = function() {
+        if (luotkick % 2 == 0){
+            likelike.style.color = "red";
+            luotkick++;
+        }
+        else{
+            likelike.style.color = "#007bff";
+            luotkick++;
+        }
+    }
 },false);

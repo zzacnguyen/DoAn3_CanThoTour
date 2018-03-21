@@ -24,4 +24,15 @@ Route::get('user','pageController@getuser');
 // load detail
 Route::get('detail/id={id}','pageController@getdetail');
 Route::get('detail/s','pageController@getServiceTypeVicinity');
+
+// load addplace
+Route::get('addplace','pageController@getaddplace');
+//  load addservice
+Route::get('addservice','pageController@getaddservice');
+
+
+
+
+
+
 ?>

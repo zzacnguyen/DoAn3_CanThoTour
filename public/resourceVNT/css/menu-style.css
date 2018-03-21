@@ -49,7 +49,7 @@ body,html{
 	top: 0;
 	left: 0;
 	display: block;
-	background-color: rgba(0, 0, 0, 0.6) !important;
+	background-color: white !important;
 	border-bottom: 1px solid #bfbfbf9c;
 	transition: 5s;
 }
@@ -58,6 +58,7 @@ body,html{
 	font-size: 14px;
 	font-weight: 400;
 	cursor: pointer;
+	color: black !important;
 }
 
 #dangnhap-dangky ul li:hover a.btn-login{
@@ -98,6 +99,7 @@ ul.ul-right-menu-lam{
 	position: relative;
 	width: 131px;
 	overflow: hidden;
+	color: black !important;
 }
 
 nav#id-menu-Top{
@@ -363,6 +365,7 @@ ul li:hover .slider p{
 	font-size: 13px;
 	font-weight: 500;
 	text-decoration: none;
+	color: black !important;
 }
 
 .con .right-menu-lam ul li.hover-menu:hover {border-bottom: 2px solid red;}
@@ -463,7 +466,7 @@ p.text-nofi{
 	transition: 0.5s;
 }
 
-.header #id-con ul.left-menu-lam li a{cursor: pointer;}
+.header #id-con ul.left-menu-lam li a{cursor: pointer; color: black !important;}
 
 .header #id-con ul.left-menu-lam li:hover{background-color: black;}
 

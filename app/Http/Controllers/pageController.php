@@ -45,6 +45,18 @@ class pageController extends Controller
         return view('VietNamTour.detail',compact('detailServices'));
     }
 
+    public function getaddplace()
+    {
+        return view('VietNamTour.addplace');
+    }
+
+    public function getaddservice()
+    {
+        return view('VietNamTour.addservice');
+    }
+
+    // funtion
+
     public function getServiceType($sv_types,$tourist_places_id)
     {
         switch ($sv_types) {
