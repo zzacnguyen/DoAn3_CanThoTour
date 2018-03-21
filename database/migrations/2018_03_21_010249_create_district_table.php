@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKeyworksTable extends Migration
+class CreateDistrictTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateKeyworksTable extends Migration
      */
     public function up()
     {
-        Schema::create('vnt_keyworks', function (Blueprint $table) {
+        Schema::create('vnt_district', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kw_name', 25);
-            $table->string('kw_status', 10);
+            $table->string('district_name', 50);
+            $table->integer('province_city_id')->unsigned();
+            $table->foreign('province_city_id')->references('id')->on('vnt_province_city');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateKeyworksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vnt_keyworks');
+        Schema::dropIfExists('vnt_district');
     }
 }

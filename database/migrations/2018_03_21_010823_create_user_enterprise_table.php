@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEnterpriseUsersTable extends Migration
+class CreateUserEnterpriseTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,10 +20,10 @@ class CreateEnterpriseUsersTable extends Migration
             $table->string('eu_address', 255);
             $table->string('eu_email', 30);
             $table->string('eu_status', 10);
-            
+
+
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('vnt_users');
-
             $table->timestamps();
         });
     }

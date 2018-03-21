@@ -23,8 +23,6 @@ class CreateUsersTable extends Migration
             $table->string('user_country',30);
             $table->string('user_language',30);
             $table->string('user_status',10);
-            $table->integer('user_groups_id')->unsigned();
-            $table->foreign('user_groups_id')->references('id')->on('vnt_user_groups')->onDelete('cascade');;
             $table->timestamps();
         });
     }

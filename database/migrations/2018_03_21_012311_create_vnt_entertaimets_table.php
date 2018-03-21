@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTypesEventKetwork extends Migration
+class CreateVntEntertaimetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateTypesEventKetwork extends Migration
      */
     public function up()
     {
-        Schema::create('vnt_types', function (Blueprint $table) {
+        Schema::create('vnt_entertaiments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type_name', 50);
-            $table->string('type_status', 10);
+            $table->string('entertainments_name', 50);
+            $table->string('entertainments_status', 10);
+            $table->integer('service_id')->unsigned();
+            $table->foreign('service_id')->references('id')->on('vnt_services');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateTypesEventKetwork extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vnt_types');
+        Schema::dropIfExists('vnt_entertaiments');
     }
 }

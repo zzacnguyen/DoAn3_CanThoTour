@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersGroupTable extends Migration
+class CreateVntHotelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateUsersGroupTable extends Migration
      */
     public function up()
     {
-        Schema::create('vnt_user_groups', function (Blueprint $table) {
+        Schema::create('vnt_hotels', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('user_groups', 30);
+            $table->string('hotel_name',50);
+            $table->integer('hotel_number_star');
+            $table->string('hotel_status',10);
+            $table->integer('service_id')->unsigned();
+            $table->foreign('service_id')->references('id')->on('vnt_services');
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ class CreateUsersGroupTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vnt_user_groups');
+        Schema::dropIfExists('vnt_hotels');
     }
 }

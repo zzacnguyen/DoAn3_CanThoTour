@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEntertainmentsTable extends Migration
+class CreateVntEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreateEntertainmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('vnt_entertainments', function (Blueprint $table) {
+        Schema::create('vnt_events', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('entertainments_name', 50);
-            $table->string('entertainments_status', 10);
+            $table->string('event_name', 100);
+            $table->date('event_start');
+            $table->date('event_end');
+            $table->string('event_status', 10);
+            $table->integer('type_id')->unsigned();
+            $table->foreign('type_id')->references('id')->on('vnt_types_event');
             $table->integer('service_id')->unsigned();
             $table->foreign('service_id')->references('id')->on('vnt_services');
             $table->timestamps();
@@ -30,6 +34,6 @@ class CreateEntertainmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vnt_entertainments');
+        Schema::dropIfExists('vnt_events');
     }
 }

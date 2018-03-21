@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserSearchTable extends Migration
+class CreateVntEatingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateUserSearchTable extends Migration
      */
     public function up()
     {
-        Schema::create('vnt_usersearch', function (Blueprint $table) {
+        Schema::create('vnt_eating', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_users')->unsigned();
-            $table->foreign('id_users')->references('id')->on('vnt_users');
-            $table->integer('id_service')->unsigned();
-            $table->foreign('id_service')->references('id')->on('vnt_services');
+            $table->string('eat_name', 100);
+            $table->string('eat_status', 10);
+            $table->integer('service_id')->unsigned();
+            $table->foreign('service_id')->references('id')->on('vnt_services');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateUserSearchTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vnt_usersearch');
+        Schema::dropIfExists('vnt_eating');
     }
 }
