@@ -504,12 +504,12 @@
 							<ul>
 								<li>
 									<a>
-										<img src="resourceVNT/images/hotel/detail.jpg"/>
+										<img src="resourceVNT/images/hotel/{{$detailServices->image_details_1}}"/>
 									</a>
 								</li>
 								<li>
 									<a>
-										<img src="resourceVNT/images/hotel/hotel-background.jpg"/>
+										<img src="resourceVNT/images/hotel/{{$detailServices->image_details_1}}"/>
 									</a>
 								</li>
 								<li>
@@ -526,19 +526,56 @@
 					<div class="hotel-detail-right">
 						<div class="title">
 							<p><a>Cần Thơ</a> >> <a>Quận Ninh Kiều</a></p>
-							<h4>{{$detailServices->hotel_name}}</h4>
+							<h4>
+								@if($detailServices->sv_types == 2)
+									{{$detailServices->hotel_name}}
+								@elseif($detailServices->sv_types == 1)
+									{{$detailServices->eat_name}}
+								@elseif($detailServices->sv_types == 3)
+									{{$detailServices->transport_name}}
+								@elseif($detailServices->sv_types == 4)
+									{{$detailServices->sightseeing_name}}
+								@else
+									{{$detailServices->entertainments_name}}
+								@endif
+							</h4>
 							<div class="star">
 								<i class="fas fa-star"></i>
 								<i class="fas fa-star"></i>
 								<i class="fas fa-star"></i>
 								<i class="fas fa-star"></i>
 								<i class="fas fa-star"></i>
-								<span style="color: black">Khách sạn</span>
+								<span style="color: black">
+									@if($detailServices->sv_types == 2)
+										Khách sạn
+									@elseif($detailServices->sv_types == 1)
+										Ăn uống
+									@elseif($detailServices->sv_types == 3)
+										Phương tiện
+									@elseif($detailServices->sv_types == 4)
+										Tham quan
+									@else
+										Vui chơi
+									@endif
+								</span>
 							</div>
 						</div>
 						<div class="hotel-body">
-							<p style="height: 60px;">{{$detailServices->sv_description}}</p>
-							<a href="">Đánh giá</a>
+							<p style="margin: 0;">{{$detailServices->sv_description}}</p>
+							<div class="row">
+								<div class="col-md-4 text-center">
+									<a href="">Đánh giá</a>
+									<div class="danhgia">
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+									</div>
+								</div>
+								<div class="col-md-4 text-center"><a href="" title="Chia sẻ"><i class="fas fa-share-alt"></i> Chia sẻ</a></div>
+								<div class="col-md-4 text-center"><a id="like01"><i id="color-like" class="fas fa-heart"></i></a></div>
+							</div>
 							<div class="service">
 								<ul>
 									<li>

@@ -30,7 +30,7 @@ Route::get('addplace','pageController@getaddplace');
 //  load addservice
 Route::get('addservice','pageController@getaddservice');
 
-
+Route::get('laydia/id={id}','pageController@getplaceCity');
 
 
 

@@ -14,8 +14,8 @@
 	<link rel="stylesheet" href="resourceVNT/css/place.css">
 	<link rel="stylesheet" href="resourceVNT/css/style.index.css">
 	<link rel="stylesheet" href="resourceVNT/css/menu-style.css">
-	<link rel="stylesheet" href="resourceVNT/css/addplace.css">
-	<link rel="stylesheet" href="resourceVNT/css/addservices.css">
+	{{-- <link rel="stylesheet" href="resourceVNT/css/addplace.css"> --}}
+	{{-- <link rel="stylesheet" href="resourceVNT/css/addservices.css"> --}}
 </head>
 <body>
 	
@@ -57,7 +57,7 @@
 			<ul>
 				<li class="active-img">
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('resourceVNT/images/background/4.jpg');"></div>
+						<div class="img-content" style="background-image: url('resourceVNT/images/background/3.jpg');"></div>
 					</div>
 				</li>
 				<li>
