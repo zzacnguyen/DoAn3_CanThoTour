@@ -8,6 +8,86 @@
 	<script type="text/javascript" src="resourceVNT/js/bootstrap.js"></script>
 	<script src="resourceVNT/js/fontawesome-all.min.js" type="text/javascript"></script>
 
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9B_e_WdKwqzNgABxkeVt2iT0XVmaK_wQ&callback=canvasMap"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css" />
+    
+	<script>
+		function myMap() {
+		var mapProp= {
+		    center:new google.maps.LatLng(10.0566098,105.7717238),
+		    zoom:5,
+		};
+		var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+		google.maps.event.addListener(canvasMap, 'click', function(event) {
+		alert(event.latLng.lat() + ", " + event.latLng.lng());
+		});
+
+		}
+	</script>
+    <script type="text/javascript">
+        
+
+        function GetLocation(address, mapId) {
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'address': address }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    var location = {};
+                    location.lattitude = results[0].geometry.location.lat();
+                    location.longitude = results[0].geometry.location.lng();
+                    location.address = results[0].formatted_address;
+                    var mapOptions = { center: new google.maps.LatLng(location.lattitude, location.longitude), zoom: 15, mapTypeId: google.maps.MapTypeId.ROADMAP };
+                    var infoWindow = new google.maps.InfoWindow();
+                    var latlngbounds = new google.maps.LatLngBounds();
+                    var map = new google.maps.Map(mapId, mapOptions);
+                    var myLatLng = new google.maps.LatLng(location.lattitude, location.longitude);
+                    var marker = new google.maps.Marker({ position: myLatLng, map: map });
+                  
+				    google.maps.event.addListener(canvasMap, 'click', function( event ){
+					  alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() ); 
+					});
+                }
+            });
+        };
+ 		
+        function InitializeMap(maPId) {
+            var mapOptions = { center: new google.maps.LatLng(10.0566098, 105.7717238), zoom: 15, mapTypeId: google.maps.MapTypeId.ROADMAP }
+            var map = new google.maps.Map(maPId, mapOptions);
+        }
+
+ 
+        $(function () {
+            $("#btnmap").click(function () {
+                InitializeMap($("#canvasMap")[0]);
+                $("#dialog").dialog({
+                    modal: true,
+                    title: "Location",
+                    width: 600,
+                    hright: 400,
+                    buttons: {
+                        Close: function () {
+                            $(this).dialog('close');
+                            $("#lblOfficeAddress").val('');
+                        },
+                        Open: function () {
+                            GetLocation($("#lblOfficeAddress").val(), $("#canvasMap")[0]);
+                        }
+                    }
+                });
+                return false;
+            });
+        });
+
+
+        $(function () {
+           	google.maps.event.addListener(canvasMap, 'click', function( event ){
+					  alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() ); 
+					});
+        });
+    </script>
+   
 	<link rel="stylesheet" href="resourceVNT/css/bootstrap.css">
 	<link rel="stylesheet" href="resourceVNT/css/owl.carousel.min.css">
 	<link rel="stylesheet" href="resourceVNT/css/owl.theme.default.min.css">
@@ -250,7 +330,7 @@
 							<div class="form-inline my-2 my-lg-0" id="dangnhap-dangky">
 								<ul class="navbar-nav mr-auto">
 									<li class="nav-item" style="position: relative;">
-										<a href="login.html" class="nav-link btn-login" id="btn-dangnhap">Đăng nhập</a>
+										<a href="{{ route('loginW') }}" class="nav-link btn-login" id="btn-dangnhap">Đăng nhập</a>
 										<!-- hien thi khi dang nhap thanh cong -->
 										<a class="nav-link btn-login hidden" style="padding: 0; border: none !important;" id="id-user-form">
 											<img src="images/avatar1.jpg" alt="" style="height: 33px; width: 33px;">
@@ -260,12 +340,12 @@
 											<ul>
 												<li><a href=""><i class="fas fa-info-circle"></i> Thông tin tài khoản</a></li>
 												<li><a href=""><i class="fas fa-book"></i> Góp ý</a></li>
-												<li><a href=""><i class="fas fa-power-off"></i> Đăng xuất</a></li>
+												<li><a href="{{ route('/') }}"><i class="fas fa-power-off"></i> Đăng xuất</a></li>
 											</ul>
 										</div> <!-- end hien thi khi dang nhap thanh cong -->
 									</li>
 
-									<li class="nav-item"><a href="register.html" class="nav-link btn-login" id="btn-dangky">Đăng ký</a></li>
+									<li class="nav-item"><a href="{{  route('registerW') }}" class="nav-link btn-login" id="btn-dangky">Đăng ký</a></li>
 								</ul>
 							</div>
 						</div>
