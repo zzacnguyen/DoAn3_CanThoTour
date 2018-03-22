@@ -149,7 +149,7 @@ class ServicesController extends Controller
     public function show($id)
     {
         $service = DB::table('vnt_services')
-        ->select('vnt_services.id','hotel_name','sightseeing_name','entertainments_name', 'transport_name', 'hotel_website',
+        ->select('vnt_services.id','hotel_name','sightseeing_name','entertainments_name', 'transport_name', 
                  'eat_name','sv_description', 'sv_open','sv_close','sv_lowest_price','sv_highest_price', 'pl_phone_number',
                  'pl_address', DB::raw('AVG(vnt_visitor_ratings.vr_rating) as rating'),
                  'pl_latitude', 'pl_longitude','pl_name'
@@ -164,7 +164,7 @@ class ServicesController extends Controller
         ->leftjoin('vnt_visitor_ratings', 'vnt_visitor_ratings.service_id','=', 'vnt_services.id')
         
         ->where('vnt_services.id', $id)
-        ->groupBy('vnt_services.id','hotel_name','entertainments_name','transport_name', 'sightseeing_name', 'hotel_website',
+        ->groupBy('vnt_services.id','hotel_name','entertainments_name','transport_name', 'sightseeing_name', 
                  'eat_name','sv_description', 'sv_open','sv_close','sv_lowest_price','sv_highest_price', 'vnt_tourist_places.pl_phone_number',
                  'vnt_tourist_places.pl_address', 'vnt_tourist_places.pl_latitude', 'vnt_tourist_places.pl_longitude','pl_name')
         

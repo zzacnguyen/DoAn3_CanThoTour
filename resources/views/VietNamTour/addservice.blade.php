@@ -11,6 +11,8 @@
 				<h6 style="color: #bd1717;">Thông tin cơ bản</h6>
 				<div class="div" style="height: 1px; width: 100%; background-color: red; margin-bottom: 10px;"></div>
 				<form action="">
+
+
 					<div class="input-text">
 						<label>Tên dịch vụ</label>
 						<input type="text">

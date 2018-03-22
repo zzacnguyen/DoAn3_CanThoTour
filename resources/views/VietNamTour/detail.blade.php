@@ -969,5 +969,6 @@
 	<script src="resourceVNT/js/lightbox.min.js"></script>
 	<script src="resourceVNT/js/detail-hotel.js"></script>
 	<script src="resourceVNT/js/menu-style.js"></script>
+
 </body>
 </html>

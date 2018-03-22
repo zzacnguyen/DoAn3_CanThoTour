@@ -31,6 +31,14 @@
 						</select>
 					</div>
 					<div class="input-text">
+						<label>Kinh độ</label>
+						<input type="text">
+					</div>
+					<div class="input-text" >
+						<label>Vĩ độ</label>
+						<input type="text">
+					</div>
+					<div class="input-text">
 						<label>Địa chỉ</label>
 						<input type="text">
 					</div>
@@ -40,7 +48,7 @@
 					</div>
 					<div class="input-text">
 						<label>Vị trí</label>
-						<button>Cập nhật vị trí</button>
+						<input type="submit" name="btnmap" value="Show Map" id="btnmap" />
 					</div>
 					<button class="btn btn-success col-md-12" id="btnaddplace">Thêm địa điểm mới</button>
 				</form>
@@ -49,5 +57,14 @@
 		</div>
 	</div>
 </section>
-
+<form id="form1" runat="server">
+    <div>
+        <div id="dialog" style="display: none">
+            <input name="lblOfficeAddress" type="text" id="lblOfficeAddress" />
+            <hr />
+            <div id="canvasMap" style="height: 200px; width: 200;">
+            </div>
+        </div>
+    </div>
+    </form>
 @endsection('content')

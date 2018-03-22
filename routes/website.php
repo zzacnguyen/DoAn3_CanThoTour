@@ -1,9 +1,7 @@
 <?php
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get('/','pageController@getindex')->name('/');
 
@@ -26,12 +24,12 @@ Route::get('detail/id={id}','pageController@getdetail');
 Route::get('detail/s','pageController@getServiceTypeVicinity');
 
 // load addplace
-Route::get('addplace','pageController@getaddplace');
+Route::get('addplace','pageController@getaddplace')->name('addplace');
+Route::post('addplace', 'pageController@postPlace');
 //  load addservice
 Route::get('addservice','pageController@getaddservice');
 
 Route::get('laydia/id={id}','pageController@getplaceCity');
-
 
 
 
