@@ -38,7 +38,7 @@ class SearchController extends Controller
         else{ return null; } 
     }
 
-    public function searchPlaceVicinity($user_lat, $user_lon, $radius)
+    public static function searchPlaceVicinity($user_lat, $user_lon, $radius)
     {
         $result = $this::distanceRadius($user_lat,$user_lon,$radius);
         if (isset($result)) 
@@ -62,7 +62,7 @@ class SearchController extends Controller
         }
     }
 
-    public function getServicesAll($place_id,$typeServices, $distance)
+    public static function getServicesAll($place_id,$typeServices, $distance)
     {
         switch ($typeServices) {
             case '1':
@@ -266,4 +266,38 @@ class SearchController extends Controller
         }
     }
     
+    public static function searchServicesVicinityWEB($latitude,$longitude, $type,int $radius)
+    {
+       if ($radius >=100) 
+        {
+            $arr_distance = $this::distanceRadius($latitude,$longitude,$radius);
+            if (!empty($arr_distance)) {
+                ksort($arr_distance);
+                foreach ($arr_distance as $value) {
+                    $arr_distancePlace[$value['id']] = $value['distantce'];
+                }
+                foreach ($arr_distancePlace as $key => $value) {
+                    if (!empty($this::getServicesAll($key,$type,$value))) {
+                        foreach ($this::getServicesAll($key,$type,$value) as $k => $v) {
+                            $r[] = $v;
+                        }
+                    }
+                }
+                if (isset($r)) {
+                    return $r;
+                }
+                else{
+                    return "Loi1";
+                }
+            }
+            else{
+                return "Loi2";
+            }
+        }
+        else
+        {
+            return "Loi3";
+        } 
+    }
+
 }

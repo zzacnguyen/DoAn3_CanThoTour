@@ -8,15 +8,13 @@ use Carbon\Carbon;
 use App\servicesModel;
 use App\Http\Controllers\SearchController;
 use App\touristPlacesModel;
+use App\provincecityModel;
+
 class pageController extends Controller
 {
     public function getindex()
     {
-        $services = DB::table('vnt_services')
-        ->select('sv_types','tourist_places_id')->where('vnt_services.id',$idservices)->first();
-        $sv_types          = $services->sv_types;
-        $tourist_places_id = $services->tourist_places_id;
-        $detailServices = $this::get5dichvu($sv_types,$tourist_places_id);
+        
     	return view('VietNamTour.index',compact('detailServices'));
     }
 
@@ -43,10 +41,17 @@ class pageController extends Controller
     public function getdetail($idservices)
     {
         $services = DB::table('vnt_services')
-        ->select('sv_types','tourist_places_id')->where('vnt_services.id',$idservices)->first();
+        ->join('vnt_tourist_places','vnt_services.tourist_places_id','=','vnt_tourist_places.id')
+        ->select('vnt_services.id','sv_types','tourist_places_id','pl_latitude','pl_longitude')->where('vnt_services.id',$idservices)->first();
         $sv_types          = $services->sv_types;
         $tourist_places_id = $services->tourist_places_id;
-        $detailServices = $this::getServiceType($sv_types,$tourist_places_id);
+        $sv_id        = $services->id;
+        $detailServices = $this::getServiceType($sv_id,$sv_types,$tourist_places_id);
+
+        // $lat = (double)$services->pl_latitude;
+        // $lon = (double)$services->pl_longitude;
+        // $services = SearchController::searchServicesVicinity($lat,$lon,2,1000);
+
         return view('VietNamTour.detail',compact('detailServices'));
     }
 
@@ -62,7 +67,7 @@ class pageController extends Controller
 
     // funtion
 
-    public function getServiceType($sv_types,$tourist_places_id)
+    public function getServiceType($sv_id,$sv_types,$tourist_places_id)
     {
         switch ($sv_types) {
             case 2:
@@ -71,6 +76,7 @@ class pageController extends Controller
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->join('vnt_tourist_places','vnt_services.tourist_places_id','=','vnt_tourist_places.id')
                                     ->select('vnt_services.id','sv_types','sv_description','sv_open','sv_close','sv_highest_price','sv_lowest_price','sv_phone_number','vnt_hotels.hotel_name','hotel_number_star','vnt_images.id as id_image','vnt_images.image_details_1', 'pl_latitude','pl_longitude')
+                                    ->where('vnt_services.id',$sv_id)
                                     ->where('tourist_places_id',$tourist_places_id)
                                     ->where('hotel_status','Active')
                                     ->where('sv_types',$sv_types)->first();
@@ -82,6 +88,7 @@ class pageController extends Controller
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->join('vnt_tourist_places','vnt_services.tourist_places_id','=','vnt_tourist_places.id')
                                     ->select('vnt_services.id','sv_types','sv_description','sv_open','sv_close','sv_highest_price','sv_lowest_price','sv_phone_number','vnt_eating.eat_name','vnt_images.id as id_image','vnt_images.image_details_1', 'pl_latitude','pl_longitude')
+                                    ->where('vnt_services.id',$sv_id)
                                     ->where('tourist_places_id',$tourist_places_id)
                                     ->where('eat_status','Active')
                                     ->where('sv_types',$sv_types)->first();
@@ -93,6 +100,7 @@ class pageController extends Controller
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->join('vnt_tourist_places','vnt_services.tourist_places_id','=','vnt_tourist_places.id')
                                     ->select('vnt_services.id','sv_types','sv_description','sv_open','sv_close','sv_highest_price','sv_lowest_price','sv_phone_number','vnt_transport.transport_name','vnt_images.id as id_image','vnt_images.image_details_1', 'pl_latitude','pl_longitude')
+                                    ->where('vnt_services.id',$sv_id)
                                     ->where('tourist_places_id',$tourist_places_id)
                                     ->where('transport_status','Active')
                                     ->where('sv_types',$sv_types)->first();
@@ -104,6 +112,7 @@ class pageController extends Controller
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->join('vnt_tourist_places','vnt_services.tourist_places_id','=','vnt_tourist_places.id')
                                     ->select('vnt_services.id','sv_types','sv_description','sv_open','sv_close','sv_highest_price','sv_lowest_price','sv_phone_number','sightseeing_name','vnt_images.id as id_image','vnt_images.image_details_1', 'pl_latitude','pl_longitude')
+                                    ->where('vnt_services.id',$sv_id)
                                     ->where('tourist_places_id',$tourist_places_id)
                                     ->where('sightseeing_status','Active')
                                     ->where('sv_types',$sv_types)->first();
@@ -115,6 +124,7 @@ class pageController extends Controller
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->join('vnt_tourist_places','vnt_services.tourist_places_id','=','vnt_tourist_places.id')
                                     ->select('vnt_services.id','sv_types','sv_description','sv_open','sv_close','sv_highest_price','sv_lowest_price','sv_phone_number','entertainments_name','vnt_images.id as id_image','vnt_images.image_details_1', 'pl_latitude','pl_longitude')
+                                    ->where('vnt_services.id',$sv_id)
                                     ->where('tourist_places_id',$tourist_places_id)
                                     ->where('entertainments_status','Active')
                                     ->where('sv_types',$sv_types)->first();
@@ -146,7 +156,7 @@ class pageController extends Controller
                                     ->leftJoin('vnt_hotels', 'vnt_services.id', '=', 'vnt_hotels.service_id')
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->join('vnt_tourist_places','vnt_services.tourist_places_id','=','vnt_tourist_places.id')
-                                    ->select('vnt_services.id','sv_description','sv_open','sv_close','sv_highest_price','sv_lowest_price','sv_phone_number','vnt_hotels.hotel_name','hotel_number_star','vnt_images.id as id_image','vnt_images.image_details_1', 'pl_latitude','pl_longitude')
+                                    ->select('vnt_services.id','sv_types','sv_description','sv_open','sv_close','sv_highest_price','sv_lowest_price','sv_phone_number','vnt_hotels.hotel_name','hotel_number_star','vnt_images.id as id_image','vnt_images.image_details_1', 'pl_latitude','pl_longitude')
                                     ->where('tourist_places_id',$tourist_places_id)
                                     ->where('hotel_status','Active')
                                     ->where('sv_types',$sv_types)->take(8)->get();
@@ -198,4 +208,13 @@ class pageController extends Controller
                 break;
         }
     }
+
+
+    // get cho 
+    public function countplacecity($idcity)
+    {
+        // $p = vnt_province_cityModel::all();
+        $d = DB::table('vnt_district')->get();
+    }
+    
 }

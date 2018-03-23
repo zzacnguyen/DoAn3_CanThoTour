@@ -29,8 +29,9 @@ Route::post('addplace', 'pageController@postPlace');
 //  load addservice
 Route::get('addservice','pageController@getaddservice');
 
-Route::get('laydia/id={id}','pageController@getplaceCity');
+Route::get('city/id={id}','pageController@countplacecity');
 
+Route::get('lam/l={l},{g}&type={type},radius={radius}','SearchController@searchServicesVicinityWEB')
 
 
 ?>

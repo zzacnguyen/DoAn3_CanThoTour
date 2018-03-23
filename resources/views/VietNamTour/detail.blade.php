@@ -526,7 +526,7 @@
 					<div class="hotel-detail-right">
 						<div class="title">
 							<p><a>Cần Thơ</a> >> <a>Quận Ninh Kiều</a></p>
-							<h4>
+							<h4 style="font-size: 20px;">
 								@if($detailServices->sv_types == 2)
 									{{$detailServices->hotel_name}}
 								@elseif($detailServices->sv_types == 1)
@@ -764,71 +764,26 @@
 							<h5 class="text-center">Nhà hàng/cafe lân cận</h5>
 						</div>
 						<div class="body-right-content">
-							<div class="item-cafe">
-								<ul>
-									<li>
-										<a href="">
-											<img src="images/hotel/3.jpg" alt="">
-											<div class="text-item-cafe">
-												<h6>Nhà Hàng Thủy Sảnadadd adada dadfafdgaddfadssadahdafgdfahdfasd</h6>
-												<p>31 Lê lợi...csccscsdc</p>
-											</div>
-										</a>
-									</li>
-								</ul>
-							</div>
-							<div class="item-cafe">
-								<ul>
-									<li>
-										<a href="">
-											<img src="images/hotel/1.jpg" alt="">
-											<div class="text-item-cafe">
-												<h6>Nhà Hàng Thủy Sản</h6>
-												<p>31 Lê lợi...cscsdcdcdcsdc</p>
-											</div>
-										</a>
-									</li>
-								</ul>
-							</div>
-							<div class="item-cafe">
-								<ul>
-									<li>
-										<a href="">
-											<img src="images/hotel/2.jpg" alt="">
-											<div class="text-item-cafe">
-												<h6>Nhà Hàng Thủy Sản</h6>
-												<p>31 Lê lợi...fsf sf dsf sfs fs dfsd fs fsd fsd fdsf f sdf da dad ad adda ssad asd adaad ad adas  dad ad ada da da da da d da da da da da da da da da dsa d d</p>
-											</div>
-										</a>
-									</li>
-								</ul>
-							</div>
-							<div class="item-cafe">
-								<ul>
-									<li>
-										<a href="">
-											<img src="images/hotel/3.jpg" alt="">
-											<div class="text-item-cafe">
-												<h6>Nhà Hàng Thủy Sảnadadd adada dadfafdgaddfadssadahdafgdfahdfasd</h6>
-												<p>31 Lê lợi...csccscsdc</p>
-											</div>
-										</a>
-									</li>
-								</ul>
-							</div>
-							<div class="item-cafe">
-								<ul>
-									<li>
-										<a href="">
-											<img src="images/hotel/1.jpg" alt="">
-											<div class="text-item-cafe">
-												<h6>Nhà Hàng Thủy Sản</h6>
-												<p>31 Lê lợi...cscsdcdcdcsdc</p>
-											</div>
-										</a>
-									</li>
-								</ul>
-							</div>
+							{{-- {{$dem = 0}} --}}
+							{{-- @foreach($services as $se) --}}
+								<div class="item-cafe">
+									<ul>
+										<li>
+											<a href="">
+												<img src="resourceVNT/images/hotel/3.jpg" alt="">
+												<div class="text-item-cafe">
+													<h6>Nhà hàng</h6>
+													<p>31 Lê lợi...csccscsdc</p>
+												</div>
+											</a>
+										</li>
+									</ul>
+								</div>
+								{{-- {{$dem++}}
+								@if($dem > 4)
+									break
+								@endif --}}
+							{{-- @endforeach --}}
 						</div>
 					</div>	
 					<div class="right-content">

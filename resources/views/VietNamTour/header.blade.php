@@ -137,17 +137,17 @@
 			<ul>
 				<li class="active-img">
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('resourceVNT/images/background/3.jpg');"></div>
+						<div class="img-content" style="background-image: url('resourceVNT/images/background/5.jpg');"></div>
 					</div>
 				</li>
 				<li>
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('resourceVNT/images/background/2.jpg');"></div>
+						<div class="img-content" style="background-image: url('resourceVNT/images/background/6.jpg');"></div>
 					</div>
 				</li>
 				<li >
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('resourceVNT/images/background/1.jpg');"></div>
+						<div class="img-content" style="background-image: url('resourceVNT/images/background/7.jpg');"></div>
 					</div>
 				</li>
 			</ul>
