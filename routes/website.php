@@ -20,7 +20,7 @@ Route::get('login/facebook/callback', 'loginController@handleProviderCallback');
 Route::get('user','pageController@getuser');
 
 // load detail
-Route::get('detail/id={id}','pageController@getdetail');
+Route::get('detail/id={id}','pageController@getdetail')->name("detail");
 Route::get('detail/s','pageController@getServiceTypeVicinity');
 
 // load addplace
@@ -31,7 +31,11 @@ Route::get('addservice','pageController@getaddservice');
 
 Route::get('city/id={id}','pageController@countplacecity');
 
-Route::get('lam/l={l},{g}&type={type},radius={radius}','SearchController@searchServicesVicinityWEB')
+Route::get('lam/type={type}','pageController@findservicetocity');
+
+Route::get('d/f={f},g={g}','pageController@getservicestake');
+
+Route::get('lamdv/type={type}','pageController@getlam');
 
 
 ?>

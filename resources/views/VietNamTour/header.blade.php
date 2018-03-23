@@ -8,12 +8,12 @@
 	<script type="text/javascript" src="resourceVNT/js/bootstrap.js"></script>
 	<script src="resourceVNT/js/fontawesome-all.min.js" type="text/javascript"></script>
 
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9B_e_WdKwqzNgABxkeVt2iT0XVmaK_wQ&callback=canvasMap"></script>
+	{{-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9B_e_WdKwqzNgABxkeVt2iT0XVmaK_wQ&callback=canvasMap"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css" /> --}}
     
-	<script>
+	{{-- <script>
 		function myMap() {
 		var mapProp= {
 		    center:new google.maps.LatLng(10.0566098,105.7717238),
@@ -86,7 +86,7 @@
 					  alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() ); 
 					});
         });
-    </script>
+    </script> --}}
    
 	<link rel="stylesheet" href="resourceVNT/css/bootstrap.css">
 	<link rel="stylesheet" href="resourceVNT/css/owl.carousel.min.css">
