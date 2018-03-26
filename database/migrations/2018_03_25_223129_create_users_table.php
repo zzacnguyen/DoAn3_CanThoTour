@@ -13,17 +13,13 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('vnt_users', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('vnt_user', function (Blueprint $table) {
+            $table->increments('user_id');
             $table->string('username', 30);
             $table->string('password',255);
-            $table->string('user_facebook_id', 30);
-            $table->string('user_email_id', 45);
-            $table->string('user_avatar', 50);
-            $table->string('user_country',30);
-            $table->string('user_language',30);
-            $table->string('user_status',10);
+            $table->string('social_login_id', 30);
             $table->timestamps();
+            $table->rememberToken();
         });
     }
 
@@ -34,6 +30,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vnt_users');
+        Schema::dropIfExists('vnt_user');
     }
 }

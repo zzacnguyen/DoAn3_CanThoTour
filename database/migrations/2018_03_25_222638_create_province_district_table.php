@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVntSightseeingTable extends Migration
+class CreateProvinceDistrictTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateVntSightseeingTable extends Migration
      */
     public function up()
     {
-        Schema::create('vnt_sightseeing', function (Blueprint $table) {
+        Schema::create('vnt_district', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('sightseeing_name',50);
-            $table->string('sightseeing_status',10);
-            $table->integer('service_id')->unsigned();
-            $table->foreign('service_id')->references('id')->on('vnt_services');
+            $table->string('district_name', 50);
+            $table->integer('province_city_id')->unsigned();
+            $table->foreign('province_city_id')->references('id')->on('vnt_province_city');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateVntSightseeingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vnt_sightseeing');
+        Schema::dropIfExists('district');
     }
 }

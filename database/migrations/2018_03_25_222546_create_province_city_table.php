@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserPersionalTable extends Migration
+class CreateProvinceCityTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateUserPersionalTable extends Migration
      */
     public function up()
     {
-        Schema::create('vnt_persional_users', function (Blueprint $table) {
+        Schema::create('vnt_province_city', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('pu_name', 30);
-            $table->string('ep_status', 10);
-
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('vnt_users');
+            $table->string('province_city_name', 50);
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ class CreateUserPersionalTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vnt_persional_users');
+        Schema::dropIfExists('province_city');
     }
 }

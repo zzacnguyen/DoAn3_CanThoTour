@@ -115,3 +115,10 @@ Route::get('google-maps','testGoogleMapsApi@FunctionName');
 
 
 // 
+
+
+
+Route::group('prefix', 'admin')
+{
+	Route::group('prefix', 'trangchu')
+}
