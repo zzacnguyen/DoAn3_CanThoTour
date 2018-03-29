@@ -29,6 +29,6 @@ class CreateProvinceDistrictTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('district');
+        Schema::dropIfExists('vnt_district');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProvinceCityTable extends Migration
+class CreateUserSearchTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateProvinceCityTable extends Migration
      */
     public function up()
     {
-        Schema::create('vnt_province_city', function (Blueprint $table) {
+        Schema::create('vnt_user_search', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('province_city_name', 50);
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('user_id')->on('vnt_user');
+            $table->integer('id_service')->unsigned();
+            $table->foreign('id_service')->references('id')->on('vnt_services');
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ class CreateProvinceCityTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vnt_province_city');
+        Schema::dropIfExists('vnt_user_search');
     }
 }

@@ -113,12 +113,3 @@ Route::get('rating-service/{id}','Rating_Service_Controller@rating');
 Route::get('danhgia-dichvu/{id}','danhgia_dichvu_controller@danhgia');
 Route::get('google-maps','testGoogleMapsApi@FunctionName');
 
-
-// 
-
-
-
-Route::group('prefix', 'admin')
-{
-	Route::group('prefix', 'trangchu')
-}
