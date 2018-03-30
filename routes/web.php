@@ -118,7 +118,7 @@ Route::get('google-maps','testGoogleMapsApi@FunctionName');
 
 
 
-Route::group('prefix', 'admin')
-{
-	Route::group('prefix', 'trangchu')
-}
+// Route::group('prefix', 'admin')
+// {
+// 	Route::group('prefix', 'trangchu');
+// };
