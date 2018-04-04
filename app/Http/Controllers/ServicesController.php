@@ -112,11 +112,11 @@ class ServicesController extends Controller
         }
         else if($id_type == 4)
         {
-            $vnt_sightseeing = new sightseeingModel;
-            $vnt_sightseeing->sightseeing_name =  $request->input('sightseeing_name');
-            $vnt_sightseeing->sightseeing_status	 =  "Active";
-            $vnt_sightseeing->service_id =  $id_service;
-            if($vnt_sightseeing->save()){
+            $vnt_user_sightseeing = new sightseeingModel;
+            $vnt_user_sightseeing->sightseeing_name =  $request->input('sightseeing_name');
+            $vnt_user_sightseeing->sightseeing_status	 =  "Active";
+            $vnt_user_sightseeing->service_id =  $id_service;
+            if($vnt_user_sightseeing->save()){
                     return json_encode("id_service:".$id_service);
             }
             else
@@ -157,8 +157,8 @@ class ServicesController extends Controller
         ->leftJoin('vnt_events', 'vnt_events.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_hotels', 'vnt_hotels.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_eating', 'vnt_eating.service_id', '=', 'vnt_services.id')
-        ->leftJoin('vnt_entertainments', 'vnt_entertainments.service_id', '=', 'vnt_services.id')
-        ->leftJoin('vnt_sightseeing', 'vnt_sightseeing.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_entertaiments', 'vnt_entertaiments.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_user_sightseeing', 'vnt_user_sightseeing.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_transport', 'vnt_transport.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_tourist_places', 'vnt_tourist_places.id', '=', 'vnt_services.tourist_places_id')
         ->leftjoin('vnt_visitor_ratings', 'vnt_visitor_ratings.service_id','=', 'vnt_services.id')
