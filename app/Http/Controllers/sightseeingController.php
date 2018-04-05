@@ -15,9 +15,9 @@ class sightseeingController extends Controller
     {
         $url  = 'http://localhost/DoAn3_CanThoTour/public/thumbnails/';
         
-        $sightseeing = DB::table('vnt_sightseeing')
-        ->select('vnt_sightseeing.service_id AS id','sightseeing_name', 'vnt_images.id AS image_id','vnt_images.image_details_1')
-        ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_sightseeing.service_id')
+        $sightseeing = DB::table('vnt_user_sightseeing')
+        ->select('vnt_user_sightseeing.service_id AS id','sightseeing_name', 'vnt_images.id AS image_id','vnt_images.image_details_1')
+        ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_user_sightseeing.service_id')
         ->paginate(10);
         $encode=json_encode($sightseeing);
         return $encode;
@@ -52,14 +52,14 @@ class sightseeingController extends Controller
      */
     public function show($id)
     {
-        $sightseeing = DB::table('vnt_sightseeing')
-        ->select('vnt_sightseeing.service_id AS id','sightseeing_name', 'vnt_tourist_places.pl_address','vnt_tourist_places.pl_phone_number',
+        $sightseeing = DB::table('vnt_user_sightseeing')
+        ->select('vnt_user_sightseeing.service_id AS id','sightseeing_name', 'vnt_tourist_places.pl_address','vnt_tourist_places.pl_phone_number',
             'vnt_services.sv_lowest_price', 'vnt_services.sv_highest_price', 'vnt_services.sv_open','vnt_services.sv_close',
-            'vnt_services.sv_description','vnt_sightseeing.service_id')
-        ->join('vnt_services', 'vnt_services.id', '=', 'vnt_sightseeing.service_id')
+            'vnt_services.sv_description','vnt_user_sightseeing.service_id')
+        ->join('vnt_services', 'vnt_services.id', '=', 'vnt_user_sightseeing.service_id')
         ->join('vnt_tourist_places', 'vnt_services.tourist_places_id', '=', 'vnt_tourist_places.id')
         
-        ->where('vnt_sightseeing.service_id', $id)
+        ->where('vnt_user_sightseeing.service_id', $id)
         ->get();
         $encode=json_encode($sightseeing);
         return $encode;

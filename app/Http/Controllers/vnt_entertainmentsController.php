@@ -13,9 +13,9 @@ class vnt_entertainmentsController extends Controller
      */
     public function index()
     {
-        $entertainments = DB::table('vnt_entertainments')
-        ->select('vnt_entertainments.service_id AS id','entertainments_name','vnt_images.id AS image_id','vnt_images.image_details_1')
-        ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_entertainments.service_id')
+        $entertainments = DB::table('vnt_entertaiments')
+        ->select('vnt_entertaiments.service_id AS id','entertainments_name','vnt_images.id AS image_id','vnt_images.image_details_1')
+        ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_entertaiments.service_id')
         ->paginate(10);
         $encode=json_encode($entertainments);
         return $encode;
