@@ -14,15 +14,17 @@ class pageController extends Controller
 {
     public function getindex()
     {   
-        $placecount       = $this::countplaceAllcity();
+     //    $placecount       = $this::countplaceAllcity();
 
-        $services_eat     = $this::getservicestake(1,8);
-        $services_hotel   = $this::getservicestake(2,6);
-        $services_tran    = $this::getservicestake(3,8);
-        $services_see     = $this::getservicestake(4,8);
-        $services_enter   = $this::getservicestake(5,8);
-        // dd($services_hotel);
-    	return view('VietNamTour.index',compact('placecount','services_hotel','services_eat','services_enter'));
+     //    $services_eat     = $this::getservicestake(1,8);
+     //    $services_hotel   = $this::getservicestake(2,6);
+     //    $services_tran    = $this::getservicestake(3,8);
+     //    $services_see     = $this::getservicestake(4,8);
+     //    $services_enter   = $this::getservicestake(5,8);
+     //    // dd($services_hotel);
+    	// return view('VietNamTour.index',compact('placecount','services_hotel','services_eat','services_enter'));
+
+        return view('VietNamTour.layout');
     }
 
     public function getlogin()
@@ -177,7 +179,7 @@ class pageController extends Controller
                                     ->leftJoin('vnt_hotels', 'vnt_services.id', '=', 'vnt_hotels.service_id')
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->select('vnt_services.id','sv_types','hotel_name','hotel_number_star','vnt_images.id as id_image','vnt_images.image_details_1','sv_highest_price','sv_lowest_price')
-                                    ->where('hotel_status','Active')
+                                    ->where('sv_status',"Active")
                                     ->where('sv_types',$sv_types)->take($take)->get();
                                     $name = 'hotel_name';
 
@@ -189,7 +191,7 @@ class pageController extends Controller
                                     ->join('vnt_eating', 'vnt_services.id', '=', 'vnt_eating.service_id')
                                     ->join('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->select('vnt_services.id','sv_types','eat_name','vnt_images.id as id_image','vnt_images.image_details_1','sv_highest_price','sv_lowest_price')
-                                    ->where('eat_status','Active')
+                                    ->where('sv_status',"Active")
                                     ->where('sv_types',$sv_types)->take($take)->get();
                                     $name = 'eat_name';
                 break;  
@@ -198,21 +200,21 @@ class pageController extends Controller
                                     ->join('vnt_transport','vnt_services.id','=','vnt_transport.service_id')
                                     ->join('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->select('vnt_services.id','vnt_transport.transport_name','vnt_images.id as id_image','vnt_images.image_details_1','sv_highest_price','sv_lowest_price')
-                                    ->where('transport_status','Active')
-                                    ->where('sv_types',$sv_types)->take($take)->get();
+                                    ->where('transport_status',"Active")
+                                    ->where('sv_status',$sv_types)->take($take)->get();
                                     $name = 'transport_name';
 
                 break;
-            case 4:
-                $result = DB::table('vnt_services')
-                                    ->join('vnt_sightseeing','vnt_services.id','=','vnt_sightseeing.service_id')
-                                    ->join('vnt_images','vnt_services.id','=','vnt_images.service_id')
-                                    ->select('vnt_services.id','sightseeing_name','vnt_images.id as id_image','vnt_images.image_details_1','sv_highest_price','sv_lowest_price')
-                                    ->where('sightseeing_status','Active')
-                                    ->where('sv_types',$sv_types)->take($take)->get();
-                                    $name = 'sightseeing_name';
+            // case 4:
+            //     $result = DB::table('vnt_services')
+            //                         ->join('vnt_sightseeing','vnt_services.id','=','vnt_sightseeing.service_id')
+            //                         ->join('vnt_images','vnt_services.id','=','vnt_images.service_id')
+            //                         ->select('vnt_services.id','sightseeing_name','vnt_images.id as id_image','vnt_images.image_details_1','sv_highest_price','sv_lowest_price')
+            //                         ->where('sv_status','Active')
+            //                         ->where('sv_types',$sv_types)->take($take)->get();
+            //                         $name = 'sightseeing_name';
 
-                break;
+            //     break;
             case 5:
                 $result = DB::table('vnt_services')
                                     ->join('vnt_entertaiments','vnt_services.id','=','vnt_entertaiments.service_id')

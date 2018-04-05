@@ -137,17 +137,17 @@
 			<ul>
 				<li class="active-img">
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('resourceVNT/images/background/5.jpg');"></div>
+						<div class="img-content" style="background-image: url('../VietNamTour/images/background/3.jpg');"></div>
 					</div>
 				</li>
 				<li>
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('resourceVNT/images/background/6.jpg');"></div>
+						<div class="img-content" style="background-image: url('../VietNamTour/images/background/2.jpg');"></div>
 					</div>
 				</li>
 				<li >
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('resourceVNT/images/background/7.jpg');"></div>
+						<div class="img-content" style="background-image: url('../VietNamTour/images/background/1.jpg');"></div>
 					</div>
 				</li>
 			</ul>
@@ -330,7 +330,7 @@
 							<div class="form-inline my-2 my-lg-0" id="dangnhap-dangky">
 								<ul class="navbar-nav mr-auto">
 									<li class="nav-item" style="position: relative;">
-										<a href="{{ route('loginW') }}" class="nav-link btn-login" id="btn-dangnhap">Đăng nhập</a>
+										<a href="login.html" class="nav-link btn-login" id="btn-dangnhap">Đăng nhập</a>
 										<!-- hien thi khi dang nhap thanh cong -->
 										<a class="nav-link btn-login hidden" style="padding: 0; border: none !important;" id="id-user-form">
 											<img src="images/avatar1.jpg" alt="" style="height: 33px; width: 33px;">
@@ -340,12 +340,12 @@
 											<ul>
 												<li><a href=""><i class="fas fa-info-circle"></i> Thông tin tài khoản</a></li>
 												<li><a href=""><i class="fas fa-book"></i> Góp ý</a></li>
-												<li><a href="{{ route('/') }}"><i class="fas fa-power-off"></i> Đăng xuất</a></li>
+												<li><a href=""><i class="fas fa-power-off"></i> Đăng xuất</a></li>
 											</ul>
 										</div> <!-- end hien thi khi dang nhap thanh cong -->
 									</li>
 
-									<li class="nav-item"><a href="{{  route('registerW') }}" class="nav-link btn-login" id="btn-dangky">Đăng ký</a></li>
+									<li class="nav-item"><a href="register.html" class="nav-link btn-login" id="btn-dangky">Đăng ký</a></li>
 								</ul>
 							</div>
 						</div>

@@ -510,7 +510,7 @@ p.text-nofi{
 .fixed-top-style-menu{
 	height: 50px !important;
     box-shadow: 1px 2px 5px #353434ab;
-    background-color: #000000 !important;
+    background-color: white !important;
 }
 
 .fixed-top-style-menu #id-con .right-menu-lam ul li a{

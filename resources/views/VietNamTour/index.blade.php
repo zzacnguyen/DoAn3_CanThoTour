@@ -1,4 +1,4 @@
-@extends('VietNamTour.header')
+@extends('VietNamTour.layout')
 	
 @section('content')
 	<!-- ==================TINH TP============= -->
