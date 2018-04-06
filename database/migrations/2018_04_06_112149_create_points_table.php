@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserSightseeingTable extends Migration
+class CreatePointsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateUserSightseeingTable extends Migration
      */
     public function up()
     {
-        Schema::create('vnt_sightseeing', function (Blueprint $table) {
+        Schema::create('vnt_points', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('sightseeing_name',50);
-            $table->string('sightseeing_status',10);
-            $table->integer('service_id')->unsigned();
-            $table->foreign('service_id')->references('id')->on('vnt_services');
+            $table->string('point_title', 50);
+            $table->text('point_description');
+            $table->integer('point_rate');
+            $table->date('point_date');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateUserSightseeingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vnt_sightseeing');
+        Schema::dropIfExists('vnt_points');
     }
 }

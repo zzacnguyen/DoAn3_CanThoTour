@@ -13,7 +13,7 @@ class CreateEntertaimentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('vnt_entertaiments', function (Blueprint $table) {
+        Schema::create('vnt_entertainments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('entertainments_name', 50);
             $table->string('entertainments_status', 10);
