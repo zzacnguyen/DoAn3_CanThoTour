@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
@@ -64,7 +64,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (475, '2018_03_29_185639_create_transport_table', 3),
 (476, '2018_03_29_185702_create_eating_table', 3),
 (477, '2018_03_29_185726_create_hotels_table', 3),
-(478, '2018_03_29_185905_create_entertaiments_table', 3),
+(478, '2018_03_29_185905_create_entertainments_table', 3),
 (479, '2018_03_29_190009_create_user_search_table', 3),
 (480, '2018_03_29_190209_create_user_sightseeing_table', 3),
 (481, '2018_04_04_120744_create_visitor_rating_table', 4),
@@ -898,10 +898,10 @@ CREATE TABLE `vnt_enterprise_user` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `vnt_entertaiments`
+-- Cấu trúc bảng cho bảng `vnt_entertainments`
 --
 
-CREATE TABLE `vnt_entertaiments` (
+CREATE TABLE `vnt_entertainments` (
   `id` int(10) UNSIGNED NOT NULL,
   `entertainments_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `entertainments_status` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Active',
@@ -911,10 +911,10 @@ CREATE TABLE `vnt_entertaiments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `vnt_entertaiments`
+-- Đang đổ dữ liệu cho bảng `vnt_entertainments`
 --
 
-INSERT INTO `vnt_entertaiments` (`id`, `entertainments_name`, `entertainments_status`, `service_id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `vnt_entertainments` (`id`, `entertainments_name`, `entertainments_status`, `service_id`, `created_at`, `updated_at`) VALUES
 (1, 'Làng chài Cổ Hàm Dinh', 'Active', 95, '2018-04-04 15:44:53', '2018-04-04 15:44:53'),
 (2, 'Bãi Khem', 'Active', 96, '2018-04-04 15:44:53', '2018-04-04 15:44:53'),
 (3, 'Núi Đá Dựng', 'Active', 97, '2018-04-04 15:44:53', '2018-04-04 15:44:53'),
@@ -13457,11 +13457,11 @@ ALTER TABLE `vnt_enterprise_user`
   ADD KEY `vnt_enterprise_user_user_id_foreign` (`user_id`);
 
 --
--- Chỉ mục cho bảng `vnt_entertaiments`
+-- Chỉ mục cho bảng `vnt_entertainments`
 --
-ALTER TABLE `vnt_entertaiments`
+ALTER TABLE `vnt_entertainments`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `vnt_entertaiments_service_id_foreign` (`service_id`);
+  ADD KEY `vnt_entertainments_service_id_foreign` (`service_id`);
 
 --
 -- Chỉ mục cho bảng `vnt_events`
@@ -13640,9 +13640,9 @@ ALTER TABLE `vnt_eating`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT cho bảng `vnt_entertaiments`
+-- AUTO_INCREMENT cho bảng `vnt_entertainments`
 --
-ALTER TABLE `vnt_entertaiments`
+ALTER TABLE `vnt_entertainments`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
@@ -13798,10 +13798,10 @@ ALTER TABLE `vnt_enterprise_user`
   ADD CONSTRAINT `vnt_enterprise_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `vnt_user` (`user_id`);
 
 --
--- Các ràng buộc cho bảng `vnt_entertaiments`
+-- Các ràng buộc cho bảng `vnt_entertainments`
 --
-ALTER TABLE `vnt_entertaiments`
-  ADD CONSTRAINT `vnt_entertaiments_service_id_foreign` FOREIGN KEY (`service_id`) REFERENCES `vnt_services` (`id`);
+ALTER TABLE `vnt_entertainments`
+  ADD CONSTRAINT `vnt_entertainments_service_id_foreign` FOREIGN KEY (`service_id`) REFERENCES `vnt_services` (`id`);
 
 --
 -- Các ràng buộc cho bảng `vnt_events`
