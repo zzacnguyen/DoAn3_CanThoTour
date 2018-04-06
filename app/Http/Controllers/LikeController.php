@@ -20,7 +20,7 @@ class LikeController extends Controller
         ->leftJoin('vnt_hotels', 'vnt_hotels.service_id', '=', 'vnt_likes.service_id')
         ->leftJoin('vnt_eating', 'vnt_eating.service_id', '=', 'vnt_likes.service_id')
         ->leftJoin('vnt_entertainments', 'vnt_entertainments.service_id', '=', 'vnt_likes.service_id')
-        ->leftJoin('vnt_user_sightseeing', 'vnt_user_sightseeing.service_id', '=', 'vnt_likes.service_id')
+        ->leftJoin('vnt_sightseeing', 'vnt_sightseeing.service_id', '=', 'vnt_likes.service_id')
         ->leftJoin('vnt_transport', 'vnt_transport.service_id', '=', 'vnt_likes.service_id')
         ->join('vnt_services', 'vnt_services.id', '=', 'vnt_likes.service_id')
         ->paginate (10);
@@ -67,7 +67,7 @@ class LikeController extends Controller
         ->leftJoin('vnt_hotels', 'vnt_hotels.service_id', '=', 'vnt_likes.service_id')
         ->leftJoin('vnt_eating', 'vnt_eating.service_id', '=', 'vnt_likes.service_id')
         ->leftJoin('vnt_entertainments', 'vnt_entertainments.service_id', '=', 'vnt_likes.service_id')
-        ->leftJoin('vnt_user_sightseeing', 'vnt_user_sightseeing.service_id', '=', 'vnt_likes.service_id')
+        ->leftJoin('vnt_sightseeing', 'vnt_sightseeing.service_id', '=', 'vnt_likes.service_id')
         ->leftJoin('vnt_transport', 'vnt_transport.service_id', '=', 'vnt_likes.service_id')
         ->join('vnt_services', 'vnt_services.id', '=', 'vnt_likes.service_id')
         ->where('vnt_likes.user_id',$id)

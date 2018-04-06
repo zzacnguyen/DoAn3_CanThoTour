@@ -15,9 +15,9 @@ class sightseeingController extends Controller
     {
         $url  = 'http://localhost/DoAn3_CanThoTour/public/thumbnails/';
         
-        $sightseeing = DB::table('vnt_user_sightseeing')
-        ->select('vnt_user_sightseeing.service_id AS id','sightseeing_name', 'vnt_images.id AS image_id','vnt_images.image_details_1')
-        ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_user_sightseeing.service_id')
+        $sightseeing = DB::table('vnt_sightseeing')
+        ->select('vnt_sightseeing.service_id AS id','sightseeing_name', 'vnt_images.id AS image_id','vnt_images.image_details_1')
+        ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_sightseeing.service_id')
         ->paginate(10);
         $encode=json_encode($sightseeing);
         return $encode;

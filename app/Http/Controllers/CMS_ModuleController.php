@@ -8,6 +8,9 @@ class CMS_ModuleController extends Controller
 {
     public function getDashboard()
     {
+    	
+
+    	
     	return view('CMS.module.index');
     }
 }
