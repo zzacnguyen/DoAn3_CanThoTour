@@ -4,16 +4,16 @@
 	<meta charset="UTF-8">
 	<title>VietNamTravel</title>
 
-	<script type="text/javascript" src="resourceVNT/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="resourceVNT/js/bootstrap.js"></script>
-	<script src="resourceVNT/js/fontawesome-all.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="resource/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="resource/js/bootstrap.js"></script>
+	<script src="resource/js/fontawesome-all.min.js" type="text/javascript"></script>
 
-	<link rel="stylesheet" href="resourceVNT/css/bootstrap.css">
-	<link rel="stylesheet" href="resourceVNT/css/owl.carousel.min.css">
-	<link rel="stylesheet" href="resourceVNT/css/owl.theme.default.min.css">
-	<link rel="stylesheet" href="resourceVNT/css/place.css">
-	<link rel="stylesheet" href="resourceVNT/css/style.index.css">
-	<link rel="stylesheet" href="resourceVNT/css/menu-style.css">
+	<link rel="stylesheet" href="resource/css/bootstrap.css">
+	<link rel="stylesheet" href="resource/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="resource/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="resource/css/place.css">
+	<link rel="stylesheet" href="resource/css/style.index.css">
+	<link rel="stylesheet" href="resource/css/menu-style.css">
 </head>
 <body>
 	
@@ -1515,7 +1515,7 @@
 
 
 	<!-- script -->
-	<script type="text/javascript" src="resourceVNT/js/owl.carousel.js"></script>
+	<script type="text/javascript" src="resource/js/owl.carousel.js"></script>
 	<script type="text/javascript">
 		$('.owl-carousel').owlCarousel({
 		    loop:true,
@@ -1534,7 +1534,7 @@
 		    }
 		})
 	</script>
-	<script src="resourceVNT/js/menu-style.js"></script>
+	<script src="resource/js/menu-style.js"></script>
 	<!-- end script -->
 </body>
 </html>

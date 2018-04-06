@@ -149,15 +149,13 @@ class ServicesController extends Controller
     public function show($id)
     {
         $service = DB::table('vnt_services')
-        ->select('vnt_services.id','hotel_name','sightseeing_name','entertainments_name', 'transport_name', 
-                 'eat_name','sv_description', 'sv_open','sv_close','sv_lowest_price','sv_highest_price', 'pl_phone_number',
-                 'pl_address', DB::raw('AVG(vnt_visitor_ratings.vr_rating) as rating'),
-                 'pl_latitude', 'pl_longitude','pl_name'
-                 )
+        ->select('vnt_services.id', 'hotel_name', 'sightseeing_name', 'entertainments_name', 'transport_name', 'eat_name', 
+            'sv_website', 'sv_description', 'sv_open', 'sv_close', 'sv_lowest_price', 'sv_highest_price', 'pl_phone_number', 
+            'pl_address', DB::raw('AVG(vnt_visitor_ratings.vr_rating) as rating'), 'pl_latitude', 'pl_longitude','pl_name')
         ->leftJoin('vnt_events', 'vnt_events.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_hotels', 'vnt_hotels.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_eating', 'vnt_eating.service_id', '=', 'vnt_services.id')
-        ->leftJoin('vnt_entertaiments', 'vnt_entertaiments.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_entertainments', 'vnt_entertainments.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_user_sightseeing', 'vnt_user_sightseeing.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_transport', 'vnt_transport.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_tourist_places', 'vnt_tourist_places.id', '=', 'vnt_services.tourist_places_id')
@@ -165,7 +163,7 @@ class ServicesController extends Controller
         
         ->where('vnt_services.id', $id)
         ->groupBy('vnt_services.id','hotel_name','entertainments_name','transport_name', 'sightseeing_name', 
-                 'eat_name','sv_description', 'sv_open','sv_close','sv_lowest_price','sv_highest_price', 'vnt_tourist_places.pl_phone_number',
+                 'eat_name', 'sv_website', 'sv_description', 'sv_open','sv_close','sv_lowest_price','sv_highest_price', 'vnt_tourist_places.pl_phone_number',
                  'vnt_tourist_places.pl_address', 'vnt_tourist_places.pl_latitude', 'vnt_tourist_places.pl_longitude','pl_name')
         
         ->get();

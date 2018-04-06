@@ -3,20 +3,20 @@
 <head>
 	<meta charset="UTF-8">
 	<title>VietNamTravel</title>
-
-	<script type="text/javascript" src="resourceVNT/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="resourceVNT/js/bootstrap.js"></script>
-	<script src="resourceVNT/js/fontawesome-all.min.js" type="text/javascript"></script>
+	<base href="{{asset('')}}">
+	<script type="text/javascript" src="resource/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="resource/js/bootstrap.js"></script>
+	<script src="resource/js/fontawesome-all.min.js" type="text/javascript"></script>
 
 	{{-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9B_e_WdKwqzNgABxkeVt2iT0XVmaK_wQ&callback=canvasMap"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css" /> --}}
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/resource.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/resource.8.9/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/resource.8.9/themes/blitzer/jquery-ui.css" /> --}}
     
 	{{-- <script>
 		function myMap() {
 		var mapProp= {
-		    center:new google.maps.LatLng(10.0566098,105.7717238),
+		    center:new google.maps.LatLng(resource0.0566098,resource05.77resource7238),
 		    zoom:5,
 		};
 		var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
@@ -38,7 +38,7 @@
                     location.lattitude = results[0].geometry.location.lat();
                     location.longitude = results[0].geometry.location.lng();
                     location.address = results[0].formatted_address;
-                    var mapOptions = { center: new google.maps.LatLng(location.lattitude, location.longitude), zoom: 15, mapTypeId: google.maps.MapTypeId.ROADMAP };
+                    var mapOptions = { center: new google.maps.LatLng(location.lattitude, location.longitude), zoom: resource5, mapTypeId: google.maps.MapTypeId.ROADMAP };
                     var infoWindow = new google.maps.InfoWindow();
                     var latlngbounds = new google.maps.LatLngBounds();
                     var map = new google.maps.Map(mapId, mapOptions);
@@ -53,7 +53,7 @@
         };
  		
         function InitializeMap(maPId) {
-            var mapOptions = { center: new google.maps.LatLng(10.0566098, 105.7717238), zoom: 15, mapTypeId: google.maps.MapTypeId.ROADMAP }
+            var mapOptions = { center: new google.maps.LatLng(resource0.0566098, resource05.77resource7238), zoom: resource5, mapTypeId: google.maps.MapTypeId.ROADMAP }
             var map = new google.maps.Map(maPId, mapOptions);
         }
 
@@ -88,14 +88,14 @@
         });
     </script> --}}
    
-	<link rel="stylesheet" href="resourceVNT/css/bootstrap.css">
-	<link rel="stylesheet" href="resourceVNT/css/owl.carousel.min.css">
-	<link rel="stylesheet" href="resourceVNT/css/owl.theme.default.min.css">
-	<link rel="stylesheet" href="resourceVNT/css/place.css">
-	<link rel="stylesheet" href="resourceVNT/css/style.index.css">
-	<link rel="stylesheet" href="resourceVNT/css/menu-style.css">
-	{{-- <link rel="stylesheet" href="resourceVNT/css/addplace.css"> --}}
-	{{-- <link rel="stylesheet" href="resourceVNT/css/addservices.css"> --}}
+	<link rel="stylesheet" href="resource/css/bootstrap.css">
+	<link rel="stylesheet" href="resource/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="resource/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="resource/css/place.css">
+	<link rel="stylesheet" href="resource/css/style_index.css">
+	<link rel="stylesheet" href="resource/css/menu-style.css">
+	{{-- <link rel="stylesheet" href="resource/css/addplace.css"> --}}
+	{{-- <link rel="stylesheet" href="resource/css/addservices.css"> --}}
 </head>
 <body>
 	
@@ -137,17 +137,17 @@
 			<ul>
 				<li class="active-img">
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('../VietNamTour/images/background/3.jpg');"></div>
+						<div class="img-content" style="background-image: url('resource/images/background/5.jpg');"></div>
 					</div>
 				</li>
 				<li>
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('../VietNamTour/images/background/2.jpg');"></div>
+						<div class="img-content" style="background-image: url('resource/images/background/6.jpg');"></div>
 					</div>
 				</li>
 				<li >
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('../VietNamTour/images/background/1.jpg');"></div>
+						<div class="img-content" style="background-image: url('resource/images/background/7.jpg');"></div>
 					</div>
 				</li>
 			</ul>
@@ -178,24 +178,14 @@
 						  				</div>
 
 						  				<ul>
-						  					<li class="selectItem" data-name="Cần Thơ">
+						  					@foreach($placecount as $p )
+						  					<li class="selectItem" data-name="{{$p['city_name']}}">
 						  						<a href="https://www.google.com.vn" class="selectItem-name">
-						  							<label>Cần Thơ</label>
-						  							<span class="float-right">12.000</span>
+						  							<label>{{$p['city_name']}}</label>
+						  							<span class="float-right">{{$p['amount_place']}}</span>
 						  						</a>
 						  					</li>
-						  					<li class="selectItem" data-name="HCM">
-						  						<a href="https://www.google.com.vn" class="selectItem-name">
-						  							<label>HCM</label>
-						  							<span class="float-right">12.000</span>
-						  						</a>
-						  					</li>
-						  					<li class="selectItem" data-name="Hà Nội">
-						  						<a href="https://www.google.com.vn" class="selectItem-name">
-						  							<label>Hà Nội</label>
-						  							<span class="float-right">12.000</span>
-						  						</a>
-						  					</li>
+						  					@endforeach
 						  				</ul>
 									</div>
 								</li> <!-- end btn-select -->
@@ -210,31 +200,31 @@
 						  					<li class="selectItem2" data-name="Cân Thơ">
 						  						<a href="" class="selectItem-name2">
 						  							<label>Tham quan</label>
-						  							<span class="float-right">1234</span>
+						  							<span class="float-right">resource234</span>
 						  						</a>
 						  					</li>
 						  					<li class="selectItem2" data-name="HCM">
 						  						<a href="" class="selectItem-name2">
 						  							<label>Ăn uống</label>
-						  							<span class="float-right">12.000</span>
+						  							<span class="float-right">resource2.000</span>
 						  						</a>
 						  					</li>
 						  					<li class="selectItem2" data-name="Hà Nội">
 						  						<a href="" class="selectItem-name2">
 						  							<label>Khách sạn</label>
-						  							<span class="float-right">12.000</span>
+						  							<span class="float-right">resource2.000</span>
 						  						</a>
 						  					</li>
 						  					<li class="selectItem2" data-name="Hà Nội">
 						  						<a href="" class="selectItem-name2">
 						  							<label>Vui chơi</label>
-						  							<span class="float-right">12.000</span>
+						  							<span class="float-right">resource2.000</span>
 						  						</a>
 						  					</li>
 						  					<li class="selectItem2" data-name="Hà Nội">
 						  						<a href="" class="selectItem-name2">
 						  							<label>Phương tiện</label>
-						  							<span class="float-right">12.000</span>
+						  							<span class="float-right">resource2.000</span>
 						  						</a>
 						  					</li>
 						  				</ul>
@@ -254,33 +244,33 @@
 											<div class="content-search">
 												<a href="#">
 													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
+														<img src="images/hotel/resource.jpg" alt="">
 													</div>
 													<div class="right-content-search">
 														<p>Mường Thanh Cần Thơ</p>
-														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+														<p style="font-size: resource3px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
 													</div>
 												</a>		
 											</div>
 											<div class="content-search">
 												<a href="#">
 													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
+														<img src="images/hotel/resource.jpg" alt="">
 													</div>
 													<div class="right-content-search">
 														<p>Mường Thanh Cần Thơ</p>
-														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+														<p style="font-size: resource3px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
 													</div>
 												</a>		
 											</div>
 											<div class="content-search">
 												<a href="#">
 													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
+														<img src="images/hotel/resource.jpg" alt="">
 													</div>
 													<div class="right-content-search">
 														<p>Mường Thanh Cần Thơ</p>
-														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+														<p style="font-size: resource3px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
 													</div>
 												</a>		
 											</div>
@@ -293,33 +283,33 @@
 											<div class="content-search">
 												<a href="#">
 													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
+														<img src="images/hotel/resource.jpg" alt="">
 													</div>
 													<div class="right-content-search">
 														<p>Mường Thanh Cần Thơ</p>
-														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+														<p style="font-size: resource3px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
 													</div>
 												</a>		
 											</div>
 											<div class="content-search">
 												<a href="#">
 													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
+														<img src="images/hotel/resource.jpg" alt="">
 													</div>
 													<div class="right-content-search">
 														<p>Mường Thanh Cần Thơ</p>
-														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+														<p style="font-size: resource3px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
 													</div>
 												</a>		
 											</div>
 											<div class="content-search">
 												<a href="#">
 													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
+														<img src="images/hotel/resource.jpg" alt="">
 													</div>
 													<div class="right-content-search">
 														<p>Mường Thanh Cần Thơ</p>
-														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+														<p style="font-size: resource3px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
 													</div>
 												</a>		
 											</div>
@@ -333,7 +323,7 @@
 										<a href="login.html" class="nav-link btn-login" id="btn-dangnhap">Đăng nhập</a>
 										<!-- hien thi khi dang nhap thanh cong -->
 										<a class="nav-link btn-login hidden" style="padding: 0; border: none !important;" id="id-user-form">
-											<img src="images/avatar1.jpg" alt="" style="height: 33px; width: 33px;">
+											<img src="images/avatarresource.jpg" alt="" style="height: 33px; width: 33px;">
 											lamthemen <i class="fas fa-caret-down"></i>
 										</a>
 										<div class="user-form">
@@ -377,33 +367,33 @@
 											<div class="content-search">
 												<a href="#">
 													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
+														<img src="images/hotel/resource.jpg" alt="">
 													</div>
 													<div class="right-content-search">
 														<p>Mường Thanh Cần Thơ</p>
-														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+														<p style="font-size: resource3px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
 													</div>
 												</a>		
 											</div>
 											<div class="content-search">
 												<a href="#">
 													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
+														<img src="images/hotel/resource.jpg" alt="">
 													</div>
 													<div class="right-content-search">
 														<p>Mường Thanh Cần Thơ</p>
-														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+														<p style="font-size: resource3px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
 													</div>
 												</a>		
 											</div>
 											<div class="content-search">
 												<a href="#">
 													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
+														<img src="images/hotel/resource.jpg" alt="">
 													</div>
 													<div class="right-content-search">
 														<p>Mường Thanh Cần Thơ</p>
-														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+														<p style="font-size: resource3px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
 													</div>
 												</a>		
 											</div>
@@ -416,33 +406,33 @@
 											<div class="content-search">
 												<a href="#">
 													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
+														<img src="images/hotel/resource.jpg" alt="">
 													</div>
 													<div class="right-content-search">
 														<p>Mường Thanh Cần Thơ</p>
-														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+														<p style="font-size: resource3px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
 													</div>
 												</a>		
 											</div>
 											<div class="content-search">
 												<a href="#">
 													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
+														<img src="images/hotel/resource.jpg" alt="">
 													</div>
 													<div class="right-content-search">
 														<p>Mường Thanh Cần Thơ</p>
-														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+														<p style="font-size: resource3px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
 													</div>
 												</a>		
 											</div>
 											<div class="content-search">
 												<a href="#">
 													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
+														<img src="images/hotel/resource.jpg" alt="">
 													</div>
 													<div class="right-content-search">
 														<p>Mường Thanh Cần Thơ</p>
-														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+														<p style="font-size: resource3px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
 													</div>
 												</a>		
 											</div>
@@ -503,7 +493,7 @@
 												</ul>
 											</div>
 											<div class="xem text-center">
-												<a href="" style="color: black !important; font-size: 13px; padding: 5px; font-weight: 700;">
+												<a href="" style="color: black !important; font-size: resource3px; padding: 5px; font-weight: 700;">
 													Xem tất cả
 												</a>
 											</div>
@@ -513,18 +503,20 @@
 										<a class="a-notification" data-id-hienthi="id-tuychinh"><i class="fas fa-plus"></i></a>
 										<div class="notification" id="id-tuychinh">
 											<div class="title-nofi">
-												<h6 class="text-center" style="padding: 0; font-weight: 700;">Thông báo</h6>
+												<h6 class="text-center" style="padding: 0; font-weight: 700;">Chức năng</h6>
 											</div>
 											<div class="content-nofi">
 												<ul id="body-nofi">
+													<li style="height: 30px;">
+														<a href="" class="a-content-nofi">
+															<i class="fas fa-map-marker"></i>
+															Thêm địa điểm	
+														</a>
+													</li>
 													<li>
 														<a href="" class="a-content-nofi">
-															<div class="anh-nofi">
-																<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
-															</div>
-															<p class="text-nofi">
-																Get code suggestions while writing code directly to your Java IDE.
-															</p>	
+															<i class="fas fa-map-marker"></i>
+															Thêm dịch vụ
 														</a>
 													</li>
 													<li>
@@ -537,36 +529,21 @@
 															</p>	
 														</a>
 													</li>
-													<li>
-														<a href="" class="a-content-nofi">
-															<div class="anh-nofi">
-																<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
-															</div>
-															<p class="text-nofi">
-																Get code suggestions while writing code directly to your Java IDE.
-															</p>	
-														</a>
-													</li>
-													<li>
-														<a href="" class="a-content-nofi">
-															<div class="anh-nofi">
-																<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
-															</div>
-															<p class="text-nofi">
-																Get code suggestions while writing code directly to your Java IDE.
-															</p>	
-														</a>
-													</li>
+													
 												</ul>
 											</div>
 											<div class="xem text-center">
-												<a href="" style="color: black !important; font-size: 13px; padding: 5px; font-weight: 700;">
+												<a href="" style="color: black !important; font-size: resource3px; padding: 5px; font-weight: 700;">
 													Xem tất cả
 												</a>
 											</div>
 										</div>
 									</li>
-									<li><a href=""><img src="images/icons/vn.png" alt="" style="width: 20px; height: 20px;"></a></li>
+									<li>
+										<a href="">
+											<img src="resource/images/icons/vn.png" alt="" style="width: 20px; height: 20px;">
+										</a>
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -584,11 +561,11 @@
 	<footer>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3 col-sm-12 col-12">
+				<div class="col-md-3 col-sm-resource2 col-resource2">
 					<p style="text-align: justify;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
 					<div class="address">
 						<i class="fas fa-map-marker"></i>
-						<span>1234 Vo Van Kiet CanTho</span>
+						<span>resource234 Vo Van Kiet CanTho</span>
 					</div>
 					<div class="address">
 						<i class="fas fa-phone"></i>
@@ -599,7 +576,7 @@
 						<span>vietnamtravel@gmail.com</span>
 					</div>
 				</div>
-				<div class="col-md-3 col-sm-12 col-12">
+				<div class="col-md-3 col-sm-resource2 col-resource2">
 					<div class="footer-text">
 						<h3>Information</h3>
 						<ul>
@@ -611,7 +588,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="col-md-3 col-sm-12 col-12">
+				<div class="col-md-3 col-sm-resource2 col-resource2">
 					<div class="footer-text">
 						<h3>Connect</h3>
 						<ul>
@@ -622,7 +599,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="col-md-3 col-sm-12 col-12">
+				<div class="col-md-3 col-sm-resource2 col-resource2">
 					<div class="footer-text">
 						<h3>Information</h3>
 						<ul>
@@ -640,7 +617,7 @@
 
 
 	<!-- script -->
-	<script type="text/javascript" src="resourceVNT/js/owl.carousel.js"></script>
+	<script type="text/javascript" src="resource/js/owl.carousel.js"></script>
 	<script type="text/javascript">
 		$('.owl-carousel').owlCarousel({
 		    loop:true,
@@ -659,5 +636,5 @@
 		    }
 		})
 	</script>
-	<script src="resourceVNT/js/menu-style.js"></script>
+	<script src="resource/js/menu-style.js"></script>
 	<!-- end script -->

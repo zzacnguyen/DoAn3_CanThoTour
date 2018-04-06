@@ -4,16 +4,16 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<base href="{{asset('')}}">
-	<script type="text/javascript" src="resourceVNT/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="resourceVNT/js/bootstrap.js"></script>
-	<script src="resourceVNT/js/fontawesome-all.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="resource/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="resource/js/bootstrap.js"></script>
+	<script src="resource/js/fontawesome-all.min.js" type="text/javascript"></script>
 
-	<link rel="stylesheet" href="resourceVNT/css/bootstrap.css">
-	<link rel="stylesheet" href="resourceVNT/css/fontawesome-all.min.css">
-	<link rel="stylesheet" href="resourceVNT/css/menu-style.css">
-	<link rel="stylesheet" href="resourceVNT/css/hotel.css">
-	<link rel="stylesheet" href="resourceVNT/css/hotel-detail.css">
-	<link rel="stylesheet" href="resourceVNT/css/lightbox.min.css">
+	<link rel="stylesheet" href="resource/css/bootstrap.css">
+	<link rel="stylesheet" href="resource/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="resource/css/menu-style.css">
+	<link rel="stylesheet" href="resource/css/hotel.css">
+	<link rel="stylesheet" href="resource/css/hotel-detail.css">
+	<link rel="stylesheet" href="resource/css/lightbox.min.css">
 </head>
 <body>
 	<!-- ========== icon =========== -->
@@ -504,17 +504,17 @@
 							<ul>
 								<li>
 									<a>
-										<img src="resourceVNT/images/hotel/{{$detailServices->image_details_1}}"/>
+										<img src="thumbnails/{{$detailServices->image_details_1}}"/>
 									</a>
 								</li>
 								<li>
 									<a>
-										<img src="resourceVNT/images/hotel/{{$detailServices->image_details_1}}"/>
+										<img src="thumbnails/{{$detailServices->image_details_1}}"/>
 									</a>
 								</li>
 								<li>
 									<a>
-										<img src="resourceVNT/images/hotel/hotel-background2.jpg"/>
+										<img src="thumbnails/{{$detailServices->image_details_1}}"/>
 									</a>
 								</li>
 								
@@ -770,7 +770,7 @@
 									<ul>
 										<li>
 											<a href="">
-												<img src="resourceVNT/images/hotel/3.jpg" alt="">
+												<img src="resource/images/hotel/3.jpg" alt="">
 												<div class="text-item-cafe">
 													<h6>Nhà hàng</h6>
 													<p>31 Lê lợi...csccscsdc</p>
@@ -921,9 +921,9 @@
 		</div>
 	</footer>
 	<!-- ================== END FOOTER ============= -->
-	<script src="resourceVNT/js/lightbox.min.js"></script>
-	<script src="resourceVNT/js/detail-hotel.js"></script>
-	<script src="resourceVNT/js/menu-style.js"></script>
+	<script src="resource/js/lightbox.min.js"></script>
+	<script src="resource/js/detail-hotel.js"></script>
+	<script src="resource/js/menu-style.js"></script>
 
 </body>
 </html>

@@ -20,7 +20,7 @@ Route::get('login/facebook/callback', 'loginController@handleProviderCallback');
 Route::get('user','pageController@getuser');
 
 // load detail
-Route::get('detail/id={id}','pageController@getdetail')->name("detail");
+Route::get('detail/id={id}&type={type}','pageController@getdetail')->name("detail");
 Route::get('detail/s','pageController@getServiceTypeVicinity');
 
 // load addplace

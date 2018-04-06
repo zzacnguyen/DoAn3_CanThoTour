@@ -69,12 +69,12 @@ class SearchController extends Controller
                 $result = DB::table('vnt_services')
                                     ->leftJoin('vnt_eating', 'vnt_services.id', '=', 'vnt_eating.service_id')
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
-                                    ->select('vnt_services.id', 'vnt_eating.eat_name','vnt_images.id as id_image','vnt_images.image_details_1')
+                                    ->select('vnt_services.id', 'vnt_eating.eat_name','vnt_images.id as image_id','vnt_images.image_details_1')
                                     ->where('tourist_places_id',$place_id)
                                     ->where('sv_types',$typeServices)->take(5)->get();
                 if (!empty($result)) {
                     foreach ($result as $value) {
-                        $resultCustom[] = array('id'=> $value->id,'eat_name' => $value->eat_name,'id_image' => $value->id_image,'image_details_1' => 'image_details_1','distance' => $distance);
+                        $resultCustom[] = array('id'=> $value->id,'eat_name' => $value->eat_name,'image_id' => $value->image_id,'image_details_1' => 'image_details_1','distance' => $distance);
                     }
                     if (isset($resultCustom)) {
                         return $resultCustom;
@@ -86,12 +86,12 @@ class SearchController extends Controller
                 $result = DB::table('vnt_services')
                                     ->leftJoin('vnt_hotels', 'vnt_services.id', '=', 'vnt_hotels.service_id')
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
-                                    ->select('vnt_services.id','vnt_hotels.hotel_name','vnt_images.id as id_image','vnt_images.image_details_1')
+                                    ->select('vnt_services.id','vnt_hotels.hotel_name','vnt_images.id as image_id','vnt_images.image_details_1')
                                     ->where('tourist_places_id',$place_id)
                                     ->where('sv_types',$typeServices)->take(5)->get();
                 if (!empty($result)) {
                     foreach ($result as $value) {
-                        $resultCustom[] = array('id'=> $value->id,'hotel_name' => $value->hotel_name,'id_image' => $value->id_image,'image_details_1' => 'image_details_1','distance' => $distance);
+                        $resultCustom[] = array('id'=> $value->id,'hotel_name' => $value->hotel_name,'image_id' => $value->image_id,'image_details_1' => 'image_details_1','distance' => $distance);
                     }
                     if (isset($resultCustom)) {
                         return $resultCustom;
@@ -103,12 +103,12 @@ class SearchController extends Controller
                 $result = DB::table('vnt_services')
                                     ->leftJoin('vnt_transport','vnt_services.id','=','vnt_transport.service_id')
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
-                                    ->select('vnt_services.id','vnt_transport.transport_name','vnt_images.id as id_image','vnt_images.image_details_1')
+                                    ->select('vnt_services.id','vnt_transport.transport_name','vnt_images.id as image_id','vnt_images.image_details_1')
                                     ->where('tourist_places_id',$place_id)
                                     ->where('sv_types',$typeServices)->take(5)->get();
                 if (!empty($result)) {
                     foreach ($result as $value) {
-                        $resultCustom[] = array('id'=> $value->id,'transport_name' => $value->transport_name,'id_image' => $value->id_image,'image_details_1' => 'image_details_1','distance' => $distance);
+                        $resultCustom[] = array('id'=> $value->id,'transport_name' => $value->transport_name,'image_id' => $value->image_id,'image_details_1' => 'image_details_1','distance' => $distance);
                     }
                     if (isset($resultCustom)) {
                         return $resultCustom;
@@ -120,12 +120,12 @@ class SearchController extends Controller
                 $result = DB::table('vnt_services')
                                     ->join('vnt_sightseeing','vnt_services.id','=','vnt_sightseeing.service_id')
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
-                                    ->select('vnt_services.id','vnt_sightseeing.sightseeing_name','vnt_images.id as id_image','vnt_images.image_details_1')
+                                    ->select('vnt_services.id','vnt_sightseeing.sightseeing_name','vnt_images.id as image_id','vnt_images.image_details_1')
                                     ->where('tourist_places_id',$place_id)
                                     ->where('sv_types',$typeServices)->take(5)->get();
                 if (!empty($result)) {
                     foreach ($result as $value) {
-                        $resultCustom[] = array('id'=> $value->id,'sightseeing_name' => $value->sightseeing_name,'id_image' => $value->id_image,'image_details_1' => 'image_details_1','distance' => $distance);
+                        $resultCustom[] = array('id'=> $value->id,'sightseeing_name' => $value->sightseeing_name,'image_id' => $value->image_id,'image_details_1' => 'image_details_1','distance' => $distance);
                     }
                     if (isset($resultCustom)) {
                         return $resultCustom;
@@ -137,12 +137,12 @@ class SearchController extends Controller
                 $result = DB::table('vnt_services')
                                     ->join('vnt_entertainments','vnt_services.id','=','vnt_entertainments.service_id')
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
-                                    ->select('vnt_services.id','vnt_entertainments.entertainments_name','vnt_images.id as id_image','vnt_images.image_details_1')
+                                    ->select('vnt_services.id','vnt_entertainments.entertainments_name','vnt_images.id as image_id','vnt_images.image_details_1')
                                     ->where('tourist_places_id',$place_id)
                                     ->where('sv_types',$typeServices)->get();
                 if (!empty($result)) {
                     foreach ($result as $value) {
-                        $resultCustom[] = array('id'=> $value->id,'entertainments_name' => $value->entertainments_name,'id_image' => $value->id_image,'image_details_1' => 'image_details_1','distance' => $distance);
+                        $resultCustom[] = array('id'=> $value->id,'entertainments_name' => $value->entertainments_name,'image_id' => $value->image_id,'image_details_1' => 'image_details_1','distance' => $distance);
                     }
                     if (isset($resultCustom)) {
                         return $resultCustom;
@@ -203,9 +203,9 @@ class SearchController extends Controller
                                     ->leftJoin('vnt_hotels', 'vnt_services.id', '=', 'vnt_hotels.service_id')
                                     ->leftJoin('vnt_transport', 'vnt_services.id', '=', 'vnt_transport.service_id')
                                     ->leftJoin('vnt_entertainments', 'vnt_services.id', '=', 'vnt_entertainments.service_id')
-                                    ->leftJoin('vnt_sightseeing', 'vnt_services.id', '=', 'vnt_sightseeing.service_id')
+                                    ->leftJoin('vnt_user_sightseeing', 'vnt_services.id', '=', 'vnt_user_sightseeing.service_id')
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
-                                    ->select('vnt_services.id', 'vnt_eating.eat_name','vnt_hotels.hotel_name','vnt_sightseeing.sightseeing_name','vnt_transport.transport_name','vnt_entertainments.entertainments_name','vnt_images.id as image','vnt_images.image_details_1')
+                                    ->select('vnt_services.id', 'vnt_eating.eat_name','vnt_hotels.hotel_name','vnt_user_sightseeing.sightseeing_name','vnt_transport.transport_name','vnt_entertainments.entertainments_name','vnt_images.id as image_id','vnt_images.image_details_1')
                                     ->where('eat_name','like',"%$keyword_handing%")
                                     ->orWhere('hotel_name','like',"%$keyword_handing%")
                                     ->orWhere('sightseeing_name','like',"%$keyword_handing%")
@@ -220,9 +220,9 @@ class SearchController extends Controller
         switch ($type) {
             case '1':
                 $result = DB::table('vnt_services')
-                                    ->leftJoin('vnt_eating', 'vnt_services.id', '=', 'vnt_eating.service_id')
+                                    ->leftJoin('vnt_eatings', 'vnt_services.id', '=', 'vnt_eating.service_id')
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
-                                    ->select('vnt_services.id', 'vnt_eating.eat_name','vnt_images.id as id_image','vnt_images.image_details_1')
+                                    ->select('vnt_services.id', 'vnt_eating.eat_name','vnt_images.id as image_id','vnt_images.image_details_1')
                                     ->where('eat_name','like',"%$keyword_handing%")
                                     ->where('sv_types',$type)->paginate(10);
                 return json_encode($result);
@@ -231,7 +231,7 @@ class SearchController extends Controller
                 $result = DB::table('vnt_services')
                                     ->leftJoin('vnt_hotels', 'vnt_services.id', '=', 'vnt_hotels.service_id')
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
-                                    ->select('vnt_services.id','vnt_hotels.hotel_name','vnt_images.id as id_image','vnt_images.image_details_1')
+                                    ->select('vnt_services.id','vnt_hotels.hotel_name','vnt_images.id as image_id','vnt_images.image_details_1')
                                     ->where('hotel_name','like',"%$keyword_handing%")
                                     ->where('sv_types',$type)->paginate(10);
                 return json_encode($result);
@@ -240,7 +240,7 @@ class SearchController extends Controller
                 $result = DB::table('vnt_services')
                                     ->leftJoin('vnt_transport','vnt_services.id','=','vnt_transport.service_id')
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
-                                    ->select('vnt_services.id','vnt_transport.transport_name','vnt_images.id as id_image','vnt_images.image_details_1')
+                                    ->select('vnt_services.id','vnt_transport.transport_name','vnt_images.id as image_id','vnt_images.image_details_1')
                                     ->where('transport_name','like',"%$keyword_handing%")
                                     ->where('sv_types',$type)->paginate(10);
                 return json_encode($result);
@@ -249,7 +249,7 @@ class SearchController extends Controller
                 $result = DB::table('vnt_services')
                                     ->join('vnt_sightseeing','vnt_services.id','=','vnt_sightseeing.service_id')
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
-                                    ->select('vnt_services.id','vnt_sightseeing.sightseeing_name','vnt_images.id as id_image','vnt_images.image_details_1')
+                                    ->select('vnt_services.id','vnt_sightseeing.sightseeing_name','vnt_images.id as image_id','vnt_images.image_details_1')
                                     ->where('sightseeing_name','like',"%$keyword_handing%")
                                     ->where('sv_types',$type)->paginate(10);
                 return json_encode($result);
@@ -258,7 +258,7 @@ class SearchController extends Controller
                 $result = DB::table('vnt_services')
                                     ->join('vnt_entertainments','vnt_services.id','=','vnt_entertainments.service_id')
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
-                                    ->select('vnt_services.id','vnt_entertainments.entertainments_name','vnt_images.id as id_image','vnt_images.image_details_1')
+                                    ->select('vnt_services.id','vnt_entertainments.entertainments_name','vnt_images.id as image_id','vnt_images.image_details_1')
                                     ->where('entertainments_name','like',"%$keyword_handing%")
                                     ->where('sv_types',$type)->paginate(10);
                 return json_encode($result);
