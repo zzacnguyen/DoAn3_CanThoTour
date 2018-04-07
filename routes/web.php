@@ -52,6 +52,8 @@ Route::resource('transport', 'transportController');
 Route::resource('phuongtien', 'phuongtienController');
 
 Route::resource('events', 'EventsController');
+Route::get('counter-events', 'CounterEventsController@countEvent');
+
 Route::resource('sukien', 'sukienController');
 
 
