@@ -110,7 +110,7 @@ class pageController extends Controller
                 break;
             case 5:
                 $result = DB::table('vnt_services')
-                                    ->join('vnt_entertaiments','vnt_services.id','=','vnt_entertaiments.service_id')
+                                    ->join('vnt_entertainments','vnt_services.id','=','vnt_entertainments.service_id')
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->join('vnt_tourist_places','vnt_services.tourist_places_id','=','vnt_tourist_places.id')
                                     ->select('vnt_services.id','sv_types','sv_description','sv_open','sv_close','sv_highest_price','sv_lowest_price','sv_phone_number','entertaiments_name','vnt_images.id as id_image','vnt_images.image_details_1', 'pl_latitude','pl_longitude')
@@ -187,7 +187,7 @@ class pageController extends Controller
                 break;
             case 4:
                 $result = DB::table('vnt_services')
-                                    ->join('vnt_user_sightseeing','vnt_services.id','=','vnt_user_sightseeing.service_id')
+                                    ->join('vnt_sightseeing','vnt_services.id','=','vnt_sightseeing.service_id')
                                     ->join('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->select('vnt_services.id','sightseeing_name','vnt_images.id as id_image','vnt_images.image_details_1','sv_highest_price','sv_lowest_price')
                                     ->where('sv_status','Active')
@@ -197,7 +197,7 @@ class pageController extends Controller
                 break;
             case 5:
                 $result = DB::table('vnt_services')
-                                    ->join('vnt_entertaiments','vnt_services.id','=','vnt_entertaiments.service_id')
+                                    ->join('vnt_entertainments','vnt_services.id','=','vnt_entertainments.service_id')
                                     ->join('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->where('sv_types',$sv_types)
                                     ->where('entertainments_status','Active')

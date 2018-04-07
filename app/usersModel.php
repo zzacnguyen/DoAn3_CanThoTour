@@ -10,8 +10,8 @@ use Illuminate\Auth\User as AuthenticableTrait;
 class usersModel extends Authenticatable
 {
 	use Notifiable;
-    protected $table = 'vnt_users';
+    protected $table = 'vnt_user';
     protected $fillable=[
-    	'id','username','password','user_facebook_id','user_email_id','user_avatar','user_country','user_status', 'user_language'
+    	'id','username','password','social_login_id'
     ];
 }
