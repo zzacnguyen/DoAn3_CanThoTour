@@ -203,9 +203,9 @@ class SearchController extends Controller
                                     ->leftJoin('vnt_hotels', 'vnt_services.id', '=', 'vnt_hotels.service_id')
                                     ->leftJoin('vnt_transport', 'vnt_services.id', '=', 'vnt_transport.service_id')
                                     ->leftJoin('vnt_entertainments', 'vnt_services.id', '=', 'vnt_entertainments.service_id')
-                                    ->leftJoin('vnt_user_sightseeing', 'vnt_services.id', '=', 'vnt_user_sightseeing.service_id')
+                                    ->leftJoin('vnt_sightseeing', 'vnt_services.id', '=', 'vnt_sightseeing.service_id')
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
-                                    ->select('vnt_services.id', 'vnt_eating.eat_name','vnt_hotels.hotel_name','vnt_user_sightseeing.sightseeing_name','vnt_transport.transport_name','vnt_entertainments.entertainments_name','vnt_images.id as image_id','vnt_images.image_details_1')
+                                    ->select('vnt_services.id', 'vnt_eating.eat_name','vnt_hotels.hotel_name','vnt_sightseeing.sightseeing_name','vnt_transport.transport_name','vnt_entertainments.entertainments_name','vnt_images.id as image_id','vnt_images.image_details_1')
                                     ->where('eat_name','like',"%$keyword_handing%")
                                     ->orWhere('hotel_name','like',"%$keyword_handing%")
                                     ->orWhere('sightseeing_name','like',"%$keyword_handing%")
@@ -220,7 +220,7 @@ class SearchController extends Controller
         switch ($type) {
             case '1':
                 $result = DB::table('vnt_services')
-                                    ->leftJoin('vnt_eatings', 'vnt_services.id', '=', 'vnt_eating.service_id')
+                                    ->leftJoin('vnt_eating', 'vnt_services.id', '=', 'vnt_eating.service_id')
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->select('vnt_services.id', 'vnt_eating.eat_name','vnt_images.id as image_id','vnt_images.image_details_1')
                                     ->where('eat_name','like',"%$keyword_handing%")

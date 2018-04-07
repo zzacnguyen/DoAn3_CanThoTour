@@ -9,7 +9,7 @@ use Validator;
 use DB;
 use Hash;
 use Socialite;
-
+use App\contact_infoModel;
 class loginController extends Controller
 {
     // web 
@@ -141,7 +141,23 @@ class loginController extends Controller
             $username = $request->input('username');
             $pass = $request->input('password');
             if( Auth::attempt(['username' => $username, 'password' =>$pass])) {
-                $result['result'] = array('id' => Auth::user()->id,'username' => Auth::user()->username,'user_avatar' => Auth::user()->user_avatar,'user_groups_id' => Auth::user()->user_groups_id); 
+
+                $contact = contact_infoModel::where('user_id',Auth::user()->user_id)->first();
+                // $result['result'] = array('id' => Auth::user()->user_id,'username' => Auth::user()->username,'user_avatar' => Auth::user()->user_avatar,'social_login_id' => Auth::user()->social_login_id);
+
+                $result['result'] = array(
+                    'id' => Auth::user()->user_id,
+                    'username' => Auth::user()->username,
+                    'social_login_id' => Auth::user()->social_login_id,
+                    'contact_name' => $contact->contact_name,
+                    'contact_phone'=>$contact->contact_phone,
+                    'contact_website'=>$contact->contact_website,
+                    'contact_avatar'=>$contact->contact_avatar,
+                    'contact_language'=>$contact->contact_language,
+                    'contact_county'=>$contact->contact_county,
+                    'ward_id'=>$contact->ward_id,
+                    'contact_email_address'=>$contact->contact_email_address);
+
                 $result['error'] = null;
                 $result['status'] = "OK";
                 return json_encode($result);
@@ -206,9 +222,7 @@ class loginController extends Controller
             $userRegister                      = new usersModel();
             $userRegister->username      	   = $user;
             $userRegister->password            = bcrypt($password);
-            $userRegister->user_groups_id      = 1;
-            $userRegister->user_language       = $language;
-            $userRegister->user_country        = $country;
+            
             $userRegister->save();
             $erro = array('error' => null, 'status' => 'OK');
             return json_encode($erro);
@@ -216,8 +230,8 @@ class loginController extends Controller
     }
 
     function check_username_exist($user){
-        $result = DB::table('vnt_users')
-                        ->select('username','user_language','user_country')
+        $result = DB::table('vnt_user')
+                        ->select('username')
                         ->where('username',$user)
                         ->get();
         foreach ($result as $value) {
