@@ -6,11 +6,9 @@ use Illuminate\Http\Request;
 
 class CMS_ModuleController extends Controller
 {
-    public function getDashboard()
-    {
+    public function getDashboard(){
     	
+    	return view('CMS.master');
 
-    	
-    	return view('CMS.module.index');
-    }
+	}
 }
