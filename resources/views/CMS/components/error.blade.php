@@ -11,7 +11,7 @@
 
     <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-<title> VietNamTour </title>
+<title> Lỗi </title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -21,10 +21,6 @@
 
 </head>
     <body>
-    <div id="sb-site">
-        
-        @include('CMS.layout.sidebar_overlay.overlay')
-        @include('CMS.layout.sidebar_overlay.scrollable')
         <div id="loading">
             <div class="spinner">
                 <div class="bounce1"></div>
@@ -32,30 +28,52 @@
                 <div class="bounce3"></div>
             </div>
         </div>
-        <div id="page-wrapper">
-            <div id="page-header" class="bg-gradient-9">
-                @include('CMS.layout.topbar.logo')
-                @include('CMS.layout.topbar.header-profile-user')
-                @include('CMS.layout.topbar.header-nav-right')
-            </div>
-        </div>
-        <div id="page-sidebar">
-                @include('CMS.layout.sidebar_overlay.menu-sidebar')
-        </div>
-        <div id="page-content-wrapper">
-            <div id="page-content">
-                <div class="container">
-                @include('CMS.script.container-charts-srcipt')
-<!-- Sparklines charts -->
-                    
-                    @yield('content')
+        <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        .page-box {
+            min-height: 200px;
+        }
+
+        .page-box .server-message {
+            padding: 35px 0;
+        }
+
+        </style>
+        <style type="text/css">
+        body {
+            overflow: hidden;
+        }
+
+        </style>
+        <script type="text/javascript" src="../../assets/widgets/wow/wow.js"></script>
+        <script type="text/javascript">
+        /* WOW animations */
+
+        wow = new WOW({
+            animateClass: 'animated',
+            offset: 100
+        });
+        wow.init();
+
+        </script>
+        <div class="center-vertical">
+            <div class="center-content row">
+                <div class="col-md-6 wow bounceInDown center-margin">
+                    <div class="server-message">
+                        <h2>Trang này không tồn tại</h2>
+                        <h1>Error 404</h1>
+                        <p>Vui lòng kiểm tra lại liên kết.</p>
+                        <a href="{{ route('ADMIN_DASHBOARD') }}">Quay lại trang quản trị</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-@include('CMS.script.footer-script')
+    @include('CMS.script.footer-script')
 
 
-</body>
+    </body>
 </html>

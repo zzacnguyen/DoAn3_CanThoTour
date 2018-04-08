@@ -1,23 +1,23 @@
 
 <div id="header-nav-right">
-    <a href="#" class="hdr-btn popover-button" title="Search" data-placement="bottom" data-id="#popover-search">
+    <a href="#" class="hdr-btn popover-button" title="Tìm kiếm" data-placement="bottom" data-id="#popover-search">
         <i class="glyph-icon icon-search"></i>
     </a>
     <div class="hide" id="popover-search">
         <div class="pad5A box-md">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search terms here ...">
+                <input type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm ...">
                 <span class="input-group-btn">
-                    <a class="btn btn-primary" href="#">Search</a>
+                    <a class="btn btn-primary" href="#">Tìm kiếm</a>
                 </span>
             </div>
         </div>
     </div>
-    <a href="#" class="hdr-btn" id="fullscreen-btn" title="Fullscreen">
+    <a href="#" class="hdr-btn" id="fullscreen-btn" title="Mở toàn màn hình">
         <i class="glyph-icon icon-arrows-alt"></i>
     </a>
-    <a href="#" class="hdr-btn sb-toggle-left" id="chatbox-btn" title="Chat sidebar">
-        <i class="glyph-icon icon-linecons-paper-plane"></i>
+    <a href="#" class="hdr-btn sb-toggle-left" id="chatbox-btn" title="Người dùng đang truy cập">
+        <i class="glyph-icon icon-wifi"></i>
     </a>
     <div class="dropdown" id="notifications-btn">
         <a data-toggle="dropdown" href="#" title="">
@@ -25,13 +25,7 @@
             <i class="glyph-icon icon-linecons-megaphone"></i>
         </a>
         <div class="dropdown-menu box-md float-right">
-
-            <div class="popover-title display-block clearfix pad10A">
-                Notifications
-                <a class="text-transform-cap font-primary font-normal btn-link float-right" href="#" title="View more options">
-                    More options...
-                </a>
-            </div>
+            <div class="popover-title display-block clearfix pad10A">Thông báo</div>
             <div class="scrollable-content scrollable-slim-box">
                 <ul class="no-border notifications-box">
                     <li>
@@ -126,7 +120,7 @@
             </div>
             <div class="pad10A button-pane button-pane-alt text-center">
                 <a href="#" class="btn btn-primary" title="View all notifications">
-                    View all notifications
+                    Xem tất cả thông báo
                 </a>
             </div>
         </div>
@@ -227,103 +221,61 @@
             </div>
             <div class="pad5A button-pane button-pane-alt text-center">
                 <a href="#" class="btn display-block font-normal hover-green" title="View all notifications">
-                    View all notifications
+                    Xem tất cả nhiệm vụ
                 </a>
             </div>
         </div>
     </div>
-    <div class="dropdown" id="cloud-btn">
-        <a href="#" data-placement="bottom" class="tooltip-button sb-toggle-right" title="Statistics Sidebar">
-            <i class="glyph-icon icon-linecons-cloud"></i>
-        </a>
-    </div>
+    
     <div class="dropdown" id="dashnav-btn">
         <a href="#" data-toggle="dropdown" data-placement="bottom" class="popover-button-header tooltip-button" title="Dashboard Quick Menu">
             <i class="glyph-icon icon-linecons-cog"></i>
         </a>
         <div class="dropdown-menu float-right">
             <div class="box-sm">
-                <div class="pad5T pad5B pad10L pad10R dashboard-buttons clearfix">
-                    <a href="#" class="btn vertical-button hover-blue-alt" title="">
-                        <span class="glyph-icon icon-separator-vertical pad0A medium">
-                            <i class="glyph-icon icon-dashboard opacity-80 font-size-20"></i>
-                        </span>
-                        Dashboard
-                    </a>
-                    <a href="#" class="btn vertical-button hover-green" title="">
-                        <span class="glyph-icon icon-separator-vertical pad0A medium">
-                            <i class="glyph-icon icon-tags opacity-80 font-size-20"></i>
-                        </span>
-                        Widgets
-                    </a>
-                    <a href="#" class="btn vertical-button hover-orange" title="">
-                        <span class="glyph-icon icon-separator-vertical pad0A medium">
-                            <i class="glyph-icon icon-fire opacity-80 font-size-20"></i>
-                        </span>
-                        Tables
-                    </a>
-                    <a href="#" class="btn vertical-button hover-orange" title="">
-                        <span class="glyph-icon icon-separator-vertical pad0A medium">
-                            <i class="glyph-icon icon-bar-chart-o opacity-80 font-size-20"></i>
-                        </span>
-                        Charts
-                    </a>
-                    <a href="#" class="btn vertical-button hover-purple" title="">
-                        <span class="glyph-icon icon-separator-vertical pad0A medium">
-                            <i class="glyph-icon icon-laptop opacity-80 font-size-20"></i>
-                        </span>
-                        Buttons
-                    </a>
-                    <a href="#" class="btn vertical-button hover-azure" title="">
-                        <span class="glyph-icon icon-separator-vertical pad0A medium">
-                            <i class="glyph-icon icon-code opacity-80 font-size-20"></i>
-                        </span>
-                        Panels
-                    </a>
-                </div>
                 <div class="divider"></div>
                 <div class="pad5T pad5B pad10L pad10R dashboard-buttons clearfix">
-                    <a href="#" class="btn vertical-button remove-border btn-info" title="">
+                    <a href="{{  route('ADMIN_DASHBOARD') }}" class="btn vertical-button remove-border btn-info" title="Trang quản trị">
                         <span class="glyph-icon icon-separator-vertical pad0A medium">
                             <i class="glyph-icon icon-dashboard opacity-80 font-size-20"></i>
                         </span>
-                        Dashboard
+                        Quản trị
                     </a>
-                    <a href="#" class="btn vertical-button remove-border btn-danger" title="">
+                    <a href="{{  route('/') }}" class="btn vertical-button remove-border btn-danger" title="">
                         <span class="glyph-icon icon-separator-vertical pad0A medium">
                             <i class="glyph-icon icon-tags opacity-80 font-size-20"></i>
                         </span>
-                        Widgets
+                        Vietnamtour
                     </a>
                     <a href="#" class="btn vertical-button remove-border btn-purple" title="">
                         <span class="glyph-icon icon-separator-vertical pad0A medium">
                             <i class="glyph-icon icon-fire opacity-80 font-size-20"></i>
                         </span>
-                        Tables
+                        Địa điểm
                     </a>
                     <a href="#" class="btn vertical-button remove-border btn-azure" title="">
                         <span class="glyph-icon icon-separator-vertical pad0A medium">
                             <i class="glyph-icon icon-bar-chart-o opacity-80 font-size-20"></i>
                         </span>
-                        Charts
+                        Thống kê
                     </a>
                     <a href="#" class="btn vertical-button remove-border btn-yellow" title="">
                         <span class="glyph-icon icon-separator-vertical pad0A medium">
                             <i class="glyph-icon icon-laptop opacity-80 font-size-20"></i>
                         </span>
-                        Buttons
+                        Công việc
                     </a>
                     <a href="#" class="btn vertical-button remove-border btn-warning" title="">
                         <span class="glyph-icon icon-separator-vertical pad0A medium">
                             <i class="glyph-icon icon-code opacity-80 font-size-20"></i>
                         </span>
-                        Panels
+                        Dịch vụ
                     </a>
                 </div>
             </div>
         </div>
     </div>
-    <a class="header-btn" id="logout-btn" href="lockscreen-3.html" title="Lockscreen page example">
+    <a class="header-btn" id="logout-btn" href="#" title="Lockscreen page example">
         <i class="glyph-icon icon-linecons-lock"></i>
     </a>
 

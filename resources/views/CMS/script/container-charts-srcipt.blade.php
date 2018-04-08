@@ -14,3 +14,12 @@
 
 <script type="text/javascript" src="{{ asset('resourceAdminTemplate/assets/widgets/charts/piegage/piegage.js')}}"></script>
 <script type="text/javascript" src="{{ asset('resourceAdminTemplate/assets/widgets/charts/piegage/piegage-demo.js')}}"></script>
+
+<!--icon-->
+
+<link rel="stylesheet" type="text/css" href="{{asset('resourceAdminTemplate/assets/icons/iconic/iconic.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('resourceAdminTemplate/assets/icons/elusive/elusive.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('resourceAdminTemplate/assets/icons/meteocons/
+meteocons.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('resourceAdminTemplate/assets/icons/spinnericon/spinnericon.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('resourceAdminTemplate/assets/icons/typicons/typicons.css')}}">

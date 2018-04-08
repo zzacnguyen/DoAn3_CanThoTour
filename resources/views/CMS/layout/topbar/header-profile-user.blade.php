@@ -2,23 +2,23 @@
     <div class="user-account-btn dropdown">
         <a href="#" title="My Account" class="user-profile clearfix" data-toggle="dropdown">
             <img width="28" src="{{ asset('resourceAdminTemplate/assets/image-resources/gravatar.jpg')}}" alt="Profile image">
-            <span>Thomas Barnes</span>
+            <span>Tính Phan</span>
             <i class="glyph-icon icon-angle-down"></i>
         </a>
         <div class="dropdown-menu float-left">
             <div class="box-sm">
                 <div class="login-box clearfix">
                     <div class="user-img">
-                        <a href="#" title="" class="change-img">Change photo</a>
+                        <a href="#" title="" class="change-img">Chọn ảnh</a>
                         <img src="{{ asset('resourceAdminTemplate/assets/image-resources/gravatar.jpg')}}" alt="">
                     </div>
                     <div class="user-info">
                         <span>
-                            Thomas Barnes
-                            <i>UX/UI developer</i>
+                            Tính Phan
+                            <i>Tính Phan / Developer website</i>
                         </span>
-                        <a href="#" title="Edit profile">Edit profile</a>
-                        <a href="#" title="View notifications">View notifications</a>
+                        <a href="#" title="Edit profile">Chỉnh sửa hồ sơ</a>
+                        <a href="#" title="View notifications">Xem thông báo</a>
                     </div>
                 </div>
                 <div class="divider"></div>
@@ -26,29 +26,23 @@
                     <li>
                         <a href="#">
                             <i class="glyph-icon float-right icon-caret-right"></i>
-                            View login page example
+                            Mở danh sách công việc
                             
                         </a>
                     </li>
                     <li>
                         <a href="#">
                             <i class="glyph-icon float-right icon-caret-right"></i>
-                            View lockscreen example
+                            Xem ảnh đại diện
                             
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
-                            <i class="glyph-icon float-right icon-caret-right"></i>
-                            View account details
-                            
-                        </a>
-                    </li>
+
                 </ul>
                 <div class="pad5A button-pane button-pane-alt text-center">
                     <a href="#" class="btn display-block font-normal btn-danger">
                         <i class="glyph-icon icon-power-off"></i>
-                        Logout
+                        Đăng xuất
                     </a>
                 </div>
             </div>

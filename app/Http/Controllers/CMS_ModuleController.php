@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 class CMS_ModuleController extends Controller
 {
     public function getDashboard(){
-    	
-    	return view('CMS.master');
+    	if (view()->exists('view.CMS.master')){return view('CMS.components.error');}
+    	else	{
+    		
+			return view('CMS.master');
+		}
 
 	}
 }
