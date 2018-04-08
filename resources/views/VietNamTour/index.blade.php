@@ -4,24 +4,24 @@
 	<!-- ==================TINH TP============= -->
 	<section class="tinhthanhpho">
 		<div class="container">
-			<div class="owl-carousel owl-theme">
+			<div class="owl-carousel owl-theme" id="display-city">
 				
 				@foreach($placecount as $value)
 					<div class="item">
 				    	<div class="grid-item">
 				    		<div class="grid-img-thumb">
 				    			<div class="ribbon">
-				    				<span>Top 10</span>
+				    				<span>{{$value->amount_palce}}</span>
 				    			</div>
 					    		<a href="#"><img src="resourceVNT/images/img-BaiViet/1.jpg" alt="" style="height: 214px;"></a>
 					    	</div>
 					    	<div class="grid-content">
 					    		<div class="grid-price text-left">
-					    			<span>{{$value['amount_place']}}</span>
+					    			<span>{{$value->amount_palce}}</span>
 					    			<i class="far fa-hand-peace"></i>
 					    		</div>
 					    		<div class="grid-text">
-					    			<div class="place-name">{{$value['city_name']}}</div>
+					    			<div class="place-name">{{$value->province_city_name}}</div>
 					    			<span class="pull-right">
 				    					<i class="fas fa-star"></i>
 				    					<i class="fas fa-star"></i>
@@ -34,6 +34,7 @@
 				    	</div>    	
 				    </div>
 				@endforeach
+
 			</div>
 		</div>
 	</section>
@@ -277,5 +278,16 @@
 		</div>
 	</section>
 	<!-- ================== END TRANSPORT ============= -->
+
+	{{-- <script>
+		$(document).ready(function () {
+			$.ajax({
+					url: 'http://chinhlytailieu/doan3_canthotour/public/count_place_display',
+					type: 'GET'
+				}).done(function(response){
+					$('#display-city').html(response);
+			});
+		})
+	</script> --}}
 
 @endsection('content')

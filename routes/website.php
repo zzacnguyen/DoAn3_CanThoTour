@@ -29,13 +29,16 @@ Route::post('addplace', 'pageController@postPlace');
 //  load addservice
 Route::get('addservice','pageController@getaddservice');
 
-Route::get('city/id={id}','pageController@countplacecity');
+Route::get('city','pageController@getcount_place_city');
 
 Route::get('lam/type={type}','pageController@findservicetocity');
 
 Route::get('d/f={f},g={g}','pageController@getservicestake');
 
 Route::get('lamdv/type={type}','pageController@getlam');
+
+Route::get('count_place_Allcity','pageController@count_place_Allcity');
+Route::get('count_place_display','pageController@count_place_display');
 
 
 ?>

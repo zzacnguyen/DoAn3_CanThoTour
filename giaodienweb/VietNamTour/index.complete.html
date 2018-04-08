@@ -88,7 +88,9 @@
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
 							<ul class="navbar-nav mr-auto">
 								<li class="nav-item btn-select" >
-									<a id="a-tinhTP" class="nav-link a-select" data-hienthi="tinhTP" href="#">Cần Thơ <i class="fas fa-angle-down"></i></a>
+									<a id="a-tinhTP" class="nav-link a-select" data-hienthi="tinhTP" href="#">Cần Thơ 
+										<i class="fas fa-angle-down float-right" style="margin-top: 5px;"></i>
+									</a>
 
 									<div class="select-content" id="tinhTP">
 										<div class="caption-h5">
@@ -97,7 +99,7 @@
 
 						  				<ul>
 						  					<li class="selectItem" data-name="Cần Thơ">
-						  						<a href="https://www.google.com.vn" class="selectItem-name">
+						  						<a class="selectItem-name">
 						  							<label>Cần Thơ</label>
 						  							<span class="float-right">12.000</span>
 						  						</a>
@@ -118,41 +120,44 @@
 									</div>
 								</li> <!-- end btn-select -->
 								<li class="nav-item btn-select">
-									<a id="a-danhmuc" class="nav-link a-select" data-hienthi="danhmuc" href="#">Tham quan <i class="fas fa-angle-down"></i></a>
-									<div class="select-content" id="danhmuc">
+									<a id="a-danhmuc" class="nav-link a-select" data-hienthi="danhmuc" title="">
+										Tham quan 
+										<i class="fas fa-angle-down float-right" style="margin-top: 5px;"></i>
+									</a>
+									<div class="select-content" id="danhmuc" style="height: 158px;">
 										<div class="caption-h5">
 						  					<h5><i class="fas fa-globe"></i> Danh mục</h5>
 						  				</div>
 
-						  				<ul>
-						  					<li class="selectItem2" data-name="Cân Thơ">
-						  						<a href="" class="selectItem-name2">
+						  				<ul style="height: 125px;">
+						  					<li class="selectItem2" data-name="Tham quan">
+						  						<a class="selectItem-name2">
 						  							<label>Tham quan</label>
-						  							<span class="float-right">1234</span>
+						  							
 						  						</a>
 						  					</li>
-						  					<li class="selectItem2" data-name="HCM">
-						  						<a href="" class="selectItem-name2">
+						  					<li class="selectItem2" data-name="Ăn uống">
+						  						<a class="selectItem-name2">
 						  							<label>Ăn uống</label>
-						  							<span class="float-right">12.000</span>
+						  							
 						  						</a>
 						  					</li>
-						  					<li class="selectItem2" data-name="Hà Nội">
-						  						<a href="" class="selectItem-name2">
+						  					<li class="selectItem2" data-name="Khách sạn">
+						  						<a class="selectItem-name2">
 						  							<label>Khách sạn</label>
-						  							<span class="float-right">12.000</span>
+						  							
 						  						</a>
 						  					</li>
-						  					<li class="selectItem2" data-name="Hà Nội">
-						  						<a href="" class="selectItem-name2">
+						  					<li class="selectItem2" data-name="Vui chơi">
+						  						<a class="selectItem-name2">
 						  							<label>Vui chơi</label>
-						  							<span class="float-right">12.000</span>
+						  							
 						  						</a>
 						  					</li>
-						  					<li class="selectItem2" data-name="Hà Nội">
-						  						<a href="" class="selectItem-name2">
+						  					<li class="selectItem2" data-name="Phương tiện">
+						  						<a class="selectItem-name2">
 						  							<label>Phương tiện</label>
-						  							<span class="float-right">12.000</span>
+						  							
 						  						</a>
 						  					</li>
 						  				</ul>
@@ -371,12 +376,14 @@
 							<div class="col-md-2 col-4">
 								<ul class="float-right left-menu-lam">
 									<li class="cha-notification">
-										<a class="a-notification active-thongbao" data-id-hienthi="id-thongBao"><i class="fas fa-bell"></i></a>
+										<a id="athongbao" class="a-notification active-thongbao" data-id-hienthi="id-thongBao">
+											<i class="fas fa-bell"></i>
+										</a>
 										<div class="notification" id="id-thongBao">
 											<div class="title-nofi">
 												<h6 class="text-center" style="padding: 0; font-weight: 700;">Thông báo</h6>
 											</div>
-											<div class="content-nofi">
+											<div class="content-nofi" id="noidungthongbao">
 												<ul id="body-nofi">
 													<li>
 														<a href="" class="a-content-nofi">
@@ -420,8 +427,8 @@
 													</li>
 												</ul>
 											</div>
-											<div class="xem text-center">
-												<a href="" style="color: black !important; font-size: 13px; padding: 5px; font-weight: 700;">
+											<div class="xem text-center" style="background-color: #ddd;">
+												<a href="" style="color: black !important; font-size: 13px; padding: 5px; font-weight: 500; display: inline-block;">
 													Xem tất cả
 												</a>
 											</div>
@@ -429,58 +436,46 @@
 									</li>
 									<li class="cha-notification">
 										<a class="a-notification" data-id-hienthi="id-tuychinh"><i class="fas fa-plus"></i></a>
-										<div class="notification" id="id-tuychinh">
+										<div class="notification" id="id-tuychinh" style="width: 200px;">
 											<div class="title-nofi">
 												<h6 class="text-center" style="padding: 0; font-weight: 700;">Thông báo</h6>
 											</div>
 											<div class="content-nofi">
-												<ul id="body-nofi">
-													<li>
+												<ul id="body-nofi" style="width: 200px;">
+													<li style="height: 27px;">
 														<a href="" class="a-content-nofi">
-															<div class="anh-nofi">
-																<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
-															</div>
-															<p class="text-nofi">
-																Get code suggestions while writing code directly to your Java IDE.
+															<p class="text-nofi" style="height: auto;width: auto;">
+																<i class="fas fa-map-marker"></i> 
+																Thêm địa điểm
 															</p>	
 														</a>
 													</li>
-													<li>
+													<li style="height: 27px;">
 														<a href="" class="a-content-nofi">
-															<div class="anh-nofi">
-																<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
-															</div>
-															<p class="text-nofi">
-																Get code suggestions while writing code directly to your Java IDE.
+															<p class="text-nofi" style="height: auto;width: auto;">
+																<i class="fas fa-archive"></i> 
+																Thêm Dịch vụ
 															</p>	
 														</a>
 													</li>
-													<li>
+													<li style="height: 27px;">
 														<a href="" class="a-content-nofi">
-															<div class="anh-nofi">
-																<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
-															</div>
-															<p class="text-nofi">
-																Get code suggestions while writing code directly to your Java IDE.
+															<p class="text-nofi" style="height: auto;width: auto;">
+																<i class="fas fa-bomb"></i> 
+																Góp ý
 															</p>	
 														</a>
 													</li>
-													<li>
+													<li style="height: 27px;">
 														<a href="" class="a-content-nofi">
-															<div class="anh-nofi">
-																<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
-															</div>
-															<p class="text-nofi">
-																Get code suggestions while writing code directly to your Java IDE.
+															<p class="text-nofi" style="height: auto;width: auto;">
+																<i class="fas fa-cogs"></i> 
+																Cài đặt
 															</p>	
 														</a>
 													</li>
+													
 												</ul>
-											</div>
-											<div class="xem text-center">
-												<a href="" style="color: black !important; font-size: 13px; padding: 5px; font-weight: 700;">
-													Xem tất cả
-												</a>
 											</div>
 										</div>
 									</li>

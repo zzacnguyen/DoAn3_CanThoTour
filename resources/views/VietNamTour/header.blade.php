@@ -177,12 +177,12 @@
 						  					<h5><i class="fas fa-globe"></i> Tỉnh thành phố</h5>
 						  				</div>
 
-						  				<ul>
+						  				<ul id="list-city">
 						  					@foreach($placecount as $p )
-						  					<li class="selectItem" data-name="{{$p['city_name']}}">
-						  						<a href="https://www.google.com.vn" class="selectItem-name">
-						  							<label>{{$p['city_name']}}</label>
-						  							<span class="float-right">{{$p['amount_place']}}</span>
+						  					<li class="selectItem" data-name="{{$p->province_city_name}}">
+						  						<a class="selectItem-name">
+						  							<label>{{$p->province_city_name}}</label>
+						  							<span class="float-right">{{$p->amount_palce}}</span>
 						  						</a>
 						  					</li>
 						  					@endforeach
@@ -197,34 +197,34 @@
 						  				</div>
 
 						  				<ul>
-						  					<li class="selectItem2" data-name="Cân Thơ">
-						  						<a href="" class="selectItem-name2">
+						  					<li class="selectItem2" data-name="Tham quan">
+						  						<a class="selectItem-name2">
 						  							<label>Tham quan</label>
-						  							<span class="float-right">resource234</span>
+						  							
 						  						</a>
 						  					</li>
-						  					<li class="selectItem2" data-name="HCM">
-						  						<a href="" class="selectItem-name2">
+						  					<li class="selectItem2" data-name="Ăn uống">
+						  						<a class="selectItem-name2">
 						  							<label>Ăn uống</label>
-						  							<span class="float-right">resource2.000</span>
+						  							
 						  						</a>
 						  					</li>
-						  					<li class="selectItem2" data-name="Hà Nội">
-						  						<a href="" class="selectItem-name2">
+						  					<li class="selectItem2" data-name="Khách sạn">
+						  						<a class="selectItem-name2">
 						  							<label>Khách sạn</label>
-						  							<span class="float-right">resource2.000</span>
+						  							
 						  						</a>
 						  					</li>
-						  					<li class="selectItem2" data-name="Hà Nội">
-						  						<a href="" class="selectItem-name2">
+						  					<li class="selectItem2" data-name="Vui chơi">
+						  						<a class="selectItem-name2">
 						  							<label>Vui chơi</label>
-						  							<span class="float-right">resource2.000</span>
+						  							
 						  						</a>
 						  					</li>
-						  					<li class="selectItem2" data-name="Hà Nội">
-						  						<a href="" class="selectItem-name2">
+						  					<li class="selectItem2" data-name="Phương tiện">
+						  						<a class="selectItem-name2">
 						  							<label>Phương tiện</label>
-						  							<span class="float-right">resource2.000</span>
+						  							
 						  						</a>
 						  					</li>
 						  				</ul>
@@ -617,6 +617,20 @@
 
 
 	<!-- script -->
+	{{-- <script type="text/javascript">
+		$(document).ready(function(){
+			$('#a-tinhTP').click(function(e){
+				e.preventDefault();
+				$.ajax({
+					url: 'http://chinhlytailieu/doan3_canthotour/public/count_place_Allcity',
+					type: 'GET'
+				}).done(function(response){
+					$('#list-city').append(response);
+				});
+			});
+		});
+	</script> --}}
+
 	<script type="text/javascript" src="resource/js/owl.carousel.js"></script>
 	<script type="text/javascript">
 		$('.owl-carousel').owlCarousel({
@@ -637,4 +651,17 @@
 		})
 	</script>
 	<script src="resource/js/menu-style.js"></script>
+
+	{{-- <script type="text/javascript">
+		$(document).ready(function () {
+			$('#a-tinhTP').click(function(e){
+				e.preventDefault();
+				$.get('http://chinhlytailieu/doan3_canthotour/public/count_place_Allcity',function(response){
+					$('#list-city').append(response);
+				})
+			})
+		})
+	</script> --}}
+
+
 	<!-- end script -->

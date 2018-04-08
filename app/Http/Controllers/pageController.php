@@ -14,7 +14,7 @@ class pageController extends Controller
 {
     public function getindex()
     {   
-        $placecount       = $this::countplaceAllcity();
+        $placecount       = $this::count_place_display();
 
         $services_eat     = $this::getservicestake(1,8);
         $services_hotel   = $this::getservicestake(2,6);
@@ -293,5 +293,85 @@ class pageController extends Controller
                                     ->where('sv_types',$type)->take(8)->get();
                                     $name = 'hotel_name';
         return $result;
+    }
+
+    public function getcount_place_city()
+    {
+        $p = DB::table('vnt_province_city')
+            ->get();
+        foreach ($p as $value) {
+
+            $dis = DB::table('vnt_district')->where('province_city_id',$value->id)->get();
+            $dem = 0;
+            foreach ($dis as $district) {
+                $ward = DB::table('vnt_ward')->where('district_id',$district->id)->get();
+                foreach ($ward as $place) {
+                    $place_ = DB::table('vnt_tourist_places')->where('id_ward',$place->id)->get();
+                    $dem += count($place_);
+                }
+            }
+            // $placecount[] = array('id'=>$value->id,'city_name'=>$value->province_city_name,'amount_place'=>$dem);
+
+            echo "<li class='selectItem' data-name=";
+            echo "'".$value->province_city_name."'>";
+
+            echo "<a href='https://www.google.com.vn' class='selectItem-name'>";
+            echo "<label>".$value->province_city_name."</label>";
+            echo "<span class='float-right'>".$dem."</span>";
+            echo "</a>";
+
+            echo "</li>";
+        }
+    }
+
+    public function count_place_Allcity()
+    {
+        $result = DB::select('CALL count_city_place()');
+        foreach ($result as $value) {
+            echo "<li class='selectItem' data-name=";
+            echo "'".$value->province_city_name."'>";
+
+            echo "<a href='https://www.google.com.vn' class='selectItem-name'>";
+            echo "<label>".$value->province_city_name."</label>";
+            echo "<span class='float-right'>".$value->amount_palce."</span>";
+            echo "</a>";
+
+            echo "</li>";
+        }
+    }
+
+    public function count_place_display()
+    {
+        $result = DB::select('CALL count_city_place()');
+        return $result;
+        // foreach ($result as $value) {
+        //     echo "<div class='item'>";
+        //         echo "<div class='grid-item'>";
+        //             echo "<div class='grid-img-thumb'>";
+        //                 echo "<div class='ribbon'>"."<span>".$value->amount_palce."</span>"."</div>";
+        //                 echo "<a href='#'>";
+        //                     echo "<img src='resourceVNT/images/img-BaiViet/1.jpg' style='height: 214px;'>";
+        //                 echo "</a>";
+        //             echo "</div>"; //end grid-img-thumb
+
+        //             echo "<div class='grid-content'>";
+        //                 echo "<div class='grid-price text-left'>";
+        //                     echo "<span>".$value->amount_palce."</span>";
+        //                     echo "<i class='far fa-hand-peace'></i>";
+        //                 echo "</div>";
+
+        //                 echo "<div class='grid-text'>";
+        //                     echo "<div class='place-name'>".$value->province_city_name."</div>";
+        //                     echo "<span class='pull-right'>";
+        //                         for ($i=0; $i <5 ; $i++) { 
+        //                             echo "<i class='fas fa-star'></i>";
+        //                         }
+        //                     echo "</span>";
+        //                 echo "</div>"; //end grid-text
+
+        //             echo "</div>";
+        //         echo "</div>";
+        //     echo "</div>";
+        // }
     }
 }

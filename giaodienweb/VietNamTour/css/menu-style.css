@@ -51,7 +51,7 @@ body,html{
 	display: block;
 	background-color: white !important;
 	border-bottom: 1px solid #bfbfbf9c;
-	transition: 5s;
+	transition: 2s;
 }
 
 #dangnhap-dangky ul li a.btn-login{
@@ -98,6 +98,7 @@ ul.ul-right-menu-lam{
 #navbarSupportedContent ul li .a-select{
 	position: relative;
 	width: 131px;
+	height: 38px;
 	overflow: hidden;
 	color: black !important;
 }
@@ -455,7 +456,7 @@ p.text-nofi{
     overflow: hidden;
 }
 .click-thongbao{
-	box-shadow: 2px 5px 5px 2px black;
+	/*box-shadow: 2px 5px 5px 2px black;*/
     transition: 0.5s ease;
     color: red !important;
 }
