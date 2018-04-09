@@ -25,24 +25,24 @@ document.addEventListener("DOMContentLoaded",function () {
 		var flag = false;
 		if (window.pageYOffset > 56) 
 		{
-			document.getElementById('id-menu-Top').classList.add('hidden-item');
-			document.getElementById('id-layer-top').classList.add('fixed-top-style-menu');
-			document.getElementById('hidden-formSearch').style.display = "block";
+			// document.getElementById('id-menu-Top').classList.add('hidden-item');
+			// document.getElementById('id-layer-top').classList.add('fixed-top-style-menu');
+			// document.getElementById('hidden-formSearch').style.display = "block";
 			document.getElementById('id-icon-scroll-top').classList.add('hienthi-icon');
-			flag = true;
-			// khi cuon chuot ma da click vao form search
-			if (clickSearch > 0 ) {
-				bodySearch[1].classList.add('active-search2');
-			}
+			// flag = true;
+			// // khi cuon chuot ma da click vao form search
+			// if (clickSearch > 0 ) {
+			// 	bodySearch[1].classList.add('active-search2');
+			// }
 		}
 		else
 		{
-			document.getElementById('id-menu-Top').classList.remove('hidden-item');
-			document.getElementById('id-layer-top').classList.remove('fixed-top-style-menu');
-			document.getElementById('hidden-formSearch').style.display = "none";
+			// document.getElementById('id-menu-Top').classList.remove('hidden-item');
+			// document.getElementById('id-layer-top').classList.remove('fixed-top-style-menu');
+			// document.getElementById('hidden-formSearch').style.display = "none";
 			document.getElementById('id-icon-scroll-top').classList.remove('hienthi-icon');
 			flag = false;
-			//
+			
 		}
 	});
 
