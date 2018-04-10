@@ -277,9 +277,14 @@ class pageController extends Controller
                     $dem += count($place_);
                 }
             }
+
             $placecount[] = array('id'=>$value->id,'city_name'=>$value->province_city_name,'amount_place'=>$dem);
         }
         return $placecount;
+
+   
+        
+
     }
 
     public function getlam($type)

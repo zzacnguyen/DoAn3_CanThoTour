@@ -92,7 +92,7 @@ class tourist_places_controller extends Controller
             if($id_type == 1)
             {
                 $vnt_eating = new eatingModel;
-                $vnt_eating->eat_name =  $eat_name
+                $vnt_eating->eat_name =  $eat_name;
                 $vnt_eating->eat_status =  "Active";
                 $vnt_eating->service_id =  $id_service;
                 if($vnt_eating->save()){
@@ -107,7 +107,7 @@ class tourist_places_controller extends Controller
             else if($id_type == 2)
             {
                 $vnt_hotels = new hotelsModel;
-                $vnt_hotels->hotel_name =  $hotel_name
+                $vnt_hotels->hotel_name =  $hotel_name;
                 $vnt_hotels->hotel_website =  $request->input('hotel_website');
                 $vnt_hotels->hotel_number_star =  $request->input('hotel_number_star');
                 $vnt_hotels->hotel_status =  "Active";
@@ -123,7 +123,7 @@ class tourist_places_controller extends Controller
             else if($id_type == 3)
             {
                 $vnt_transport = new transportModel;
-                $vnt_transport->transport_name =  $transport_name
+                $vnt_transport->transport_name =  $transport_name;
                 $vnt_transport->transport_status =  "Active";
                 $vnt_transport->service_id =  $id_service;
                 if($vnt_transport->save()){
@@ -137,7 +137,7 @@ class tourist_places_controller extends Controller
             else if($id_type == 4)
             {
                 $vnt_sightseeing = new sightseeingModel;
-                $vnt_sightseeing->sightseeing_name =  $sightseeing_name
+                $vnt_sightseeing->sightseeing_name =  $sightseeing_name;
                 $vnt_sightseeing->sightseeing_status     =  "Active";
                 $vnt_sightseeing->service_id =  $id_service;
                 if($vnt_sightseeing->save()){

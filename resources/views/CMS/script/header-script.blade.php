@@ -7,6 +7,7 @@
 
 
 <link rel="stylesheet" type="text/css" href="{{asset('resourceAdminTemplate/assets/bootstrap/css/bootstrap.css')}}">
+<script type="text/javascript" src="{{asset('resourceAdminTemplate/assets\myscript\style.js')}}"></script>
 
 
 <!-- HELPERS -->

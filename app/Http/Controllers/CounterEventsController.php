@@ -27,4 +27,8 @@ class CounterEventsController extends Controller
         ->count();
         return  json_encode($events);
     }
+    public function Counter($name)
+    {
+
+    }
 }

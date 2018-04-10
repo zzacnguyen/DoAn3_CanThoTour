@@ -12,7 +12,7 @@ include 'cms.php';
 |
 */
 
-
+Route::get('couter/couter={name}', 'CounterEventsController@Counter');
 Route::resource('eating', 'EatingController');
 
 
@@ -58,9 +58,6 @@ Route::post('register','loginController@register');
 Route::get('logout','loginController@logout');
 // web
 
-
-
-Route::get('test', 'timkiemController@test');
 Route::post('upload-image/{id}','ImagesController@Upload');
 Route::get('get-icon/{id}', 'ImagesController@getIcon');
 Route::get('get-banner/{id}', 'ImagesController@getBanner');

@@ -3,18 +3,18 @@
         <div class="dashboard-box dashboard-box-chart bg-white content-box">
             <div class="content-wrapper">
                 <div class="header">
-                    1000
+                    {{ $data2  }}
                     <span>Người dùng đăng ký mới</b></span>
                 </div>
                 <div class="bs-label bg-green">+18%</div>
-                <div class="center-div sparkline-big-alt">1245,1450,1312,1121,986,1489</div>
+            <div class="center-div sparkline-big-alt">{{ $data1  }}</div>
                 <div class="row list-grade">
-                    <div class="col-md-2">Tháng 1</div>
-                    <div class="col-md-2">Tháng 2</div>
-                    <div class="col-md-2">Tháng 3</div>
-                    <div class="col-md-2">Tháng 4</div>
-                    <div class="col-md-2">Tháng 5</div>
-                    <div class="col-md-2">Tháng 6</div>
+                    <div class="col-md-2" id="thang-hien-tai-5"></div>
+                    <div class="col-md-2" id="thang-hien-tai-4">Tháng 2</div>
+                    <div class="col-md-2" id="thang-hien-tai-3">Tháng 3</div>
+                    <div class="col-md-2" id="thang-hien-tai-2">Tháng 4</div>
+                    <div class="col-md-2" id="thang-hien-tai-1"></div>
+                    <div class="col-md-2" id="thang-hien-tai"></div>
                 </div>
             </div>
             <div class="button-pane">
