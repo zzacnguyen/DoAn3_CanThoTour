@@ -8,10 +8,10 @@ document.addEventListener("DOMContentLoaded",function () {
 		clickSearch = 1;
 	}
 	
-	var tttt2 = document.getElementById('text-search-top-2');
-	tttt2.onclick = function(){
-		bodySearch[1].classList.add('active-search2');	
-	}
+	// var tttt2 = document.getElementById('text-search-top-2');
+	// tttt2.onclick = function(){
+	// 	bodySearch[1].classList.add('active-search2');	
+	// }
 
 	// hien thi user form
 	var clickUser = document.getElementById('id-user-form');
@@ -195,7 +195,7 @@ document.addEventListener("DOMContentLoaded",function () {
 
 	window.onclick = function(event) {
 	    if (event.target != tttt) { bodySearch[0].classList.remove('active-search'); clickSearch = 0;}
-	    if (event.target != tttt2) { bodySearch[1].classList.remove('active-search2'); }
+	    // if (event.target != tttt2) { bodySearch[1].classList.remove('active-search2'); }
 	    if (event.target != clickUser) {document.getElementsByClassName('user-form')[0].classList.remove("hienthi-search-form");}
 
 	    if (event.target != aSelect) {document.getElementById('a-tinhTP').classList.remove('click-select');}

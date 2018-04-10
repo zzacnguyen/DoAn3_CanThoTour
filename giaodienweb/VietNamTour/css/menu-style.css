@@ -106,6 +106,7 @@ ul.ul-right-menu-lam{
 
 nav#id-menu-Top{
 	transition: 0.5s;
+	padding: 0;
 }
 
 nav.navbar.navbar-expand-sm.navbar-light.menu{
@@ -486,7 +487,7 @@ p.text-nofi{
 
 .header #id-con ul.left-menu-lam li:hover a{color: white !important;}
 
-.header #id-con ul.left-menu-lam li a.active-thongbao{color: red !important;font-size: 19px !important;}
+.header #id-con ul.left-menu-lam li a.active-thongbao{color: red !important;}
 /*===================== end notification ================================*/
 
 /*===================== icon scroll top ================================*/
@@ -936,4 +937,48 @@ button#btnsearch-xs{
     color: white;
     padding: 10px 10px;
     margin-left: 183px;
+}
+
+#language{
+	position: relative;
+}
+
+#content-language{
+	position: absolute;
+    margin-top: 15px;
+    min-width: 40px;
+    min-height: 31px;
+    top: 19px;
+    right: 15px;
+    background-color: #000000ab;
+    display: none;
+}
+
+#content-language a{
+    padding-left: 10px;
+    padding-top: 1px;
+    display: inline-block;
+}
+
+#language:hover #content-language{
+	display: block;
+}
+
+#id-language:hover #content-language{
+	display: block;
+}
+
+#athongbao{
+	position: relative;
+}
+
+#num-thongbao{
+	position: absolute;
+    top: -6px;
+    z-index: 100000;
+    right: -4px;
+    font-size: 12px !important;
+    color: black !important;
+    background-color: yellow;
+    padding: 1px 2px;
 }
