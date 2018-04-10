@@ -142,22 +142,23 @@ class loginController extends Controller
             $pass = $request->input('password');
             if( Auth::attempt(['username' => $username, 'password' =>$pass])) {
 
-                $contact = contact_infoModel::where('user_id',Auth::user()->user_id)->first();
+                $contact = DB::select('CALL login_info(?)',array(Auth::user()->user_id));
                 // $result['result'] = array('id' => Auth::user()->user_id,'username' => Auth::user()->username,'user_avatar' => Auth::user()->user_avatar,'social_login_id' => Auth::user()->social_login_id);
 
-                $result['result'] = array(
-                    'id' => Auth::user()->user_id,
-                    'username' => Auth::user()->username,
-                    'social_login_id' => Auth::user()->social_login_id,
-                    'contact_name' => $contact->contact_name,
-                    'contact_phone'=>$contact->contact_phone,
-                    'contact_website'=>$contact->contact_website,
-                    'contact_avatar'=>$contact->contact_avatar,
-                    'contact_language'=>$contact->contact_language,
-                    'contact_county'=>$contact->contact_county,
-                    'ward_id'=>$contact->ward_id,
-                    'contact_email_address'=>$contact->contact_email_address);
+                // $result['result'] = array(
+                //     'id' => Auth::user()->user_id,
+                //     'username' => Auth::user()->username,
+                //     'social_login_id' => Auth::user()->social_login_id,
+                //     'contact_name' => $contact->contact_name,
+                //     'contact_phone'=>$contact->contact_phone,
+                //     'contact_website'=>$contact->contact_website,
+                //     'contact_avatar'=>$contact->contact_avatar,
+                //     'contact_language'=>$contact->contact_language,
+                //     'contact_county'=>$contact->contact_county,
+                //     'ward_id'=>$contact->ward_id,
+                //     'contact_email_address'=>$contact->contact_email_address);
 
+                $result['result'] = $contact;
                 $result['error'] = null;
                 $result['status'] = "OK";
                 return json_encode($result);
