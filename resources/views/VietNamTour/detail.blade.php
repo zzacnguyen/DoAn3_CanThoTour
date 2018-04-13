@@ -524,7 +524,7 @@
 				</div>
 				<div class="col-md-5" style="padding-left: 0;">
 					<div class="hotel-detail-right">
-						<div class="title">
+						<div class="title" style="text-align: left; margin-bottom: 5px;">
 							<p><a>Cần Thơ</a> >> <a>Quận Ninh Kiều</a></p>
 							<h4 style="font-size: 20px;">
 								@if($detailServices->sv_types == 2)

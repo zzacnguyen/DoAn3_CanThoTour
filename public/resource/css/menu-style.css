@@ -51,7 +51,7 @@ body,html{
 	display: block;
 	background-color: white !important;
 	border-bottom: 1px solid #bfbfbf9c;
-	transition: 5s;
+	transition: 2s;
 }
 
 #dangnhap-dangky ul li a.btn-login{
@@ -62,8 +62,9 @@ body,html{
 }
 
 #dangnhap-dangky ul li:hover a.btn-login{
-	background-color: white;
-	color: black !important;
+	background-color: rgb(29, 161, 242);
+	color: white !important;
+	font-weight: 500;
 }
 
 .layer-menu{
@@ -97,13 +98,15 @@ ul.ul-right-menu-lam{
 
 #navbarSupportedContent ul li .a-select{
 	position: relative;
-	width: 131px;
+	min-width: 131px;
+	height: 38px;
 	overflow: hidden;
 	color: black !important;
 }
 
 nav#id-menu-Top{
 	transition: 0.5s;
+	padding: 0;
 }
 
 nav.navbar.navbar-expand-sm.navbar-light.menu{
@@ -172,6 +175,18 @@ form.form-search-menu {
 	border: 1px solid #ced4da;
 	width: 100%;
 	overflow: hidden;
+}
+
+#a-tinhTP:hover{
+	background-color: rgb(29, 161, 242);
+	color: white !important;
+	font-weight: 500px;
+}
+
+#a-danhmuc:hover{
+	background-color: rgb(29, 161, 242);
+	color: white !important;
+	font-weight: 500px;
 }
 
 label.boloc2{
@@ -455,7 +470,7 @@ p.text-nofi{
     overflow: hidden;
 }
 .click-thongbao{
-	box-shadow: 2px 5px 5px 2px black;
+	/*box-shadow: 2px 5px 5px 2px black;*/
     transition: 0.5s ease;
     color: red !important;
 }
@@ -472,7 +487,7 @@ p.text-nofi{
 
 .header #id-con ul.left-menu-lam li:hover a{color: white !important;}
 
-.header #id-con ul.left-menu-lam li a.active-thongbao{color: red !important;font-size: 19px !important;}
+.header #id-con ul.left-menu-lam li a.active-thongbao{color: red !important;}
 /*===================== end notification ================================*/
 
 /*===================== icon scroll top ================================*/
@@ -922,4 +937,48 @@ button#btnsearch-xs{
     color: white;
     padding: 10px 10px;
     margin-left: 183px;
+}
+
+#language{
+	position: relative;
+}
+
+#content-language{
+	position: absolute;
+    margin-top: 15px;
+    min-width: 40px;
+    min-height: 31px;
+    top: 19px;
+    right: 15px;
+    background-color: #000000ab;
+    display: none;
+}
+
+#content-language a{
+    padding-left: 10px;
+    padding-top: 1px;
+    display: inline-block;
+}
+
+#language:hover #content-language{
+	display: block;
+}
+
+#id-language:hover #content-language{
+	display: block;
+}
+
+#athongbao{
+	position: relative;
+}
+
+#num-thongbao{
+	position: absolute;
+    top: -6px;
+    z-index: 100000;
+    right: -4px;
+    font-size: 12px !important;
+    color: black !important;
+    background-color: yellow;
+    padding: 1px 2px;
 }

@@ -40,5 +40,8 @@ Route::get('lamdv/type={type}','pageController@getlam');
 Route::get('count_place_Allcity','pageController@count_place_Allcity');
 Route::get('count_place_display','pageController@count_place_display');
 
+Route::get('lamindex/kd={f},{g}&type={type}&r={r}','pageController@searchServicesVicinity');
+
+
 
 ?>

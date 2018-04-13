@@ -8,10 +8,6 @@ document.addEventListener("DOMContentLoaded",function () {
 		clickSearch = 1;
 	}
 	
-	var tttt2 = document.getElementById('text-search-top-2');
-	tttt2.onclick = function(){
-		bodySearch[1].classList.add('active-search2');	
-	}
 
 	// hien thi user form
 	var clickUser = document.getElementById('id-user-form');
@@ -25,24 +21,24 @@ document.addEventListener("DOMContentLoaded",function () {
 		var flag = false;
 		if (window.pageYOffset > 56) 
 		{
-			document.getElementById('id-menu-Top').classList.add('hidden-item');
-			document.getElementById('id-layer-top').classList.add('fixed-top-style-menu');
-			document.getElementById('hidden-formSearch').style.display = "block";
+			// document.getElementById('id-menu-Top').classList.add('hidden-item');
+			// document.getElementById('id-layer-top').classList.add('fixed-top-style-menu');
+			// document.getElementById('hidden-formSearch').style.display = "block";
 			document.getElementById('id-icon-scroll-top').classList.add('hienthi-icon');
-			flag = true;
-			// khi cuon chuot ma da click vao form search
-			if (clickSearch > 0 ) {
-				bodySearch[1].classList.add('active-search2');
-			}
+			// flag = true;
+			// // khi cuon chuot ma da click vao form search
+			// if (clickSearch > 0 ) {
+			// 	bodySearch[1].classList.add('active-search2');
+			// }
 		}
 		else
 		{
-			document.getElementById('id-menu-Top').classList.remove('hidden-item');
-			document.getElementById('id-layer-top').classList.remove('fixed-top-style-menu');
-			document.getElementById('hidden-formSearch').style.display = "none";
+			// document.getElementById('id-menu-Top').classList.remove('hidden-item');
+			// document.getElementById('id-layer-top').classList.remove('fixed-top-style-menu');
+			// document.getElementById('hidden-formSearch').style.display = "none";
 			document.getElementById('id-icon-scroll-top').classList.remove('hienthi-icon');
 			flag = false;
-			//
+			
 		}
 	});
 
@@ -122,20 +118,20 @@ document.addEventListener("DOMContentLoaded",function () {
 	var select_Item = document.getElementsByClassName('selectItem');
 	for (var i = 0; i < select_Item.length; i++) {
 		select_Item[i].onclick = function () {
-			document.getElementById('a-tinhTP').innerHTML = this.getAttribute('data-name') + ' <i class="fas fa-angle-down"></i>';
-			document.getElementsByClassName('btn-select')[0].classList.remove('click-select');
-			document.getElementsByClassName('a-select')[0].classList.remove('hienthi');
+			document.getElementById('a-tinhTP').innerHTML = this.getAttribute('data-name') + ' <i class="fas fa-angle-down float-right" style="margin-top:5px;"></i>';
+			document.getElementsByClassName('select-content')[0].classList.remove('hienthi');
+			document.getElementById('a-tinhTP').classList.remove('click-select');
 		}
 	}
 
 	// select item danh muc
 	var select_Item2 = document.getElementsByClassName('selectItem2');
+	var demselectDm = 0;
 	for (var i = 0; i < select_Item2.length; i++) {
 		select_Item2[i].onclick = function () {
-			document.getElementById('a-danhmuc').innerHTML = this.getAttribute('data-name') + ' <i class="fas fa-angle-down"></i>';
-			document.getElementsByClassName('btn-select')[1].classList.remove('click-select');
+			document.getElementById('a-danhmuc').innerHTML = this.getAttribute('data-name') + ' <i class="fas fa-angle-down float-right" style="margin-top:5px;"></i>';
 			document.getElementsByClassName('select-content')[1].classList.remove('hienthi');
-			console.log(document.getElementsByClassName('select-content'));
+			document.getElementById('a-danhmuc').classList.remove('click-select');
 		}
 	}
 	
@@ -191,11 +187,23 @@ document.addEventListener("DOMContentLoaded",function () {
 
 
 
-
+	var chonTinh = document.getElementById('a-tinhTP');
 
 	window.onclick = function(event) {
 	    if (event.target != tttt) { bodySearch[0].classList.remove('active-search'); clickSearch = 0;}
-	    if (event.target != tttt2) { bodySearch[1].classList.remove('active-search2'); }
+	    // if (event.target != tttt2) { bodySearch[1].classList.remove('active-search2'); }
 	    if (event.target != clickUser) {document.getElementsByClassName('user-form')[0].classList.remove("hienthi-search-form");}
+
+	    if (event.target != aSelect) {document.getElementById('a-tinhTP').classList.remove('click-select');}
+	    if (event.target != select_Item) {document.getElementById('a-danhmuc').classList.remove('click-select');}
+	    if (event.target != document.getElementById('a-tinhTP')) {
+	    	var andi2 =  document.getElementsByClassName('select-content');
+	    	andi2[0].classList.remove('hienthi');
+	    }
+	    if (event.target != document.getElementById('a-danhmuc')) {
+	    	var andi2 =  document.getElementsByClassName('select-content');
+	    	andi2[1].classList.remove('hienthi');
+	    }
+
 	}
 },false);

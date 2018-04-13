@@ -154,7 +154,7 @@ class SearchController extends Controller
     }
 
     //tìm dịch vụ lân cận
-    public function searchServicesVicinity($latitude,$longitude, $type,int $radius)
+    public static function searchServicesVicinity($latitude,$longitude, $type,int $radius)
     {
         if ($radius >=100) 
         {
