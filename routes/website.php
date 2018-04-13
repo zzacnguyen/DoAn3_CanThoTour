@@ -42,12 +42,13 @@ Route::get('count_place_display','pageController@count_place_display');
 
 Route::get('lamindex/id={id}','publicDetail@get_service_id');
 
+Route::get('lamdeptrai/{l},{log}&type={t},radius={r}','publicDetail@searchServicesVicinity');
 
 
 
 // detail service
 Route::get('detail-service/id={id}','publicDetail@get_service_id');
 
-Route::get('detail/id={id}','publicDetail@get_detail');
+Route::get('detail/id={id}&type={type}','publicDetail@get_detail');
 
 ?>

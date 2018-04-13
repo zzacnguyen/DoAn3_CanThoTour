@@ -12,17 +12,17 @@
 							<ul>
 								<li>
 									<a>
-										<img id="img_service_1" src=""/>
+										<img src="thumbnails/{{$sv['image_details_1']}}"/>
 									</a>
 								</li>
 								<li>
 									<a>
-										<img id="img_service_2" src=""/>
+										<img src="thumbnails/{{$sv['image_details_2']}}"/>
 									</a>
 								</li>
 								<li>
 									<a>
-										<img id="img_service_3" src=""/>
+										<img src="thumbnails/{{$sv['image_banner']}}"/>
 									</a>
 								</li>
 								
@@ -34,7 +34,7 @@
 					<div class="hotel-detail-right">
 						<div class="title" style="text-align: left; margin-bottom: 5px;">
 							<p><a>Cần Thơ</a> >> <a>Quận Ninh Kiều</a></p>
-							<h4 style="font-size: 20px;" id="sv_name"></h4> {{-- ten dich vu --}}
+							<h4 style="font-size: 20px;" id="sv_name">{{$sv['sv_name']}}</h4> {{-- ten dich vu --}}
 							<div class="star">
 								<i class="fas fa-star"></i>
 								<i class="fas fa-star"></i>
@@ -45,7 +45,7 @@
 							</div>
 						</div>
 						<div class="hotel-body">
-							<p style="margin: 0;" id="mota-dichvu"></p>
+							<p style="margin: 0;" id="mota-dichvu">{{$sv['sv_description']}}</p>
 							<div class="row">
 								<div class="col-md-4 text-center">
 									<a href="">Đánh giá</a>
@@ -70,25 +70,25 @@
 										<div class="icon-f">
 											<i class="fas fa-phone"></i>
 										</div>
-										<span id="phonenumber"></span> {{-- sodienthoai --}}
+										<span id="phonenumber">{{$sv['sv_phone_number']}}</span> {{-- sodienthoai --}}
 									</li>
 
 									<li>
 										<div class="icon-f">
 											<i class="far fa-clock"></i>
 										</div>
-										<span id="giomocua"></span> {{-- gio mo cua --}}
+										<span id="giomocua">{{$sv['sv_close']}}</span> {{-- gio mo cua --}}
 										<i class="fas fa-arrow-right"></i> 
-										<span id="giodongcua"></span> {{-- gio mo cua --}}
+										<span id="giodongcua">{{$sv['sv_open']}}</span> {{-- gio mo cua --}}
 									</li>
 
 									<li>
 										<div class="icon-f">
 											<i class="fas fa-tag"></i>
 										</div>
-										<span id="giathapnhat"></span> {{-- gia thap nhat --}}
+										<span id="giathapnhat">{{$sv['sv_lowest_price']}}</span> {{-- gia thap nhat --}}
 										<i class="fas fa-arrow-right"></i> 
-										<span id="giacaonhat"></span>  {{-- gia cao nhat --}}
+										<span id="giacaonhat">{{$sv['sv_highest_price']}}</span>  {{-- gia cao nhat --}}
 									</li>
 								</ul>
 							</div>
@@ -151,21 +151,21 @@
 											<div class="list-images">
 												<div class="row cha-item-image">
 													<div class="col-md-3 col-sm-4 col-6 item-image">
-														{{-- <a href="thumbnails/{{$detailServices->image_details_1}}" data-lightbox="roadtrip"> --}}
+														<a href="thumbnails/{{$sv['image_details_1']}}" data-lightbox="roadtrip">
 															<img src="images/hotel/hotel-background.jpg" alt="" style="width: 100%; height: 100%; padding: 5px;">
-															{{-- <img src="thumbnails/{{$detailServices->image_details_1}}" style="width: 100%; height: 100%; padding: 5px;"/> --}}
+															<img src="thumbnails/{{$sv['image_details_1']}}" style="width: 100%; height: 100%; padding: 5px;"/>
 														</a>
 													</div>
 													<div class="col-md-3 col-sm-4 col-6 item-image">
-														{{-- <a href="thumbnails/{{$detailServices->image_banner}}" data-lightbox="roadtrip"> --}}
+														<a href="thumbnails/{{$sv['image_details_2']}}" data-lightbox="roadtrip">
 															<img src="images/hotel/hotel-background.jpg" alt="" style="width: 100%; height: 100%; padding: 5px;">
-															{{-- <img src="thumbnails/{{$detailServices->image_banner}}" style="width: 100%; height: 100%; padding: 5px;"/> --}}
+															<img src="thumbnails/{{$sv['image_details_2']}}" style="width: 100%; height: 100%; padding: 5px;"/>
 														</a>
 													</div>
 													<div class="col-md-3 col-sm-4 col-6 item-image">
-														{{-- <a href="thumbnails/{{$detailServices->image_details_2}}" data-lightbox="roadtrip"> --}}
+														<a href="thumbnails/{{$sv['image_banner']}}" data-lightbox="roadtrip">
 															<img src="images/hotel/hotel-background.jpg" alt="" style="width: 100%; height: 100%; padding: 5px;">
-															{{-- <img src="thumbnails/{{$detailServices->image_details_2}}" style="width: 100%; height: 100%; padding: 5px;"/> --}}
+															<img src="thumbnails/{{$sv['image_banner']}}" style="width: 100%; height: 100%; padding: 5px;"/>
 														</a>
 													</div>
 												</div>
@@ -275,7 +275,7 @@
 										<a href="">
 											<img src="images/hotel/3.jpg" alt="">
 											<div class="text-item-cafe">
-												<h6>{{$service['sv_name']}}</h6>
+												<h6></h6>
 												<p>31 Lê lợi...csccscsdc</p>
 											</div>
 										</a>

@@ -211,7 +211,7 @@
 				@foreach($services_enter as $enter)
 					<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 						<div class="destination-grid">
-							<a href="http://chinhlytailieu/doan3_canthotour/public/detail/id={{$enter['id_service']}}">
+							<a href="http://chinhlytailieu/doan3_canthotour/public/detail/id={{$hotel['id_service']}}&type={{$hotel['sv_type']}}}">
 								<img src="thumbnails/{{$enter['image']}}" alt="">
 							</a>
 							<div class="destination-name">

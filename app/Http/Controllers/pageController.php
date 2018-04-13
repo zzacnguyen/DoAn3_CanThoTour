@@ -208,7 +208,7 @@ class pageController extends Controller
                 $name_city = $city->province_city_name;
                 $mang[] = array(
                     'id_service'=>$value->sv_id,
-                    'name'=>$value->$name,
+                    'name'=>$value->sv_name,
                     'image'=>$value->image_details_1,
                     'id_city'=>$id_city,
                     'name_city'=>$name_city,
