@@ -9,6 +9,7 @@ use App\servicesModel;
 use App\Http\Controllers\SearchController;
 use App\touristPlacesModel;
 use App\provincecityModel;
+use Illuminate\Database\Eloquent\Colection;
 
 class pageController extends Controller
 {
@@ -57,14 +58,10 @@ class pageController extends Controller
         $place = $this::findplace_service($idservices);
         
         $dichvulancan = $this::searchServicesVicinity($place->pl_latitude,$place->pl_longitude,5,5000);
-        // print_r($dichvulancan);
-        foreach ($place as $value) {
-            $dich[] = array('sv_name' => $value->entertainments_name,'fhf' => 2);
-        }
-
+        // print_r($dichvulancan)
         $lam = var_dump($dichvulancan);
-        dd($lam);
-        // return view('VietNamTour.content.detail',compact('placecount','detailServices','dichvulancan'));
+        // dd($lam);
+        return view('VietNamTour.content.detail',compact('placecount','detailServices','dichvulancan'));
     }
 
     public function getaddplace()
@@ -335,35 +332,6 @@ class pageController extends Controller
     {
         $result = DB::select('CALL count_city_place()');
         return $result;
-        // foreach ($result as $value) {
-        //     echo "<div class='item'>";
-        //         echo "<div class='grid-item'>";
-        //             echo "<div class='grid-img-thumb'>";
-        //                 echo "<div class='ribbon'>"."<span>".$value->amount_palce."</span>"."</div>";
-        //                 echo "<a href='#'>";
-        //                     echo "<img src='resourceVNT/images/img-BaiViet/1.jpg' style='height: 214px;'>";
-        //                 echo "</a>";
-        //             echo "</div>"; //end grid-img-thumb
-
-        //             echo "<div class='grid-content'>";
-        //                 echo "<div class='grid-price text-left'>";
-        //                     echo "<span>".$value->amount_palce."</span>";
-        //                     echo "<i class='far fa-hand-peace'></i>";
-        //                 echo "</div>";
-
-        //                 echo "<div class='grid-text'>";
-        //                     echo "<div class='place-name'>".$value->province_city_name."</div>";
-        //                     echo "<span class='pull-right'>";
-        //                         for ($i=0; $i <5 ; $i++) { 
-        //                             echo "<i class='fas fa-star'></i>";
-        //                         }
-        //                     echo "</span>";
-        //                 echo "</div>"; //end grid-text
-
-        //             echo "</div>";
-        //         echo "</div>";
-        //     echo "</div>";
-        // }
     }
 
 
@@ -405,13 +373,13 @@ class pageController extends Controller
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->select('vnt_services.id', 'vnt_eating.eat_name','vnt_images.id as image_id','vnt_images.image_details_1')
                                     ->where('tourist_places_id',$place_id)
-                                    ->where('sv_types',$typeServices)->take(5)->get();
+                                    ->where('sv_types',$typeServices)->take(5)->get()->toArray();
                 if (!empty($result)) {
-                    foreach ($result as $value) {
-                        $resultCustom[] = array('id'=> $value->id,'eat_name' => $value->eat_name,'image_id' => $value->image_id,'image_details_1' => 'image_details_1','distance' => $distance);
-                    }
-                    if (isset($resultCustom)) {
-                        return $resultCustom;
+                    // foreach ($result as $value) {
+                    //     $resultCustom[] = array('id'=> $value->id,'eat_name' => $value->eat_name,'image_id' => $value->image_id,'image_details_1' => 'image_details_1','distance' => $distance);
+                    // }
+                    if (isset($result)) {
+                        return $result;
                     }
                     else{ return null;  }
                 }else{ return null; }
@@ -502,13 +470,16 @@ class pageController extends Controller
                     if (!empty($this::getServicesAll($key,$type,$value))) {
                         foreach ($this::getServicesAll($key,$type,$value) as $k => $v) {
                             $r[] = $v;
+
                         }
+                        // $r = $this::getServicesAll($key,$type,$value);
                     }
                 }
                 if (isset($r)) {
                     // $resultAll['data'] = $r;
                     // $resultAll['status'] = "OK";
-                    return $r;
+
+                    return json_encode($r);
                 }
                 else{
                     $resultAll = array('data' => null,'status' => 'NOT FOUND');

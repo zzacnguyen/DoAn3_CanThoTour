@@ -40,8 +40,14 @@ Route::get('lamdv/type={type}','pageController@getlam');
 Route::get('count_place_Allcity','pageController@count_place_Allcity');
 Route::get('count_place_display','pageController@count_place_display');
 
-Route::get('lamindex/kd={f},{g}&type={type}&r={r}','pageController@searchServicesVicinity');
+Route::get('lamindex/id={id}','publicDetail@get_service_id');
 
 
+
+
+// detail service
+Route::get('detail-service/id={id}','publicDetail@get_service_id');
+
+Route::get('detail/id={id}','publicDetail@get_detail');
 
 ?>
