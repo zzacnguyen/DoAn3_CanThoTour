@@ -11,17 +11,18 @@
 				    	<div class="grid-item">
 				    		<div class="grid-img-thumb">
 				    			<div class="ribbon">
-				    				<span>{{$value->amount_palce}}</span>
+				    				<span>{{$value['amount_palce']}}</span>
 				    			</div>
-					    		<a href="#"><img src="resource/images/hotel/1.jpg" alt="" style="height: 214px;"></a>
+					    		<a href="http://chinhlytailieu/doan3_canthotour/public/city/{{$value['id']}}">
+					    			<img src="thumbnails/{{$value['image']}}" alt="" style="height: 214px;"></a>
 					    	</div>
 					    	<div class="grid-content">
 					    		<div class="grid-price text-left">
-					    			<span>{{$value->amount_palce}}</span>
+					    			<span>{{$value['amount_palce']}}</span>
 					    			<i class="far fa-hand-peace"></i>
 					    		</div>
 					    		<div class="grid-text">
-					    			<div class="place-name">{{$value->province_city_name}}</div>
+					    			<div class="place-name">{{$value['province_city_name']}}</div>
 					    			<span class="pull-right">
 				    					<i class="fas fa-star"></i>
 				    					<i class="fas fa-star"></i>
@@ -68,9 +69,9 @@
 							</div>
 							<div class="destination-icon">	
 								<a>{{$see['rating']}} <i class="far fa-star"></i></a>	
-								<a>123 <i class="fas fa-eye"></i></a>
+								<a>{{$see['view']}} <i class="fas fa-eye"></i></a>
 								<a>{{$see['like']}} <i class="far fa-thumbs-up"></i></a>
-								<a>800 <i class="far fa-bookmark"></i></a>
+								<a>{{$see['point']}} <i class="far fa-bookmark"></i></a>
 							</div>
 						</div>
 					</div>
@@ -113,9 +114,9 @@
 							</div>
 							<div class="destination-icon">	
 								<a>{{$eat['rating']}} <i class="far fa-star"></i></a>	
-								<a>123 <i class="fas fa-eye"></i></a>
+								<a>{{$eat['view']}} <i class="fas fa-eye"></i></a>
 								<a>{{$eat['like']}} <i class="far fa-thumbs-up"></i></a>
-								<a>800 <i class="far fa-bookmark"></i></a>
+								<a>{{$eat['point']}} <i class="far fa-bookmark"></i></a>
 							</div>
 						</div>
 					</div>
@@ -220,9 +221,9 @@
 							</div>
 							<div class="destination-icon">	
 								<a>{{$enter['rating']}} <i class="far fa-star"></i></a>	
-								<a>123 <i class="fas fa-eye"></i></a>
+								<a>{{$enter['view']}} <i class="fas fa-eye"></i></a>
 								<a>{{$enter['like']}} <i class="far fa-thumbs-up"></i></a>
-								<a>800 <i class="far fa-bookmark"></i></a>
+								<a>{{$enter['point']}} <i class="far fa-bookmark"></i></a>
 							</div>
 						</div>
 					</div>
@@ -263,9 +264,9 @@
 							</div>
 							<div class="destination-icon">	
 								<a>{{$stran['rating']}} <i class="far fa-star"></i></a>	
-								<a>123 <i class="fas fa-eye"></i></a>
+								<a>{{$stran['view']}} <i class="fas fa-eye"></i></a>
 								<a>{{$stran['like']}} <i class="far fa-thumbs-up"></i></a>
-								<a>800 <i class="far fa-bookmark"></i></a>
+								<a>{{$stran['point']}} <i class="far fa-bookmark"></i></a>
 							</div>
 						</div>
 					</div>

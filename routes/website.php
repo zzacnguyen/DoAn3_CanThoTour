@@ -45,7 +45,6 @@ Route::get('lamindex/id={id}','publicDetail@get_service_id');
 Route::get('lamdeptrai/{l},{log}&type={t},radius={r}','publicDetail@searchServicesVicinity');
 
 
-
 // detail service
 Route::get('detail-service/id={id}','publicDetail@get_service_id');
 
@@ -62,5 +61,7 @@ Route::get('p_search','publicSearchController@get_search');
 Route::get('city/{id}','publicSearchController@get_place_city');
 
 Route::get('count_ser/{id}','publicSearchController@count_servies_type');
-Route::get('count_servies_type_con/{id}&{type}','publicSearchController@count_servies_type_con');
+Route::get('get_all_place_city_type/{id}&type={t}','publicSearchController@get_all_place_city_type');
+
+Route::get('image_city/{id}','pageController@image_city');
 ?>

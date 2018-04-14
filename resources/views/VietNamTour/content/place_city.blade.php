@@ -62,26 +62,31 @@
 						</div>
 						<div class="box-body">
 							<ul>
-								<li><a href="">Tham quan<span>20</span></a></li>
-								<li><a href="">Ăn uống<span>50</span></a></li>
-								<li><a href="">Khách sạn<span>20</span></a></li>
-								<li><a href="">Vui chơi<span>20</span></a></li>
-								<li><a href="">Phương tiện<span>100</span></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="left-box">
-						<div class="box-title">
-							Cần Thơ
-							<span>210</span>
-						</div>
-						<div class="box-body">
-							<ul>
-								<li><a href="">Tham quan<span>20</span></a></li>
-								<li><a href="">Ăn uống<span>50</span></a></li>
-								<li><a href="">Khách sạn<span>20</span></a></li>
-								<li><a href="">Vui chơi<span>20</span></a></li>
-								<li><a href="">Phương tiện<span>100</span></a></li>
+								<li id="see" style="cursor: pointer;">
+									<a>Tham quan
+										<span>{{$count_sv['see']}}</span>
+									</a>
+								</li>
+								<li id="eat" style="cursor: pointer;">
+									<a>Ăn uống
+										<span>{{$count_sv['eat']}}</span>
+									</a>
+								</li>
+								<li id="hotel" style="cursor: pointer;">
+									<a>Khách sạn
+										<span>{{$count_sv['hotel']}}</span>
+									</a>
+								</li>
+								<li id="enter" style="cursor: pointer;">
+									<a>Vui chơi
+										<span>{{$count_sv['enter']}}</span>
+								</a>
+								</li>
+								<li id="tran" style="cursor: pointer;">
+									<a>Phương tiện
+										<span>{{$count_sv['tran']}}</span>
+									</a>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -89,67 +94,26 @@
 				<!-- right -->
 				<div class="col-md-9 .col-sm-8">
 					<div class="place-list-content">
-						<div class="row">
+						<div class="row" id="content_place">
+							@foreach($all_place as $p)
 							<div class="col-md-4 col-sm-6 col-12 thumbnail-padding" style="padding-top: 0;">
 								<div class="destination-grid">
-									<a href=""><img src="resource/images/img-BaiViet/9.jpg" alt=""></a>
+									<a href="http://chinhlytailieu/doan3_canthotour/public/detail/id={{$p['sv_id']}}&type={{$p['sv_type']}}">
+										<img src="thumbnails/{{$p['image']}}" alt="Error" style="min-height: 265px;">
+									</a>
 									<div class="destination-name">
-										<h4>Ha Long</h4>
-										<h5>Quang Ninh</h5>
+										<h4>{{$p['name']}}</h4>
+										{{-- <h5>Quang Ninh</h5> --}}
 									</div>
 									<div class="destination-icon">	
-										<a>8.5 <i class="far fa-star"></i></a>	
-										<a>123 <i class="fas fa-eye"></i></a>
-										<a>123 <i class="far fa-comment"></i></a>
-										<a>800 <i class="far fa-bookmark"></i></a>
+										<a>{{$p['rating']}} <i class="far fa-star"></i></a>	
+										<a>{{$p['view']}} <i class="fas fa-eye"></i></a>
+										<a>{{$p['like']}} <i class="far fa-thumbs-up"></i></a>
+										<a>{{$p['point']}} <i class="far fa-bookmark"></i></a>
 									</div>
 								</div>
 							</div>
-							<div class="col-md-4 col-sm-6 col-12 thumbnail-padding">
-								<div class="destination-grid">
-									<a href=""><img src="resource/images/img-BaiViet/9.jpg" alt=""></a>
-									<div class="destination-name">
-										<h4>Ha Long</h4>
-										<h5>Quang Ninh</h5>
-									</div>
-									<div class="destination-icon">	
-										<a>8.5 <i class="far fa-star"></i></a>	
-										<a>123 <i class="fas fa-eye"></i></a>
-										<a>123 <i class="far fa-comment"></i></a>
-										<a>800 <i class="far fa-bookmark"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6 col-12 thumbnail-padding">
-								<div class="destination-grid">
-									<a href=""><img src="resource/images/img-BaiViet/9.jpg" alt=""></a>
-									<div class="destination-name">
-										<h4>Ha Long</h4>
-										<h5>Quang Ninh</h5>
-									</div>
-									<div class="destination-icon">	
-										<a>8.5 <i class="far fa-star"></i></a>	
-										<a>123 <i class="fas fa-eye"></i></a>
-										<a>123 <i class="far fa-comment"></i></a>
-										<a>800 <i class="far fa-bookmark"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6 col-12 thumbnail-padding">
-								<div class="destination-grid">
-									<a href=""><img src="resource/images/img-BaiViet/9.jpg" alt=""></a>
-									<div class="destination-name">
-										<h4>Ha Long</h4>
-										<h5>Quang Ninh</h5>
-									</div>
-									<div class="destination-icon">	
-										<a>8.5 <i class="far fa-star"></i></a>	
-										<a>123 <i class="fas fa-eye"></i></a>
-										<a>123 <i class="far fa-comment"></i></a>
-										<a>800 <i class="far fa-bookmark"></i></a>
-									</div>
-								</div>
-							</div>
+							@endforeach
 						</div>
 					</div><!-- end place-list-content -->
 					<div class="pagination-inner">
@@ -187,6 +151,6 @@
 
 	<script src="resource/js/lightbox.min.js"></script>
 	<script src="resource/js/menu-style.js"></script>
-
+	<script src="resource/js/p/place_city.js"></script>
 
 @include('VietNamTour.header-footer.footer')

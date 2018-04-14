@@ -57,17 +57,17 @@
 			<ul>
 				<li class="active-img">
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('resource/images/background/3.jpg');"></div>
+						<div class="img-content" style="background-image: url('thumbnails/banner__2018_04_04_11_51_23.jpg');"></div>
 					</div>
 				</li>
 				<li>
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('resource/images/background/2.jpg');"></div>
+						<div class="img-content" style="background-image: url('thumbnails/banner__2018_04_04_11_52_39.jpg');"></div>
 					</div>
 				</li>
 				<li >
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('resource/images/background/1.jpg');"></div>
+						<div class="img-content" style="background-image: url('thumbnails/banner__2018_04_04_01_43_26');"></div>
 					</div>
 				</li>
 			</ul>
@@ -79,7 +79,7 @@
 			<div class="layer-top" id="id-layer-top">
 				<div class="container">
 					<nav class="navbar navbar-expand-lg navbar-light menuTop" id="id-menu-Top">
-						<a class="navbar-brand" href="#" style="color: #304FFE !important;"><!-- VietNamTour -->
+						<a class="navbar-brand" href="{{route('/')}}" style="color: #304FFE !important;"><!-- VietNamTour -->
 							<img src="https://static.tacdn.com/img2/langs/vi/branding/rebrand/TA_logo_primary_v2.svg" alt="" style="height: 50px; width: 160px;">
 						</a>
 						<!-- <button class="btn btn-success navbar-toggler" id="btnsearch-xs"><i class="fas fa-search"></i></button> -->
@@ -101,10 +101,10 @@
 
 						  				<ul>
 						  					@foreach($placecount as $p )
-						  					<li class="selectItem" data-name="{{$p->province_city_name}}">
+						  					<li class="selectItem" data-name="{{$p['province_city_name']}}">
 						  						<a class="selectItem-name">
-						  							<label>{{$p->province_city_name}}</label>
-						  							<span class="float-right">{{$p->amount_palce}}</span>
+						  							<label>{{$p['province_city_name']}}</label>
+						  							<span class="float-right">{{$p['amount_palce']}}</span>
 						  						</a>
 						  					</li>
 						  					@endforeach
@@ -271,7 +271,7 @@
 								<div class="right-menu-lam">
 									<ul class="float-left ul-right-menu-lam">
 										<li class="active-menu"><a href=""><i class="fas fa-home"></i></a></li>
-										<li class="hover-menu hidden-xs"><a href="">Địa điểm</a></li>
+										
 										<li class="hover-menu hidden-xs"><a href="">Giới thiệu</a></li>
 										<li class="hover-menu hidden-xs"><a href="">Liên hệ</a></li>
 										<li class="hover-menu">
