@@ -145,24 +145,24 @@ class loginController extends Controller
                 // $contact = DB::select('CALL login_info(?)',array(Auth::user()->user_id));
                 $result = DB::select('CALL login_info_phone(?)',array(Auth::user()->user_id));
                 // dd($result);
-                $level = 0;
+                $level = "persional";
                 foreach ($result as $result) {
                     if ($result->admin != null) {
-                        $level = 1;
+                        $level = "admin";
                     }
                     else if($result->moderator != null){
-                        $level = 2;
+                        $level = "moderator";
                     }
                     else if($result->partner != null){
-                        $level = 3;
+                        $level = "partner";
                     }
                     else if($result->enterprise != null){
-                        $level = 4;
+                        $level = "enterprise";
                     }
                     else if($result->tour_guide != null){
-                        $level = 5;
+                        $level = "tour_guide";
                     }
-                    else{ $level = 0;}
+    
                     $result_info = array(
                         'id' => $result->user_id,
                         'username' =>$result->username,
