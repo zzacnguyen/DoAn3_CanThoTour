@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2018 at 07:27 PM
+-- Generation Time: Apr 14, 2018 at 07:16 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.3
 
@@ -86,6 +86,9 @@ FROM
 CREATE DEFINER=`root`@`localhost` PROCEDURE `login_info` (IN `id` INT)  BEGIN
    SELECT * FROM login_info as l WHERE l.user_id = id;
 END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `login_info_phone` (IN `user_id` INT(10))  NO SQL
+SELECT * FROM login_info_phone AS l WHERE l.user_id = user_id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `top8eat` ()  NO SQL
 SELECT * FROM sv_eat AS h WHERE h.sv_status = 'Active' ORDER BY h.sv_counter_point DESC LIMIT 0,8$$
@@ -174,6 +177,25 @@ CREATE TABLE `login_info` (
 ,`contact_name` varchar(100)
 ,`contact_website` varchar(100)
 ,`ward_id` int(10) unsigned
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `login_info_phone`
+-- (See below for the actual view)
+--
+CREATE TABLE `login_info_phone` (
+`user_id` int(10) unsigned
+,`username` varchar(30)
+,`contact_avatar` varchar(30)
+,`contact_name` varchar(100)
+,`ward_id` int(10) unsigned
+,`admin` int(10) unsigned
+,`moderator` int(10) unsigned
+,`partner` int(10) unsigned
+,`enterprise` int(10) unsigned
+,`tour_guide` int(10) unsigned
 );
 
 -- --------------------------------------------------------
@@ -277,7 +299,7 @@ CREATE TABLE `sv_eat` (
 ,`sv_status` varchar(10)
 ,`sv_types` int(11)
 ,`sv_website` varchar(255)
-,`eat_name` varchar(100)
+,`sv_name` varchar(100)
 ,`eat_status` varchar(10)
 ,`id` int(10) unsigned
 ,`image_banner` varchar(50)
@@ -308,7 +330,7 @@ CREATE TABLE `sv_entertaiment` (
 ,`sv_status` varchar(10)
 ,`sv_types` int(11)
 ,`sv_website` varchar(255)
-,`entertainments_name` varchar(50)
+,`sv_name` varchar(50)
 ,`entertainments_status` varchar(10)
 ,`id_img` int(10) unsigned
 ,`image_banner` varchar(50)
@@ -372,7 +394,7 @@ CREATE TABLE `sv_sightseeting` (
 ,`sv_status` varchar(10)
 ,`sv_types` int(11)
 ,`sv_website` varchar(255)
-,`sightseeing_name` varchar(50)
+,`sv_name` varchar(50)
 ,`sightseeing_status` varchar(10)
 ,`id` int(10) unsigned
 ,`image_banner` varchar(50)
@@ -403,7 +425,7 @@ CREATE TABLE `sv_stranport` (
 ,`sv_status` varchar(10)
 ,`sv_types` int(11)
 ,`sv_website` varchar(255)
-,`transport_name` varchar(50)
+,`sv_name` varchar(50)
 ,`transport_status` varchar(10)
 ,`id` int(10) unsigned
 ,`image_banner` varchar(50)
@@ -453,6 +475,13 @@ CREATE TABLE `vnt_admin_user` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `vnt_admin_user`
+--
+
+INSERT INTO `vnt_admin_user` (`user_id`, `created_at`, `updated_at`) VALUES
+(2, '2018-04-17 05:14:58', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -478,7 +507,8 @@ CREATE TABLE `vnt_contact_info` (
 --
 
 INSERT INTO `vnt_contact_info` (`user_id`, `contact_name`, `contact_phone`, `contact_website`, `contact_email_address`, `contact_avatar`, `contact_language`, `contact_country`, `ward_id`, `created_at`, `updated_at`) VALUES
-(2, 'Laam', '0939812940', 'lam.com', 'lam@gmail.com', 'adadsad.jpg', 'VietNam', 'Hau Gianf', 1, '0000-00-00 00:00:00', NULL);
+(2, 'Laam', '0939812940', 'lam.com', 'lam@gmail.com', 'adadsad.jpg', 'VietNam', 'Hau Gianf', 1, '0000-00-00 00:00:00', NULL),
+(4, 'Huy', '35435353', 'huy.com', 'h@gmail.com', '', '', '', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2627,7 +2657,8 @@ CREATE TABLE `vnt_user` (
 INSERT INTO `vnt_user` (`user_id`, `username`, `password`, `social_login_id`, `created_at`, `updated_at`, `remember_token`) VALUES
 (1, 'qưe', 'ưqeq', 'qưe', NULL, NULL, NULL),
 (2, 'tranduclam', '$2y$10$yDs7TTwHUT5.XwB8Gc15luTozSQy95/fGpoRQbe2kXR1.Z4RuvEM2', '1', '2018-04-07 07:41:58', '2018-04-07 07:41:58', NULL),
-(3, 'tranduclam2', '$2y$10$5JHrkJcbq5GO14m8LMYrHej/JjcDdfoh5fr/zmPdA6Vh8p39vELsW', '2', '2018-04-07 08:23:52', '2018-04-07 08:23:52', NULL);
+(3, 'tranduclam2', '$2y$10$5JHrkJcbq5GO14m8LMYrHej/JjcDdfoh5fr/zmPdA6Vh8p39vELsW', '2', '2018-04-07 08:23:52', '2018-04-07 08:23:52', NULL),
+(4, 'thaingoc', '$2y$10$JNeP5X98N2b0XWZXkWEfaOeCDbnYnUWxyjpKVdsaYYFrN8DwjVOAu', NULL, '2018-04-14 03:48:53', '2018-04-14 03:48:53', NULL);
 
 -- --------------------------------------------------------
 
@@ -13838,11 +13869,20 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
+-- Structure for view `login_info_phone`
+--
+DROP TABLE IF EXISTS `login_info_phone`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `login_info_phone`  AS  select `u`.`user_id` AS `user_id`,`u`.`username` AS `username`,`c`.`contact_avatar` AS `contact_avatar`,`c`.`contact_name` AS `contact_name`,`c`.`ward_id` AS `ward_id`,`ad`.`user_id` AS `admin`,`m`.`user_id` AS `moderator`,`p`.`user_id` AS `partner`,`en`.`user_id` AS `enterprise`,`tour`.`user_id` AS `tour_guide` from ((((((`vnt_user` `u` join `vnt_contact_info` `c` on((`u`.`user_id` = `c`.`user_id`))) left join `vnt_admin_user` `ad` on((`u`.`user_id` = `ad`.`user_id`))) left join `vnt_moderator_users` `m` on((`c`.`user_id` = `m`.`user_id`))) left join `vnt_partner_user` `p` on((`c`.`user_id` = `p`.`user_id`))) left join `vnt_enterprise_user` `en` on((`c`.`user_id` = `en`.`user_id`))) left join `vnt_tour_guide` `tour` on((`c`.`user_id` = `tour`.`user_id`))) ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `sv_eat`
 --
 DROP TABLE IF EXISTS `sv_eat`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sv_eat`  AS  select `s`.`id` AS `sv_id`,`p`.`id` AS `id_place`,`p`.`pl_latitude` AS `pl_latitude`,`p`.`pl_longitude` AS `pl_longitude`,`s`.`sv_close` AS `sv_close`,`s`.`sv_counter_point` AS `sv_counter_point`,`s`.`sv_counter_view` AS `sv_counter_view`,`s`.`sv_description` AS `sv_description`,`s`.`sv_highest_price` AS `sv_highest_price`,`s`.`sv_lowest_price` AS `sv_lowest_price`,`s`.`sv_open` AS `sv_open`,`s`.`sv_phone_number` AS `sv_phone_number`,`s`.`sv_status` AS `sv_status`,`s`.`sv_types` AS `sv_types`,`s`.`sv_website` AS `sv_website`,`e`.`eat_name` AS `eat_name`,`e`.`eat_status` AS `eat_status`,`m`.`id` AS `id`,`m`.`image_banner` AS `image_banner`,`m`.`image_details_1` AS `image_details_1`,`m`.`image_details_2` AS `image_details_2`,`m`.`image_status` AS `image_status` from (((`vnt_services` `s` join `vnt_tourist_places` `p` on((`s`.`tourist_places_id` = `p`.`id`))) join `vnt_eating` `e` on((`s`.`id` = `e`.`service_id`))) left join `vnt_images` `m` on((`s`.`id` = `m`.`service_id`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sv_eat`  AS  select `s`.`id` AS `sv_id`,`p`.`id` AS `id_place`,`p`.`pl_latitude` AS `pl_latitude`,`p`.`pl_longitude` AS `pl_longitude`,`s`.`sv_close` AS `sv_close`,`s`.`sv_counter_point` AS `sv_counter_point`,`s`.`sv_counter_view` AS `sv_counter_view`,`s`.`sv_description` AS `sv_description`,`s`.`sv_highest_price` AS `sv_highest_price`,`s`.`sv_lowest_price` AS `sv_lowest_price`,`s`.`sv_open` AS `sv_open`,`s`.`sv_phone_number` AS `sv_phone_number`,`s`.`sv_status` AS `sv_status`,`s`.`sv_types` AS `sv_types`,`s`.`sv_website` AS `sv_website`,`e`.`eat_name` AS `sv_name`,`e`.`eat_status` AS `eat_status`,`m`.`id` AS `id`,`m`.`image_banner` AS `image_banner`,`m`.`image_details_1` AS `image_details_1`,`m`.`image_details_2` AS `image_details_2`,`m`.`image_status` AS `image_status` from (((`vnt_services` `s` join `vnt_tourist_places` `p` on((`s`.`tourist_places_id` = `p`.`id`))) join `vnt_eating` `e` on((`s`.`id` = `e`.`service_id`))) left join `vnt_images` `m` on((`s`.`id` = `m`.`service_id`))) ;
 
 -- --------------------------------------------------------
 
@@ -13851,7 +13891,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `sv_entertaiment`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sv_entertaiment`  AS  select `s`.`id` AS `sv_id`,`p`.`id` AS `id_place`,`p`.`pl_latitude` AS `pl_latitude`,`p`.`pl_longitude` AS `pl_longitude`,`s`.`sv_close` AS `sv_close`,`s`.`sv_counter_point` AS `sv_counter_point`,`s`.`sv_counter_view` AS `sv_counter_view`,`s`.`sv_description` AS `sv_description`,`s`.`sv_highest_price` AS `sv_highest_price`,`s`.`sv_lowest_price` AS `sv_lowest_price`,`s`.`sv_open` AS `sv_open`,`s`.`sv_phone_number` AS `sv_phone_number`,`s`.`sv_status` AS `sv_status`,`s`.`sv_types` AS `sv_types`,`s`.`sv_website` AS `sv_website`,`e`.`entertainments_name` AS `entertainments_name`,`e`.`entertainments_status` AS `entertainments_status`,`m`.`id` AS `id_img`,`m`.`image_banner` AS `image_banner`,`m`.`image_details_1` AS `image_details_1`,`m`.`image_details_2` AS `image_details_2`,`m`.`image_status` AS `image_status` from (((`vnt_services` `s` join `vnt_tourist_places` `p` on((`s`.`tourist_places_id` = `p`.`id`))) join `vnt_entertainments` `e` on((`s`.`id` = `e`.`service_id`))) left join `vnt_images` `m` on((`s`.`id` = `m`.`service_id`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sv_entertaiment`  AS  select `s`.`id` AS `sv_id`,`p`.`id` AS `id_place`,`p`.`pl_latitude` AS `pl_latitude`,`p`.`pl_longitude` AS `pl_longitude`,`s`.`sv_close` AS `sv_close`,`s`.`sv_counter_point` AS `sv_counter_point`,`s`.`sv_counter_view` AS `sv_counter_view`,`s`.`sv_description` AS `sv_description`,`s`.`sv_highest_price` AS `sv_highest_price`,`s`.`sv_lowest_price` AS `sv_lowest_price`,`s`.`sv_open` AS `sv_open`,`s`.`sv_phone_number` AS `sv_phone_number`,`s`.`sv_status` AS `sv_status`,`s`.`sv_types` AS `sv_types`,`s`.`sv_website` AS `sv_website`,`e`.`entertainments_name` AS `sv_name`,`e`.`entertainments_status` AS `entertainments_status`,`m`.`id` AS `id_img`,`m`.`image_banner` AS `image_banner`,`m`.`image_details_1` AS `image_details_1`,`m`.`image_details_2` AS `image_details_2`,`m`.`image_status` AS `image_status` from (((`vnt_services` `s` join `vnt_tourist_places` `p` on((`s`.`tourist_places_id` = `p`.`id`))) join `vnt_entertainments` `e` on((`s`.`id` = `e`.`service_id`))) left join `vnt_images` `m` on((`s`.`id` = `m`.`service_id`))) ;
 
 -- --------------------------------------------------------
 
@@ -13869,7 +13909,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `sv_sightseeting`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sv_sightseeting`  AS  select `s`.`id` AS `sv_id`,`p`.`id` AS `id_place`,`p`.`pl_latitude` AS `pl_latitude`,`p`.`pl_longitude` AS `pl_longitude`,`s`.`sv_close` AS `sv_close`,`s`.`sv_counter_point` AS `sv_counter_point`,`s`.`sv_counter_view` AS `sv_counter_view`,`s`.`sv_description` AS `sv_description`,`s`.`sv_highest_price` AS `sv_highest_price`,`s`.`sv_lowest_price` AS `sv_lowest_price`,`s`.`sv_open` AS `sv_open`,`s`.`sv_phone_number` AS `sv_phone_number`,`s`.`sv_status` AS `sv_status`,`s`.`sv_types` AS `sv_types`,`s`.`sv_website` AS `sv_website`,`si`.`sightseeing_name` AS `sightseeing_name`,`si`.`sightseeing_status` AS `sightseeing_status`,`m`.`id` AS `id`,`m`.`image_banner` AS `image_banner`,`m`.`image_details_1` AS `image_details_1`,`m`.`image_details_2` AS `image_details_2`,`m`.`image_status` AS `image_status` from (((`vnt_services` `s` join `vnt_tourist_places` `p` on((`s`.`tourist_places_id` = `p`.`id`))) join `vnt_sightseeing` `si` on((`s`.`id` = `si`.`service_id`))) left join `vnt_images` `m` on((`s`.`id` = `m`.`service_id`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sv_sightseeting`  AS  select `s`.`id` AS `sv_id`,`p`.`id` AS `id_place`,`p`.`pl_latitude` AS `pl_latitude`,`p`.`pl_longitude` AS `pl_longitude`,`s`.`sv_close` AS `sv_close`,`s`.`sv_counter_point` AS `sv_counter_point`,`s`.`sv_counter_view` AS `sv_counter_view`,`s`.`sv_description` AS `sv_description`,`s`.`sv_highest_price` AS `sv_highest_price`,`s`.`sv_lowest_price` AS `sv_lowest_price`,`s`.`sv_open` AS `sv_open`,`s`.`sv_phone_number` AS `sv_phone_number`,`s`.`sv_status` AS `sv_status`,`s`.`sv_types` AS `sv_types`,`s`.`sv_website` AS `sv_website`,`si`.`sightseeing_name` AS `sv_name`,`si`.`sightseeing_status` AS `sightseeing_status`,`m`.`id` AS `id`,`m`.`image_banner` AS `image_banner`,`m`.`image_details_1` AS `image_details_1`,`m`.`image_details_2` AS `image_details_2`,`m`.`image_status` AS `image_status` from (((`vnt_services` `s` join `vnt_tourist_places` `p` on((`s`.`tourist_places_id` = `p`.`id`))) join `vnt_sightseeing` `si` on((`s`.`id` = `si`.`service_id`))) left join `vnt_images` `m` on((`s`.`id` = `m`.`service_id`))) ;
 
 -- --------------------------------------------------------
 
@@ -13878,7 +13918,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `sv_stranport`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sv_stranport`  AS  select `s`.`id` AS `sv_id`,`p`.`id` AS `id_place`,`p`.`pl_latitude` AS `pl_latitude`,`p`.`pl_longitude` AS `pl_longitude`,`s`.`sv_close` AS `sv_close`,`s`.`sv_counter_point` AS `sv_counter_point`,`s`.`sv_counter_view` AS `sv_counter_view`,`s`.`sv_description` AS `sv_description`,`s`.`sv_highest_price` AS `sv_highest_price`,`s`.`sv_lowest_price` AS `sv_lowest_price`,`s`.`sv_open` AS `sv_open`,`s`.`sv_phone_number` AS `sv_phone_number`,`s`.`sv_status` AS `sv_status`,`s`.`sv_types` AS `sv_types`,`s`.`sv_website` AS `sv_website`,`t`.`transport_name` AS `transport_name`,`t`.`transport_status` AS `transport_status`,`m`.`id` AS `id`,`m`.`image_banner` AS `image_banner`,`m`.`image_details_1` AS `image_details_1`,`m`.`image_details_2` AS `image_details_2`,`m`.`image_status` AS `image_status` from (((`vnt_services` `s` join `vnt_tourist_places` `p` on((`s`.`tourist_places_id` = `p`.`id`))) join `vnt_transport` `t` on((`s`.`id` = `t`.`service_id`))) join `vnt_images` `m` on((`s`.`id` = `m`.`service_id`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sv_stranport`  AS  select `s`.`id` AS `sv_id`,`p`.`id` AS `id_place`,`p`.`pl_latitude` AS `pl_latitude`,`p`.`pl_longitude` AS `pl_longitude`,`s`.`sv_close` AS `sv_close`,`s`.`sv_counter_point` AS `sv_counter_point`,`s`.`sv_counter_view` AS `sv_counter_view`,`s`.`sv_description` AS `sv_description`,`s`.`sv_highest_price` AS `sv_highest_price`,`s`.`sv_lowest_price` AS `sv_lowest_price`,`s`.`sv_open` AS `sv_open`,`s`.`sv_phone_number` AS `sv_phone_number`,`s`.`sv_status` AS `sv_status`,`s`.`sv_types` AS `sv_types`,`s`.`sv_website` AS `sv_website`,`t`.`transport_name` AS `sv_name`,`t`.`transport_status` AS `transport_status`,`m`.`id` AS `id`,`m`.`image_banner` AS `image_banner`,`m`.`image_details_1` AS `image_details_1`,`m`.`image_details_2` AS `image_details_2`,`m`.`image_status` AS `image_status` from (((`vnt_services` `s` join `vnt_tourist_places` `p` on((`s`.`tourist_places_id` = `p`.`id`))) join `vnt_transport` `t` on((`s`.`id` = `t`.`service_id`))) join `vnt_images` `m` on((`s`.`id` = `m`.`service_id`))) ;
 
 --
 -- Indexes for dumped tables
@@ -14253,7 +14293,7 @@ ALTER TABLE `vnt_types`
 -- AUTO_INCREMENT for table `vnt_user`
 --
 ALTER TABLE `vnt_user`
-  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `vnt_user_search`

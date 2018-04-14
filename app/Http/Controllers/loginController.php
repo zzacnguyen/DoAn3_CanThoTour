@@ -142,26 +142,38 @@ class loginController extends Controller
             $pass = $request->input('password');
             if( Auth::attempt(['username' => $username, 'password' =>$pass])) {
 
-                $contact = DB::select('CALL login_info(?)',array(Auth::user()->user_id));
-                // $result['result'] = array('id' => Auth::user()->user_id,'username' => Auth::user()->username,'user_avatar' => Auth::user()->user_avatar,'social_login_id' => Auth::user()->social_login_id);
-
-                // $result['result'] = array(
-                //     'id' => Auth::user()->user_id,
-                //     'username' => Auth::user()->username,
-                //     'social_login_id' => Auth::user()->social_login_id,
-                //     'contact_name' => $contact->contact_name,
-                //     'contact_phone'=>$contact->contact_phone,
-                //     'contact_website'=>$contact->contact_website,
-                //     'contact_avatar'=>$contact->contact_avatar,
-                //     'contact_language'=>$contact->contact_language,
-                //     'contact_county'=>$contact->contact_county,
-                //     'ward_id'=>$contact->ward_id,
-                //     'contact_email_address'=>$contact->contact_email_address);
-
-                $result['result'] = $contact;
-                $result['error'] = null;
-                $result['status'] = "OK";
-                return json_encode($result);
+                // $contact = DB::select('CALL login_info(?)',array(Auth::user()->user_id));
+                $result = DB::select('CALL login_info_phone(?)',array(Auth::user()->user_id));
+                // dd($result);
+                $level = 0;
+                foreach ($result as $result) {
+                    if ($result->admin != null) {
+                        $level = 1;
+                    }
+                    else if($result->moderator != null){
+                        $level = 2;
+                    }
+                    else if($result->partner != null){
+                        $level = 3;
+                    }
+                    else if($result->enterprise != null){
+                        $level = 4;
+                    }
+                    else if($result->tour_guide != null){
+                        $level = 5;
+                    }
+                    else{ $level = 0;}
+                    $result_info = array(
+                        'id' => $result->user_id,
+                        'username' =>$result->username,
+                        'avatar' =>$result->contact_avatar,
+                        'level' =>$level
+                    );
+                }
+                $result_user['result'] = $result_info;  
+                $result_user['error'] = null;
+                $result_user['status'] = "OK";
+                return json_encode($result_user);
             } else {
                 $erro = array('result' => null,'error' => 1, 'status' => 'ERROR');
                 return json_encode($erro);
