@@ -51,6 +51,16 @@ Route::get('detail-service/id={id}','publicDetail@get_service_id');
 
 Route::get('detail/id={id}&type={type}','publicDetail@get_detail');
 
-Route::get('diadiem2/id={id}','publicDetail@dichvu_lancan')
+Route::get('diadiem2/id={id}','publicDetail@dichvu_lancan');
 
+
+
+//search public
+Route::get('p_search','publicSearchController@get_search');
+
+// place_city
+Route::get('city/{id}','publicSearchController@get_place_city');
+
+Route::get('count_ser/{id}','publicSearchController@count_servies_type');
+Route::get('count_servies_type_con/{id}&{type}','publicSearchController@count_servies_type_con');
 ?>

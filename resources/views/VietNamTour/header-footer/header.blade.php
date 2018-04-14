@@ -169,7 +169,7 @@
 											<div class="content-search">
 												<a href="#">
 													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
+														<img src="resource/images/hotel/1.jpg" alt="">
 													</div>
 													<div class="right-content-search">
 														<p>Mường Thanh Cần Thơ</p>
@@ -180,7 +180,7 @@
 											<div class="content-search">
 												<a href="#">
 													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
+														<img src="resource/images/hotel/1.jpg" alt="">
 													</div>
 													<div class="right-content-search">
 														<p>Mường Thanh Cần Thơ</p>
@@ -191,7 +191,7 @@
 											<div class="content-search">
 												<a href="#">
 													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
+														<img src="resource/images/hotel/1.jpg" alt="">
 													</div>
 													<div class="right-content-search">
 														<p>Mường Thanh Cần Thơ</p>
@@ -208,7 +208,7 @@
 											<div class="content-search">
 												<a href="#">
 													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
+														<img src="resource/images/hotel/1.jpg" alt="">
 													</div>
 													<div class="right-content-search">
 														<p>Mường Thanh Cần Thơ</p>
@@ -230,7 +230,7 @@
 											<div class="content-search">
 												<a href="#">
 													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
+														<img src="resource/images/hotel/1.jpg" alt="">
 													</div>
 													<div class="right-content-search">
 														<p>Mường Thanh Cần Thơ</p>
@@ -248,7 +248,7 @@
 										<a href="login.html" class="nav-link btn-login" id="btn-dangnhap">Đăng nhập</a>
 										<!-- hien thi khi dang nhap thanh cong -->
 										<a class="nav-link btn-login hidden" style="padding: 0; border: none !important;" id="id-user-form">
-											<img src="images/avatar1.jpg" alt="" style="height: 33px; width: 33px;">
+											<img src="resource/images/hotel/1.jpg" alt="" style="height: 33px; width: 33px;">
 											lamthemen <i class="fas fa-caret-down"></i>
 										</a>
 										<div class="user-form">
@@ -310,7 +310,7 @@
 													<li>
 														<a href="" class="a-content-nofi">
 															<div class="anh-nofi">
-																<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
+																<img src="resource/images/diadiem.jpg" alt="" class="img-icon-nofi">
 															</div>
 															<p class="text-nofi">
 																Get code suggestions while writing code directly to your Java IDE.
@@ -320,7 +320,7 @@
 													<li>
 														<a href="" class="a-content-nofi">
 															<div class="anh-nofi">
-																<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
+																<img src="resource/images/diadiem.jpg" alt="" class="img-icon-nofi">
 															</div>
 															<p class="text-nofi">
 																Get code suggestions while writing code directly to your Java IDE.
@@ -330,7 +330,7 @@
 													<li>
 														<a href="" class="a-content-nofi">
 															<div class="anh-nofi">
-																<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
+																<img src="resource/images/diadiem.jpg" alt="" class="img-icon-nofi">
 															</div>
 															<p class="text-nofi">
 																Get code suggestions while writing code directly to your Java IDE.
@@ -340,7 +340,7 @@
 													<li>
 														<a href="" class="a-content-nofi">
 															<div class="anh-nofi">
-																<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
+																<img src="resource/images/diadiem.jpg" alt="" class="img-icon-nofi">
 															</div>
 															<p class="text-nofi">
 																Get code suggestions while writing code directly to your Java IDE.

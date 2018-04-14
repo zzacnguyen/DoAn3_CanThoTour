@@ -13,7 +13,7 @@
 				    			<div class="ribbon">
 				    				<span>{{$value->amount_palce}}</span>
 				    			</div>
-					    		<a href="#"><img src="resourceVNT/images/img-BaiViet/1.jpg" alt="" style="height: 214px;"></a>
+					    		<a href="#"><img src="resource/images/hotel/1.jpg" alt="" style="height: 214px;"></a>
 					    	</div>
 					    	<div class="grid-content">
 					    		<div class="grid-price text-left">
