@@ -81,6 +81,40 @@ class publicDetail extends Controller
     }
 
 
+    public function dichvu_lancan($id_service, $type)
+    {
+        $place = DB::table('vnt_services')
+                    ->join('vnt_tourist_places as p','vnt_services.tourist_places_id','=','p.id')
+                    ->where('vnt_services.id',$id_service)
+                    ->select('p.id','p.id_ward')
+                    ->first();
+            
+        $ward_place = DB::table('vnt_tourist_places as p')
+                        ->where('p.id_ward',$place->id_ward)
+                        ->select('p.id')
+                        ->take(10)->get();
+        foreach ($ward_place as $w) {
+            $service_lancan = DB::table('vnt_services')
+                            ->select('vnt_services.id')
+                            ->where('vnt_services.tourist_places_id',$w->id)
+                            ->get();
+            foreach ($service_lancan as $value) {
+                $lam[] = array(
+                    'id' => $value->id
+                );
+            }
+        }
+        switch ($type) {
+            case 1:
+                # code...
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+    }
+
 
     // lan can
     public static function distance($lat1, $lon1, $lat2, $lon2) 

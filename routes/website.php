@@ -51,4 +51,6 @@ Route::get('detail-service/id={id}','publicDetail@get_service_id');
 
 Route::get('detail/id={id}&type={type}','publicDetail@get_detail');
 
+Route::get('diadiem2/id={id}','publicDetail@dichvu_lancan')
+
 ?>
