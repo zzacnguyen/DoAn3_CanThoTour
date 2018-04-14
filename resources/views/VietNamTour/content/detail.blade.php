@@ -246,96 +246,63 @@
 						<div class="title-right-content">
 							<h5 class="text-center">Nhà hàng/cafe lân cận</h5>
 						</div>
-						<div class="body-right-content">
-							{{-- @foreach($dichvulancan as $s) --}}
+						<div class="body-right-content" style="height: 500px;overflow: scroll;">
+							@foreach($sv_lancan as $s)
+								{{-- <div class="item-cafe">
+									<ul>
+										<li>
+											<a href="">
+												<img src="thumbnails/{{$s['image']}}" alt="loi">
+												<div class="text-item-cafe">
+													<h6 style="text-align: left;">{{$s['place_name']}}</h6>
+													<p class="text-left">
+														@if($s['sv_type'] == 1)
+															Ăn uống
+														@elseif($s['sv_type'] == 2)
+															Khách sạn
+														@elseif($s['sv_type'] == 3)
+															Phương tiện
+														@elseif($s['sv_type'] == 4)
+															Tham quan
+														@elseif($s['sv_type'] == 5)
+															Vui chơi
+														@endif
+													</p>
+												</div>
+											</a>
+										</li>
+									</ul>
+								</div> --}}
 								<div class="item-cafe">
 									<ul>
 										<li>
 											<a href="">
-												<img src="thumbnails/" alt="">
-												<div class="text-item-cafe">
-													<h6>Nhà hàng</h6>
-													<p>lam</p>
+												<img src="thumbnails/{{$s['image']}}" alt="loi">
+												<div class="text-item-cafe text-left">
+													<h6 style="margin-bottom: 0;display: inline-block;text-overflow: ellipsis;">	{{$s['place_name']}}
+													</h6>
+													<p class="text-left" style="font-size: 13px;">
+														@if($s['sv_type'] == 1)
+															Ăn uống
+														@elseif($s['sv_type'] == 2)
+															Khách sạn
+														@elseif($s['sv_type'] == 3)
+															Phương tiện
+														@elseif($s['sv_type'] == 4)
+															Tham quan
+														@elseif($s['sv_type'] == 5)
+															Vui chơi
+														@endif
+													</p>
 												</div>
 											</a>
 										</li>
 									</ul>
 								</div>
-							{{-- @endforeach	 --}}
+							@endforeach	
 						</div>
 					</div>	
-					<div class="right-content">
-						<div class="title-right-content">
-							<h5 class="text-center">Vui chơi lân cận</h5>
-						</div>
-						<div class="body-right-content">
-							<div class="item-cafe">
-								<ul>
-									<li>
-										<a href="">
-											<img src="images/hotel/3.jpg" alt="">
-											<div class="text-item-cafe">
-												<h6></h6>
-												<p>31 Lê lợi...csccscsdc</p>
-											</div>
-										</a>
-									</li>
-								</ul>
-							</div>
-							<div class="item-cafe">
-								<ul>
-									<li>
-										<a href="">
-											<img src="images/hotel/1.jpg" alt="">
-											<div class="text-item-cafe">
-												<h6>Nhà Hàng Thủy Sản</h6>
-												<p>31 Lê lợi...cscsdcdcdcsdc</p>
-											</div>
-										</a>
-									</li>
-								</ul>
-							</div>
-							<div class="item-cafe">
-								<ul>
-									<li>
-										<a href="">
-											<img src="images/hotel/2.jpg" alt="">
-											<div class="text-item-cafe">
-												<h6>Nhà Hàng Thủy Sản</h6>
-												<p>31 Lê lợi...fsf sf dsf sfs fs dfsd fs fsd fsd fdsf f sdf da dad ad adda ssad asd adaad ad adas  dad ad ada da da da da d da da da da da da da da da dsa d d</p>
-											</div>
-										</a>
-									</li>
-								</ul>
-							</div>
-							<div class="item-cafe">
-								<ul>
-									<li>
-										<a href="">
-											<img src="images/hotel/3.jpg" alt="">
-											<div class="text-item-cafe">
-												<h6>Nhà Hàng Thủy Sảnadadd adada dadfafdgaddfadssadahdafgdfahdfasd</h6>
-												<p>31 Lê lợi...csccscsdc</p>
-											</div>
-										</a>
-									</li>
-								</ul>
-							</div>
-							<div class="item-cafe">
-								<ul>
-									<li>
-										<a href="">
-											<img src="images/hotel/1.jpg" alt="">
-											<div class="text-item-cafe">
-												<h6>Nhà Hàng Thủy Sản</h6>
-												<p>31 Lê lợi...cscsdcdcdcsdc</p>
-											</div>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 		</div>

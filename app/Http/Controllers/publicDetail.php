@@ -12,11 +12,13 @@ class publicDetail extends Controller
     {
     	$placecount       = $this::count_place_display();
     	$sv = $this::get_service_id($id,$type);
+        $sv_lancan = $this::dichvu_lancan($id);
+
     	if ($sv == null) {
     		return view('VietNamTour.404');
     	}
     	else{
-    		return view('VietNamTour.content.detail', compact('placecount','sv'));
+    		return view('VietNamTour.content.detail', compact('placecount','sv','sv_lancan'));
     	}
     }
 
@@ -81,38 +83,35 @@ class publicDetail extends Controller
     }
 
 
-    public function dichvu_lancan($id_service, $type)
+    public function dichvu_lancan($id_service)
     {
         $place = DB::table('vnt_services')
                     ->join('vnt_tourist_places as p','vnt_services.tourist_places_id','=','p.id')
                     ->where('vnt_services.id',$id_service)
-                    ->select('p.id','p.id_ward')
+                    ->select('p.id','p.city_id')
                     ->first();
-            
+        // load địa điêm cùng tỉnh thành phố    
         $ward_place = DB::table('vnt_tourist_places as p')
-                        ->where('p.id_ward',$place->id_ward)
-                        ->select('p.id')
-                        ->take(10)->get();
-        foreach ($ward_place as $w) {
-            $service_lancan = DB::table('vnt_services')
-                            ->select('vnt_services.id')
-                            ->where('vnt_services.tourist_places_id',$w->id)
-                            ->get();
-            foreach ($service_lancan as $value) {
-                $lam[] = array(
-                    'id' => $value->id
+                        ->where('p.id','<>','$place->id')
+                        ->where('p.city_id',$place->city_id)
+                        ->select('p.id','p.pl_name','p.city_id')
+                        ->get();
+
+        foreach ($ward_place as $value) {
+
+            $lam = DB::select('CALL load_lancan(?)',array($value->id));
+            foreach ($lam as $s) {
+                $result[] = array(
+                    'sv_id' =>$s->sv_id,
+                    'place_id' =>$s->place_id,
+                    'sv_type' =>$s->sv_types,
+                    'place_name' =>$s->pl_name,
+                    'image' =>$s->image_details_1
                 );
             }
-        }
-        switch ($type) {
-            case 1:
-                # code...
-                break;
             
-            default:
-                # code...
-                break;
         }
+        return $result;
     }
 
 
