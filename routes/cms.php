@@ -6,5 +6,8 @@
 	Route::get('test', 'CMS_ComponentController@_DISPLAY_LIST_ALL_USER');
 
 	Route::get('lvtn-list-user', 'CMS_ComponentController@_DISPLAY_LIST_ALL_USER')->name('ALL_LIST_USER');
+	
+
+	Route::get('lvtn-list-address', 'CMS_ComponentController@_DISPLAY_TOURIST_PLACES')->name('ALL_LIST_PLACE');
 
 	

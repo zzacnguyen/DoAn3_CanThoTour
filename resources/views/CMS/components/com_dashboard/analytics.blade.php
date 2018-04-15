@@ -49,11 +49,11 @@
             </div>
             <div class="button-pane">
                 <div class="size-md float-left">
-                    <a href="#" title="">
+                    <a href="{{ route('ALL_LIST_USER') }}" title="">
                         Xem danh sách địa điểm
                     </a>
                 </div>
-                <a href="#" class="btn btn-default float-right tooltip-button" data-placement="top" title="Xem thêm">
+                <a href="{{ route('ALL_LIST_USER') }}" class="btn btn-default float-right tooltip-button" data-placement="top" title="Xem thêm">
                     <i class="glyph-icon icon-angle-right"></i>
                 </a>
             </div>
@@ -79,11 +79,11 @@
             </div>
             <div class="button-pane">
                 <div class="size-md float-left">
-                    <a href="#" title="">
+                    <a href="{{ route('ALL_LIST_PLACES') }}" title="">
                         Xem danh sách dịch vụ
                     </a>
                 </div>
-                <a href="#" class="btn btn-primary float-right tooltip-button" data-placement="top" title="View details">
+                <a href="{{ route('ALL_LIST_PLACES') }}" class="btn btn-primary float-right tooltip-button" data-placement="top" title="View details">
                     <i class="glyph-icon icon-caret-right"></i>
                 </a>
             </div>

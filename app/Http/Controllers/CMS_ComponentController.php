@@ -20,5 +20,18 @@ class CMS_ComponentController extends Controller
 		return view('CMS.components.com_user.list_user', ['data'=>$data]);
     }
 
+    public function _DISPLAY_TOURIST_PLACES()
+    {
+        $data = DB::table('vnt_tourist_places') 
+		->select( DB::raw('DATE_FORMAT(vnt_tourist_places.updated_at, "%d-%m-%Y") as updated_at'),
+            'pl_name', 'pl_details','pl_address', 'pl_phone_number', 'pl_latitude', 'pl_longitude','pl_status'
+        )       
+        ->orderBy('vnt_tourist_places.id', 'desc')
+        ->orderBy('vnt_tourist_places.updated_at', 'desc')
+        ->paginate(15);
+        // return $data;
+		return view('CMS.components.com_tourist_places.list_tourist_places', ['data'=>$data]);
+    }
+
 
 }
