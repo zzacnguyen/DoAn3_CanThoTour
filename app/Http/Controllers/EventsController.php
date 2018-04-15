@@ -55,7 +55,7 @@ class EventsController extends Controller
         $events->event_name=$request->input("event_name");
         $events->event_start=$request->input("event_start");
         $events->event_end=$request->input("event_end");
-        $events->event_status=$request->input("event_status");
+        $events->event_status="Active";
         $events->type_id=$request->input("type_id");
         $events->service_id=$request->input("service_id");
         
