@@ -373,21 +373,6 @@ class pageController extends Controller
     }
 
 
-
-    // 
-    public static function distance($lat1, $lon1, $lat2, $lon2) 
-    {
-        // có thế thêm tham số $unit vào hàm để tính theo các đơn vị khác 
-        $theta = $lon1 - $lon2;
-        $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
-        $dist = acos($dist);
-        $dist = rad2deg($dist);
-        $miles = $dist * 60 * 1.1515;
-        // $unit = strtoupper($unit);
-        return ($miles * 1.609344)*1000; //trả về mét
-        
-    }
-
     //tim dia diem theo ma dich vu
     public function findplace_service($id_service)
     {
@@ -396,6 +381,13 @@ class pageController extends Controller
                                     ->select('p.pl_latitude','p.pl_longitude')
                                     ->where('vnt_services.id','=',$id_service)->first();
         return $result;
+    }
+
+    //=============================== NEW ===========================================
+    public function count_city_service_all()
+    {
+        $result = DB::select("CALL c_count_service_city_all()");
+        return ($result);
     }
 
 }

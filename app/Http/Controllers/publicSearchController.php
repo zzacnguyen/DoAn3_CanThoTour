@@ -16,7 +16,41 @@ class publicSearchController extends Controller
     public function count_place_display()
     {
         $result = DB::select('CALL count_city_place()');
-        return $result;
+        foreach ($result as $value) {
+            $image = $this::image_city($value->id);
+            $last[] = array(
+                'id' => $value->id,
+                'amount_palce' => $value->amount_palce,
+                'province_city_name' => $value->province_city_name,
+                'image' => $image
+            );
+        }
+        return $last;
+    }
+
+    // random image city
+    public function image_city($idcity)
+    {
+        $place = DB::select('CALL load_palce_city_limit1(?)',array($idcity));
+        if ($place == null) {
+            $image = null;
+        }
+        else{
+            foreach ($place as $value) {
+                $id_place = $value->id_place;
+            }
+            $s = DB::select("SELECT * FROM place_service_image AS p WHERE p.place_id = '$id_place'");
+            if ($s == null) {
+                $image = null;
+            }
+            else{
+                foreach ($s as $v) {
+                    $image = $v->image_details_1;
+                }
+            }    
+        }
+            
+        return $image;
     }
 
 

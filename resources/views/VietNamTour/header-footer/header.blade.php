@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="resource/css/owl.theme.default.min.css">
 	<link rel="stylesheet" href="resource/css/place.css">
 	<link rel="stylesheet" href="resource/css/style.index.css">
-	<link rel="stylesheet" href="resource/css/menu-style.css">
+	<link rel="stylesheet" href="resource/css/menu-style2.css">
 </head>
 <body>
 	
@@ -79,7 +79,7 @@
 			<div class="layer-top" id="id-layer-top">
 				<div class="container">
 					<nav class="navbar navbar-expand-lg navbar-light menuTop" id="id-menu-Top">
-						<a class="navbar-brand" href="{{route('/')}}" style="color: #304FFE !important;"><!-- VietNamTour -->
+						<a class="navbar-brand" href="#" style="color: #304FFE !important;"><!-- VietNamTour -->
 							<img src="https://static.tacdn.com/img2/langs/vi/branding/rebrand/TA_logo_primary_v2.svg" alt="" style="height: 50px; width: 160px;">
 						</a>
 						<!-- <button class="btn btn-success navbar-toggler" id="btnsearch-xs"><i class="fas fa-search"></i></button> -->
@@ -90,7 +90,7 @@
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
 							<ul class="navbar-nav mr-auto col-md-9 col-12" style="padding: 0;">
 								<li class="nav-item btn-select" >
-									<a id="a-tinhTP" class="nav-link a-select" data-hienthi="tinhTP">Cần Thơ 
+									<a id="a-tinhTP" class="nav-link a-select" data-hienthi="tinhTP" href="#">Cần Thơ 
 										<i class="fas fa-angle-down float-right" style="margin-top: 5px;"></i>
 									</a>
 
@@ -99,15 +99,13 @@
 						  					<h5><i class="fas fa-globe"></i> Tỉnh thành phố</h5>
 						  				</div>
 
-						  				<ul>
-						  					@foreach($placecount as $p )
-						  					<li class="selectItem" data-name="{{$p['province_city_name']}}">
+						  				<ul id="content-tinhtp-id">
+						  					{{-- <li class="selectItem" data-name="Cần Thơ">
 						  						<a class="selectItem-name">
-						  							<label>{{$p['province_city_name']}}</label>
-						  							<span class="float-right">{{$p['amount_palce']}}</span>
+						  							<label>Cần Thơ</label>
+						  							<span class="float-right">12.000</span>
 						  						</a>
-						  					</li>
-						  					@endforeach
+						  					</li> --}}
 						  				</ul>
 									</div>
 								</li> <!-- end btn-select -->
@@ -159,7 +157,7 @@
 									<form class="form-inline form-search">
 										<label class="boloc"><i class="fas fa-search"></i></label>
 										<input id="text-search-top" class="form-control input-search" type="search" placeholder="Search" aria-label="Search">
-										<button class="btn btn-outline-success btn-search" type="submit">Tìm kiếm</button>
+										<button class="btn btn-outline-success btn-search" type="submit" style="background-color: #00a680;">Tìm kiếm</button>
 									</form>
 									<div class="body-search">
 										<div class="item-search">
@@ -169,46 +167,7 @@
 											<div class="content-search">
 												<a href="#">
 													<div class="left-content-search">
-														<img src="resource/images/hotel/1.jpg" alt="">
-													</div>
-													<div class="right-content-search">
-														<p>Mường Thanh Cần Thơ</p>
-														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
-													</div>
-												</a>		
-											</div>
-											<div class="content-search">
-												<a href="#">
-													<div class="left-content-search">
-														<img src="resource/images/hotel/1.jpg" alt="">
-													</div>
-													<div class="right-content-search">
-														<p>Mường Thanh Cần Thơ</p>
-														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
-													</div>
-												</a>		
-											</div>
-											<div class="content-search">
-												<a href="#">
-													<div class="left-content-search">
-														<img src="resource/images/hotel/1.jpg" alt="">
-													</div>
-													<div class="right-content-search">
-														<p>Mường Thanh Cần Thơ</p>
-														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
-													</div>
-												</a>		
-											</div>
-										</div>
-
-										<div class="item-search">
-											<div class="title-search">
-												<h5>Lịch sử tìm kiếm</h5>
-											</div>
-											<div class="content-search">
-												<a href="#">
-													<div class="left-content-search">
-														<img src="resource/images/hotel/1.jpg" alt="">
+														<img src="images/hotel/1.jpg" alt="">
 													</div>
 													<div class="right-content-search">
 														<p>Mường Thanh Cần Thơ</p>
@@ -230,7 +189,46 @@
 											<div class="content-search">
 												<a href="#">
 													<div class="left-content-search">
-														<img src="resource/images/hotel/1.jpg" alt="">
+														<img src="images/hotel/1.jpg" alt="">
+													</div>
+													<div class="right-content-search">
+														<p>Mường Thanh Cần Thơ</p>
+														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+													</div>
+												</a>		
+											</div>
+										</div>
+
+										<div class="item-search">
+											<div class="title-search">
+												<h5>Lịch sử tìm kiếm</h5>
+											</div>
+											<div class="content-search">
+												<a href="#">
+													<div class="left-content-search">
+														<img src="images/hotel/1.jpg" alt="">
+													</div>
+													<div class="right-content-search">
+														<p>Mường Thanh Cần Thơ</p>
+														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+													</div>
+												</a>		
+											</div>
+											<div class="content-search">
+												<a href="#">
+													<div class="left-content-search">
+														<img src="images/hotel/1.jpg" alt="">
+													</div>
+													<div class="right-content-search">
+														<p>Mường Thanh Cần Thơ</p>
+														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+													</div>
+												</a>		
+											</div>
+											<div class="content-search">
+												<a href="#">
+													<div class="left-content-search">
+														<img src="images/hotel/1.jpg" alt="">
 													</div>
 													<div class="right-content-search">
 														<p>Mường Thanh Cần Thơ</p>
@@ -248,7 +246,7 @@
 										<a href="login.html" class="nav-link btn-login" id="btn-dangnhap">Đăng nhập</a>
 										<!-- hien thi khi dang nhap thanh cong -->
 										<a class="nav-link btn-login hidden" style="padding: 0; border: none !important;" id="id-user-form">
-											<img src="resource/images/hotel/1.jpg" alt="" style="height: 33px; width: 33px;">
+											<img src="images/avatar1.jpg" alt="" style="height: 33px; width: 33px;">
 											lamthemen <i class="fas fa-caret-down"></i>
 										</a>
 										<div class="user-form">
@@ -270,9 +268,9 @@
 							<div class="col-md-10 col-6">
 								<div class="right-menu-lam">
 									<ul class="float-left ul-right-menu-lam">
-										<li class="active-menu"><a href=""><i class="fas fa-home"></i></a></li>
-										
-										<li class="hover-menu hidden-xs"><a href="">Giới thiệu</a></li>
+										<li class=""><a href="" style="color: #00a680 !important;"><i class="fas fa-home"></i></a></li>
+										<li class="hover-menu hidden-xs"><a href="">Địa điểm</a></li>
+										<li class="hover-menu hidden-xs"><a href="">Bài viết</a></li>
 										<li class="hover-menu hidden-xs"><a href="">Liên hệ</a></li>
 										<li class="hover-menu">
 											<a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 14px !important;">
@@ -298,7 +296,9 @@
 								<ul class="float-right left-menu-lam">
 									<li class="cha-notification">
 										<a id="athongbao" class="a-notification" data-id-hienthi="id-thongBao">
-											<i class="fas fa-bell"></i>
+											<!-- <i class="fas fa-bell"></i> -->
+											<i class="far fa-bell"></i>
+											<!-- <img src="images/bell.svg" alt="" style="width: 14px;height: 16px;"> -->
 											<span class="badge" id="num-thongbao">9</span>
 										</a>
 										<div class="notification" id="id-thongBao">
@@ -310,7 +310,7 @@
 													<li>
 														<a href="" class="a-content-nofi">
 															<div class="anh-nofi">
-																<img src="resource/images/diadiem.jpg" alt="" class="img-icon-nofi">
+																<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
 															</div>
 															<p class="text-nofi">
 																Get code suggestions while writing code directly to your Java IDE.
@@ -320,7 +320,7 @@
 													<li>
 														<a href="" class="a-content-nofi">
 															<div class="anh-nofi">
-																<img src="resource/images/diadiem.jpg" alt="" class="img-icon-nofi">
+																<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
 															</div>
 															<p class="text-nofi">
 																Get code suggestions while writing code directly to your Java IDE.
@@ -330,7 +330,7 @@
 													<li>
 														<a href="" class="a-content-nofi">
 															<div class="anh-nofi">
-																<img src="resource/images/diadiem.jpg" alt="" class="img-icon-nofi">
+																<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
 															</div>
 															<p class="text-nofi">
 																Get code suggestions while writing code directly to your Java IDE.
@@ -340,7 +340,7 @@
 													<li>
 														<a href="" class="a-content-nofi">
 															<div class="anh-nofi">
-																<img src="resource/images/diadiem.jpg" alt="" class="img-icon-nofi">
+																<img src="images/diadiem.jpg" alt="" class="img-icon-nofi">
 															</div>
 															<p class="text-nofi">
 																Get code suggestions while writing code directly to your Java IDE.
@@ -421,4 +421,5 @@
 		</div>
 	</section>
 	<!-- ================== end header ============= -->
+
 

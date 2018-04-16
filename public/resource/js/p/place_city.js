@@ -26,10 +26,10 @@ $(document).ready(function () {
 							lam += '<h4>' + data.name + '</h4>';
 							lam += '</div>';
 							lam += '<div class="destination-icon">';
-							lam += '<a>' + data.rating + '<i class="far fa-star"></i></a>';
-							lam += '<a>' + data.view + '<i class="fas fa-eye"></i></a>';
-							lam += '<a>' + data.like +'<i class="far fa-thumbs-up"></i></a>';
-							lam += '<a>' + data.point + '<i class="far fa-bookmark"></i></a>';
+							lam += '<a>' + data.rating + ' <i class="far fa-star"></i></a>';
+							lam += '<a>' + data.view + ' <i class="fas fa-eye"></i></a>';
+							lam += '<a>' + data.like +' <i class="far fa-thumbs-up"></i></a>';
+							lam += '<a>' + data.point + ' <i class="far fa-bookmark"></i></a>';
 							lam += '</div>';
 							lam += '</div>';
 							lam += '</div>';

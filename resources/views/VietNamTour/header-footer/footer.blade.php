@@ -55,6 +55,6 @@
 		</div>
 	</footer>
 	<!-- ================== END FOOTER ============= -->
-
+<script src="resource/js/p/header.js"></script>
 	</body>
 </html>
