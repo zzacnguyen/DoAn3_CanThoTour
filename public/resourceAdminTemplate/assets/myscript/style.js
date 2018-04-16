@@ -1,24 +1,51 @@
 window.onload = function() {
     var d = new Date();
-    var month = new Array();
-    month[0] = 1;
-    month[1] = 2;
-    month[2] = 3;
-    month[3] = 4;
-    month[4] = 5;
-    month[5] = 6;
-    month[6] = 7;
-    month[7] = 8;
-    month[8] = 9;
-    month[9] = 10;
-    month[10] = 11;
-    month[11] = 12;
-    var n = month[d.getMonth()];
+    var n = d.getMonth();
+    var x  = n+1;
+    var thanghientai = document.getElementById('thang-hien-tai').innerHTML = "Tháng " + x;
+    var thanghientai = document.getElementById('thang-hien-taind').innerHTML = "Tháng " + x;
+    var thanghientai = document.getElementById('thang-hien-taind1').innerHTML = "Tháng " + x;
+    var dem = new Array();
+    for(var i = 0; i < 5; i++){
+        if(x < 6)
+        {
+            x--;
+            dem[i]=x;
+            if(x == 0)
+            {
+                dem[i] = 12;
+            }
+            if(x  <  0)
+            {
+                dem[i]=12+x;
+                
+            }
+        }
+        else{
+            x--;
+            dem[i]=x;
+        }
 
-    var thanghientai = document.getElementById('thang-hien-tai').innerHTML = "Tháng " + n%12;
-    var thanghientai = document.getElementById('thang-hien-tai-1').innerHTML = "Tháng " + (n%12-1);
-    var thanghientai = document.getElementById('thang-hien-tai-2').innerHTML = "Tháng " + (n%12-2);
-    var thanghientai = document.getElementById('thang-hien-tai-3').innerHTML = "Tháng " + (n%12-3);
-    var thanghientai = document.getElementById('thang-hien-tai-4').innerHTML = "Tháng " + (n%12-4);
-    var thanghientai = document.getElementById('thang-hien-tai-5').innerHTML = "Tháng " + (n%12-5);
+    }
+    
+
+
+    
+    var thanghientai = document.getElementById('thang-hien-tai-1').innerHTML = "Tháng " + dem[0];
+    var thanghientai = document.getElementById('thang-hien-tai-2').innerHTML = "Tháng " + dem[1];
+    var thanghientai = document.getElementById('thang-hien-tai-3').innerHTML = "Tháng " + dem[2];
+    var thanghientai = document.getElementById('thang-hien-tai-4').innerHTML = "Tháng " + dem[3];
+    var thanghientai = document.getElementById('thang-hien-tai-5').innerHTML = "Tháng " + dem[4];
+
+    var thanghientaind = document.getElementById('thang-hien-tai-1nd').innerHTML = "Tháng " + dem[0];
+    var thanghientaind = document.getElementById('thang-hien-tai-2nd').innerHTML = "Tháng " + dem[1];
+    var thanghientaind = document.getElementById('thang-hien-tai-3nd').innerHTML = "Tháng " + dem[2];
+    var thanghientaind = document.getElementById('thang-hien-tai-4nd').innerHTML = "Tháng " + dem[3];
+    var thanghientaind = document.getElementById('thang-hien-tai-5nd').innerHTML = "Tháng " + dem[4];
+
+    var thanghientaind1 = document.getElementById('thang-hien-tai-1nd1').innerHTML = "Tháng " + dem[0];
+    var thanghientaind1 = document.getElementById('thang-hien-tai-2nd1').innerHTML = "Tháng " + dem[1];
+    var thanghientaind1 = document.getElementById('thang-hien-tai-3nd1').innerHTML = "Tháng " + dem[2];
+    var thanghientaind1 = document.getElementById('thang-hien-tai-4nd1').innerHTML = "Tháng " + dem[3];
+    var thanghientaind1 = document.getElementById('thang-hien-tai-5nd1').innerHTML = "Tháng " + dem[4];
 }

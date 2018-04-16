@@ -16,7 +16,7 @@
                 Địa điểm chờ duyệt
             </div>
             <div class="tile-content-wrapper">
-                <div class="chart-alt-10" data-percent="43"><span>43</span>%</div>
+                <div class="chart-alt-10" data-percent="{{ $data8 }}"><span>{{ $data8 }}</span>%</div>
             </div>
         </a>
     </div>
@@ -26,7 +26,7 @@
                 Dịch vụ chờ duyệt
             </div>
             <div class="tile-content-wrapper">
-                <div class="chart-alt-10" data-percent="76"><span>76</span>%</div>
+                <div class="chart-alt-10" data-percent="{{ $data7 }}"><span>{{ $data7 }}</span>%</div>
             </div>
         </a>
     </div>
@@ -36,7 +36,7 @@
                 Người dùng chờ duyệt
             </div>
             <div class="tile-content-wrapper">
-                <div class="chart-alt-10" data-percent="11"><span>11</span>%</div>
+                <div class="chart-alt-10" data-percent="{{ $data9 }}"><span>{{ $data9 }}</span>%</div>
             </div>
         </a>
     </div>
