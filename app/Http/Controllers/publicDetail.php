@@ -11,8 +11,9 @@ class publicDetail extends Controller
     public function get_detail($id,$type)
     {
     	$sv = $this::get_service_id($id,$type);
-        $sv_lancan = $this::dichvu_lancan($id);
 
+        $sv_lancan = $this::dichvu_lancan($sv['city_id'],$id,20);
+        // dd($sv_lancan);
     	if ($sv == null) {
     		return view('VietNamTour.404');
     	}
@@ -33,7 +34,7 @@ class publicDetail extends Controller
                     $dv = DB::table('vnt_eating')->where('service_id',$id)->select('eat_name as sv_name')->first();
                     break;
                 case 2:
-                    $dv = DB::table('vnt_hotel')->where('service_id',$id)->select('hotel_name as sv_name')->first();
+                    $dv = DB::table('vnt_hotels')->where('service_id',$id)->select('hotel_name as sv_name')->first();
                     break;
                 case 3:
                     $dv = DB::table('vnt_transport')->where('service_id',$id)->select('transport_name as sv_name')->first();
@@ -55,8 +56,12 @@ class publicDetail extends Controller
 
             $ratings = DB::table('vnt_visitor_ratings')->where('service_id',$id)->first();
             if (!empty($ratings)) {
-                $ponit_rating = $ratings->vr_rating;
-            }else{ $ponit_rating = 0; }
+                if ($ratings->vr_rating > 0) {
+                    $ponit_rating = CEIL($ratings->vr_rating);
+                }else{
+                    $ponit_rating = 1;
+                }
+            }else{ $ponit_rating = 1; }
 
             if ($dv == null || !isset($dv)) {
                 $result = null;
@@ -65,6 +70,7 @@ class publicDetail extends Controller
                 foreach ($service as $value) {
                     $result['sv_id'] = $value->id_service;
                     $result['sv_name'] = $dv->sv_name;
+                    $result['city_id'] = $value->id_city;
                     $result['city_name'] = $value->name_city;
                     $result['district_name'] = $value->name_district;
                     $result['ward_name'] = $value->name_ward;
@@ -138,37 +144,65 @@ class publicDetail extends Controller
         return $image;
     }
 
-    public function dichvu_lancan($id_service)
+    public function dichvu_lancan($id_city,$id_service,$limit)
     {
-        $place = DB::table('vnt_services')
-                    ->join('vnt_tourist_places as p','vnt_services.tourist_places_id','=','p.id')
-                    ->where('vnt_services.id',$id_service)
-                    ->select('p.id','p.city_id')
-                    ->first();
-        // load địa điêm cùng tỉnh thành phố    
-        $ward_place = DB::table('vnt_tourist_places as p')
-                        ->where('p.id','<>','$place->id')
-                        ->where('p.city_id',$place->city_id)
-                        ->select('p.id','p.pl_name','p.city_id')
-                        ->get();
-
-        foreach ($ward_place as $value) {
-
-            $lam = DB::select('CALL load_lancan(?)',array($value->id));
-            foreach ($lam as $s) {
-                $result[] = array(
-                    'sv_id' =>$s->sv_id,
-                    'place_id' =>$s->place_id,
-                    'sv_type' =>$s->sv_types,
-                    'place_name' =>$s->pl_name,
-                    'image' =>$s->image_details_1
-                );
+        $result_sv = DB::select("CALL load_service_idcity(?,?,?)",array($id_city,$id_service,$limit));
+        foreach ($result_sv as $sv) {
+            $image = DB::table('vnt_images')->where('service_id',$sv->id_service)->first();// load anh cua 
+            $sv_name = $this::getname_Service($sv->id_service,$sv->sv_types);
+            if ($image == null) {
+                $image_banner = "null";
             }
-            
+            else{
+                $image_banner = $image->image_banner;
+            }
+
+            $result[] = array(
+                'sv_id' => $sv->id_service,
+                'sv_name' => $sv_name,
+                'sv_type' => $sv->sv_types,
+                'image_banner' => $image_banner
+            );
         }
-        return $result;
+        if (!isset($result)) {
+            return null;
+        }else{
+            return $result;
+        }
+            
     }
 
+    public function getname_Service($id_service,$type)
+    {
+        switch ($type) { //load ten theo id service
+                case 1:
+                    $dv = DB::table('vnt_eating')->where('service_id',$id_service)->select('eat_name as sv_name')->first();
+                    break;
+                case 2:
+                    $dv = DB::table('vnt_hotels')->where('service_id',$id_service)->select('hotel_name as sv_name')->first();
+                    break;
+                case 3:
+                    $dv = DB::table('vnt_transport')->where('service_id',$id_service)->select('transport_name as sv_name')->first();
+                    break;
+                case 4:
+                    $dv = DB::table('vnt_sightseeing')->where('service_id',$id_service)->select('sightseeing_name as sv_name')->first();
+                    break;
+                case 5:
+                    $dv = DB::table('vnt_entertainments')->where('service_id',$id_service)->select('entertainments_name as sv_name')->first();
+                    break;
+                default:
+                    $dv = null;
+                    break;
+        }
+
+        if ($dv == null) {
+            return null;
+        }
+        else{
+            return $dv->sv_name;
+        }
+
+    }
 
     
 }

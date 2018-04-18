@@ -68,8 +68,8 @@ Route::get('image_city/{id}','pageController@image_city');
 
 //================================= TEST ======================================
 Route::get('count_city_service_all_image','pageController@count_city_service_all_image');
-
-
+Route::get('demtien/{m}','pageController@numberToK');
+Route::get('getlam/{id}&s={s}&limit={l}','publicDetail@dichvu_lancan');
 //================================ NEW ========================================
 
 //get num service of city all

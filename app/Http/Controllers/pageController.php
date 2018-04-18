@@ -255,141 +255,6 @@ class pageController extends Controller
         return $result;
     }
 
-    // count place province city
-    public function countplaceAllcity()
-    {
-        $p = DB::table('vnt_province_city')
-            ->get();
-        foreach ($p as $value) {
-
-            $dis = DB::table('vnt_district')->where('province_city_id',$value->id)->get();
-            $dem = 0;
-            foreach ($dis as $district) {
-                $ward = DB::table('vnt_ward')->where('district_id',$district->id)->get();
-                foreach ($ward as $place) {
-                    $place_ = DB::table('vnt_tourist_places')->where('id_ward',$place->id)->get();
-                    $dem += count($place_);
-                }
-            }
-
-            $placecount[] = array('id'=>$value->id,'city_name'=>$value->province_city_name,'amount_place'=>$dem);
-        }
-        return $placecount;
-
-   
-        
-
-    }
-
-    public function getlam($type)
-    {
-    
-        $result = DB::table('vnt_services')
-                                    ->leftJoin('vnt_hotels', 'vnt_services.id', '=', 'vnt_hotels.service_id')
-                                    ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
-                                    ->select('vnt_services.id','sv_types','hotel_name','hotel_number_star','vnt_images.id as id_image','vnt_images.image_details_1')
-                                    ->where('hotel_status','Active')
-                                    ->where('sv_types',$type)->take(8)->get();
-                                    $name = 'hotel_name';
-        return $result;
-    }
-
-    public function getcount_place_city()
-    {
-        $p = DB::table('vnt_province_city')
-            ->get();
-        foreach ($p as $value) {
-
-            $dis = DB::table('vnt_district')->where('province_city_id',$value->id)->get();
-            $dem = 0;
-            foreach ($dis as $district) {
-                $ward = DB::table('vnt_ward')->where('district_id',$district->id)->get();
-                foreach ($ward as $place) {
-                    $place_ = DB::table('vnt_tourist_places')->where('id_ward',$place->id)->get();
-                    $dem += count($place_);
-                }
-            }
-            // $placecount[] = array('id'=>$value->id,'city_name'=>$value->province_city_name,'amount_place'=>$dem);
-
-            echo "<li class='selectItem' data-name=";
-            echo "'".$value->province_city_name."'>";
-
-            echo "<a href='https://www.google.com.vn' class='selectItem-name'>";
-            echo "<label>".$value->province_city_name."</label>";
-            echo "<span class='float-right'>".$dem."</span>";
-            echo "</a>";
-
-            echo "</li>";
-        }
-    }
-
-    public function count_place_Allcity()
-    {
-        $result = DB::select('CALL count_city_place()');
-        foreach ($result as $value) {
-            echo "<li class='selectItem' data-name=";
-            echo "'".$value->province_city_name."'>";
-
-            echo "<a href='https://www.google.com.vn' class='selectItem-name'>";
-            echo "<label>".$value->province_city_name."</label>";
-            echo "<span class='float-right'>".$value->amount_palce."</span>";
-            echo "</a>";
-
-            echo "</li>";
-        }
-    }
-
-    public function count_place_display()
-    {
-        $result = DB::select('CALL count_city_place()');
-        foreach ($result as $value) {
-            $image = $this::image_city($value->id);
-            $last[] = array(
-                'id' => $value->id,
-                'amount_palce' => $value->amount_palce,
-                'province_city_name' => $value->province_city_name,
-                'image' => $image
-            );
-        }
-        return $last;
-    }
-
-
-    // random image city
-    public function image_city($idcity)
-    {
-        $place = DB::select('CALL load_palce_city_limit1(?)',array($idcity));
-        if ($place == null) {
-            $image = null;
-        }
-        else{
-            foreach ($place as $value) {
-                $id_place = $value->id_place;
-            }
-            $s = DB::select("SELECT * FROM place_service_image AS p WHERE p.place_id = '$id_place'");
-            if ($s == null) {
-                $image = null;
-            }
-            else{
-                foreach ($s as $v) {
-                    $image = $v->image_details_1;
-                }
-            }    
-        }
-            
-        return $image;
-    }
-
-
-    //tim dia diem theo ma dich vu
-    public function findplace_service($id_service)
-    {
-        $result = DB::table('vnt_services')
-                                    ->join('vnt_tourist_places as p','vnt_services.tourist_places_id','=','p.id')
-                                    ->select('p.pl_latitude','p.pl_longitude')
-                                    ->where('vnt_services.id','=',$id_service)->first();
-        return $result;
-    }
 
     //=============================== NEW ===========================================
     public function count_city_service_all()
@@ -422,5 +287,23 @@ class pageController extends Controller
             );
         }
         return $result;
+    }
+
+    public function numberToK($num)
+    {
+        if ($num >= 1000) {
+            $n = $num / 1000; // phan nguyen
+            $d = $num % 1000; // phan du
+            if ($d > 100) {
+                $c = $d/100;
+                return $n.$c."K";
+            }
+            else{
+                return $n."K";
+            }
+        }
+        else{
+            return $num;
+        }
     }
 }

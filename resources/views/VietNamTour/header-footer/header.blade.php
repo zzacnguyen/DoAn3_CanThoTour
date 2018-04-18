@@ -10,6 +10,9 @@
 	<script type="text/javascript" src="resource/js/bootstrap.js"></script>
 	<script type="text/javascript" src="resource/js/fontawesome-all.min.js"></script>
 	<script type="text/javascript" src="resource/js/fa-regular.js"></script>
+	
+	<link rel="stylesheet" href="resource/lightbox/styles.min.css">
+	<link rel="stylesheet" href="resource/lightbox/fluidbox.min.css">
 
 	<link rel="stylesheet" href="resource/css/bootstrap.css">
 	<link rel="stylesheet" href="resource/css/owl.carousel.min.css">
