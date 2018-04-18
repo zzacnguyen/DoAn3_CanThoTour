@@ -24,7 +24,8 @@ class ServicesController extends Controller
     public function index()
     {
         $services = DB::table('vnt_services')
-        ->select('vnt_services.id','sv_description', 'sv_open','sv_close','sv_lowest_price','sv_highest_price',  'tourist_places_id', 'sv_types')
+        ->select('vnt_services.id','sv_description', 'sv_open','sv_close',
+        'sv_lowest_price','sv_highest_price',  'tourist_places_id', 'sv_types')
         ->orderBy('vnt_services.id', 'DESC')
         ->paginate(10);
         $encode=json_encode($services);

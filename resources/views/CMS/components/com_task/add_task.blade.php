@@ -1,28 +1,5 @@
 
-<script type="text/javascript" language="javascript">
-  $(document).ready(function() {
 
-    console.log("CHẠY TỚI ĐÂY");
-    $(document).ready(function() {
-        //Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
-        $("#frm_add_task").validate({
-            rules: {
-                task_name: "required",
-                task_description: "required",
-                task_start_date:"required",
-                task_end_date:"required",
-                content:"required"
-            },
-            messages: {
-                task_name: "Vui lòng nhập tên nhiệm vụ",
-                task_description: "Vui lòng nhập mô tả nhiệm vụ",   
-                task_start_date:"Vui lòng nhập vào ngày bắt đầu nhiệm vụ",
-                task_end_date: "Vui lòng nhập vào ngày kết thúc nhiệm vụ",
-                content:"Vui lòng nhập vào nội dung nhiệm vụ"
-            }
-        });
-    }); });
-</script>
 <div class="row" style="padding-top: 25px;">
     <h2>Thêm nhiệm vụ mới</h2>
     <div class="content-box bg-white post-box">
