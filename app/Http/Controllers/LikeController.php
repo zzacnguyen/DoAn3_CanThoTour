@@ -50,7 +50,10 @@ class LikeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $likes                    = new likesModel();
+        $likes->service_id       = $request->input('service_id');
+        $likes->user_id    = $request->input('user_id');
+        $likes->save();
     }
 
     /**

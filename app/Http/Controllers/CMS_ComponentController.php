@@ -17,7 +17,13 @@ class CMS_ComponentController extends Controller
 		->orderBy('vnt_user.user_id', 'desc')
         ->paginate(4);
         // return $data;
-		return view('CMS.components.com_user.list_user', ['data'=>$data]);
+        if (view()->exists('CMS.components.com_user.list_user')){
+            return view('CMS.components.com_user.list_user', ['data'=>$data]);
+            
+        }
+    	else	{
+			return view('CMS.components.error');
+		}
     }
 
     public function _DISPLAY_TOURIST_PLACES()
@@ -30,8 +36,40 @@ class CMS_ComponentController extends Controller
         ->orderBy('vnt_tourist_places.updated_at', 'desc')
         ->paginate(15);
         // return $data;
-		return view('CMS.components.com_tourist_places.list_tourist_places', ['data'=>$data]);
+        if (view()->exists('CMS.components.com_tourist_places.list_tourist_places'))
+        {
+            return view('CMS.components.com_tourist_places.list_tourist_places', ['data'=>$data]);
+        }
+    	else	{
+			return view('CMS.components.error');
+		}
+		
     }
 
-
+    public function _DISPLAY_LIST_SERVICES()
+    {
+        $data = DB::table('vnt_services') 
+		->select( DB::raw('DATE_FORMAT(vnt_services.updated_at, "%d-%m-%Y") as updated_at'),
+            'sv_description', 'sv_open','sv_close', 'sv_highest_price', 'sv_lowest_price',
+             'sv_phone_number','sv_types', 'sv_website', 'vnt_hotels.hotel_name'
+             , 'entertainments_name', 'sightseeing_name', 'transport_name', 'eat_name', 'sv_status'
+        )       
+        ->leftJoin('vnt_events', 'vnt_events.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_hotels', 'vnt_hotels.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_eating', 'vnt_eating.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_entertainments', 'vnt_entertainments.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_sightseeing', 'vnt_sightseeing.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_transport', 'vnt_transport.service_id', '=', 'vnt_services.id')
+        ->orderBy('vnt_services.id', 'desc')
+        ->orderBy('vnt_services.updated_at', 'desc')
+        ->paginate(15);
+        // return $data;
+        if (view()->exists('CMS.components.com_services.list_services')){
+            return view('CMS.components.com_services.list_services', ['data'=>$data]);
+        }
+    	else	{
+			return view('CMS.components.error');
+		}
+		
+    }
 }

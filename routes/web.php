@@ -21,6 +21,9 @@ Route::resource('visitor-ratings', 'VisitorRatingController');
 
 
 Route::resource('service','ServicesController');
+
+
+
 Route::resource('usersearch', 'userSearch');
 
 Route::resource('hotels', 'vnt_hotelsController');
