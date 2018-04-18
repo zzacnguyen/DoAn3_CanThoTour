@@ -8,7 +8,8 @@
 	<script type="text/javascript" src="resource/js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="resource/js/popper.js"></script>
 	<script type="text/javascript" src="resource/js/bootstrap.js"></script>
-	<script src="resource/js/fontawesome-all.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="resource/js/fontawesome-all.min.js"></script>
+	<script type="text/javascript" src="resource/js/fa-regular.js"></script>
 
 	<link rel="stylesheet" href="resource/css/bootstrap.css">
 	<link rel="stylesheet" href="resource/css/owl.carousel.min.css">
@@ -57,17 +58,17 @@
 			<ul>
 				<li class="active-img">
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('thumbnails/banner__2018_04_04_11_51_23.jpg');"></div>
+						<div class="img-content" style="background-image: url('resource/images/slide-carousel/slide1.jpg');"></div>
 					</div>
 				</li>
 				<li>
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('thumbnails/banner__2018_04_04_11_52_39.jpg');"></div>
+						<div class="img-content" style="background-image: url('resource/images/slide-carousel/slide2.jpg');"></div>
 					</div>
 				</li>
 				<li >
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('thumbnails/banner__2018_04_04_01_43_26');"></div>
+						<div class="img-content" style="background-image: url('resource/images/slide-carousel/slide3.jpg');"></div>
 					</div>
 				</li>
 			</ul>
@@ -90,7 +91,7 @@
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
 							<ul class="navbar-nav mr-auto col-md-9 col-12" style="padding: 0;">
 								<li class="nav-item btn-select" >
-									<a id="a-tinhTP" class="nav-link a-select" data-hienthi="tinhTP" href="#">Cần Thơ 
+									<a id="a-tinhTP" class="nav-link a-select" data-hienthi="tinhTP">Cần Thơ 
 										<i class="fas fa-angle-down float-right" style="margin-top: 5px;"></i>
 									</a>
 
@@ -242,7 +243,7 @@
 							</ul>
 							<div class="form-inline my-2 my-lg-0" id="dangnhap-dangky">
 								<ul class="navbar-nav mr-auto col-md-12 col-12" style="padding: 0;">
-									<li class="nav-item" style="position: relative;">
+									<li class="nav-item" style="position: relative; margin-right: 2px;">
 										<a href="login.html" class="nav-link btn-login" id="btn-dangnhap">Đăng nhập</a>
 										<!-- hien thi khi dang nhap thanh cong -->
 										<a class="nav-link btn-login hidden" style="padding: 0; border: none !important;" id="id-user-form">
@@ -258,7 +259,9 @@
 										</div> <!-- end hien thi khi dang nhap thanh cong -->
 									</li>
 
-									<li class="nav-item"><a href="register.html" class="nav-link btn-login" id="btn-dangky">Đăng ký</a></li>
+									<li class="nav-item">
+										<a href="register.html" class="nav-link btn-login" id="btn-dangky">Đăng ký</a>
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -407,7 +410,7 @@
 										</a>
 										  <div class="" id="content-language">
 										    <a class="" href="####">
-										    	<img src="resource/images/icons/vn.png" alt="" style="width: 20px; height: 20px;">
+										    	<img src="resource/images/icons/us.png" alt="" style="width: 20px; height: 20px;">
 										    </a>
 										  </div>
 									</li>

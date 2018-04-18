@@ -33,7 +33,11 @@
 				<div class="col-md-5" style="padding-left: 0;">
 					<div class="hotel-detail-right">
 						<div class="title" style="text-align: left; margin-bottom: 5px;">
-							<p><a>Cần Thơ</a> >> <a>Quận Ninh Kiều</a></p>
+							<p>
+								<a>{{$sv['city_name']}} <i class="fas fa-angle-double-right"></i></a> 
+								<a>{{$sv['district_name']}} <i class="fas fa-angle-double-right"></i></a> 
+								<a>{{$sv['ward_name']}}</a>
+							</p>
 							<h4 style="font-size: 20px;" id="sv_name">{{$sv['sv_name']}}</h4> {{-- ten dich vu --}}
 							<div class="star">
 								<i class="fas fa-star"></i>
@@ -49,16 +53,18 @@
 							<div class="row">
 								<div class="col-md-4 text-center">
 									<a href="">Đánh giá</a>
-									<div class="danhgia">
-										<i class="fas fa-star"></i>
-										<i class="fas fa-star"></i>
-										<i class="fas fa-star"></i>
-										<i class="fas fa-star"></i>
-										<i class="fas fa-star"></i>
-									</div>
 								</div>
-								<div class="col-md-4 text-center"><a href="" title="Chia sẻ"><i class="fas fa-share-alt"></i> Chia sẻ</a></div>
-								<div class="col-md-4 text-center"><a id="like01"><i id="color-like" class="fas fa-heart"></i></a></div>
+								<div class="col-md-4 text-center">
+									<a href="" title="Chia sẻ">
+										<i class="fas fa-share-alt"></i> Chia sẻ
+									</a>
+								</div>
+								<div class="col-md-4 text-center">
+									<a id="like01">
+										<i id="color-like" class="fas fa-heart"></i>
+										{{$sv['sv_like']}}
+									</a>
+								</div>
 							</div>
 							<div class="service">
 								<ul>
@@ -244,7 +250,7 @@
 				<div class="col-md-4" style="padding-left: 0;">
 					<div class="right-content">
 						<div class="title-right-content">
-							<h5 class="text-center">Nhà hàng/cafe lân cận</h5>
+							<h5 class="text-center">Địa điểm lân cận</h5>
 						</div>
 						<div class="body-right-content" style="height: 500px;overflow: scroll;">
 							@foreach($sv_lancan as $s)

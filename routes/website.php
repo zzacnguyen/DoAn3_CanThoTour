@@ -66,7 +66,8 @@ Route::get('get_all_place_city_type/{id}&type={t}','publicSearchController@get_a
 Route::get('image_city/{id}','pageController@image_city');
 
 
-
+//================================= TEST ======================================
+Route::get('count_city_service_all_image','pageController@count_city_service_all_image');
 
 
 //================================ NEW ========================================

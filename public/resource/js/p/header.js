@@ -6,7 +6,6 @@ $(document).ready(function () {
 			type: 'GET'
 		})
 		.done(function (response) {
-			console.log(response);
 			var lam = new String(); // khoi tao bien luu pha hien thi len view
 			response.forEach(function (data) {
 				lam += '<li class="selectItem" data-name="' + data.name_city +'">';
@@ -18,10 +17,6 @@ $(document).ready(function () {
 				// console.log(lam);
 				$('#content-tinhtp-id').html(lam);
 			})
-			
-			// $.each(response, function (i, item) {
-			// 	// body...
-			// })
 		})
 	});
 })			

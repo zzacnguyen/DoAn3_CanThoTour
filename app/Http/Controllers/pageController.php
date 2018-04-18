@@ -20,7 +20,7 @@ class pageController extends Controller
 
     public function getindex()
     {   
-        $placecount       = $this::count_place_display();
+        $placecount       = $this::count_city_service_all_image();
 
         $services_eat     = $this::getservicestake(1,8);
         $services_hotel   = $this::getservicestake(2,6);
@@ -195,9 +195,14 @@ class pageController extends Controller
         if (isset($result)) {
 
             foreach ($result as $value) {
-
-                $id_city = $this::findservicetocity($value->sv_id);
-                
+                $city = $this::FindServiceToCity($value->sv_id); // lay name city chua service
+                if ($city == null) { $name_city = null;}
+                else{
+                    foreach ($city as $key => $c) {
+                        $name_city = $c->name_city;
+                    }
+                }
+                    
                 $likes = DB::table('vnt_likes')->where('service_id', '=',$value->sv_id)->count();
 
                 $ratings = DB::table('vnt_visitor_ratings')->where('service_id')->first();
@@ -205,21 +210,38 @@ class pageController extends Controller
                     $ponit_rating = $ratings->vr_rating;
                 }else{ $ponit_rating = 0; }
 
-                $city = DB::table('vnt_province_city')->where('id',$id_city)->first();
-                $name_city = $city->province_city_name;
-                $mang[] = array(
-                    'id_service'=>$value->sv_id,
-                    'name'=>$value->sv_name,
-                    'image'=>$value->image_details_1,
-                    'id_city'=>$id_city,
-                    'name_city'=>$name_city,
-                    'sv_highest_price'=>$value->sv_highest_price,
-                    'sv_lowest_price'=>$value->sv_lowest_price,
-                    'like'=>$likes,
-                    'view' =>$value->sv_counter_view,
-                    'point' => $value->sv_counter_point,
-                    'rating'=>$ponit_rating,
-                    'sv_type'=>$sv_types);
+                if (isset($value->hotel_number_star )) {
+                    $hotel_number_star = $value->hotel_number_star;
+                    $mang[] = array(
+                        'id_service'        => $value->sv_id,
+                        'name'              => $value->sv_name,
+                        'hotel_number_star' => $value->hotel_number_star,
+                        'description'       => $value->sv_description,
+                        'image'             => $value->image_details_1,
+                        'name_city'         => $name_city,
+                        'sv_highest_price'  => $value->sv_highest_price,
+                        'sv_lowest_price'   => $value->sv_lowest_price,
+                        'like'              => $likes,
+                        'view'              => $value->sv_counter_view,
+                        'point'             => $value->sv_counter_point,
+                        'rating'            => $ponit_rating,
+                        'sv_type'           => $sv_types);
+                }
+                else{
+                    $mang[] = array(
+                        'id_service'        => $value->sv_id,
+                        'name'              => $value->sv_name,
+                        'image'             => $value->image_details_1,
+                        'name_city'         => $name_city,
+                        'sv_highest_price'  => $value->sv_highest_price,
+                        'sv_lowest_price'   => $value->sv_lowest_price,
+                        'like'              => $likes,
+                        'view'              => $value->sv_counter_view,
+                        'point'             => $value->sv_counter_point,
+                        'rating'            => $ponit_rating,
+                        'sv_type'           => $sv_types);
+                }
+                
             }
             if (isset($mang)) {return $mang;}else{ return null; }
         }
@@ -227,24 +249,10 @@ class pageController extends Controller
             return null;
     }
     
-    public function findservicetocity($idservice)
+    public function FindServiceToCity($idservice)
     {
-        $services = DB::table('vnt_services')
-        ->join('vnt_tourist_places','vnt_services.tourist_places_id','=','vnt_tourist_places.id')
-        ->select('vnt_services.id','sv_types','tourist_places_id')->where('vnt_services.id',$idservice)->first();
-        $sv_types          = $services->sv_types;
-        $tourist_places_id = $services->tourist_places_id;
-
-        $war = DB::table('vnt_tourist_places')->where('id',$tourist_places_id)->first();
-        $id_ward = $war->id_ward;
-
-        $district = DB::table('vnt_ward')->where('id',$id_ward)->first();
-        $id_district = $district->district_id;
-
-        $city = DB::table('vnt_district')->where('id',$id_district)->first();
-        $id_city = $city->province_city_id;
-
-        return $id_city;
+        $result = DB::select("CALL find_serviceOfcity(?)",array($idservice));
+        return $result;
     }
 
     // count place province city
@@ -390,4 +398,29 @@ class pageController extends Controller
         return ($result);
     }
 
+
+    public function count_city_service_all_image() //load anh len city voi service co point cao nhat
+    {
+        $result_city = DB::select("CALL c_count_service_city_all()");
+        foreach ($result_city as $value) {
+            $id_service = DB::select("CALL get_idServicePointMax_city(?)",array($value->id_city));
+            foreach ($id_service as $v) {
+                $id_sv = $v->id_service;
+            }
+            $image = DB::table('vnt_images')->where('service_id',$id_sv)->first();
+            if ($image == null) {
+                $img = null;
+            }
+            else{
+                $img = $image->image_details_1;
+            }
+            $result[] = array(
+                'id_city' => $value->id_city,
+                'name_city' => $value->name_city,
+                'num_service' => $value->num_service,
+                'image' => $img
+            );
+        }
+        return $result;
+    }
 }

@@ -62,9 +62,9 @@ body,html{
 }
 
 #dangnhap-dangky ul li:hover a.btn-login{
-	border: 1px solid #00a680 !important;
+	/*background-color: rgb(29, 161, 242);*/
+	border: 2px solid #00a680 !important;
 	color: black !important;
-	font-weight: 600 !important;
 	/*font-weight: 500;*/
 }
 
@@ -130,7 +130,6 @@ input.form-control.input-search{
 	border-radius: 0px;
 	border: none;
 	padding-left: 34px;
-	padding-right: 81px;
 	width: 100%;
 	height: 36px;
 	z-index: 2;
@@ -368,7 +367,7 @@ ul li:hover .slider p{
 /*===================== notification ================================*/
 
 .con{
-	border-top: 1px solid;
+	border-top: 1px solid #ddd;
 	height: 35px;
 }
 
@@ -510,7 +509,7 @@ p.text-nofi{
 	padding: 10px 15px;
 	color: white !important;
 	font-size: 20px;
-	background-color: #00a680;
+	background-color: #f46d71;
 }
 
 .icon-scroll-top a:hover{
@@ -981,13 +980,15 @@ button#btnsearch-xs{
 	position: absolute;
 	top: -4px;
 	z-index: 100000;
-	right: -6px;
+	right: -5px;
 	font-size: 9px !important;
 	color: white !important;
-	background-color: red;
-	border-radius: 50%;
-	height: 13px;
+	background-color: red; !important
+	pad;
+	padding: 2px;
 	width: 13px;
+	height: 13px;
+	order-radius:;
 }
 
 .badge {
@@ -999,5 +1000,5 @@ button#btnsearch-xs{
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    border-radius: 0; 
+     border-radius: 0; 
 }

@@ -350,6 +350,16 @@
 	transform: scale(1.5);
 }
 
+.hotel .hotel-item .hotel-body .free-service{
+	
+}
+
+.hotel .hotel-item .hotel-body .free-service a{
+	color: #616770;
+	font-size: 13px;
+	margin-right: 15px;
+}
+
 /*==============END HOTEL==============*/
 
 
