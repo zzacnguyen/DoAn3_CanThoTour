@@ -312,8 +312,23 @@ class tourist_places_controller extends Controller
     {
         $ward_id =  DB::table('vnt_ward')
         ->select('vnt_ward.id','ward_name')
-        ->where('vnt_ward.id', '=', $id)
+        ->where('vnt_ward.district_id', '=', $id)
         ->get();
         return json_encode($ward_id);
+    }
+    public function GetDisTrictListByID($id)
+    {
+        $DisTrict =  DB::table('vnt_district')
+        ->select('vnt_district.id','district_name')
+        ->where('vnt_district.province_city_id', '=', $id)
+        ->paginate(10);
+        return json_encode($DisTrict);
+    }
+    public function GetProvinceCity()
+    {
+        $DisTrict =  DB::table('vnt_province_city')
+        ->select('vnt_province_city.id','province_city_name')
+        ->paginate(10);
+        return json_encode($DisTrict);
     }
 }
