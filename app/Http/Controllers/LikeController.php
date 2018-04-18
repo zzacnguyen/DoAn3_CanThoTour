@@ -107,7 +107,15 @@ class LikeController extends Controller
         $likes                      = likesModel::findOrFail($id);
         $likes->service_id        = $request->input('service_id');
         $likes->user_id      = $request->input('user_id');
-        $likes->save();
+        if($likes->save())
+        {
+            $encode=json_encode("status: 200");
+            return $encode;
+        }
+        else{
+            $encode=json_encode("status: 500");
+            return $encode;
+        }
 
     }
 

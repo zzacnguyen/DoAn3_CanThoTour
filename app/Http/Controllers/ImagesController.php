@@ -36,7 +36,7 @@ class ImagesController extends Controller
         $icon_image = DB::table('vnt_images') 
         ->select('image_banner','id')
         ->where('service_id', $service_id)
-        ->where('image_status','Active')
+        ->where('image_status',1)
         ->get();
         //echo $icon_image;
         $string_cutting_icons = $icon_image;
@@ -164,7 +164,7 @@ class ImagesController extends Controller
         $thumbnail->image_banner = "banner_".$time.'.'.$file_banner->getClientOriginalExtension();
         $thumbnail->image_details_1 ="details1_".$time.'.'.$file_details_1->getClientOriginalExtension();
         $thumbnail->image_details_2 = "details2_".$time.'.'.$file_details_2->getClientOriginalExtension();
-        $thumbnail->image_status ="Active";
+        $thumbnail->image_status =1;
         $thumbnail->service_id=$id_service;
         $thumbnail->save();
         return json_encode("status:200");

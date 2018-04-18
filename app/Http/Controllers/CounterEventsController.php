@@ -23,7 +23,7 @@ class CounterEventsController extends Controller
         ->whereYear('event_end', '>=', $year)
         ->whereDay('event_end', '>=',$day)
         ->whereMonth('event_end', '>=', $month)
-        ->where('event_status','=', 'Active')
+        ->where('event_status','=', 1)
         ->count();
         return  json_encode($events);
     }

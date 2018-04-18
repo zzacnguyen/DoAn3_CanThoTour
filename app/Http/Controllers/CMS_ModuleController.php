@@ -105,37 +105,37 @@ class CMS_ModuleController extends Controller
 		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
 		->whereMonth('created_at', '=', $month[0])
 		->whereYear('created_at', '=', $year[0])
-		->where('sv_status', '=', 'Active')
+		->where('sv_status', '=', 1)
 		->count();
 		$data_2 = DB::table('vnt_services') 
 		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
 		->whereMonth('created_at', '=', $month[1])
 		->whereYear('created_at', '=', $year[1])
-		->where('sv_status', '=', 'Active')
+		->where('sv_status', '=', 1)
 		->count();
 		$data_3 = DB::table('vnt_services') 
 		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
 		->whereMonth('created_at', '=', $month[2])
 		->whereYear('created_at', '=', $year[2])
-		->where('sv_status', '=', 'Active')
+		->where('sv_status', '=', 1)
 		->count();
 		$data_4 = DB::table('vnt_services') 
 		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
 		->whereMonth('created_at', '=', $month[3])
 		->whereYear('created_at', '=', $year[3])
-		->where('sv_status', '=', 'Active')
+		->where('sv_status', '=', 1)
 		->count();
 		$data_5 = DB::table('vnt_services') 
 		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
 		->whereMonth('created_at', '=', $month[4])
 		->whereYear('created_at', '=', $year[4])
-		->where('sv_status', '=', 'Active')
+		->where('sv_status', '=', 1)
 		->count();
 		$data_6 = DB::table('vnt_services') 
 		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
 		->whereMonth('created_at', '=', $month[5])
 		->whereYear('created_at', '=', $year[5])
-		->where('sv_status', '=', 'Active')
+		->where('sv_status', '=', 1)
 		->count();
 		$string = $data_6.','.$data_5.','.$data_4.','.$data_3.','.$data_2.','.$data_1;
 		return $string;
@@ -151,37 +151,37 @@ class CMS_ModuleController extends Controller
 		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
 		->whereMonth('created_at', '=', $month[0])
 		->whereYear('created_at', '=', $year[0])
-		->where('pl_status', '=', 'Active')
+		->where('pl_status', '=', 1)
 		->count();
 		$data_2 = DB::table('vnt_tourist_places') 
 		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
 		->whereMonth('created_at', '=', $month[1])
 		->whereYear('created_at', '=', $year[1])
-		->where('pl_status', '=', 'Active')
+		->where('pl_status', '=', 1)
 		->count();
 		$data_3 = DB::table('vnt_tourist_places') 
 		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
 		->whereMonth('created_at', '=', $month[2])
 		->whereYear('created_at', '=', $year[2])
-		->where('pl_status', '=', 'Active')
+		->where('pl_status', '=', 1)
 		->count();
 		$data_4 = DB::table('vnt_tourist_places') 
 		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
 		->whereMonth('created_at', '=', $month[3])
 		->whereYear('created_at', '=', $year[3])
-		->where('pl_status', '=', 'Active')
+		->where('pl_status', '=', 1)
 		->count();
 		$data_5 = DB::table('vnt_tourist_places') 
 		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
 		->whereMonth('created_at', '=', $month[4])
 		->whereYear('created_at', '=', $year[4])
-		->where('pl_status', '=', 'Active')
+		->where('pl_status', '=', 1)
 		->count();
 		$data_6 = DB::table('vnt_tourist_places') 
 		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
 		->whereMonth('created_at', '=', $month[5])
 		->whereYear('created_at', '=', $year[5])
-		->where('pl_status', '=', 'Active')
+		->where('pl_status', '=', 1)
 		->count();
 		$string = $data_6.','.$data_5.','.$data_4.','.$data_3.','.$data_2.','.$data_1;
 		return $string;
@@ -191,13 +191,14 @@ class CMS_ModuleController extends Controller
 	{
 		$data_not_active = DB::table('vnt_services') 
 		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
-		->where('sv_status', '!=', 'Active')
+		->where('sv_status', '!=', 1)
 		->count();
 		$data_all = DB::table('vnt_services') 
 		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
 		->count();
 		$total = (($data_all - $data_not_active)/$data_all)*100;
 		$sum = 100 -$total;
+		//hàm CEIL lấy số nguyên
 		return CEIL($sum);
 	}
 
@@ -205,16 +206,17 @@ class CMS_ModuleController extends Controller
 	{
 		$data_not_active = DB::table('vnt_tourist_places') 
 		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
-		->where('pl_status', '!=', 'Active')
+		->where('pl_status','!=',1)
 		->count();
 		$data_all = DB::table('vnt_tourist_places') 
 		->select( DB::raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
 		->count();
 		$total = (($data_all - $data_not_active)/$data_all)*100;
 		$sum = 100 - $total;
+
+		//hàm CEIL lấy số nguyên
 		return CEIL($sum);
 	}
-
 
 	public function _COUNTER_WAITING_USER_ACTIVE()
 	{

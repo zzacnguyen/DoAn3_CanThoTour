@@ -25,7 +25,7 @@ class Partner_Controller extends Controller
         ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_services.id')
         ->whereMonth('vnt_services.created_at', '=', $month_select)
         ->where('vnt_services.user_partner_id', '=', $user_id)
-        ->where('sv_status','=', 'Active')
+        ->where('sv_status','=', 1)
         ->orderBy('vnt_services.id', 'DESC')
         ->paginate(10);
         $encode=json_encode($services);
@@ -48,7 +48,7 @@ class Partner_Controller extends Controller
         ->join('vnt_ward', 'vnt_ward.id_ward', '=', 'vnt_ward.id')
         ->join('vnt_district', 'vnt_district.province_city_id', '=', 'vnt_province_city.id')
         ->whereMonth('vnt_tourist_places.created_at', '=', $month_select)
-        ->where('pl_status','=', 'Active')
+        ->where('pl_status','=', 1)
         ->where('vnt_tourist_places.user_id', '=', $user_id)
         ->orderBy('vnt_tourist_places.id', 'DESC')
         ->paginate(10);

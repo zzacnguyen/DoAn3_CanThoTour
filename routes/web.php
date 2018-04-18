@@ -16,10 +16,6 @@ Route::get('couter/couter={name}', 'CounterEventsController@Counter');
 Route::resource('eating', 'EatingController');
 
 
-
-Route::resource('visitor-ratings', 'VisitorRatingController');
-
-
 Route::resource('service','ServicesController');
 
 
@@ -69,13 +65,15 @@ Route::get('get-thumb-2/{id}', 'ImagesController@getThumbnail2');
 Route::get('get-detail-1/{id}', 'ImagesController@getImageDetail1');
 Route::get('get-detail-2/{id}', 'ImagesController@getImageDetail2');
 Route::get('get-only-icon-image', 'ImagesController@GetOnlyIconImage');
+
+
 Route::get('rating-service/{id}','Rating_Service_Controller@rating');
+Route::post('rating-post', 'Rating_Service_Controller@postRating');
+Route::get('ward', 'tourist_places_controller@GetWardList');
+Route::get('ward/{id}', 'tourist_places_controller@GetWardListByID');
+
 
 Route::get('google-maps','testGoogleMapsApi@FunctionName');
-
-
-
-
 //partner
 Route::get('get-services-posted-partner/month={month}&user_id={id}','Partner_Controller@getServices');
 Route::get('get-places-posted-partner/month={month}&user_id={id}','Partner_Controller@getServices');

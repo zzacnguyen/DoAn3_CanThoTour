@@ -57,11 +57,19 @@ class EatingController extends Controller
             'vnt_services.sv_description')
         ->join('vnt_services', 'vnt_services.id', '=', 'vnt_eating.service_id')
         ->join('vnt_tourist_places', 'vnt_services.tourist_places_id', '=', 'vnt_tourist_places.id')
-        
+        ->where('vnt_eating.eat_status')
         ->where('vnt_eating.service_id',$id)
         ->get();
-        $encode=json_encode($eat);
-        return $encode;
+        if($eat == null)
+        {
+            $encode=json_encode("status:500");
+            return $encode;    
+        }
+        else{
+            $encode=json_encode($eat);
+            return $encode;
+        }
+        
     }
 
     /**

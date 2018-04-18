@@ -36,8 +36,8 @@
 </script>
 
 <div id="page-title">
-    <h2>Danh sách địa điểm</h2>
-    <p>Dưới đây là dữ liệu tất cả địa điểm hiện có.</p>
+    <h2>Danh sách quản trị viên</h2>
+    <p>Dưới đây là dữ liệu của quản trị viên.</p>
     <div id="theme-options" class="admin-options">
     <a href="javascript:void(0);" class="btn btn-primary theme-switcher tooltip-button" data-placement="left" title="Color schemes and layout options">
         <i class="glyph-icon icon-linecons-cog icon-spin"></i>
@@ -46,59 +46,43 @@
 <div class="panel">
     <div class="panel-body">
     <h3 class="title-hero">
-        DANH SÁCH ĐỊA ĐIỂM
+        DANH SÁCH NGƯỜI DÙNG
     </h3>
         <div class="example-box-wrapper">
             <table id="datatable-reorder" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                 <tr>
-                    <?php $tmp_show = 1?>
-                    <th>STT</th>
-                    <th>ID</th>
-                    <th>Tên địa điểm</th>
-                    <th>Địa chỉ</th>
-                    <th>Số điện thoại</th>
-                    <th>Kinh độ</th>
-                    <th>Vĩ độ</th>
-                    <th>Chỉnh sửa lần cuối</th>
-                    <th>Hiển thị</th>
-
+                    <th>User name</th>
+                    <th>Login social ID</th>
+                    <th>Name</th>
+                    <th>Phone number</th>
+                    <th>Email</th>
+                    <th>Website</th>
+                    <th>Ngày đăng ký</th>
                 </tr>
                 </thead>
 
                 <tfoot>
                 <tr>
-                    <th>STT</th>
-                    <th>ID</th>
-                    <th>Tên địa điểm</th>
-                    <th>Địa chỉ</th>
-                    <th>Số điện thoại</th>
-                    <th>Kinh độ</th>
-                    <th>Vĩ độ</th>
-                    <th>Chỉnh sửa lần cuối</th>
-                    <th>Hiển thị</th>
+                    <th>User name</th>
+                    <th>Login social ID</th>
+                    <th>Name</th>
+                    <th>Phone number</th>
+                    <th>Email</th>
+                    <th>Website</th>
+                    <th>Ngày kích hoạt</th>
                 </tr>
                 </tfoot>
                 <tbody>
-                    
-
                     @foreach($data as $item)
                     <tr>
-                        <td><?php echo $tmp_show; $tmp_show++; ?></td>
-                        <td>{{ $item->id }}</td>
-                        <td><a href="">{{ $item->pl_name }}</a></td>
-                        <td>{{ $item->pl_address }}</td>
-                        <td>{{ $item->pl_phone_number }}</td>
-                        <td>{{ $item->pl_latitude }}</td>
-                        <td>{{ $item->pl_longitude }}</td>
-                        <td>{{ $item->updated_at }}</td>
-                        <td><?php if($item->pl_status==0)
-                            echo "Không hiển thị";
-                            else{
-                                echo "Hiển thị";
-                            }
-                        ?>
-                        </td>
+                        <td>{{ $item->username }}</td>
+                        <td>{{ $item->social_login_id }}</td>
+                        <td>{{ $item->contact_name }}</td>
+                        <td>{{ $item->contact_phone }}</td>
+                        <td>{{ $item->contact_email_address }}</td>
+                        <td>{{ $item->contact_website }}</td>
+                        <td>{{ $item->created_at }}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -107,8 +91,4 @@
         </div>
     </div>
 </div>
-
-
-
-
 @endsection

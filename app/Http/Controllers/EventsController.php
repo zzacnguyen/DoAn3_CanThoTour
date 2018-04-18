@@ -55,12 +55,15 @@ class EventsController extends Controller
         $events->event_name=$request->input("event_name");
         $events->event_start=$request->input("event_start");
         $events->event_end=$request->input("event_end");
-        $events->event_status="Active";
+        $events->event_status=1;
         $events->type_id=$request->input("type_id");
         $events->service_id=$request->input("service_id");
         
         if($events->save()){
             return json_encode("status:200");            
+        }
+        else{
+            return json_encode("status:500");   
         }
     }
 
