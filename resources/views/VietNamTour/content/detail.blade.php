@@ -131,20 +131,20 @@
 					<div class="" style="background-color: white; margin-top: 15px;">
 						<div class="tabbable-panel">
 							<div class="tabbable-line">
-								<ul class="nav nav-tabs ">
-									<li class="active" style="width: 25%;">
+								<ul class="nav nav-tabs">
+									<li class="active tab-lam" style="width: 25%;">
 										<a href="#tab_default_1" data-toggle="tab" style="text-align: center;">
 										Hình ảnh </a>
 									</li>
-									<li class="" style="width: 25%;">
+									<li class="tab-lam" style="width: 25%;">
 										<a href="#tab_default_2" data-toggle="tab" style="text-align: center;">
 										Giới thiệu </a>
 									</li>
-									<li style="width: 25%;">
+									<li class="tab-lam" style="width: 25%;">
 										<a href="#tab_default_3" data-toggle="tab" style="text-align: center;">
 										Đánh giá </a>
 									</li>
-									<li style="width: 25%;">
+									<li class="tab-lam" style="width: 25%;">
 										<a href="#tab_default_4" data-toggle="tab" style="text-align: center;">
 										Bản đồ </a>
 									</li>
@@ -250,82 +250,27 @@
 	</script>
 
 	<script type="text/javascript">
-		$(document).ready(function () {
-			// @Html.ActionLink("http://chinhlytailieu/doan3_canthotour/public/details/id=171");
-			console.log(window.location.pathname);
-			function GetURLParameter(sParam) {
-			    var sPageURL = window.location.search.substring(1);
-			    var sURLVariables = sPageURL.split('&');
-			    for (var i = 0; i < sURLVariables.length; i++){
-			        var sParameterName = sURLVariables[i].split('=');
-			        if (sParameterName[0] == sParam)
-			        {
-			            return sParameterName[1];
-			        }
-			    }
-			}
+		document.addEventListener("DOMContentLoaded",function () {
+		    var aTab = document.getElementsByClassName('tab-lam');
+		    
+		    for (var i = 0; i < aTab.length; i++) {
+		        aTab[i].onclick = function(){
+		        	// console.log(aTab[i]);
+		            for (var i = 0; i < aTab.length; i++) {
+		                aTab[i].classList.remove('active');
+		            }
 
-
-			var getUrlParameter = function getUrlParameter(sParam) {
-			    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-			        sURLVariables = sPageURL.split('&'),
-			        sParameterName,
-			        i;
-
-			    for (i = 0; i < sURLVariables.length; i++) {
-			        sParameterName = sURLVariables[i].split('=');
-
-			        if (sParameterName[0] === sParam) {
-			            return sParameterName[1] === undefined ? true : sParameterName[1];
-			        }
-			    }
-			};
-
-
-			var para = GetURLParameter('/');
-			var lam = getUrlParameter('id');
-			console.log(para);
-			console.log(lam);
-
-
-			// $.ajax({
-			// 		url: 'http://chinhlytailieu/doan3_canthotour/public/lamindex/id=171',
-			// 		type: 'GET'
-			// 	}).done(function(response){
-					
-			// 		var data = $.parseJSON(response);
-			// 		$('#img_service_1').attr("src",'thumbnails/' + data[0].image_details_1);
-			// 		$('#img_service_2').attr("src",'thumbnails/' + data[0].image_details_2);
-			// 		$('#img_service_3').attr("src",'thumbnails/' + data[0].image_banner);
-					
-			// 		$('#sv_name').html(data[0].sv_name);
-			// 		$('#mota-dichvu').html(data[0].sv_description);
-
-			// 		var tendv = "";
-			// 		if (data[0].sv_types == 1) {  tendv = "Ăn uống";}
-			// 		else if(data[0].sv_types == 2){ tendv = "Khách sạn";}
-			// 		else if(data[0].sv_types == 3){ tendv = "Phương tiện";}
-			// 		else if(data[0].sv_types == 4){ tendv = "Tham quan";}
-			// 		else {var tendv = "Vui chơi";}
-			// 		$('loaihinhdichvu').html(tendv);
-
-			// 		$('#phonenumber').html(data[0].sv_phone_number)
-			// 		$('#giomocua').html(data[0].sv_open);
-			// 		$('#giodongcua').html(data[0].sv_close);
-
-			// 		$('#giathapnhat').html(data[0].sv_lowest_price);
-			// 		$('#giacaonhat').html(data[0].sv_highest_price);
-
-			// });
-
-			// $.getJSON("http://chinhlytailieu/doan3_canthotour/public/lamindex/id=171",function(data) {
-			// 	$('#img_service_1').attr("src",'thumbnails/' + data[0].image_details_1);
-			// 	$('#img_service_2').attr("src",'thumbnails/' + data[0].image_details_2);
-			// 	$('#img_service_3').attr("src",'thumbnails/' + data[0].image_banner);
-			// 	console.log(data[0].pl_latitude);
-			// 	$('sv_name').html(data[0].sv_name);
-			// })
-		})
+		            this.classList.add('active');
+		            // for (var i = 0; i < boDy.length; i++) {
+		            //     boDy[i].classList.remove('active-content');
+		            // }
+		            // var hienthi = this.getAttribute("data-hienthi2");
+		            // // console.log(hienthi);
+		            // document.getElementById(hienthi).classList.add('active-content');
+		        }
+		    }
+		    
+		},false);
 	</script>
 
 @include('VietNamTour.header-footer.footer')

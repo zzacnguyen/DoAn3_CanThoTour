@@ -20,6 +20,11 @@
 	<link rel="stylesheet" href="resource/css/place.css">
 	<link rel="stylesheet" href="resource/css/style.index.css">
 	<link rel="stylesheet" href="resource/css/menu-style2.css">
+	<style>
+		h4{
+			border-bottom: none !important;
+		}
+	</style>
 </head>
 <body>
 	
