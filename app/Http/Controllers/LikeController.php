@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use likesModel;
+use App\likesModel;
 class LikeController extends Controller
 {
     /**
@@ -35,10 +35,7 @@ class LikeController extends Controller
      */
     public function create()
     {
-        $likes                    = new likesModel();
-        $likes->service_id       = $request->input('service_id');
-        $likes->user_id    = $request->input('user_id');
-        $likes->save();
+
 
     }
 
@@ -50,7 +47,7 @@ class LikeController extends Controller
      */
     public function store(Request $request)
     {
-        $likes                    = new likesModel();
+        $likes                    = new likesModel;
         $likes->service_id       = $request->input('service_id');
         $likes->user_id    = $request->input('user_id');
         $likes->save();
