@@ -16,7 +16,7 @@ class transportController extends Controller
         $transport = DB::table('vnt_transport')
         ->select('vnt_transport.service_id AS id','transport_name','vnt_images.id AS image_id','vnt_images.image_details_1')
         ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_transport.service_id')
-        ->where('transport_status', '=', 'Active')
+        ->where('transport_status', '=', 1)
         ->paginate(10);
         $encode=json_encode($transport);
         return $encode;
