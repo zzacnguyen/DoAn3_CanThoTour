@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\touristPlacesModel;
+use App\likesModel;
 
 class publicDetail extends Controller
 {
@@ -204,5 +205,15 @@ class publicDetail extends Controller
 
     }
 
-    
+    public function like_service($idservice)
+    {
+        $like = likesModel::findOrFail($idservice);
+        if ($like == null) {
+            return "lam";
+        }
+        else{
+            return "l";
+        }
+        
+    }
 }

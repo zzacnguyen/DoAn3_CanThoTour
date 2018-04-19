@@ -88,7 +88,7 @@
 			<div class="layer-top" id="id-layer-top">
 				<div class="container">
 					<nav class="navbar navbar-expand-lg navbar-light menuTop" id="id-menu-Top">
-						<a class="navbar-brand" href="#" style="color: #304FFE !important;"><!-- VietNamTour -->
+						<a class="navbar-brand" href="{{route('/')}}" style="color: #304FFE !important;"><!-- VietNamTour -->
 							<img src="https://static.tacdn.com/img2/langs/vi/branding/rebrand/TA_logo_primary_v2.svg" alt="" style="height: 50px; width: 160px;">
 						</a>
 						<!-- <button class="btn btn-success navbar-toggler" id="btnsearch-xs"><i class="fas fa-search"></i></button> -->
@@ -251,25 +251,29 @@
 							</ul>
 							<div class="form-inline my-2 my-lg-0" id="dangnhap-dangky">
 								<ul class="navbar-nav mr-auto col-md-12 col-12" style="padding: 0;">
+									@if(Auth::check())
 									<li class="nav-item" style="position: relative; margin-right: 2px;">
-										<a href="login.html" class="nav-link btn-login" id="btn-dangnhap">Đăng nhập</a>
-										<!-- hien thi khi dang nhap thanh cong -->
-										<a class="nav-link btn-login hidden" style="padding: 0; border: none !important;" id="id-user-form">
-											<img src="images/avatar1.jpg" alt="" style="height: 33px; width: 33px;">
-											lamthemen <i class="fas fa-caret-down"></i>
-										</a>
-										<div class="user-form">
-											<ul>
-												<li><a href=""><i class="fas fa-info-circle"></i> Thông tin tài khoản</a></li>
-												<li><a href=""><i class="fas fa-book"></i> Góp ý</a></li>
-												<li><a href=""><i class="fas fa-power-off"></i> Đăng xuất</a></li>
-											</ul>
-										</div> <!-- end hien thi khi dang nhap thanh cong -->
+											<!-- hien thi khi dang nhap thanh cong -->
+											<a class="nav-link btn-login" style="padding: 0; border: none !important;" id="id-user-form">
+												<img src="resource/images/avatar1.jpg" alt="" style="height: 33px; width: 33px;">
+												lamthemen <i class="fas fa-caret-down"></i>
+											</a>
+											<div class="user-form">
+												<ul>
+													<li><a href=""><i class="fas fa-info-circle"></i> Thông tin tài khoản</a></li>
+													<li><a href=""><i class="fas fa-book"></i> Góp ý</a></li>
+													<li><a href="{{route('loginW')}}"><i class="fas fa-power-off"></i> Đăng xuất</a></li>
+												</ul>
+											</div> <!-- end hien thi khi dang nhap thanh cong -->
 									</li>
-
-									<li class="nav-item">
-										<a href="register.html" class="nav-link btn-login" id="btn-dangky">Đăng ký</a>
-									</li>
+									@else
+										<li class="nav-item">
+											<a href="{{route('loginW')}}" class="nav-link btn-login" id="btn-dangnhap">Đăng nhập</a>
+										</li>
+										<li class="nav-item">
+											<a href="register.html" class="nav-link btn-login" id="btn-dangky">Đăng ký</a>
+										</li>
+									@endif
 								</ul>
 							</div>
 						</div>

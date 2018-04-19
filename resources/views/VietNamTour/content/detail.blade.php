@@ -6,6 +6,12 @@
 <link rel="stylesheet" href="resource/css/hotel-detail.css">
 <link rel="stylesheet" href="resource/css/lightbox.min.css">
 <link rel="stylesheet" href="resource/css/detail-tab.css">
+<link rel="stylesheet" href="resource/css/chat.css">
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD4NgGvVNbWb_bMXOdeHLMWVhHm_HITw34&sensor=false"></script>
+
+	{{-- <div id="latitude">{{$sv['pl_latitude']}}</div> --}}
+	{{-- <div id="longitude">{{$sv['pl_longitude']}}</div> --}}
 
 	<section class="content-detail">
 		<div class="container">
@@ -37,6 +43,7 @@
 				<div class="col-md-5" style="padding-left: 0;">
 					<div class="hotel-detail-right">
 						<div class="title" style="text-align: left; margin-bottom: 5px;">
+							<div id="latitude" data-lati="{{$sv['pl_latitude']}}" data-lon="{{$sv['pl_longitude']}}"></div>
 							<p>
 								<a>{{$sv['city_name']}} <i class="fas fa-angle-double-right"></i></a> 
 								<a>{{$sv['district_name']}} <i class="fas fa-angle-double-right"></i></a> 
@@ -128,17 +135,17 @@
 
 			<div class="row">
 				<div class="col-md-8">
-					<div class="" style="background-color: white; margin-top: 15px;">
+					<div class="" style="margin-top: 15px;">
 						<div class="tabbable-panel">
 							<div class="tabbable-line">
 								<ul class="nav nav-tabs">
-									<li class="active tab-lam" style="width: 25%;">
-										<a href="#tab_default_1" data-toggle="tab" style="text-align: center;">
-										Hình ảnh </a>
-									</li>
 									<li class="tab-lam" style="width: 25%;">
-										<a href="#tab_default_2" data-toggle="tab" style="text-align: center;">
+										<a href="#tab_default_1" data-toggle="tab" style="text-align: center;">
 										Giới thiệu </a>
+									</li>
+									<li class="tab-lam active" style="width: 25%;">
+										<a href="#tab_default_2" data-toggle="tab" style="text-align: center;">
+										Album ảnh </a>
 									</li>
 									<li class="tab-lam" style="width: 25%;">
 										<a href="#tab_default_3" data-toggle="tab" style="text-align: center;">
@@ -150,7 +157,15 @@
 									</li>
 								</ul>
 								<div class="tab-content">
-									<div class="tab-pane active" id="tab_default_1">
+									<div class="tab-pane" id="tab_default_1">
+										<h5 style="font-weight: 700;padding-left: 17px;">GIỚI THIỆU</h5>
+										<p style="text-align: justify; padding: 10px;" >
+											{{$sv['sv_description']}}
+										</p>
+									</div>
+
+									<div class="tab-pane active" id="tab_default_2">
+										<h5 style="font-weight: 700;padding-left: 17px;">Album ảnh</h5>
 										<section class="demo" style="background-color: transparent;">
 											<div class="gallery">
 												<a style="background-color: transparent;" href="http://i.imgur.com/80WaVuY.jpg" title="" data-fluidbox class="col-12"><img src="http://i.imgur.com/80WaVuY.jpg" alt="" title="" /></a>
@@ -163,30 +178,64 @@
 										</section>
 									</div>
 
-									<div class="tab-pane" id="tab_default_2">
-										<p style="text-align: justify; padding: 10px;" >
-											{{$sv['sv_description']}}
-										</p>
-									</div>
-
 									<div class="tab-pane" id="tab_default_3">
-										<p>
-											Tab 2.
-										</p>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</p>
-
+										<div class="wrapper wrapper-content animated fadeInRight" style="padding: 0;">
+										    <div class="row">
+										        <div class="col-lg-12">
+										            <div class="ibox float-e-margins" style="border-style: none;">
+										                <div class="ibox-content">
+										                    <h5 style="font-weight: 700;">ĐÁNH GIÁ DỊCH VỤ</h5>
+										                </div>
+										                <div class="ibox-content">
+										                	Bạn chưa đánh giá về địa điểm này
+										                </div>
+										            </div>
+										        </div>
+										    </div>
+										    <div class="row">
+										        <div class="col-lg-12">
+										            <div class="ibox chat-view">
+										                <div class="ibox-content">
+										                    <div class="row">
+										                        <div class="col-md-12">
+										                            <div class="chat-discussion" style="background-color: white;">
+										                                <div class="chat-message left">
+										                                    <img class="message-avatar" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+										                                    <div class="message">
+										                                        <a class="message-author" href="#"> Michael Smith </a>
+										                                        <span class="message-date"> Mon Jan 26 2015 - 18:39:23 </span>
+										                                        <span class="message-content">
+										    										Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+									                                            </span>
+										                                    </div>
+										                                </div>
+										                                <div class="chat-message left">
+										                                    <img class="message-avatar" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+										                                    <div class="message">
+										                                        <a class="message-author" href="#"> Michael Smith </a>
+										                                        <span class="message-date"> Mon Jan 26 2015 - 18:39:23 </span>
+										                                        <span class="message-content">
+										    										Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+									                                            </span>
+										                                    </div>
+										                                </div>
+										                            </div>
+										                        </div>
+										                    </div>
+										                </div>
+										            </div>
+										        </div>
+										    </div>
+										</div>
 									</div>
 
 									<div class="tab-pane" id="tab_default_4">
-										<p>
-											Tab 3.
-										</p>
-										<p>
-											Consectetur deleniti quisquam natus eius commodi.
-										</p>
-
+										<h5 style="font-weight: 700;padding-left: 17px;">THÔNG TIN BẢN ĐỒ</h5>
+										<div class="col-md-12">
+											<div id="googleMap" style="width: 100%; height: 400px;">
+												Google Map
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -235,6 +284,83 @@
 		</div>
 
 	</section>
+	
+
+	<script type="text/javascript">
+		var gmap = new google.maps.LatLng(10.765974,106.689422);
+		var marker;
+		var latitude = document.getElementById("latitude").getAttribute('data-lati');
+		var longitude = document.getElementById("latitude").getAttribute('data-lon');
+		function initialize()
+		{
+		    var mapProp = {
+		         center:new google.maps.LatLng(latitude,longitude),
+		         zoom:16,
+		        mapTypeId:google.maps.MapTypeId.ROADMAP
+		    };
+		 
+		    var map=new google.maps.Map(document.getElementById("googleMap")
+		    ,mapProp);
+		 
+		  var styles = [
+		    {
+		      featureType: 'road.arterial',
+		      elementType: 'all',
+		      stylers: [
+		        { hue: '#fff' },
+		        { saturation: 100 },
+		        { lightness: -48 },
+		        { visibility: 'on' }
+		      ]
+		    },{
+		      featureType: 'road',
+		      elementType: 'all',
+		      stylers: [
+		 
+		      ]
+		    },
+		    {
+		        featureType: 'water',
+		        elementType: 'geometry.fill',
+		        stylers: [
+		            { color: '#adc9b8' }
+		        ]
+		    },{
+		        featureType: 'landscape.natural',
+		        elementType: 'all',
+		        stylers: [
+		            { hue: '#809f80' },
+		            { lightness: -35 }
+		        ]
+		    }
+		  ];
+		 
+		  var styledMapType = new google.maps.StyledMapType(styles);
+		  map.mapTypes.set('Styled', styledMapType);
+		 
+		  marker = new google.maps.Marker({
+		    map:map,
+		    draggable:true,
+		    animation: google.maps.Animation.DROP,
+		    position: gmap
+		  });
+		  google.maps.event.addListener(marker, 'click', toggleBounce);
+		}
+		 
+		function toggleBounce() {
+		 
+		  if (marker.getAnimation() !== null) {
+		    marker.setAnimation(null);
+		  } else {
+		    marker.setAnimation(google.maps.Animation.BOUNCE);
+		  }
+		}
+		 
+		google.maps.event.addDomListener(window, 'load', initialize);
+	</script>
+
+
+
 
 	<script src="resource/js/lightbox.min.js"></script>
 	<script src="resource/js/detail-hotel.js"></script>
@@ -259,14 +385,7 @@
 		            for (var i = 0; i < aTab.length; i++) {
 		                aTab[i].classList.remove('active');
 		            }
-
 		            this.classList.add('active');
-		            // for (var i = 0; i < boDy.length; i++) {
-		            //     boDy[i].classList.remove('active-content');
-		            // }
-		            // var hienthi = this.getAttribute("data-hienthi2");
-		            // // console.log(hienthi);
-		            // document.getElementById(hienthi).classList.add('active-content');
 		        }
 		    }
 		    

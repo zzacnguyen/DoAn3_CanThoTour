@@ -79,3 +79,7 @@ Route::get('google-maps','testGoogleMapsApi@FunctionName');
 Route::get('get-services-posted-partner/month={month}&user_id={id}','Partner_Controller@getServices');
 Route::get('get-places-posted-partner/month={month}&user_id={id}','Partner_Controller@getServices');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

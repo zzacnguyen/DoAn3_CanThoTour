@@ -70,6 +70,11 @@ Route::get('image_city/{id}','pageController@image_city');
 Route::get('count_city_service_all_image','pageController@count_city_service_all_image');
 Route::get('demtien/{m}','pageController@numberToK');
 Route::get('getlam/{id}&s={s}&limit={l}','publicDetail@dichvu_lancan');
+Route::get('likelam/{idser}','publicDetail@like_service');
+Route::get('checklogin','pageController@checkLogin');
+
+
+
 //================================ NEW ========================================
 
 //get num service of city all

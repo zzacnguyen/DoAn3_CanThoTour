@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="resourceVNT/css/bootstrap.css">
-	<link rel="stylesheet" href="resourceVNT/css/login.css">
+	<link rel="stylesheet" href="resource/css/bootstrap.css">
+	<link rel="stylesheet" href="resource/css/login.css">
 	<title>Login</title>
 </head>
 <body>
-	<section class="content" style="background-image: url({{asset('/resourceVNT/images/background/4.jpg')}});">
+	<section class="content" style="background-image: url({{asset('/resource/images/background/4.jpg')}});">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4"></div>	
@@ -58,8 +58,8 @@
 		</div>
 	</section>
 
-	<script type="text/javascript" src="resourceVNT/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="resourceVNT/js/bootstrap.js"></script>
-	<script src="resourceVNT/js/fontawesome-all.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="resource/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="resource/js/bootstrap.js"></script>
+	<script src="resource/js/fontawesome-all.min.js" type="text/javascript"></script>
 </body>
 </html>

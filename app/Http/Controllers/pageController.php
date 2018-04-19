@@ -10,6 +10,7 @@ use App\Http\Controllers\SearchController;
 use App\touristPlacesModel;
 use App\provincecityModel;
 use Illuminate\Database\Eloquent\Colection;
+use Auth;
 
 class pageController extends Controller
 {
@@ -28,8 +29,10 @@ class pageController extends Controller
         $services_see     = $this::getservicestake(4,8);
         $services_enter   = $this::getservicestake(5,8);
 
+        $checkLogin = $this::checkLogin();
+
         // dd($services_hotel);
-    	return view('VietNamTour.content.index',compact('placecount','services_hotel','services_eat','services_enter','services_see','services_tran'));
+    	return view('VietNamTour.content.index',compact('placecount','services_hotel','services_eat','services_enter','services_see','services_tran','checkLogin'));
     }
 
     public function getlogin()
@@ -50,6 +53,17 @@ class pageController extends Controller
     public function getuser()
     {
         return view('VietNamTour.user');
+    }
+
+    public function checkLogin()
+    {
+        if (Auth::check()) {
+            return "1";
+        }
+        else{
+            return "0";
+        }
+        // return Auth::user()->user_id;
     }
 
     public function getdetail($idservices,$type)

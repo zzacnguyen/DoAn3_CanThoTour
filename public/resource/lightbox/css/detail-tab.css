@@ -5,7 +5,7 @@
 		.tabbable-line > .nav-tabs {
 			border: none;
 			margin: 0px;
-			margin-bottom: 10px;
+			margin-bottom: 21px;
 			background: white;
 		}
 		.tabbable-line > .nav-tabs > li {
@@ -14,7 +14,7 @@
 		.tabbable-line > .nav-tabs > li > a {
 			border: 0;
 			margin-right: 0;
-			color: black;
+			color: #737373;
 			font-size: 20px !important;
 			text-decoration: none;
 			display: inline-block;
@@ -39,7 +39,7 @@
 			margin-top: 0px;
 		}
 		.tabbable-line > .nav-tabs > li.active {
-			border-bottom: 4px solid #00a680;
+			border-bottom: 4px solid #32465B;
 			position: relative;
 		}
 		.tabbable-line > .nav-tabs > li.active > a {

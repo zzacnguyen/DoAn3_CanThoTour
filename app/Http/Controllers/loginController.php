@@ -32,6 +32,7 @@ class loginController extends Controller
             $pass = $request->input('password');
             if( Auth::attempt(['username' => $username, 'password' => $pass])) {
                 return redirect('/');
+                // return Auth::user()->user_id;
             } else {
                 return redirect()->back()->with(['erro'=>'Tên tài khoản hoặc mật khẩu không đúng','userold'=>$username]);
             }
