@@ -321,14 +321,14 @@ class tourist_places_controller extends Controller
         $DisTrict =  DB::table('vnt_district')
         ->select('vnt_district.id','district_name')
         ->where('vnt_district.province_city_id', '=', $id)
-        ->paginate(10);
+        ->get();
         return json_encode($DisTrict);
     }
     public function GetProvinceCity()
     {
         $DisTrict =  DB::table('vnt_province_city')
         ->select('vnt_province_city.id','province_city_name')
-        ->paginate(10);
+        ->get();
         return json_encode($DisTrict);
     }
 }
