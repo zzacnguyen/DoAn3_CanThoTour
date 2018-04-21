@@ -55,10 +55,11 @@ class ServicesDetailsController extends Controller
          
 
 
-        // $like_list = DB::table('vnt_likes')
-        // ->select('vnt_likes.id as like_id','vnt_likes.user_id')
-        // ->where('service_id','=', $services_id)
-        // ->get();
+        $like_id = DB::table('vnt_likes')
+        ->select('vnt_likes.id as like_id')
+        ->where('service_id','=', $services_id)
+        ->where('vnt_likes.user_id','=', $user_id)
+        ->get();
 
         
         $like_by_user = DB::table('vnt_likes')
@@ -81,15 +82,17 @@ class ServicesDetailsController extends Controller
         ->where('service_id','=', $services_id)
         ->count();
 
-        // $rating = DB::table('vnt_visitor_ratings')
-        // ->select('vnt_visitor_ratings.id as id_rating','vnt_visitor_ratings.user_id')
-        // ->orderBy('vnt_visitor_ratings.id', 'DESC')
-        // ->where('service_id', '=', $services_id)
-        // ->get();
+        $rating_id = DB::table('vnt_visitor_ratings')
+        ->select('vnt_visitor_ratings.id as id_rating')
+        ->where('service_id', '=', $services_id)
+        ->where('vnt_visitor_ratings.user_id','=', $user_id)
+        ->get();
+
         $rating_count = DB::table('vnt_visitor_ratings')
         ->select('vnt_visitor_ratings.id as id_rating','vnt_visitor_ratings.user_id')
         ->orderBy('vnt_visitor_ratings.id', 'DESC')
         ->where('service_id', '=', $services_id)
+        
         ->count();
         if($rating_count != 0)
         {
@@ -100,13 +103,16 @@ class ServicesDetailsController extends Controller
         }
 
 
-        $merge[] = ["like"=>$like_tmp];  
-        $merge2[]= ["rating"=>$rating_tmp];
-        $merge3[] = ["service"=>$service];
-        $merge4[]=["type_event"=>$type_events];
-        $merge5[]=["count_like"=>$countLike];
-        $merge6[] = array_merge($merge, $merge2, $merge3,$merge4, $merge5);
-        $tmp = json_encode($merge6);
+        $merge[] = ["isLike"=>$like_tmp];  
+        $merge2[] = ["idLike"=>$like_id];
+        $merge3[]= ["isRating"=>$rating_tmp];
+        $merge4[]= ["isRating"=>$rating_id];
+
+        $merge5[] = ["service"=>$service];
+        $merge6[]=["type_event"=>$type_events];
+        $merge7[]=["count_like"=>$countLike];
+        $merge8[] = array_merge($merge, $merge2, $merge3,$merge4, $merge5, $merge6, $merge7);
+        $tmp = json_encode($merge8);
         $str_find_1 = '[[{';
         $str_find_2 = '}]]';
         $str_replace_1 = '[{';
