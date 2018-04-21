@@ -16,10 +16,8 @@ Route::get('couter/couter={name}', 'CounterEventsController@Counter');
 Route::resource('eating', 'EatingController');
 
 
-Route::resource('service','ServicesController');
-
-
-
+Route::resource('services','ServicesController');
+Route::get('service/service-id={id_service}&user-id={id_user}', 'ServicesDetailsController@showDetails');
 Route::resource('usersearch', 'userSearch');
 
 Route::resource('hotels', 'vnt_hotelsController');

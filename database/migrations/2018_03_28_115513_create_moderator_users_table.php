@@ -16,6 +16,7 @@ class CreateModeratorUsersTable extends Migration
         Schema::create('vnt_moderator_users', function (Blueprint $table) {
             $table->unsignedInteger('user_id');
             $table->primary('user_id');
+            
             $table->tinyInteger('account_active');
             $table->timestamps();
             $table->foreign('user_id')->references('user_id')->on('vnt_user');
