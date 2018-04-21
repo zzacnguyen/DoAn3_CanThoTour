@@ -61,7 +61,7 @@ class Rating_Service_Controller extends Controller
             $encode=json_encode("status: 500");
             return $encode;
         }
-        
-        
     }
+
+    
 }

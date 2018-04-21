@@ -80,8 +80,8 @@ Route::get('district/{id}', 'tourist_places_controller@GetDisTrictListByID');
 
 Route::get('google-maps','testGoogleMapsApi@FunctionName');
 //partner
-Route::get('get-services-posted-partner/month={month}&user_id={id}','Partner_Controller@getServices');
-Route::get('get-places-posted-partner/month={month}&user_id={id}','Partner_Controller@getServices');
+Route::get('get-services-poseted_by/month={month}&user_id={id}','Partner_Controller@getServices');
+Route::get('get-places-poseted_by/month={month}&user_id={id}','Partner_Controller@getServices');
 
 
 Auth::routes();

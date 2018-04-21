@@ -20,9 +20,10 @@ class CreateServicesTable extends Migration
             $table->string('sv_close', 25);
             $table->string('sv_highest_price', 15);
             $table->string('sv_lowest_price', 15);
+            $table->string('sv_website', 100);
             $table->string('sv_phone_number', 25);
             $table->integer('sv_counter_view');
-            $table->integer('sv_counter_point');
+            $table->integer('sv_counter_point');            
             $table->string('sv_status', 10);
             $table->integer('sv_types');
             $table->integer('tourist_places_id')->unsigned();

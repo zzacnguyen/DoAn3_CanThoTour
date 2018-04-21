@@ -297,7 +297,6 @@ class ServicesController extends Controller
         ->whereDay('event_end', '>=',$today)
         ->whereMonth('event_end', '>=', $month_now)
         ->where('vnt_services.id',$id)
-        
         ->orderBy('vnt_events.created_at', 'desc')->first();
          
 
@@ -307,8 +306,14 @@ class ServicesController extends Controller
         ->where('service_id','=', $id)
         ->get();
 
+        $countLike = DB::table('vnt_likes')
+        ->select('vnt_likes.id as like_id','vnt_likes.user_id')
+        ->where('service_id','=', $id)
+        ->count();
+
         $rating = DB::table('vnt_visitor_ratings')
         ->select('vnt_visitor_ratings.id as id_rating','vnt_visitor_ratings.user_id')
+        ->orderBy('vnt_visitor_ratings.id', 'DESC')
         ->where('service_id', '=', $id)
         ->get();
         
@@ -318,8 +323,9 @@ class ServicesController extends Controller
         $merge2[]= ["rating"=>$rating];
         $merge3[] = ["service"=>$service];
         $merge4[]=["type_event"=>$type_events];
-        $merge5[] = array_merge($merge, $merge2, $merge3,$merge4 );
-        $tmp = json_encode($merge5);
+        $merge5[]=["count_like"=>$countLike];
+        $merge6[] = array_merge($merge, $merge2, $merge3,$merge4, $merge5);
+        $tmp = json_encode($merge6);
         $str_find_1 = '[[{';
         $str_find_2 = '}]]';
         $str_replace_1 = '[{';
@@ -327,8 +333,9 @@ class ServicesController extends Controller
             
         $result_1 = str_replace($str_find_1, $str_replace_1,$tmp);
         $result_2 = str_replace($str_find_2, $str_replace_2,$result_1);
-        return $result_2;
-        $encode = json_decode($service);
+        // return $result_2;
+
+        $encode = json_decode($result_2);
         return $encode;
     }
 
