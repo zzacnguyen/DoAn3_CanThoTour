@@ -105,25 +105,14 @@ class ServicesDetailsController extends Controller
         }
 
 
-        $merge[] = ["isLike"=>$like_tmp];  
-        $merge2[] = ["idLike"=>$like_id];
-        $merge3[]= ["isRating"=>$rating_tmp];
-        $merge4[]= ["isRating"=>$rating_id];
-        $merge5[] = ["service"=>$tmp_services];
-        $merge6[]=["type_event"=>$type_events];
-        $merge7[]=["count_like"=>$countLike];
-        $merge8[] = array_merge($merge, $merge2, $merge3,$merge4, $merge5, $merge6, $merge7);
-        $tmp = json_encode($merge8);
-        $str_find_1 = '[[{';
-        $str_find_2 = '}]]';
-        $str_replace_1 = '[{';
-        $str_replace_2 = '}]';
-            
-        $result_1 = str_replace($str_find_1, $str_replace_1,$tmp);
-        $result_2 = str_replace($str_find_2, $str_replace_2,$result_1);
-        // return $result_2;
+        $merge[] = ["isLike"=>$like_tmp, "isRating"=>$rating_tmp,"idLike"=>$like_id, 
+        "idRating"=>$rating_id, "type_event"=>$type_events,"service"=>$tmp_services, "count_like"=>$countLike];  
+        
+        
+        $json_merge = json_encode($merge);
+       
 
-        $encode = json_decode($result_2);
-        return $encode;
+        
+        return $json_merge;
     }
 }
