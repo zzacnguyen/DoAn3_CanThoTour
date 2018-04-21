@@ -37,6 +37,8 @@ class ServicesDetailsController extends Controller
                  'vnt_tourist_places.pl_address', 'vnt_tourist_places.pl_latitude', 'vnt_tourist_places.pl_longitude','pl_name')
         
         ->get();
+
+        $tmp_services = json_encode($service);
         $date = Carbon::now();
         $year_now = $date->year;
         $month_now = $date->month;
@@ -107,8 +109,7 @@ class ServicesDetailsController extends Controller
         $merge2[] = ["idLike"=>$like_id];
         $merge3[]= ["isRating"=>$rating_tmp];
         $merge4[]= ["isRating"=>$rating_id];
-
-        $merge5[] = ["service"=>$service];
+        $merge5[] = ["service"=>$tmp_services];
         $merge6[]=["type_event"=>$type_events];
         $merge7[]=["count_like"=>$countLike];
         $merge8[] = array_merge($merge, $merge2, $merge3,$merge4, $merge5, $merge6, $merge7);
