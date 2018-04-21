@@ -69,6 +69,8 @@ Route::get('get-only-icon-image', 'ImagesController@GetOnlyIconImage');
 
 Route::get('rating-service/{id}','Rating_Service_Controller@rating');
 Route::get('rating-view/{id_danhgia}','Rating_Service_Controller@view_rating');
+Route::get('rating-view-by-user/{id_user}','Rating_Service_Controller@view_rating_by_user');
+
 
 Route::post('rating-post', 'Rating_Service_Controller@postRating');
 Route::get('ward', 'tourist_places_controller@GetWardList');
