@@ -38,7 +38,6 @@ class ServicesDetailsController extends Controller
         
         ->get();
 
-        $tmp_services = json_encode($service);
         $date = Carbon::now();
         $year_now = $date->year;
         $month_now = $date->month;
@@ -61,7 +60,7 @@ class ServicesDetailsController extends Controller
         ->select('vnt_likes.id as like_id')
         ->where('service_id','=', $services_id)
         ->where('vnt_likes.user_id','=', $user_id)
-        ->get();
+        ->first();
 
         
         $like_by_user = DB::table('vnt_likes')
@@ -85,15 +84,16 @@ class ServicesDetailsController extends Controller
         ->count();
 
         $rating_id = DB::table('vnt_visitor_ratings')
-        ->select('vnt_visitor_ratings.id as id_rating')
+        ->select('vnt_visitor_ratings.id as rating_id')
         ->where('service_id', '=', $services_id)
         ->where('vnt_visitor_ratings.user_id','=', $user_id)
-        ->get();
+        ->first();
 
         $rating_count = DB::table('vnt_visitor_ratings')
-        ->select('vnt_visitor_ratings.id as id_rating','vnt_visitor_ratings.user_id')
+        ->select('vnt_visitor_ratings.id as rating_id','vnt_visitor_ratings.user_id')
         ->orderBy('vnt_visitor_ratings.id', 'DESC')
         ->where('service_id', '=', $services_id)
+        ->where('vnt_visitor_ratings.user_id','=', $user_id)
         
         ->count();
         if($rating_count != 0)
@@ -106,7 +106,7 @@ class ServicesDetailsController extends Controller
 
 
         $merge[] = ["isLike"=>$like_tmp, "isRating"=>$rating_tmp,"idLike"=>$like_id, 
-        "idRating"=>$rating_id, "type_event"=>$type_events,"service"=>$tmp_services, "count_like"=>$countLike];  
+        "idRating"=>$rating_id, "type_event"=>$type_events,"service"=>$service, "count_like"=>$countLike];  
         
         
         $json_merge = json_encode($merge);
