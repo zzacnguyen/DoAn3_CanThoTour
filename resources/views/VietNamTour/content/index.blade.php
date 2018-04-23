@@ -307,7 +307,7 @@ $(document).ready(function(){
 });
 </script>
 
-<script src="resource/js/menu-style.js"></script>
-<script src="resource/js/p/index.js"></script>
+{{-- <script src="resource/js/menu-style.js"></script> --}}
+{{-- <script src="resource/js/p/index.js"></script> --}}
 
 @include('VietNamTour.header-footer.footer')

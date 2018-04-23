@@ -265,6 +265,7 @@
 													<li><a href="{{route('loginW')}}"><i class="fas fa-power-off"></i> Đăng xuất</a></li>
 												</ul>
 											</div> <!-- end hien thi khi dang nhap thanh cong -->
+											<a href="{{route('loginW')}}" class="nav-link btn-login hidden" id="btn-dangnhap">Đăng nhập</a>
 									</li>
 									@else
 										<li class="nav-item">

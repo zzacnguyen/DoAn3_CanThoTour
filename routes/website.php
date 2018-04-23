@@ -10,7 +10,7 @@ Route::get('registersuccess','pageController@getregisterSuccess')->name('registe
 Route::get('logoutW','loginController@logoutW')->name('logoutW');
 Route::get('loginW','pageController@getlogin')->name('loginW');
 
-Route::post('loginpost','loginController@postLoginW')->name('loginpost');
+Route::post('loginpost','pageController@postLoginW')->name('loginpost');
 Route::post('registerWpost','loginController@registerW')->name('registerWpost');
 // login facebook
 Route::get('login/facebook/redirect', 'loginController@redirectToProvider')->name('loginfacebook');

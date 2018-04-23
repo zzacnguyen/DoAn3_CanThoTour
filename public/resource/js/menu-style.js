@@ -11,9 +11,12 @@ document.addEventListener("DOMContentLoaded",function () {
 
 	// hien thi user form
 	var clickUser = document.getElementById('id-user-form');
-	clickUser.onclick = function () {
-		document.getElementsByClassName('user-form')[0].classList.toggle("hienthi-search-form");
-	};
+	if (clickUser != null) {
+		clickUser.onclick = function () {
+			document.getElementsByClassName('user-form')[0].classList.toggle("hienthi-search-form");
+		};
+	}
+		
 
 
 	//cuon chuot
@@ -115,14 +118,16 @@ document.addEventListener("DOMContentLoaded",function () {
 	}
 
 	// select item TinhTp
-	var select_Item = document.getElementsByClassName('selectItem');
-	for (var i = 0; i < select_Item.length; i++) {
-		select_Item[i].onclick = function () {
-			document.getElementById('a-tinhTP').innerHTML = this.getAttribute('data-name') + ' <i class="fas fa-angle-down float-right" style="margin-top:5px;"></i>';
-			document.getElementsByClassName('select-content')[0].classList.remove('hienthi');
-			document.getElementById('a-tinhTP').classList.remove('click-select');
-		}
-	}
+	// var select_Item = document.getElementsByClassName('lamdeptrai');
+	// // var select_Item = document.getElementById('lamdeptrai');
+	// console.log(select_Item);
+	// for (var i = 0; i < select_Item.length; i++) {
+	// 	select_Item[i].onclick = function () {
+	// 		document.getElementById('a-tinhTP').innerHTML = this.getAttribute('data-name') + ' <i class="fas fa-angle-down float-right" style="margin-top:5px;"></i>';
+	// 		document.getElementsByClassName('select-content')[0].classList.remove('hienthi');
+	// 		document.getElementById('a-tinhTP').classList.remove('click-select');
+	// 	}
+	// }
 
 	// select item danh muc
 	var select_Item2 = document.getElementsByClassName('selectItem2');
@@ -136,22 +141,22 @@ document.addEventListener("DOMContentLoaded",function () {
 	}
 	
 	// form login
-	var modal = document.getElementById('id01');
-	document.getElementById('btn-dangnhap').onclick = function(){
-		document.getElementById('id01').style.display = "block";
-	}
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-	    if (event.target == modal) {
-	        modal.style.display = "none";
-	    }
-	}
+	// var modal = document.getElementById('id01');
+	// document.getElementById('btn-dangnhap').onclick = function(){
+	// 	document.getElementById('id01').style.display = "block";
+	// }
+	// // When the user clicks anywhere outside of the modal, close it
+	// window.onclick = function(event) {
+	//     if (event.target == modal) {
+	//         modal.style.display = "none";
+	//     }
+	// }
 
 	// form register
-	var modal = document.getElementById('id02');
-	document.getElementById('btn-dangky').onclick = function(){
-		document.getElementById('id02').style.display = "block";
-	}
+	// var modal = document.getElementById('id02');
+	// document.getElementById('btn-dangky').onclick = function(){
+	// 	document.getElementById('id02').style.display = "block";
+	// }
 
 	// call auto slide
 	autoSlide();
@@ -192,10 +197,16 @@ document.addEventListener("DOMContentLoaded",function () {
 	window.onclick = function(event) {
 	    if (event.target != tttt) { bodySearch[0].classList.remove('active-search'); clickSearch = 0;}
 	    // if (event.target != tttt2) { bodySearch[1].classList.remove('active-search2'); }
-	    if (event.target != clickUser) {document.getElementsByClassName('user-form')[0].classList.remove("hienthi-search-form");}
+	    if (document.getElementById('id-user-form') != null) {
+	    	if (event.target != clickUser) 
+	    		{document.getElementsByClassName('user-form')[0].classList.remove("hienthi-search-form");}
+	    }
+	    
 
 	    if (event.target != aSelect) {document.getElementById('a-tinhTP').classList.remove('click-select');}
-	    if (event.target != select_Item) {document.getElementById('a-danhmuc').classList.remove('click-select');}
+	    
+	    // if (event.target != select_Item) {document.getElementById('a-danhmuc').classList.remove('click-select');}
+
 	    if (event.target != document.getElementById('a-tinhTP')) {
 	    	var andi2 =  document.getElementsByClassName('select-content');
 	    	andi2[0].classList.remove('hienthi');

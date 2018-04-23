@@ -11,6 +11,7 @@ use App\touristPlacesModel;
 use App\provincecityModel;
 use Illuminate\Database\Eloquent\Colection;
 use Auth;
+use Validator;
 
 class pageController extends Controller
 {
@@ -318,6 +319,46 @@ class pageController extends Controller
         }
         else{
             return $num;
+        }
+    }
+
+
+
+    //================================= LOGIN =====================================
+    public function postLoginW(Request $request)
+    {
+        $messages = [
+            'required' => 'Trường bắt buộc nhập',
+            'username.min'    => 'Tài khoản có độ dài từ 4-20 ký tự'
+        ];
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|min:4',
+            'password' => 'required'
+        ],$messages);
+        if ($validator->fails()) {
+            return redirect('loginW')->withErrors($validator)->withInput();
+        } 
+        else 
+        {
+            $username = $request->input('username');
+            $pass = $request->input('password');
+            if( Auth::attempt(['username' => $username, 'password' => $pass])) {
+                $placecount       = $this::count_city_service_all_image();
+
+                $services_eat     = $this::getservicestake(1,8);
+                $services_hotel   = $this::getservicestake(2,6);
+                $services_tran    = $this::getservicestake(3,8);
+                $services_see     = $this::getservicestake(4,8);
+                $services_enter   = $this::getservicestake(5,8);
+
+                $user = Auth::user();
+
+                // dd($services_hotel);
+                return view('VietNamTour.content.index',compact('placecount','services_hotel','services_eat','services_enter','services_see','services_tran','user'));
+                // return Auth::user()->user_id;
+            } else {
+                return redirect()->back()->with(['erro'=>'Tên tài khoản hoặc mật khẩu không đúng','userold'=>$username]);
+            }
         }
     }
 }

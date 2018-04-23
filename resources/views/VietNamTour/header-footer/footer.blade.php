@@ -56,5 +56,7 @@
 	</footer>
 	<!-- ================== END FOOTER ============= -->
 <script src="resource/js/p/header.js"></script>
+<script src="resource/js/menu-style.js"></script>
+
 	</body>
 </html>
