@@ -82,7 +82,11 @@ Route::get('count_city_service_all','pageController@count_city_service_all');
 
 
 
+//================== add place ================
+Route::get('getaddplace','publicaddplaceController@getaddplace');
 
+Route::get('loadDistrict/{idcity}','publicaddplaceController@loadDistrict');
+Route::get('loadWard/{id}','publicaddplaceController@loadWard');
 
 
 

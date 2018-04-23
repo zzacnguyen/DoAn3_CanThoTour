@@ -20,6 +20,7 @@
 	<link rel="stylesheet" href="resource/css/place.css">
 	<link rel="stylesheet" href="resource/css/style.index.css">
 	<link rel="stylesheet" href="resource/css/menu-style2.css">
+	<link rel="stylesheet" href="resource/css/select2.min.css">
 	<style>
 		h4{
 			border-bottom: none !important;
@@ -99,7 +100,7 @@
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
 							<ul class="navbar-nav mr-auto col-md-9 col-12" style="padding: 0;">
 								<li class="nav-item btn-select" >
-									<a id="a-tinhTP" class="nav-link a-select" data-hienthi="tinhTP">Cần Thơ 
+									<a id="a-tinhTP" class="nav-link a-select" data-hienthi="tinhTP">Tất cả 
 										<i class="fas fa-angle-down float-right" style="margin-top: 5px;"></i>
 									</a>
 
@@ -109,18 +110,16 @@
 						  				</div>
 
 						  				<ul id="content-tinhtp-id">
-						  					{{-- <li class="selectItem" data-name="Cần Thơ">
-						  						<a class="selectItem-name">
-						  							<label>Cần Thơ</label>
-						  							<span class="float-right">12.000</span>
-						  						</a>
-						  					</li> --}}
+						  					
 						  				</ul>
 									</div>
+									
+									
+
 								</li> <!-- end btn-select -->
 								<li class="nav-item btn-select">
 									<a id="a-danhmuc" class="nav-link a-select" data-hienthi="danhmuc" title="">
-										Tham quan 
+										Tất cả 
 										<i class="fas fa-angle-down float-right" style="margin-top: 5px;"></i>
 									</a>
 									<div class="select-content" id="danhmuc" style="height: 158px;">
@@ -129,6 +128,12 @@
 						  				</div>
 
 						  				<ul style="height: 125px;">
+						  					<li class="selectItem2" data-name="Tham quan">
+						  						<a class="selectItem-name2">
+						  							<label>Tất cả</label>
+						  							
+						  						</a>
+						  					</li>
 						  					<li class="selectItem2" data-name="Tham quan">
 						  						<a class="selectItem-name2">
 						  							<label>Tham quan</label>
@@ -375,9 +380,9 @@
 									<li class="cha-notification">
 										<a class="a-notification" data-id-hienthi="id-tuychinh"><i class="fas fa-plus"></i></a>
 										<div class="notification" id="id-tuychinh" style="width: 200px;">
-											<div class="title-nofi">
+											{{-- <div class="title-nofi">
 												<h6 class="text-center" style="padding: 0; font-weight: 700;">Thông báo</h6>
-											</div>
+											</div> --}}
 											<div class="content-nofi">
 												<ul id="body-nofi" style="width: 200px;">
 													<li style="height: 27px;">
@@ -438,4 +443,11 @@
 	</section>
 	<!-- ================== end header ============= -->
 
+<script src="resource/js/select2.full.js"></script>
 
+<script type="text/javascript">
+	// In your Javascript (external .js resource or <script> tag)
+	$(document).ready(function() {
+	    $('.js-example-basic-single').select2();
+	});
+</script>
