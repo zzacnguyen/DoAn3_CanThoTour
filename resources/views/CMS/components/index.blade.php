@@ -18,7 +18,6 @@
 <!-- Favicons -->
 
 @include('CMS.script.header-script')
-
 </head>
     <body>
     <div id="sb-site">
@@ -47,13 +46,12 @@
                 <div class="container">
                 @include('CMS.script.container-charts-srcipt')
 <!-- Sparklines charts -->
-                    
                     @yield('content')
                 </div>
             </div>
         </div>
     </div>
-
+    
 @include('CMS.script.footer-script')
 
 

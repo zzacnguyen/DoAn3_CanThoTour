@@ -186,6 +186,9 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         GoogleMaps\ServiceProvider\GoogleMapsServiceProvider::class,
+
+        //CHỖ NÀY THÊM CK EDITOR
+        Unisharp\Ckeditor\ServiceProvider::class,
         
     ],
 
