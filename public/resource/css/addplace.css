@@ -30,12 +30,15 @@ body{
 .input-text label{
 	width: 150px;
     font-size: 14px;
+    font-weight: bold;
 }
 
 .input-text input{
     width: 75%;
     border: 1px solid #ddd;
     border-radius: 0;
+    padding: 3px 5px;
+	margin-bottom: 10px;
 }
 
 .Tinh{

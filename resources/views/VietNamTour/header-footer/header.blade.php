@@ -100,7 +100,7 @@
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
 							<ul class="navbar-nav mr-auto col-md-9 col-12" style="padding: 0;">
 								<li class="nav-item btn-select" >
-									<a id="a-tinhTP" class="nav-link a-select" data-hienthi="tinhTP">Tất cả 
+									<a id="a-tinhTP" class="nav-link a-select" data-hienthi="tinhTP" data-id="all">Tất cả 
 										<i class="fas fa-angle-down float-right" style="margin-top: 5px;"></i>
 									</a>
 
@@ -118,7 +118,7 @@
 
 								</li> <!-- end btn-select -->
 								<li class="nav-item btn-select">
-									<a id="a-danhmuc" class="nav-link a-select" data-hienthi="danhmuc" title="">
+									<a id="a-danhmuc" class="nav-link a-select" data-hienthi="danhmuc" title="" data-type="all">
 										Tất cả 
 										<i class="fas fa-angle-down float-right" style="margin-top: 5px;"></i>
 									</a>
@@ -128,37 +128,36 @@
 						  				</div>
 
 						  				<ul style="height: 125px;">
-						  					<li class="selectItem2" data-name="Tham quan">
+						  					<li class="selectItem2" data-name="Tất cả" data-type="all">
 						  						<a class="selectItem-name2">
 						  							<label>Tất cả</label>
-						  							
 						  						</a>
 						  					</li>
-						  					<li class="selectItem2" data-name="Tham quan">
+						  					<li class="selectItem2" data-name="Tham quan" data-type="4">
 						  						<a class="selectItem-name2">
 						  							<label>Tham quan</label>
 						  							
 						  						</a>
 						  					</li>
-						  					<li class="selectItem2" data-name="Ăn uống">
+						  					<li class="selectItem2" data-name="Ăn uống" data-type="1">
 						  						<a class="selectItem-name2">
 						  							<label>Ăn uống</label>
 						  							
 						  						</a>
 						  					</li>
-						  					<li class="selectItem2" data-name="Khách sạn">
+						  					<li class="selectItem2" data-name="Khách sạn" data-type="2">
 						  						<a class="selectItem-name2">
 						  							<label>Khách sạn</label>
 						  							
 						  						</a>
 						  					</li>
-						  					<li class="selectItem2" data-name="Vui chơi">
+						  					<li class="selectItem2" data-name="Vui chơi" data-type="5">
 						  						<a class="selectItem-name2">
 						  							<label>Vui chơi</label>
 						  							
 						  						</a>
 						  					</li>
-						  					<li class="selectItem2" data-name="Phương tiện">
+						  					<li class="selectItem2" data-name="Phương tiện" data-type="3">
 						  						<a class="selectItem-name2">
 						  							<label>Phương tiện</label>
 						  							
@@ -167,50 +166,55 @@
 						  				</ul>
 									</div>
 								</li><!-- end btn-select -->
+
 								<li class="nav-item" style="position: relative;">
 									<form class="form-inline form-search">
 										<label class="boloc"><i class="fas fa-search"></i></label>
-										<input id="text-search-top" class="form-control input-search" type="search" placeholder="Search" aria-label="Search">
+										<input id="text-search-top" class="form-control input-search" type="search" placeholder="Search" aria-label="Search" onekeyup="search()">
 										<button class="btn btn-outline-success btn-search" type="submit" style="background-color: #00a680;">Tìm kiếm</button>
 									</form>
-									<div class="body-search">
+									<div class="body-search" id="thanSearch">
 										<div class="item-search">
 											<div class="title-search">
 												<h5>Từ khóa tìm kiếm nhiều nhất</h5>
 											</div>
-											<div class="content-search">
-												<a href="#">
-													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
-													</div>
-													<div class="right-content-search">
-														<p>Mường Thanh Cần Thơ</p>
-														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
-													</div>
-												</a>		
+
+											<div id="search_eat">
+												<div class="content-search">
+													<a href="#">
+														<div class="left-content-search">
+															<img src="images/hotel/1.jpg" alt="">
+														</div>
+														<div class="right-content-search">
+															<p>Mường Thanh Cần Thơ</p>
+															<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+														</div>
+													</a>		
+												</div>
+												<div class="content-search">
+													<a href="#">
+														<div class="left-content-search">
+															<img src="images/hotel/1.jpg" alt="">
+														</div>
+														<div class="right-content-search">
+															<p>Mường Thanh Cần Thơ</p>
+															<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+														</div>
+													</a>		
+												</div>
+												<div class="content-search">
+													<a href="#">
+														<div class="left-content-search">
+															<img src="images/hotel/1.jpg" alt="">
+														</div>
+														<div class="right-content-search">
+															<p>Mường Thanh Cần Thơ</p>
+															<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+														</div>
+													</a>		
+												</div>
 											</div>
-											<div class="content-search">
-												<a href="#">
-													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
-													</div>
-													<div class="right-content-search">
-														<p>Mường Thanh Cần Thơ</p>
-														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
-													</div>
-												</a>		
-											</div>
-											<div class="content-search">
-												<a href="#">
-													<div class="left-content-search">
-														<img src="images/hotel/1.jpg" alt="">
-													</div>
-													<div class="right-content-search">
-														<p>Mường Thanh Cần Thơ</p>
-														<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
-													</div>
-												</a>		
-											</div>
+												
 										</div>
 
 										<div class="item-search">
@@ -386,7 +390,7 @@
 											<div class="content-nofi">
 												<ul id="body-nofi" style="width: 200px;">
 													<li style="height: 27px;">
-														<a href="" class="a-content-nofi">
+														<a href="{{route('addplace')}}" class="a-content-nofi">
 															<p class="text-nofi" style="height: auto;width: auto;">
 																<i class="fas fa-map-marker"></i> 
 																Thêm địa điểm

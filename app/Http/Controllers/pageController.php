@@ -56,17 +56,6 @@ class pageController extends Controller
         return view('VietNamTour.user');
     }
 
-    public function checkLogin()
-    {
-        if (Auth::check()) {
-            return "1";
-        }
-        else{
-            return "0";
-        }
-        // return Auth::user()->user_id;
-    }
-
     public function getdetail($idservices,$type)
     {
         $placecount       = $this::count_place_display();
@@ -354,11 +343,49 @@ class pageController extends Controller
                 $user = Auth::user();
 
                 // dd($services_hotel);
-                return view('VietNamTour.content.index',compact('placecount','services_hotel','services_eat','services_enter','services_see','services_tran','user'));
+                // return view('VietNamTour.content.index',compact('placecount','services_hotel','services_eat','services_enter','services_see','services_tran','user'));
+                return redirect()->intended('/');
                 // return Auth::user()->user_id;
             } else {
                 return redirect()->back()->with(['erro'=>'Tên tài khoản hoặc mật khẩu không đúng','userold'=>$username]);
             }
         }
+    }
+
+    public function checkLogin()
+    {
+        $result = 0;
+        if (Auth::check()) {
+            $result = 1;
+        }
+        else{$result = -1;}
+        return json_encode($result);
+    }
+
+
+
+
+
+
+    // ====== TIM KIEM ======
+    public function searchServices_All($keyword)
+    {
+        $keyword_handing = str_replace("+", " ", $keyword);
+        $result_eat = DB::select("select s.sv_id, s.sv_name,s.image_details_1,s.sv_description FROM sv_eat AS s WHERE s.sv_name LIKE '%$keyword_handing%'");
+        $result['eat'] = $result_eat;
+
+        $result_hotel = DB::select("select s.sv_id, s.sv_name,s.image_details_1,s.sv_description FROM sv_hotel AS s WHERE s.sv_name LIKE '%$keyword_handing%'");
+        $result['hotel'] = $result_hotel;
+
+        $result_tran = DB::select("select s.sv_id, s.sv_name,s.image_details_1,s.sv_description FROM sv_stranport AS s WHERE s.sv_name LIKE '%$keyword_handing%'");
+        $result['tran'] = $result_tran;
+
+        $result_see = DB::select("select s.sv_id, s.sv_name,s.image_details_1,s.sv_description FROM sv_sightseeting AS s WHERE s.sv_name LIKE '%$keyword_handing%'");
+        $result['see'] = $result_see;
+
+        $result_enter = DB::select("select s.sv_id, s.sv_name,s.image_details_1,s.sv_description FROM sv_entertaiment AS s WHERE s.sv_name LIKE '%$keyword_handing%'");
+        $result['enter'] = $result_enter;
+
+        return json_encode($result);
     }
 }

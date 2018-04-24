@@ -135,6 +135,7 @@ document.addEventListener("DOMContentLoaded",function () {
 	for (var i = 0; i < select_Item2.length; i++) {
 		select_Item2[i].onclick = function () {
 			document.getElementById('a-danhmuc').innerHTML = this.getAttribute('data-name') + ' <i class="fas fa-angle-down float-right" style="margin-top:5px;"></i>';
+			document.getElementById('a-danhmuc').setAttribute("data-type",this.getAttribute('data-type'));
 			document.getElementsByClassName('select-content')[1].classList.remove('hienthi');
 			document.getElementById('a-danhmuc').classList.remove('click-select');
 		}

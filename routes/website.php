@@ -5,6 +5,11 @@
 
 Route::get('/','pageController@getindex')->name('/');
 
+
+// ====== LOGIN ======
+Route::get('checkLogin','pageController@checkLogin');
+
+
 Route::get('registerW','pageController@getregister')->name('registerW');
 Route::get('registersuccess','pageController@getregisterSuccess')->name('registersuccess');
 Route::get('logoutW','loginController@logoutW')->name('logoutW');
@@ -33,7 +38,7 @@ Route::get('city','pageController@getcount_place_city');
 
 Route::get('lam/type={type}','pageController@findservicetocity');
 
-Route::get('d/f={f},g={g}','pageController@getservicestake');
+Route::get('d/f={f}','pageController@typelam');
 
 Route::get('lamdv/type={type}','pageController@getlam');
 
@@ -68,7 +73,7 @@ Route::get('image_city/{id}','pageController@image_city');
 
 //================================= TEST ======================================
 Route::get('count_city_service_all_image','pageController@count_city_service_all_image');
-Route::get('demtien/{m}','pageController@numberToK');
+Route::get('searchServices_All/keyword={k}','pageController@searchServices_All');
 Route::get('getlam/{id}&s={s}&limit={l}','publicDetail@dichvu_lancan');
 Route::get('likelam/{idser}','publicDetail@like_service');
 Route::get('checklogin','pageController@checkLogin');
@@ -83,7 +88,7 @@ Route::get('count_city_service_all','pageController@count_city_service_all');
 
 
 //================== add place ================
-Route::get('getaddplace','publicaddplaceController@getaddplace');
+Route::get('addplace','publicaddplaceController@getaddplace')->name('addplace');
 
 Route::get('loadDistrict/{idcity}','publicaddplaceController@loadDistrict');
 Route::get('loadWard/{id}','publicaddplaceController@loadWard');
@@ -92,7 +97,8 @@ Route::get('loadWard/{id}','publicaddplaceController@loadWard');
 
 
 
-
+//================== search header =============
+Route::get('searchServices_All/keyword={k}','pageController@searchServices_All');
 
 
 
