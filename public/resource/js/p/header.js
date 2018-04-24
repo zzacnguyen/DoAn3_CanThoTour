@@ -60,7 +60,25 @@ function search() {
 			type: 'GET',
 			dataType: 'json'
 		}).done(function (response) {
-			var lam = new String(); // khoi tao bien luu pha hien thi len view
+			if (response.eat != null) 
+			{
+				$('#tieudeSearchEat').html('Ăn uống');
+				var eat = new String(); // khoi tao bien luu phan hien thi len view
+				response.eat.forEach(function (data) {
+					eat += 	'<div class="content-search">';
+					eat +=	'<a href="#">';
+					eat +=	'<div class="left-content-search">';
+					eat +=	'<img src="thumbnails/'+ data.image_details_1 +' " alt="">';
+					eat +=	'</div>';
+					eat +=	'<div class="right-content-search">';
+					eat +=	'<p>Mường Thanh Cần Thơ</p>';
+					eat +=	'<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>';
+					eat +=	'</div>';
+					eat +=	'</a>';		
+					eat +=	'</div>';
+				})
+				$('#search_eat').html(eat);
+			}
 			
 		}).fail(function (response) {
 			console.log("Loi cmnr");

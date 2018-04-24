@@ -176,7 +176,7 @@
 									<div class="body-search" id="thanSearch">
 										<div class="item-search">
 											<div class="title-search">
-												<h5>Từ khóa tìm kiếm nhiều nhất</h5>
+												<h5 id="tieudeSearchEat">Từ khóa tìm kiếm nhiều nhất</h5>
 											</div>
 
 											<div id="search_eat">
