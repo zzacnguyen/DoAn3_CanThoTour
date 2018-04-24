@@ -140,9 +140,6 @@ class CMS_ModuleController extends Controller
 		$string = $data_6.','.$data_5.','.$data_4.','.$data_3.','.$data_2.','.$data_1;
 		return $string;
 	}
-
-
-
 	public function _DISPLAY_NEW_TOURIST_PLACES()
 	{
 		$month = $this::_GET_MONTH();
@@ -242,10 +239,6 @@ class CMS_ModuleController extends Controller
 		return CEIL($sum);
 	}
 
-
-
-
-
 	//Hàm này trả về chuỗi giá trị in ra mảng _ chuỗi dữ liệu đếm người dùng
 	public function _DISPLAY_NEW_USER()
 	{
@@ -289,12 +282,19 @@ class CMS_ModuleController extends Controller
         ->count();
 		$string = $data_6.','.$data_5.','.$data_4.','.$data_3.','.$data_2.','.$data_1;
 		return $string;
-		
-		
-
 	}
 
 
+	public function _DISPLAY_USER_PARTNER_MODERATOR()
+	{
+		$data_all_guide = DB::table('vnt_tour_guide') 
+		->select('username', 'vnt_user.user_id')
+		->join('vnt_user', 'vnt_user.user_id', '=', 'vnt_tour_guide.user_id')
+		->where('vnt_tour_guide.account_active', '=',1)
+		->orderBy('vnt_user.username', 'ASC')
+		->paginate(10);
+		return $data_all_guide;
+	}
 
 	public function Couter_User_Six_Month()
 	{	
@@ -313,7 +313,6 @@ class CMS_ModuleController extends Controller
 		$sum = $arr[0] + $arr[1] + $arr[2] + $arr[3] + $arr[4] + $arr[5];
 		return $sum;
 	}
-
 	public function Couter_Services_Six_Month()
 	{	
 		$string = "";
@@ -322,24 +321,47 @@ class CMS_ModuleController extends Controller
 		$sum = $arr[0] + $arr[1] + $arr[2] + $arr[3] + $arr[4] + $arr[5];
 		return $sum;
 	}
-
-
 	public function _DISPLAY_TASK_LIST()
 	{
 		$data = DB::table('vnt_task') 
 		->select( DB::raw('DATE_FORMAT(date_start, "%d-%m-%Y") as date_start'),
-			'task_title', 'id'
-		)
+			'task_title', 'vnt_task.id')
+		// ->join('vnt_user.user_id', '=', 'vnt_task.user_id')
+		// ->join('vnt_user.user_id', '=', 'vnt_tour_guide.user_id')
 		->where('status', '=', 1)
-		->orderBy('id', 'desc')
+		->orderBy('vnt_task.id', 'desc')
 		->limit(10)
 		->get();
-		
 		return $data;
 	}
 
+	public function _DISPLAY_PROVINCE_CITY()
+	{
+		$data = DB::table('vnt_province_city') 
+		->select('id', 'province_city_name')
+		->orderBy('vnt_province_city.province_city_name', 'ASC')
+		->get();
+		return $data;
+	}
 
-
+	public function _DISPLAY_DISTRICT()
+	{
+		$data = DB::table('vnt_district') 
+		->select('id', 'district_name','province_city_id')
+		->where('vnt_district.enable' , '=', 1)
+		->orderBy('vnt_district.district_name', 'ASC')
+		->get();
+		return $data;
+	}
+	public function _DISPLAY_WARD()
+	{
+		$data = DB::table('vnt_ward') 
+		->select('id', 'ward_name','district_id', 'latitude','longtitude')
+		->where('vnt_ward.enable',  '=', 1)
+		->orderBy('vnt_ward.ward_name', 'ASC')
+		->get();
+		return $data;
+	}
 
     public function getDashboard(){
 		$data_couter_user_six_month =  $this::Couter_User_Six_Month();
@@ -352,6 +374,7 @@ class CMS_ModuleController extends Controller
 		$data_counter_places_not_active = $this::_COUNTER_WAITING_TOURIST_ACTIVE();
 		$data_counter_user_not_active = $this::_COUNTER_WAITING_USER_ACTIVE();
 		$data_task_list = $this::_DISPLAY_TASK_LIST();
+		$data_task_list_guide =  $this::_DISPLAY_USER_PARTNER_MODERATOR();
     	if (view()->exists('view.CMS.master')){return view('CMS.components.error');}
     	else	{
 			return view('CMS.master', [
@@ -364,10 +387,35 @@ class CMS_ModuleController extends Controller
 					'data7'=>$data_counter_services_not_active,
 					'data8'=>$data_counter_places_not_active,
 					'data9'=>$data_counter_user_not_active,
-					'data10'=>$data_task_list
+					'data10'=>$data_task_list,
+					'data11'=>$data_task_list_guide
 			]);
 		}
 
 	}
+
+
+
+	public function _GETVIEW_ADD_TOURIST_PLACES()
+	{
+		if (view()->exists('view.CMS.components.com_tourist_places.add_tourist_places')){return view('CMS.components.error');}
+    	else	{
+			return view('CMS.components.com_tourist_places.add_tourist_places',[
+				'data1'=>$this::_DISPLAY_PROVINCE_CITY(),
+				'data2'=>$this::_DISPLAY_DISTRICT(),
+				'data3'=>$this::_DISPLAY_WARD(),
+
+			]);
+		}
+	}
+	public function _GETVIEW_ADD_SERVICES()
+	{
+		if (view()->exists('view.CMS.components.com_services.add_services')){return view('CMS.components.error');}
+    	else	{
+			return view('CMS.components.com_services.add_services');
+		}
+	}
+
+
 }
  

@@ -17,16 +17,16 @@
         <li class="header"><span>Quản trị người dùng</span></li>
         
         <li>
-            <a href="#" title="Danh mục người dùng">
+            <a href="javascript:void(0)" title="Danh mục người dùng">
                 <i class="glyph-icon icon-typicons-users-outline"></i>
                 <span>Thông tin người dùng</span>
             </a>
             <div class="sidebar-submenu">
 
                 <ul>
-                    <li><a href="#" title="Timeline"><span>Quản trị viên</span></a></li>
-                    <li><a href="#" title="Chat"><span>Moderater</span></a></li>
-                    <li><a href="#" title="Checklist"><span>Cộng tác viên</span></a></li>
+                    <li><a href="{{ route('ALL_LIST_ADMIN') }}" title="Danh sách quản trị viên"><span>Quản trị viên</span></a></li>
+                    <li><a href="{{ route('ALL_LIST_MOD') }}" title="Moderater"><span>Moderater</span></a></li>
+                    <li><a href="{{ route('ALL_LIST_PARTNER') }}" title="Danh sách cộng tác viên"><span>Cộng tác viên</span></a></li>
                     <li><a href="#" title="Checklist"><span>Doanh nghiệp</span></a></li>
                     <li><a href="#" title="Checklist"><span>Hướng dẫn viên du lịch</span>
                     </a></li>
@@ -55,13 +55,13 @@
         <li><a href="#" > <i class="glyph-icon icon-typicons-users""></i> <span>Xem tất cả</span></a></li>
         <li class="header"><span>Danh mục địa điểm</span></li>
         <li>
-            <a href="#" title="Pages">
+            <a href="{{ route('ALL_LIST_PLACE') }}" title="Danh sách địa điểm">
                 <i class="glyph-icon icon-fire"></i>
                 <span>Danh sách địa điểm</span>
             </a>
         </li>
         <li>
-            <a href="#" title="Pages">
+            <a href="{{ route('ADD_TOURIST_PLACES') }}" title="Pages">
                 <i class="glyph-icon icon-plus"></i>
                 <span>Thêm địa điểm mới</span>
             </a>
@@ -73,6 +73,12 @@
             </a>
         </li>
         <li class="header"><span>Danh mục dịch vụ</span></li>
+        <li>
+            <a href="{{ route('_GETVIEW_ADD_SERVICES') }}" title="Pages">
+                <i class="glyph-icon icon-coffee"></i>
+                <span>Thêm dịch vụ</span>
+            </a>
+        </li>
         <li>
             <a href="#" title="Pages">
                 <i class="glyph-icon icon-coffee"></i>

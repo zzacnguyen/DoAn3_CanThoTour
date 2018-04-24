@@ -36,8 +36,8 @@
 </script>
 
 <div id="page-title">
-    <h2>Danh sách quản trị viên</h2>
-    <p>Dưới đây là dữ liệu của quản trị viên.</p>
+    <h2>Danh sách người dùng</h2>
+    <p>Dưới đây là dữ liệu tất cả người dùng hiện có.</p>
     <div id="theme-options" class="admin-options">
     <a href="javascript:void(0);" class="btn btn-primary theme-switcher tooltip-button" data-placement="left" title="Color schemes and layout options">
         <i class="glyph-icon icon-linecons-cog icon-spin"></i>
@@ -46,7 +46,7 @@
 <div class="panel">
     <div class="panel-body">
     <h3 class="title-hero">
-        DANH SÁCH ADMIN
+        DANH SÁCH NGƯỜI DÙNG
     </h3>
         <div class="example-box-wrapper">
             <table id="datatable-reorder" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -58,7 +58,7 @@
                     <th>Phone number</th>
                     <th>Email</th>
                     <th>Website</th>
-                    <th>Ngày kích hoạt</th>
+                    <th>Ngày đăng ký</th>
                 </tr>
                 </thead>
 
@@ -70,7 +70,7 @@
                     <th>Phone number</th>
                     <th>Email</th>
                     <th>Website</th>
-                    <th>Ngày kích hoạt</th>
+                    <th>Ngày đăng ký</th>
                 </tr>
                 </tfoot>
                 <tbody>
@@ -91,4 +91,8 @@
         </div>
     </div>
 </div>
+
+
+
+
 @endsection

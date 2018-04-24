@@ -11,11 +11,21 @@
                     <input type="text" id="task_name" required  class="form-control" name="task_name" >
                 </div>
                  <div class="col-md-6">
+                    <label for="task_description">Người nhận: </label>
+                    <select class="form-control" name="assigner_user_id">
+                        @foreach($data11 as $item)
+                        <option value="{{ $item->user_id }}">{{ $item->username }}</option>
+                        @endforeach()
+                    </select>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-12 form-group" style="padding-top: 20px" >
+                <div class="col-md-12">
                     <label for="task_description" >Mô tả: </label>
                     <input type="text" id="task_description" required class="form-control" name="task_description" >
                 </div>
             </div>
-            <div class="clearfix"></div>
             <div class="col-md-12 form-group" style="padding-top: 20px" >
                 <div class="col-md-6">
                     <label for="task_start_date">Ngày bắt đầu: </label>
@@ -27,7 +37,7 @@
                  </div>
                  <div class="col-md-12 form-group" style="padding-top: 20px" >
                     <label for="content" >Nội dung chi tiết: </label>
-                    <textarea name="content" class="form-control" required`     id="content" style="border: 1px solid #e1e1e1"  class="textarea-autosize" placeholder="Bạn đang cần làm việc gì?"></textarea>
+                    <textarea name="content" class="form-control" required` id="content" style="border: 1px solid #e1e1e1"  class="textarea-autosize" placeholder="Bạn đang cần làm việc gì?"></textarea>
                     <div class="clearfix"></div>
                 </div>
             </div>
