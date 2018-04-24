@@ -57,6 +57,7 @@ class Partner_Controller extends Controller
     }
     public function getTaskList($id)
     {
+        //Link : /public/get-task-list/id_user
         $task_list = DB::table('vnt_task')
         ->select( DB::raw('DATE_FORMAT(date_start, "%d-%m-%Y") as date_start'),
             'task_title', 'vnt_task.id', 'user.username as nguoigiao')
