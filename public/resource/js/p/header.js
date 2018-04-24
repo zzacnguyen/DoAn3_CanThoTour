@@ -41,6 +41,8 @@ function search() {
 		var type = $('#a-danhmuc').attr('data-type'); // type dich vu
 		var path = null;
 		var keyword = $('#text-search-top').val();
+		keyword = keyword.replace(" ","+");
+
 		// $('#thanSearch').html('');
 		if (id_tinh == "all" && type == "all") 
 		{
@@ -54,15 +56,18 @@ function search() {
 		{
 
 		}
-		console.log(path);
+		
 		$.ajax({
 			url: path,
 			type: 'GET',
 			dataType: 'json'
 		}).done(function (response) {
 			
-			if (response.eat != null) 
-			{
+			if (response.eat.length > 0) 
+			{	
+				if (document.getElementById('eatCha') != null) {
+					document.getElementById('eatCha').style.display = 'block';
+				}
 				$('#tieudeSearchEat').html('Ăn uống');
 				var eat = new String(); // khoi tao bien luu phan hien thi len view
 				response.eat.forEach(function (data) {
@@ -70,21 +75,69 @@ function search() {
 					eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 				})
 				$('#search_eat').html(eat);
-			}
-			if (response.hotel != null) 
+			}else{document.getElementById('eatCha').style.display = 'none';}
+
+
+			if (response.hotel.length > 0) 
 			{
-				$('#tieudeSearchEat').html('Khách sạn');
-				var eat = new String(); // khoi tao bien luu phan hien thi len view
-				response.eat.forEach(function (data) {
-					var url_detail = 'detail/id='+ data.sv_id +'&type=' + 1;
+				if (document.getElementById('hotelCha') != null) {
+					document.getElementById('hotelCha').style.display = 'block';
+				}
+				$('#tieudeSearchHotel').html('Khách sạn');
+				var eat = new String();
+				response.hotel.forEach(function (data) {
+					var url_detail = 'detail/id='+ data.sv_id +'&type=' + 2;
 					eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 				})
-				$('#search_eat').html(eat);
-			}
+				$('#search_hotel').html(eat);
+			}else{document.getElementById('hotelCha').style.display = 'none';}
+
+			if (response.tran.length > 0) 
+			{
+				if (document.getElementById('tranCha') != null) {
+					document.getElementById('tranCha').style.display = 'block';
+				}
+				$('#tieudeSearchTran').html('Phương tiện');
+				var eat = new String();
+				response.tran.forEach(function (data) {
+					var url_detail = 'detail/id='+ data.sv_id +'&type=' + 3;
+					eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
+				})
+				$('#search_tran').html(eat);
+			}else{document.getElementById('tranCha').style.display = 'none';}
+
+			if (response.see.length > 0) 
+			{
+				if (document.getElementById('seeCha') != null) {
+					document.getElementById('seeCha').style.display = 'block';
+				}
+				$('#tieudeSearchSee').html('Tham quan');
+				var eat = new String();
+				response.see.forEach(function (data) {
+					var url_detail = 'detail/id='+ data.sv_id +'&type=' + 4;
+					eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
+				})
+				$('#search_see').html(eat);
+			}else{document.getElementById('seeCha').style.display = 'none';}
+
+			if (response.enter.length > 0) 
+			{
+				if (document.getElementById('enterCha') != null) {
+					document.getElementById('enterCha').style.display = 'block';
+				}
+				$('#tieudeSearchEnter').html('Vui chơi');
+				var eat = new String();
+				response.enter.forEach(function (data) {
+					var url_detail = 'detail/id='+ data.sv_id +'&type=' + 5;
+					eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
+				})
+				$('#search_enter').html(eat);
+			}else{document.getElementById('enterCha').style.display = 'none';}
 
 		}).fail(function (response) {
-			console.log("Loi cmnr");
-			console.log(response);
+			// $('#thanSearch').html('');
+			
+			
 		})
 	})
 		
@@ -95,7 +148,7 @@ function search_type(url, image,name,description) {
 	eat += 	'<div class="content-search">';
 	eat +=	'<a href="' + url + '">';
 	eat +=	'<div class="left-content-search">';
-	eat +=	'<img src="thumbnails/'+ image +' " alt="">';
+	eat +=	'<img src="thumbnails/'+ image +'" alt="">';
 	eat +=	'</div>';
 	eat +=	'<div class="right-content-search">';
 	eat +=	'<p>'+ name +'</p>';

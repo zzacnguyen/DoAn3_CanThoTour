@@ -174,41 +174,52 @@
 										<button class="btn btn-outline-success btn-search" type="submit" style="background-color: #00a680;">Tìm kiếm</button>
 									</form>
 									<div class="body-search" id="thanSearch">
-										<div class="item-search">
-											<div class="title-search">
-												<h5 id="tieudeSearchEat"></h5>
-											</div>
-											<div id="search_eat">
-												{{-- eat --}}
-											</div>
+										<div class="item-search" id="IDitem-search">
+											<div id="eatCha" style="display: none;">
+												<div class="title-search">
+													<h5 id="tieudeSearchEat"></h5>
+												</div>
+												<div id="search_eat">
+													{{-- hotel --}}
+												</div>
+											</div>	
 
-											<div class="title-hotel">
-												<h5 id="tieudeSearchEat"></h5>
-											</div>
-											<div id="search_hotel">
-												{{-- hotel --}}
-											</div>
+											<div id="hotelCha" style="display: none;">
+												<div class="title-search">
+													<h5 id="tieudeSearchHotel"></h5>
+												</div>
+												<div id="search_hotel">
+													{{-- hotel --}}
+												</div>
+											</div>	
+											
+											<div id="tranCha" style="display: none;">
+												<div class="title-search">
+													<h5 id="tieudeSearchTran"></h5>
+												</div>
+												<div id="search_tran">
+													{{-- hotel --}}
+												</div>
+											</div>	
 
-											<div class="title-tran">
-												<h5 id="tieudeSearchEat"></h5>
-											</div>
-											<div id="search_tran">
-												{{-- tran --}}
-											</div>
+											<div id="seeCha" style="display: none;">
+												<div class="title-search">
+													<h5 id="tieudeSearchSee"></h5>
+												</div>
+												<div id="search_see">
+													{{-- hotel --}}
+												</div>
+											</div>	
 
-											<div class="title-see">
-												<h5 id="tieudeSearchEat"></h5>
+											<div id="enterCha" style="display: none;">
+												<div class="title-search">
+													<h5 id="tieudeSearchEnter"></h5>
+												</div>
+												<div id="search_enter">
+													{{-- hotel --}}
+												</div>
 											</div>
-											<div id="search_see">
-												{{-- see --}}
-											</div>
-
-											<div class="title-enter">
-												<h5 id="tieudeSearchEat"></h5>
-											</div>
-											<div id="search_enter">
-												{{-- enter --}}
-											</div>
+											
 										</div>
 
 										<div class="item-search">
