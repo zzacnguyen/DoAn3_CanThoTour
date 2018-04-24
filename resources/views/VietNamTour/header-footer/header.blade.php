@@ -176,45 +176,39 @@
 									<div class="body-search" id="thanSearch">
 										<div class="item-search">
 											<div class="title-search">
-												<h5 id="tieudeSearchEat">Từ khóa tìm kiếm nhiều nhất</h5>
+												<h5 id="tieudeSearchEat"></h5>
+											</div>
+											<div id="search_eat">
+												{{-- eat --}}
 											</div>
 
-											<div id="search_eat">
-												<div class="content-search">
-													<a href="#">
-														<div class="left-content-search">
-															<img src="images/hotel/1.jpg" alt="">
-														</div>
-														<div class="right-content-search">
-															<p>Mường Thanh Cần Thơ</p>
-															<p style="font-size: 13px; color: #d2cece; font-weight: 400; max-height: 321px;max-width:20px;text-overflow: ellipsis;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
-														</div>
-													</a>		
-												</div>
-												<div class="content-search">
-													<a href="#">
-														<div class="left-content-search">
-															<img src="images/hotel/1.jpg" alt="">
-														</div>
-														<div class="right-content-search">
-															<p>Mường Thanh Cần Thơ</p>
-															<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
-														</div>
-													</a>		
-												</div>
-												<div class="content-search">
-													<a href="#">
-														<div class="left-content-search">
-															<img src="images/hotel/1.jpg" alt="">
-														</div>
-														<div class="right-content-search">
-															<p>Mường Thanh Cần Thơ</p>
-															<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
-														</div>
-													</a>		
-												</div>
+											<div class="title-hotel">
+												<h5 id="tieudeSearchEat"></h5>
 											</div>
-												
+											<div id="search_hotel">
+												{{-- hotel --}}
+											</div>
+
+											<div class="title-tran">
+												<h5 id="tieudeSearchEat"></h5>
+											</div>
+											<div id="search_tran">
+												{{-- tran --}}
+											</div>
+
+											<div class="title-see">
+												<h5 id="tieudeSearchEat"></h5>
+											</div>
+											<div id="search_see">
+												{{-- see --}}
+											</div>
+
+											<div class="title-enter">
+												<h5 id="tieudeSearchEat"></h5>
+											</div>
+											<div id="search_enter">
+												{{-- enter --}}
+											</div>
 										</div>
 
 										<div class="item-search">

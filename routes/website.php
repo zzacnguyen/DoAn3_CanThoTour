@@ -74,7 +74,7 @@ Route::get('image_city/{id}','pageController@image_city');
 //================================= TEST ======================================
 Route::get('count_city_service_all_image','pageController@count_city_service_all_image');
 Route::get('searchServices_All/keyword={k}','pageController@searchServices_All');
-Route::get('getlam/id={id}&l={l}','pageController@lamlam');
+Route::get('getlam/id={id}&l={l}','pageController@getServicesTake');
 Route::get('likelam/{idser}','publicDetail@like_service');
 Route::get('checklogin','pageController@checkLogin');
 

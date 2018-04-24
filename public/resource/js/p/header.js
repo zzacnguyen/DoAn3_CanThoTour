@@ -60,23 +60,24 @@ function search() {
 			type: 'GET',
 			dataType: 'json'
 		}).done(function (response) {
-			console.log(response.eat);
+			
 			if (response.eat != null) 
 			{
 				$('#tieudeSearchEat').html('Ăn uống');
 				var eat = new String(); // khoi tao bien luu phan hien thi len view
 				response.eat.forEach(function (data) {
-					eat += 	'<div class="content-search">';
-					eat +=	'<a href="#">';
-					eat +=	'<div class="left-content-search">';
-					eat +=	'<img src="thumbnails/'+ data.image_details_1 +' " alt="">';
-					eat +=	'</div>';
-					eat +=	'<div class="right-content-search">';
-					eat +=	'<p>'+ data.sv_name +'</p>';
-					eat +=	'<p style="font-size: 13px; color: #d2cece; font-weight: 400; max-height: 20px;max-width:321px;text-overflow: ellipsis;">'+ data.sv_description +'</p>';
-					eat +=	'</div>';
-					eat +=	'</a>';		
-					eat +=	'</div>';
+					var url_detail = 'detail/id='+ data.sv_id +'&type=' + 1;
+					eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
+				})
+				$('#search_eat').html(eat);
+			}
+			if (response.hotel != null) 
+			{
+				$('#tieudeSearchEat').html('Khách sạn');
+				var eat = new String(); // khoi tao bien luu phan hien thi len view
+				response.eat.forEach(function (data) {
+					var url_detail = 'detail/id='+ data.sv_id +'&type=' + 1;
+					eat += this.search_type(url_detail,data.image_details_1,data.sv_name,data.sv_description);
 				})
 				$('#search_eat').html(eat);
 			}
@@ -89,10 +90,19 @@ function search() {
 		
 }
 
-function search_type(type) {
-	switch(type){
-		case 1:
-		break;
-	}
+function search_type(url, image,name,description) {
+	var eat = new String();
+	eat += 	'<div class="content-search">';
+	eat +=	'<a href="' + url + '">';
+	eat +=	'<div class="left-content-search">';
+	eat +=	'<img src="thumbnails/'+ image +' " alt="">';
+	eat +=	'</div>';
+	eat +=	'<div class="right-content-search">';
+	eat +=	'<p>'+ name +'</p>';
+	eat +=	'<p style="font-size: 13px; color: #d2cece; font-weight: 400; max-height: 20px;max-width:321px;text-overflow: ellipsis;">'+ description +'</p>';
+	eat +=	'</div>';
+	eat +=	'</a>';		
+	eat +=	'</div>';
+	return eat;
 }
 
