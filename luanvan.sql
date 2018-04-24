@@ -26,16 +26,6 @@ DELIMITER $$
 --
 -- Thủ tục
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `count_city_place` ()  BEGIN
-SELECT
-	COUNT( id ) AS 'amount_palce',
-	city_place_all.province_city_name,
-	id
-FROM
-	city_place_all 
-GROUP BY
-	(id); 
-	END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `count_like_sevice` (IN `id_service` INT(10))  NO SQL
 SELECT
@@ -89,8 +79,6 @@ FROM
 CREATE DEFINER=`root`@`localhost` PROCEDURE `load_lancan` (IN `place_id` INT(10))  NO SQL
 SELECT * FROM place_service_image AS p WHERE p.place_id = place_id LIMIT 1$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `load_palce_city_limit1` (IN `id_city` INT(10))  NO SQL
-SELECT * FROM city_place_all AS c WHERE c.id = id_city LIMIT 1$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `load_service_city` (IN `place_id` INT(10), IN `sv_type` INT(10))  NO SQL
 SELECT * FROM place_service_image AS p WHERE p.place_id = place_id AND p.sv_types = sv_type LIMIT 1$$
@@ -138,12 +126,7 @@ CREATE TABLE `city_dis_war_place` (
 
 -- --------------------------------------------------------
 
---
--- Cấu trúc đóng vai cho view `city_place_all`
--- (See below for the actual view)
---
-CREATE TABLE `city_place_all` (
-);
+
 
 -- --------------------------------------------------------
 
@@ -13706,12 +13689,6 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 
 -- --------------------------------------------------------
 
---
--- Cấu trúc cho view `city_place_all`
---
-DROP TABLE IF EXISTS `city_place_all`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `city_place_all`  AS  select `vnt_province_city`.`id` AS `id`,`vnt_province_city`.`province_city_name` AS `province_city_name`,`vnt_tourist_places`.`id` AS `id_place`,`vnt_tourist_places`.`id_ward` AS `id_ward`,`vnt_tourist_places`.`pl_address` AS `pl_address`,`vnt_tourist_places`.`pl_details` AS `pl_details`,`vnt_tourist_places`.`pl_latitude` AS `pl_latitude`,`vnt_tourist_places`.`pl_longitude` AS `pl_longitude`,`vnt_tourist_places`.`pl_name` AS `pl_name`,`vnt_tourist_places`.`pl_phone_number` AS `pl_phone_number`,`vnt_tourist_places`.`pl_status` AS `pl_status`,`vnt_tourist_places`.`user_partner_id` AS `user_partner_id`,`vnt_tourist_places`.`user_tour_guide_id` AS `user_tour_guide_id` from (`vnt_province_city` join `vnt_tourist_places` on((`vnt_province_city`.`id` = `vnt_tourist_places`.`city_id`))) ;
 
 -- --------------------------------------------------------
 

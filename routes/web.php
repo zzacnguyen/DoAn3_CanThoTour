@@ -80,8 +80,8 @@ Route::get('google-maps','testGoogleMapsApi@FunctionName');
 //partner
 Route::get('get-services-poseted_by/month={month}&user_id={id}','Partner_Controller@getServices');
 Route::get('get-places-poseted_by/month={month}&user_id={id}','Partner_Controller@getServices');
-
+Route::get('get-task-list/{id}', 'Partner_Controller@getTaskList');
 
 Auth::routes();
-
+ 
 Route::get('/home', 'HomeController@index')->name('home');

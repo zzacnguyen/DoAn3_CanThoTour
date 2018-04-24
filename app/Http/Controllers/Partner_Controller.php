@@ -55,4 +55,18 @@ class Partner_Controller extends Controller
         $encode=json_encode($places);
         return $encode;
     }
+    public function getTaskList($id)
+    {
+        $task_list = DB::table('vnt_task')
+        ->select( DB::raw('DATE_FORMAT(date_start, "%d-%m-%Y") as date_start'),
+            'task_title', 'vnt_task.id', 'user.username as nguoigiao')
+        ->join('vnt_user as user', 'user.user_id', '=', 'vnt_task.user_id')
+        ->join('vnt_tour_guide as tourguide','user.user_id', '=', 'tourguide.user_id')
+        ->where('status', '=', 1)
+        ->orderBy('vnt_task.id', 'desc')
+        ->limit(10)
+        ->get();
+        return json_encode($task_list);
+        
+    }
 }
