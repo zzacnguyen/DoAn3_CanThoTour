@@ -41,7 +41,7 @@ function search() {
 		var type = $('#a-danhmuc').attr('data-type'); // type dich vu
 		var path = null;
 		var keyword = $('#text-search-top').val();
-		$('#thanSearch').html('');
+		// $('#thanSearch').html('');
 		if (id_tinh == "all" && type == "all") 
 		{
 			path = 'searchServices_All/keyword=' + keyword;
@@ -60,6 +60,7 @@ function search() {
 			type: 'GET',
 			dataType: 'json'
 		}).done(function (response) {
+			console.log(response.eat);
 			if (response.eat != null) 
 			{
 				$('#tieudeSearchEat').html('Ăn uống');
@@ -71,20 +72,27 @@ function search() {
 					eat +=	'<img src="thumbnails/'+ data.image_details_1 +' " alt="">';
 					eat +=	'</div>';
 					eat +=	'<div class="right-content-search">';
-					eat +=	'<p>Mường Thanh Cần Thơ</p>';
-					eat +=	'<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>';
+					eat +=	'<p>'+ data.sv_name +'</p>';
+					eat +=	'<p style="font-size: 13px; color: #d2cece; font-weight: 400; max-height: 20px;max-width:321px;text-overflow: ellipsis;">'+ data.sv_description +'</p>';
 					eat +=	'</div>';
 					eat +=	'</a>';		
 					eat +=	'</div>';
 				})
 				$('#search_eat').html(eat);
 			}
-			
+
 		}).fail(function (response) {
 			console.log("Loi cmnr");
 			console.log(response);
 		})
 	})
 		
+}
+
+function search_type(type) {
+	switch(type){
+		case 1:
+		break;
+	}
 }
 

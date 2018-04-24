@@ -187,7 +187,7 @@
 														</div>
 														<div class="right-content-search">
 															<p>Mường Thanh Cần Thơ</p>
-															<p style="font-size: 13px; color: #d2cece; font-weight: 400;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
+															<p style="font-size: 13px; color: #d2cece; font-weight: 400; max-height: 321px;max-width:20px;text-overflow: ellipsis;">Lê Lợi, Cồn Cái Khế, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ </p>
 														</div>
 													</a>		
 												</div>

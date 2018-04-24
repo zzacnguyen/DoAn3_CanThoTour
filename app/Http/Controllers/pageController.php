@@ -24,11 +24,11 @@ class pageController extends Controller
     {   
         $placecount       = $this::count_city_service_all_image();
 
-        $services_eat     = $this::getservicestake(1,8);
-        $services_hotel   = $this::getservicestake(2,6);
-        $services_tran    = $this::getservicestake(3,8);
-        $services_see     = $this::getservicestake(4,8);
-        $services_enter   = $this::getservicestake(5,8);
+        $services_eat     = $this::getServicesTake(1,8);
+        $services_hotel   = $this::getServicesTake(2,6);
+        $services_tran    = $this::getServicesTake(3,8);
+        $services_see     = $this::getServicesTake(4,8);
+        $services_enter   = $this::getServicesTake(5,8);
 
         $checkLogin = $this::checkLogin();
 
@@ -171,11 +171,11 @@ class pageController extends Controller
 
 
     // get cho 
-    public function getservicestake($sv_types,$take)
+    public function getServicesTake($sv_types,$take)
     {
         switch ($sv_types) {
             case 1:
-                $result = DB::select('CALL top8eat');
+                $result = DB::select("SELECT * FROM sv_eat AS h WHERE h.sv_status = 'Active' ORDER BY h.sv_counter_point DESC LIMIT 0,8");
                                     $name = 'eat_name';
                 break; 
             case 2:
@@ -387,5 +387,33 @@ class pageController extends Controller
         $result['enter'] = $result_enter;
 
         return json_encode($result);
+    }
+
+
+    public function lamlam($sv_types)
+    {
+        switch ($sv_types) {
+            case 1:
+                $result = DB::select("SELECT * FROM sv_eat AS h WHERE ORDER BY h.sv_counter_point DESC LIMIT 0,8");
+                $name = 'eat_name';
+                break; 
+            case 2:
+                $result = DB::select('CALL top8hotel');
+                $name = 'sv_name';
+                break;  
+            case 3:
+                $result = DB::select('CALL top8stranport');
+                                    $name = 'transport_name';
+                break;
+            case 4:
+                $result = DB::select('CALL top8sightseeing');
+                                    $name = 'sightseeing_name';
+                break;
+            case 5:
+                $result = DB::select('CALL top8entertaiment');
+                                    $name = 'entertainments_name';
+                break;
+        }
+        return $result;
     }
 }
