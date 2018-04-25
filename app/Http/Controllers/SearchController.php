@@ -10,7 +10,7 @@ use DB;
 class SearchController extends Controller
 {
     //
-    public static function distance($lat1, $lon1, $lat2, $lon2) 
+    public function distance($lat1, $lon1, $lat2, $lon2) 
     {
         // có thế thêm tham số $unit vào hàm để tính theo các đơn vị khác 
         $theta = $lon1 - $lon2;
@@ -154,11 +154,12 @@ class SearchController extends Controller
     }
 
     //tìm dịch vụ lân cận
-    public static function searchServicesVicinity($latitude,$longitude, $type,int $radius)
+    public function searchServicesVicinity($latitude,$longitude, $type,int $radius)
     {
         if ($radius >=100) 
         {
             $arr_distance = $this::distanceRadius($latitude,$longitude,$radius);
+            // dd($arr_distance);
             if (!empty($arr_distance)) {
                 ksort($arr_distance);
                 foreach ($arr_distance as $value) {
