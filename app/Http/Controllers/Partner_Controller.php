@@ -60,7 +60,7 @@ class Partner_Controller extends Controller
         //Link : /public/get-task-list/id_user
         $task_list = DB::table('vnt_task')
         ->select( DB::raw('DATE_FORMAT(date_start, "%d-%m-%Y") as date_start'),
-            'task_title', 'vnt_task.id', 'user.username as nguoigiao')
+            'task_title', 'vnt_task.id', 'user.username as assigner')
         ->join('vnt_user as user', 'user.user_id', '=', 'vnt_task.user_id')
         ->join('vnt_tour_guide as tourguide','user.user_id', '=', 'tourguide.user_id')
         ->where('status', '=', 1)

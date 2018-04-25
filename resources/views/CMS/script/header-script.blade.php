@@ -7,7 +7,7 @@
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
 <link rel="stylesheet" type="text/css" href="{{asset('public/resourceAdminTemplate/assets/bootstrap/css/bootstrap.css')}}">
-<script type="text/javascript" src="{{asset('public/resourceAdminTemplate/assets\myscript\style.js')}}"></script>
+
 
 
 <!-- HELPERS -->

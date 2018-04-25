@@ -2,6 +2,7 @@
 @extends('CMS.components.index')
 
 @section('content')
+<script type="text/javascript" src="{{asset('public/resourceAdminTemplate/assets\myscript\style.js')}}"></script>
 <div id="page-title">
     <h2>Dashboard</h2>
     <p>Chào mừng bạn đến với trang quản trị website VietNamTour.</p>
