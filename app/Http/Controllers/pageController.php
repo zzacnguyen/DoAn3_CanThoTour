@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use usersModel;
+use Session;
+// use Request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -313,44 +315,7 @@ class pageController extends Controller
 
 
 
-    //================================= LOGIN =====================================
-    public function postLoginW(Request $request)
-    {
-        $messages = [
-            'required' => 'Trường bắt buộc nhập',
-            'username.min'    => 'Tài khoản có độ dài từ 4-20 ký tự'
-        ];
-        $validator = Validator::make($request->all(), [
-            'username' => 'required|min:4',
-            'password' => 'required'
-        ],$messages);
-        if ($validator->fails()) {
-            return redirect('loginW')->withErrors($validator)->withInput();
-        } 
-        else 
-        {
-            $username = $request->input('username');
-            $pass = $request->input('password');
-            if( Auth::attempt(['username' => $username, 'password' => $pass])) {
-                $placecount       = $this::count_city_service_all_image();
-
-                $services_eat     = $this::getservicestake(1,8);
-                $services_hotel   = $this::getservicestake(2,6);
-                $services_tran    = $this::getservicestake(3,8);
-                $services_see     = $this::getservicestake(4,8);
-                $services_enter   = $this::getservicestake(5,8);
-
-                $user = Auth::user();
-
-                // dd($services_hotel);
-                // return view('VietNamTour.content.index',compact('placecount','services_hotel','services_eat','services_enter','services_see','services_tran','user'));
-                return redirect()->intended('/');
-                // return Auth::user()->user_id;
-            } else {
-                return redirect()->back()->with(['erro'=>'Tên tài khoản hoặc mật khẩu không đúng','userold'=>$username]);
-            }
-        }
-    }
+    //================================= LOGIN-LOGOUT =====================================
 
     public function checkLogin()
     {
@@ -366,22 +331,55 @@ class pageController extends Controller
     {
         $username = $request->input('username');
         $password = $request->input('password');
-        if( Auth::attempt(['username' => $username, 'password' => $pass])) {
+        if( Auth::attempt(['username' => $username, 'password' => $password])) {
             $user = Auth::user();
-            Request::session()->put('login',true);  
-            Request::session()->put('lam','123');  
-                // dd($services_hotel);
-                // return view('VietNamTour.content.index',compact('placecount','services_hotel','services_eat','services_enter','services_see','services_tran','user'));
-                // return redirect()->intended('/');
-                return view('VietNamTour.content.index')->with('success','Đăng nhập thành công');
-                // return Auth::user()->user_id;
+                
+            $result = DB::select('CALL login_info_phone(?)',array(Auth::user()->user_id));
+                // dd($result);
+                $level = "personal";
+                foreach ($result as $result) {
+                    if ($result->admin != null) {
+                        $level = "admin";
+                    }
+                    else if($result->moderator != null){
+                        $level = "moderator";
+                    }
+                    else if($result->partner != null){
+                        $level = "partner";
+                    }
+                    else if($result->enterprise != null){
+                        $level = "enterprise";
+                    }
+                    else if($result->tour_guide != null){
+                        $level = "tour_guide";
+                    }
+    
+                    $result_info = array(
+                        'id' => $result->user_id,
+                        'username' =>$result->username,
+                        'avatar' =>$result->contact_avatar,
+                        'level' =>$level
+                    );
+                }
+
+            Session()->put('login',true);  
+            Session()->put('user_info',$result);
+            $lam = Session::get('user_info')->username;
+
+            // return ($lam);
+            return redirect('/');
+                
         } 
         else {
             return redirect()->back()->with(['erro'=>'Tên tài khoản hoặc mật khẩu không đúng','userold'=>$username]);
         }
     }
 
-
+    public function LogoutSession()
+    {
+        Session()->flush();
+        return redirect()->back();
+    }
 
 
     // ====== TIM KIEM ======

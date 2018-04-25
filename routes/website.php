@@ -12,10 +12,10 @@ Route::get('checkLogin','pageController@checkLogin');
 
 Route::get('registerW','pageController@getregister')->name('registerW');
 Route::get('registersuccess','pageController@getregisterSuccess')->name('registersuccess');
-Route::get('logoutW','loginController@logoutW')->name('logoutW');
+Route::get('logoutW','pageController@LogoutSession')->name('logoutW'); // logout
 Route::get('loginW','pageController@getlogin')->name('loginW');
 
-Route::post('loginpost','pageController@postLoginW')->name('loginpost');
+Route::post('loginpost','pageController@LoginSession')->name('loginpost');
 Route::post('registerWpost','loginController@registerW')->name('registerWpost');
 // login facebook
 Route::get('login/facebook/redirect', 'loginController@redirectToProvider')->name('loginfacebook');
