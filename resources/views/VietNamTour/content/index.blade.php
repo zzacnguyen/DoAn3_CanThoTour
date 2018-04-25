@@ -14,7 +14,7 @@
 				    				<span>{{$value['num_service']}}</span>
 				    			</div>
 					    		<a href="http://chinhlytailieu/doan3_canthotour/public/city/{{$value['id_city']}}">
-					    			<img src="thumbnails/{{$value['image']}}" alt="" style="height: 214px;"></a>
+					    			<img src="public/thumbnails/{{$value['image']}}" alt="" style="height: 214px;"></a>
 					    	</div>
 					    	<div class="grid-content">
 					    		<div class="grid-price text-left">
@@ -42,7 +42,7 @@
 	<!-- ==================END TINH TP============= -->
 
 	<!-- ================== POPULAR DESTINATION============= -->
-	<section class="destination" style="background-image: url('resourceVNT/images/background/1.jpg');">
+	<section class="destination" style="background-image: url('public/resourceVNT/images/background/1.jpg');">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 offset-md-3">
@@ -61,7 +61,7 @@
 					<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 						<div class="destination-grid">
 							<a href="http://chinhlytailieu/doan3_canthotour/public/detail/id={{$see['id_service']}}&type={{$see['sv_type']}}" class="click_view">
-								<img src="thumbnails/{{$see['image']}}" alt="">
+								<img src="public/thumbnails/{{$see['image']}}" alt="">
 							</a>
 							<div class="destination-name">
 								<h4>{{$see['name']}}</h4>
@@ -106,7 +106,7 @@
 					<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 						<div class="destination-grid">
 							<a href="http://chinhlytailieu/doan3_canthotour/public/detail/id={{$eat['id_service']}}&type={{$eat['sv_type']}}" class="click_view">
-								<img src="thumbnails/{{$eat['image']}}" alt="">
+								<img src="public/thumbnails/{{$eat['image']}}" alt="">
 							</a>
 							<div class="destination-name">
 								<h4>{{$eat['name']}}</h4>
@@ -153,7 +153,7 @@
 						<div class="hotel-item">
 							<div class="hotel-image">
 								<div class="img">
-									<img src="thumbnails/{{$hotel['image']}}" alt="">
+									<img src="public/thumbnails/{{$hotel['image']}}" alt="">
 								</div>
 							</div>
 							<div class="hotel-body">
@@ -214,7 +214,7 @@
 					<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 						<div class="destination-grid">
 							<a href="http://chinhlytailieu/doan3_canthotour/public/detail/id={{$hotel['id_service']}}&type={{$hotel['sv_type']}}}" class="click_view">
-								<img src="thumbnails/{{$enter['image']}}" alt="">
+								<img src="public/thumbnails/{{$enter['image']}}" alt="">
 							</a>
 							<div class="destination-name">
 								<h4>{{$enter['name']}}</h4>
@@ -257,7 +257,7 @@
 					<div class="col-md-3 col-sm-6 col-12 thumbnail-padding">
 						<div class="destination-grid">
 							<a href="http://chinhlytailieu/doan3_canthotour/public/detail/id={{$stran['id_service']}}&type={{$stran['sv_type']}}" class="click_view">
-								<img src="thumbnails/{{$stran['image']}}" alt="">
+								<img src="public/thumbnails/{{$stran['image']}}" alt="">
 							</a>
 							<div class="destination-name">
 								<h4>{{$stran['name']}}</h4>
@@ -282,7 +282,7 @@
 	<!-- ================== END TRANSPORT ============= -->
 
 <!-- script -->
-	<script type="text/javascript" src="resource/js/owl.carousel.js"></script>
+	<script type="text/javascript" src="public/resource/js/owl.carousel.js"></script>
 	<script type="text/javascript">
 		$('.owl-carousel').owlCarousel({
 		    loop:true,

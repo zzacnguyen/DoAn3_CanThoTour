@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="resource/css/bootstrap.css">
-	<link rel="stylesheet" href="resource/css/login.css">
+	<link rel="stylesheet" href="public/resource/css/bootstrap.css">
+	<link rel="stylesheet" href="public/resource/css/login.css">
 	<title>Login</title>
 </head>
 <body>
@@ -58,8 +58,8 @@
 		</div>
 	</section>
 
-	<script type="text/javascript" src="resource/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="resource/js/bootstrap.js"></script>
-	<script src="resource/js/fontawesome-all.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="public/resource/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="public/resource/js/bootstrap.js"></script>
+	<script src="public/resource/js/fontawesome-all.min.js" type="text/javascript"></script>
 </body>
 </html>

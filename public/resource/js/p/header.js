@@ -148,7 +148,7 @@ function search_type(url, image,name,description) {
 	eat += 	'<div class="content-search">';
 	eat +=	'<a href="' + url + '">';
 	eat +=	'<div class="left-content-search">';
-	eat +=	'<img src="thumbnails/'+ image +'" alt="">';
+	eat +=	'<img src="public/thumbnails/'+ image +'" alt="">';
 	eat +=	'</div>';
 	eat +=	'<div class="right-content-search">';
 	eat +=	'<p>'+ name +'</p>';

@@ -1,7 +1,7 @@
 @include('VietNamTour.header-footer.header')
 
-<link rel="stylesheet" href="resource/css/select2.min.css">
-<link rel="stylesheet" href="resource/css/addplace.css">
+<link rel="stylesheet" href="public/resource/css/select2.min.css">
+<link rel="stylesheet" href="public/resource/css/addplace.css">
 
 <style>
   /* Always set the map height explicitly to define the size of the div
@@ -178,7 +178,7 @@
 </section>
 
 
-<script src="resource/js/select2.full.js"></script>
+<script src="public/resource/js/select2.full.js"></script>
 
 <script type="text/javascript">
 	// In your Javascript (external .js resource or <script> tag)
@@ -187,7 +187,7 @@
 	});
 </script>
 
-<script src="resource/js/p/addplace.js"></script>
+<script src="public/resource/js/p/addplace.js"></script>
 
 <script>
       // This example adds a search box to a map, using the Google Place Autocomplete

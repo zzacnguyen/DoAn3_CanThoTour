@@ -5,22 +5,22 @@
 	<title>VietNamTravel</title>
 	<base href="{{asset('')}}">
 
-	<script type="text/javascript" src="resource/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="resource/js/popper.js"></script>
-	<script type="text/javascript" src="resource/js/bootstrap.js"></script>
-	<script type="text/javascript" src="resource/js/fontawesome-all.min.js"></script>
-	<script type="text/javascript" src="resource/js/fa-regular.js"></script>
+	<script type="text/javascript" src="public/resource/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="public/resource/js/popper.js"></script>
+	<script type="text/javascript" src="public/resource/js/bootstrap.js"></script>
+	<script type="text/javascript" src="public/resource/js/fontawesome-all.min.js"></script>
+	<script type="text/javascript" src="public/resource/js/fa-regular.js"></script>
 	
-	<link rel="stylesheet" href="resource/lightbox/styles.min.css">
-	<link rel="stylesheet" href="resource/lightbox/fluidbox.min.css">
+	<link rel="stylesheet" href="public/resource/lightbox/styles.min.css">
+	<link rel="stylesheet" href="public/resource/lightbox/fluidbox.min.css">
 
-	<link rel="stylesheet" href="resource/css/bootstrap.css">
-	<link rel="stylesheet" href="resource/css/owl.carousel.min.css">
-	<link rel="stylesheet" href="resource/css/owl.theme.default.min.css">
-	<link rel="stylesheet" href="resource/css/place.css">
-	<link rel="stylesheet" href="resource/css/style.index.css">
-	<link rel="stylesheet" href="resource/css/menu-style2.css">
-	<link rel="stylesheet" href="resource/css/select2.min.css">
+	<link rel="stylesheet" href="public/resource/css/bootstrap.css">
+	<link rel="stylesheet" href="public/resource/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="public/resource/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="public/resource/css/place.css">
+	<link rel="stylesheet" href="public/resource/css/style.index.css">
+	<link rel="stylesheet" href="public/resource/css/menu-style2.css">
+	<link rel="stylesheet" href="public/resource/css/select2.min.css">
 	<style>
 		h4{
 			border-bottom: none !important;
@@ -67,17 +67,17 @@
 			<ul>
 				<li class="active-img">
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('resource/images/slide-carousel/slide1.jpg');"></div>
+						<div class="img-content" style="background-image: url('public/resource/images/slide-carousel/slide1.jpg');"></div>
 					</div>
 				</li>
 				<li>
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('resource/images/slide-carousel/slide2.jpg');"></div>
+						<div class="img-content" style="background-image: url('public/resource/images/slide-carousel/slide2.jpg');"></div>
 					</div>
 				</li>
 				<li >
 					<div class="img-item">
-						<div class="img-content" style="background-image: url('resource/images/slide-carousel/slide3.jpg');"></div>
+						<div class="img-content" style="background-image: url('public/resource/images/slide-carousel/slide3.jpg');"></div>
 					</div>
 				</li>
 			</ul>
@@ -265,6 +265,7 @@
 							</ul>
 							<div class="form-inline my-2 my-lg-0" id="dangnhap-dangky">
 								<ul class="navbar-nav mr-auto col-md-12 col-12" style="padding: 0;">
+									<h5>{{Session::get('lam')}}</h5>
 									@if(Session::has('login') && Session::get('login') == true)
 									<li class="nav-item" style="position: relative; margin-right: 2px;">
 											<!-- hien thi khi dang nhap thanh cong -->
@@ -452,7 +453,7 @@
 	</section>
 	<!-- ================== end header ============= -->
 
-<script src="resource/js/select2.full.js"></script>
+<script src="public/resource/js/select2.full.js"></script>
 
 <script type="text/javascript">
 	// In your Javascript (external .js resource or <script> tag)

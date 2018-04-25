@@ -369,10 +369,11 @@ class pageController extends Controller
         if( Auth::attempt(['username' => $username, 'password' => $pass])) {
             $user = Auth::user();
             Request::session()->put('login',true);  
-            Request::session()->put('login',true);  
+            Request::session()->put('lam','123');  
                 // dd($services_hotel);
                 // return view('VietNamTour.content.index',compact('placecount','services_hotel','services_eat','services_enter','services_see','services_tran','user'));
-                return redirect()->intended('/');
+                // return redirect()->intended('/');
+                return view('VietNamTour.content.index')->with('success','Đăng nhập thành công');
                 // return Auth::user()->user_id;
         } 
         else {
