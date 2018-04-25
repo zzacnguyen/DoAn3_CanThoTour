@@ -38,7 +38,7 @@ class SearchController extends Controller
         else{ return null; } 
     }
 
-    public static function searchPlaceVicinity($user_lat, $user_lon, $radius)
+    public function searchPlaceVicinity($user_lat, $user_lon, $radius)
     {
         $result = $this::distanceRadius($user_lat,$user_lon,$radius);
         if (isset($result)) 

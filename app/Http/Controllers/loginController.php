@@ -145,7 +145,7 @@ class loginController extends Controller
 
                 // $contact = DB::select('CALL login_info(?)',array(Auth::user()->user_id));
                 $result = DB::select('CALL login_info_phone(?)',array(Auth::user()->user_id));
-                // dd($result);
+                dd($result);
                 $level = "persional";
                 foreach ($result as $result) {
                     if ($result->admin != null) {

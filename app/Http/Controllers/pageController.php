@@ -10,7 +10,7 @@ use App\Http\Controllers\SearchController;
 use App\touristPlacesModel;
 use App\provincecityModel;
 use Illuminate\Database\Eloquent\Colection;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 
 class pageController extends Controller
