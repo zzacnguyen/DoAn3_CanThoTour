@@ -362,7 +362,10 @@ class pageController extends Controller
         return json_encode($result);
     }
 
-
+    public function LoginSession(Request $request)
+    {
+        $username = 
+    }
 
 
 
