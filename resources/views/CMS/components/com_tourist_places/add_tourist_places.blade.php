@@ -104,16 +104,26 @@
                     </div>
                 </div>
                 <div class="col-md-12 form-group" style="padding-top: 20px" >
-                    <div class="col-md-12">
-                        <label for="content" >Nội dung: </label>
-                        <textarea name="content"  class="form-control" required` id="content" style="border: 1px solid #e1e1e1"  class="textarea-autosize" placeholder=""></textarea>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
+                    <label for="content" >Nội dung chi tiết: </label>
+                    <textarea style="height: 500px" id="content" ></textarea>
+                    <input type="hidden" name="content" id="content2">
+                    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+                    <script>
+                        var editor = CKEDITOR.replace( 'content' );
+
+                        // The "change" event is fired whenever a change is made in the editor.
+                        editor.on('change', function( evt ) {
+                            
+                            var content = evt.editor.getData();
+                            $("#content2").val(content);
+                        });
+                    </script>
+                </div> 
+                
+                <div class="clearfix"></div>
                 <div class="col-md-12" style="padding-bottom: 15px">
                     <div id="map" style="height:400px;"></div>
                 </div>
-                <div class="clearfix"></div>
                 <input  class="btn btn-success" style=";margin-bottom: 20px; margin-left: 90%" type="submit" value="Xong">
             </form>
         </div>
@@ -123,13 +133,11 @@
 
 
 <script>
-function getLat_Long_District() {
-    var arr[] = 
-}
-function myMap(_lat, _long) {
+
+function myMap() {
   var mapCanvas = document.getElementById("map");
   var myCenter=new google.maps.LatLng(115,10);
-  var mapOptions = {center: myCenter, zoom: 5};
+  var mapOptions = {center: myCenter, zoom: 6};
   var map = new google.maps.Map(mapCanvas, mapOptions);
   google.maps.event.addListener(map, 'click', function(event) {
     placeMarker(map, event.latLng);
