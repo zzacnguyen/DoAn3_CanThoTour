@@ -265,7 +265,7 @@
 							</ul>
 							<div class="form-inline my-2 my-lg-0" id="dangnhap-dangky">
 								<ul class="navbar-nav mr-auto col-md-12 col-12" style="padding: 0;">
-									@if(Auth::check())
+									@if(Session::has('login') && Session::get('login') == true)
 									<li class="nav-item" style="position: relative; margin-right: 2px;">
 											<!-- hien thi khi dang nhap thanh cong -->
 											<a class="nav-link btn-login" style="padding: 0; border: none !important;" id="id-user-form">

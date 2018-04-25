@@ -74,7 +74,7 @@ class SearchController extends Controller
                                     ->where('sv_types',$typeServices)->take(5)->get();
                 if (!empty($result)) {
                     foreach ($result as $value) {
-                        $resultCustom[] = array('id'=> $value->id,'eat_name' => $value->eat_name,'image_id' => $value->image_id,'image_details_1' => 'image_details_1','distance' => $distance);
+                        $resultCustom[] = array('id'=> $value->id,'eat_name' => $value->eat_name,'image_id' => $value->image_id,'image_details_1' => $value->image_details_1,'distance' => $distance);
                     }
                     if (isset($resultCustom)) {
                         return $resultCustom;
@@ -91,7 +91,7 @@ class SearchController extends Controller
                                     ->where('sv_types',$typeServices)->take(5)->get();
                 if (!empty($result)) {
                     foreach ($result as $value) {
-                        $resultCustom[] = array('id'=> $value->id,'hotel_name' => $value->hotel_name,'image_id' => $value->image_id,'image_details_1' => 'image_details_1','distance' => $distance);
+                        $resultCustom[] = array('id'=> $value->id,'hotel_name' => $value->hotel_name,'image_id' => $value->image_id,'image_details_1' => $value->image_details_1,'distance' => $distance);
                     }
                     if (isset($resultCustom)) {
                         return $resultCustom;
@@ -108,7 +108,7 @@ class SearchController extends Controller
                                     ->where('sv_types',$typeServices)->take(5)->get();
                 if (!empty($result)) {
                     foreach ($result as $value) {
-                        $resultCustom[] = array('id'=> $value->id,'transport_name' => $value->transport_name,'image_id' => $value->image_id,'image_details_1' => 'image_details_1','distance' => $distance);
+                        $resultCustom[] = array('id'=> $value->id,'transport_name' => $value->transport_name,'image_id' => $value->image_id,'image_details_1' => $value->image_details_1,'distance' => $distance);
                     }
                     if (isset($resultCustom)) {
                         return $resultCustom;
@@ -125,7 +125,7 @@ class SearchController extends Controller
                                     ->where('sv_types',$typeServices)->take(5)->get();
                 if (!empty($result)) {
                     foreach ($result as $value) {
-                        $resultCustom[] = array('id'=> $value->id,'sightseeing_name' => $value->sightseeing_name,'image_id' => $value->image_id,'image_details_1' => 'image_details_1','distance' => $distance);
+                        $resultCustom[] = array('id'=> $value->id,'sightseeing_name' => $value->sightseeing_name,'image_id' => $value->image_id,'image_details_1' => $value->image_details_1,'distance' => $distance);
                     }
                     if (isset($resultCustom)) {
                         return $resultCustom;
@@ -142,7 +142,7 @@ class SearchController extends Controller
                                     ->where('sv_types',$typeServices)->get();
                 if (!empty($result)) {
                     foreach ($result as $value) {
-                        $resultCustom[] = array('id'=> $value->id,'entertainments_name' => $value->entertainments_name,'image_id' => $value->image_id,'image_details_1' => 'image_details_1','distance' => $distance);
+                        $resultCustom[] = array('id'=> $value->id,'entertainments_name' => $value->entertainments_name,'image_id' => $value->image_id,'image_details_1' => $value->image_details_1,'distance' => $distance);
                     }
                     if (isset($resultCustom)) {
                         return $resultCustom;

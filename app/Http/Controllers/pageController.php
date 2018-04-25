@@ -364,7 +364,20 @@ class pageController extends Controller
 
     public function LoginSession(Request $request)
     {
-        $username = 
+        $username = $request->input('username');
+        $password = $request->input('password');
+        if( Auth::attempt(['username' => $username, 'password' => $pass])) {
+            $user = Auth::user();
+            Request::session()->put('login',true);  
+            Request::session()->put('login',true);  
+                // dd($services_hotel);
+                // return view('VietNamTour.content.index',compact('placecount','services_hotel','services_eat','services_enter','services_see','services_tran','user'));
+                return redirect()->intended('/');
+                // return Auth::user()->user_id;
+        } 
+        else {
+            return redirect()->back()->with(['erro'=>'Tên tài khoản hoặc mật khẩu không đúng','userold'=>$username]);
+        }
     }
 
 
