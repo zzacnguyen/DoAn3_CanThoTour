@@ -87,7 +87,7 @@
 								<div class="col-md-3 text-center">
 									<a id="like01">
 										<i id="color-like" class="fas fa-heart"></i>
-										{{$sv['sv_like']}}
+										<span id="num_like">{{$sv['sv_like']}}</span>
 									</a>
 								</div>
 								<div class="col-md-3 text-center">
@@ -391,5 +391,7 @@
 		    
 		},false);
 	</script>
+	
+	<script src="public/resource/js/p/detail.js"></script>
 
 @include('VietNamTour.header-footer.footer')
