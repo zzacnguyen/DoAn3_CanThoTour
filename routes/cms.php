@@ -16,3 +16,6 @@
 
 	Route::get('lvtn-add-tourist-places', 'CMS_ModuleController@_GETVIEW_ADD_TOURIST_PLACES')->name('ADD_TOURIST_PLACES');
 	Route::get('lvtn-add-services', 'CMS_ModuleController@_GETVIEW_ADD_SERVICES')->name('_GETVIEW_ADD_SERVICES');
+
+	Route::get('get-city-list','CMS_ModuleController@_DISPLAY_DISTRICT');
+	// Route::get('api/get-city-list','CMS_ModuleController@getCityList');

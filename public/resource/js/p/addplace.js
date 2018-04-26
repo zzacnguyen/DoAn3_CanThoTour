@@ -1,6 +1,9 @@
+
 $(document).ready(function () {
+	
 	load_district();
-	load_ward()
+	load_ward();
+	
 })
 
 
@@ -35,6 +38,7 @@ function load_ward() {
 			var lam = new String(); // khoi tao bien luu pha hien thi len view
 			response.forEach(function (data) {
 				lam += '<option value="' + data.id + '">' + data.ward_name +'</option>';
+				
 			})
 			$('#ward').html(lam);
 		})
