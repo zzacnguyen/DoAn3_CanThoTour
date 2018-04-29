@@ -51,7 +51,7 @@ Route::get('search/searchServicesTypeKeyword/type={type}&keyword={keyword}','Sea
 
 // LOGIN-LOGOUT-REGISTER
 Route::post('login-mobile','loginController@postLogin')->name('login-mobile');
-Route::post('register','loginController@register');
+Route::post('register-mobile','loginController@register')->name('register-mobile');
 Route::get('logout','loginController@logout');
 // web
 

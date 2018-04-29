@@ -47,7 +47,7 @@ class userSearch extends Controller
     {
             $userSearch =  new userSearchModel;
             $userSearch->id_service  =  $request->input('id_service');
-            $userSearch->id_users  =  $request->input('id_user');
+            $userSearch->user_id  =  $request->input('id_user');
             if($userSearch->save())
             {
                 return json_encode("status:200");
