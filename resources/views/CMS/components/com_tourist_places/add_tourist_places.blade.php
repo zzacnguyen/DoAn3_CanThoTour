@@ -48,7 +48,6 @@
                     <div class="col-md-6">
                         <label for="task_end_date">Phường / xã: </label>
                         <select class="form-control" id="ward" name="ward">
-                           
                         </select>
 
                      </div>
