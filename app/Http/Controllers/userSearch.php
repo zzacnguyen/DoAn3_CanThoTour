@@ -67,7 +67,7 @@ class userSearch extends Controller
     {
 
         $service = DB::table('vnt_services')
-        ->select('vnt_services.id  as sv_id','hotel_name','sightseeing_name','entertainments_name', 'transport_name','eat_name', 'vnt_images.id AS image_id','vnt_images.image_details_1')
+        ->select('vnt_services.id','hotel_name','sightseeing_name','entertainments_name', 'transport_name','eat_name', 'vnt_images.id AS image_id','vnt_images.image_details_1')
         ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_hotels', 'vnt_hotels.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_eating', 'vnt_eating.service_id', '=', 'vnt_services.id')
