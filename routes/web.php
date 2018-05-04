@@ -35,6 +35,7 @@ Route::resource('sightseeing', 'sightseeingController');
 
 Route::resource('entertainments', 'vnt_entertainmentsController');
 Route::resource('like', 'LikeController');
+Route::resource('rating', 'VisitorRatingController');
 
 // TIM KIEM
 // tìm kiếm địa điểm lân cận giới hạn 10 địa điểm
@@ -71,6 +72,8 @@ Route::get('rating-view-by-user/{id_user}','Rating_Service_Controller@view_ratin
 
 
 Route::post('rating-post', 'Rating_Service_Controller@postRating');
+// Route::post
+Route::post('rating-put/{id}', 'Rating_Service_Controller@putRating');
 Route::get('ward', 'tourist_places_controller@GetWardList');
 Route::get('province', 'tourist_places_controller@GetProvinceCity');
 Route::get('ward/{id}', 'tourist_places_controller@GetWardListByID');

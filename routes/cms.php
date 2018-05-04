@@ -1,4 +1,5 @@
 <?php
+
 	Route::get('qt-test', 'CMS_ModuleController@_DISPLAY_NEW_SERVICES');
 	Route::get('lvtn-dashboard', 'CMS_ModuleController@getDashboard')->name('ADMIN_DASHBOARD');
 	Route::post('lvtn-dashboard', 'CMS_AddDataController@_POST_TASK');

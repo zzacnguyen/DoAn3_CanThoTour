@@ -62,6 +62,21 @@ class Rating_Service_Controller extends Controller
             return $encode;
         }
     }
-
-    
+    public function putRating(Request $request, $id)
+    {
+        $rating                 = visitorRatingsModel::findOrFail($id);
+        $rating->service_id    = $request->input('service_id');
+        $rating->user_id = $request->input('user_id');
+        $rating->vr_rating        = $request->input('rate');
+        $rating->vr_title      = $request->input('title');
+        $rating->vr_ratings_details     = $request->input('details');
+        if($rating->save()){
+            $encode=json_encode("status: 200");
+            return $encode;
+        }
+        else{
+            $encode=json_encode("status: 500");
+            return $encode;
+        }
+    }
 }

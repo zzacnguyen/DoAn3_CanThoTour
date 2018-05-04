@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use app\visitorRatingsModel;
+use App\visitorRatingsModel;
 class VisitorRatingController extends Controller
 {
     /**
@@ -40,7 +40,15 @@ class VisitorRatingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $danhgia                 = new visitorRatingsModel;
+        $danhgia->service_id    = $request->input('service_id');
+        $danhgia->user_id = $request->input('user_id');
+        $danhgia->vr_rating        = $request->input('rate');
+        $danhgia->vr_title      = $request->input('title');
+        $danhgia->vr_ratings_details     = $request->input('content');
+        if($danhgia->save()){
+            return json_encode("status:200");
+        }
     }
 
     /**
@@ -82,7 +90,20 @@ class VisitorRatingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rating                 = visitorRatingsModel::findOrFail($id);
+        $rating->service_id    = $request->input('service_id');
+        $rating->user_id = $request->input('user_id');
+        $rating->vr_rating        = $request->input('rate');
+        $rating->vr_title      = $request->input('title');
+        $rating->vr_ratings_details     = $request->input('details');
+        if($rating->save()){
+            $encode=json_encode("status: 200");
+            return $encode;
+        }
+        else{
+            $encode=json_encode("status: 500");
+            return $encode;
+        }
     }
 
     /**
