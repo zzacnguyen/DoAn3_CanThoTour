@@ -12,6 +12,7 @@ class typeEvents extends Controller
     	$type = DB::table('vnt_types')
     	->select('id', 'type_name')
     	->orderBy('id','DESC')
+    	->where('type_status', '=', 1)
 	    ->paginate(10);
         $encode=json_encode($type);
         return $encode;
