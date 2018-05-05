@@ -20,9 +20,9 @@ class CreateEventsTable extends Migration
             $table->date('event_end');
             $table->string('event_status', 10);
             $table->integer('type_id')->unsigned();
-            $table->foreign('type_id')->references('id')->on('vnt_types');
+            $table->foreign('type_id')->references('id')->on('vnt_types')->onDelete('cascade');
             $table->integer('service_id')->unsigned();
-            $table->foreign('service_id')->references('id')->on('vnt_services');
+            $table->foreign('service_id')->references('id')->on('vnt_services')->onDelete('cascade');
             $table->timestamps();
         });
     }

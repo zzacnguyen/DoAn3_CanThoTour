@@ -18,7 +18,7 @@ class CreateUserSightseeingTable extends Migration
             $table->string('sightseeing_name',50);
             $table->string('sightseeing_status',10);
             $table->integer('service_id')->unsigned();
-            $table->foreign('service_id')->references('id')->on('vnt_services');
+            $table->foreign('service_id')->references('id')->on('vnt_services')->onDelete('cascade');
             $table->timestamps();
         });
     }

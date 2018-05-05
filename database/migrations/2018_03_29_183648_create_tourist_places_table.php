@@ -25,9 +25,9 @@ class CreateTouristPlacesTable extends Migration
             $table->integer('id_ward')->unsigned();
             $table->foreign('id_ward')->references('id')->on('vnt_ward');
             $table->integer('user_partner_id')->unsigned()->nullable();
-            $table->foreign('user_partner_id')->references('user_id')->on('vnt_partner_user');
+            $table->foreign('user_partner_id')->references('user_id')->on('vnt_partner_user')->onDelete('cascade');
             $table->integer('user_tour_guide_id')->unsigned()->nullable();
-            $table->foreign('user_tour_guide_id')->references('user_id')->on('vnt_tour_guide');
+            $table->foreign('user_tour_guide_id')->references('user_id')->on('vnt_tour_guide')->onDelete('cascade');
             $table->timestamps();
         });
     }

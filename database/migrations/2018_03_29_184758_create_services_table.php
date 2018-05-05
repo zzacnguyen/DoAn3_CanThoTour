@@ -27,11 +27,11 @@ class CreateServicesTable extends Migration
             $table->string('sv_status', 10);
             $table->integer('sv_types');
             $table->integer('tourist_places_id')->unsigned();
-            $table->foreign('tourist_places_id')->references('id')->on('vnt_tourist_places');
+            $table->foreign('tourist_places_id')->references('id')->on('vnt_tourist_places')->onDelete('cascade');
             $table->integer('user_partner_id')->unsigned()->nullable();
             $table->foreign('user_partner_id')->references('user_id')->on('vnt_partner_user');
             $table->integer('user_tour_guide_id')->unsigned()->nullable();
-            $table->foreign('user_tour_guide_id')->references('user_id')->on('vnt_tour_guide');
+            $table->foreign('user_tour_guide_id')->references('user_id')->on('vnt_tour_guide')->onDelete('cascade');
             $table->timestamps();
         });
     }

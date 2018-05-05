@@ -19,9 +19,9 @@ class CreateVisitorRatingTable extends Migration
             $table->string('vr_ratings_details',255);
             $table->integer('vr_rating');
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('user_id')->on('vnt_user');
+            $table->foreign('user_id')->references('user_id')->on('vnt_user')->onDelete('cascade');
             $table->integer('service_id')->unsigned();
-            $table->foreign('service_id')->references('id')->on('vnt_services');
+            $table->foreign('service_id')->references('id')->on('vnt_services')->onDelete('cascade');
             $table->timestamps();
         });
     }

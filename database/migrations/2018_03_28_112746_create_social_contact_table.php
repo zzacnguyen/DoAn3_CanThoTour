@@ -17,8 +17,8 @@ class CreateSocialContactTable extends Migration
             $table->increments('id');
             $table->integer('social_id')->unsigned();
             $table->integer('contact_info_id')->unsigned();
-            $table->foreign('social_id')->references('id')->on('vnt_social');
-            $table->foreign('contact_info_id')->references('user_id')->on('vnt_contact_info');
+            $table->foreign('social_id')->references('id')->on('vnt_social')->onDelete('cascade');
+            $table->foreign('contact_info_id')->references('user_id')->on('vnt_contact_info')->onDelete('cascade');
             $table->timestamps();
         });
     }

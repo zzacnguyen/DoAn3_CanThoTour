@@ -18,9 +18,9 @@ class CreateActiveAccountsTable extends Migration
             $table->integer('user_admin_id')->unsigned();
             $table->foreign('user_admin_id')->references('user_id')->on('vnt_admin_user');
             $table->integer('user_moderator_id')->unsigned();
-            $table->foreign('user_moderator_id')->references('user_id')->on('vnt_moderator_users');
+            $table->foreign('user_moderator_id')->references('user_id')->on('vnt_moderator_users')->onDelete('cascade');
             $table->integer('user_tour_guide_id')->unsigned();
-            $table->foreign('user_tour_guide_id')->references('user_id')->on('vnt_tour_guide');
+            $table->foreign('user_tour_guide_id')->references('user_id')->on('vnt_tour_guide')->onDelete('cascade');
 
 
 

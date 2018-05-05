@@ -22,9 +22,9 @@ class CreateTaskTable extends Migration
             $table->string('date_end');
             $table->tinyInteger('status');
             $table->integer('assigner_user_id')->unsigned();
-            $table->foreign('assigner_user_id')->references('user_id')->on('vnt_user');
+            $table->foreign('assigner_user_id')->references('user_id')->on('vnt_user')->onDelete('cascade');
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('user_id')->on('vnt_user');
+            $table->foreign('user_id')->references('user_id')->on('vnt_user')->onDelete('cascade');
             $table->timestamps();
         });
     }

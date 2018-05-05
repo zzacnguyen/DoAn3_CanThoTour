@@ -17,7 +17,7 @@ class CreateWardTable extends Migration
             $table->increments('id');
             $table->string('ward_name', 50);
             $table->integer('district_id')->unsigned();
-            $table->foreign('district_id')->references('id')->on('vnt_district');
+            $table->foreign('district_id')->references('id')->on('vnt_district')->onDelete('cascade');
             $table->timestamps();
         });
     }

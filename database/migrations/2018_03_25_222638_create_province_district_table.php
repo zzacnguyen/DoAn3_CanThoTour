@@ -17,7 +17,7 @@ class CreateProvinceDistrictTable extends Migration
             $table->increments('id');
             $table->string('district_name', 50);
             $table->integer('province_city_id')->unsigned();
-            $table->foreign('province_city_id')->references('id')->on('vnt_province_city');
+            $table->foreign('province_city_id')->references('id')->on('vnt_province_city')->onDelete('cascade');
             $table->timestamps();
         });
     }

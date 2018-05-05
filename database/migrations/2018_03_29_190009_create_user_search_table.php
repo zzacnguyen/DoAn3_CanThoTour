@@ -16,9 +16,9 @@ class CreateUserSearchTable extends Migration
         Schema::create('vnt_user_search', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('user_id')->on('vnt_user');
+            $table->foreign('user_id')->references('user_id')->on('vnt_user')->onDelete('cascade');
             $table->integer('id_service')->unsigned();
-            $table->foreign('id_service')->references('id')->on('vnt_services');
+            $table->foreign('id_service')->references('id')->on('vnt_services')->onDelete('cascade');
             $table->timestamps();
         });
     }

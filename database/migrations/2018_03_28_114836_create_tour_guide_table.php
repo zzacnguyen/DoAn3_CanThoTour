@@ -19,7 +19,7 @@ class CreateTourGuideTable extends Migration
             $table->tinyInteger('account_active');
             $table->string('user_objective_details');
             $table->string('user_strengths_details');
-            $table->foreign('user_id')->references('user_id')->on('vnt_user');
+            $table->foreign('user_id')->references('user_id')->on('vnt_user')->onDelete('cascade');
             $table->timestamps();
         });
     }

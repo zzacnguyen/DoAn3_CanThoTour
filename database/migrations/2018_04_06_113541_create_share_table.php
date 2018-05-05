@@ -16,7 +16,7 @@ class CreateShareTable extends Migration
         Schema::create('vnt_share', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('service_id')->unsigned();
-            $table->foreign('service_id')->references('id')->on('vnt_services');
+            $table->foreign('service_id')->references('id')->on('vnt_services')->onDelete('cascade');
             $table->timestamps();
         });
     }

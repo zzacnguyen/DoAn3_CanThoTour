@@ -24,8 +24,8 @@ class CreateContactInfoTable extends Migration
             $table->string('contact_language', 30);
             $table->string('contact_country', 30);
             $table->integer('ward_id')->unsigned();
-            $table->foreign('ward_id')->references('id')->on('vnt_ward');
-            $table->foreign('user_id')->references('user_id')->on('vnt_user');
+            $table->foreign('ward_id')->references('id')->on('vnt_ward')->onDelete('cascade');
+            $table->foreign('user_id')->references('user_id')->on('vnt_user')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ class CreateSocialPartnerUserTable extends Migration
         Schema::create('vnt_partner_user', function (Blueprint $table) {
             $table->unsignedInteger('user_id');
             $table->tinyInteger('account_active');
-            $table->foreign('user_id')->references('user_id')->on('vnt_user');
+            $table->foreign('user_id')->references('user_id')->on('vnt_user')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -20,11 +20,11 @@ class CreatePointsDetailsTable extends Migration
             $table->integer('share_id')->unsigned()->nullable();
             $table->foreign('share_id')->references('id')->on('vnt_share');
             $table->integer('service_id')->unsigned()->nullable();
-            $table->foreign('service_id')->references('id')->on('vnt_services');
+            $table->foreign('service_id')->references('id')->on('vnt_services')->onDelete('cascade');
             $table->integer('rating_id')->unsigned()->nullable();
-            $table->foreign('rating_id')->references('user_id')->on('vnt_visitor_ratings');
+            $table->foreign('rating_id')->references('user_id')->on('vnt_visitor_ratings')->onDelete('cascade');
             $table->integer('point_id')->unsigned()->nullable();
-            $table->foreign('point_id')->references('user_id')->on('vnt_moderator_users');
+            $table->foreign('point_id')->references('user_id')->on('vnt_moderator_users')->onDelete('cascade');
             $table->timestamps();
         });
     }
