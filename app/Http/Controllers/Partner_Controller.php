@@ -70,4 +70,19 @@ class Partner_Controller extends Controller
         return json_encode($task_list);
         
     }
+
+    public function service_partner_ward($id_user,$idward)
+    {
+        $query = "SELECT * FROM c_city_district_ward_place_service WHERE user_partner_id = '$id_user' AND id_ward = '$idward'";
+        $result = DB::select($query);
+        return $result;
+    }
+
+    public function service_ward($idward)
+    {
+        $query = "SELECT * FROM c_city_district_ward_place_service WHERE id_ward = '$idward'";
+        $result = DB::select($query);
+        return $result;
+    }
+
 }

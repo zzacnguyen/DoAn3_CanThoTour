@@ -90,3 +90,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('type-event', 'typeEvents@getAllEventType');
+
+// ======  NGHIA =====
+Route::get('ward-service/{id}','Partner_Controller@service_ward');
+Route::get('partner/id={id}&ward={ward}','Partner_Controller@service_ward');
