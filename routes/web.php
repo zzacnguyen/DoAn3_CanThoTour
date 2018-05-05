@@ -88,3 +88,5 @@ Route::get('get-task-list/{id}', 'Partner_Controller@getTaskList');
 Auth::routes();
  
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('type-event', 'typeEvents@getAllEventType');
