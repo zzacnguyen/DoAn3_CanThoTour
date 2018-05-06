@@ -35,7 +35,6 @@ Route::resource('sightseeing', 'sightseeingController');
 
 Route::resource('entertainments', 'vnt_entertainmentsController');
 Route::resource('like', 'LikeController');
-Route::resource('rating', 'VisitorRatingController');
 
 // TIM KIEM
 // tìm kiếm địa điểm lân cận giới hạn 10 địa điểm
@@ -51,8 +50,8 @@ Route::get('search/services/keyword={keyword}','SearchController@searchServicesK
 Route::get('search/searchServicesTypeKeyword/type={type}&keyword={keyword}','SearchController@searchServicesTypeKeyword');
 
 // LOGIN-LOGOUT-REGISTER
-Route::post('login-mobile','loginController@postLogin')->name('login-mobile');
-Route::post('register-mobile','loginController@register')->name('register-mobile');
+Route::post('login2','loginController@postLogin');
+Route::post('register','loginController@register');
 Route::get('logout','loginController@logout');
 // web
 
@@ -72,8 +71,6 @@ Route::get('rating-view-by-user/{id_user}','Rating_Service_Controller@view_ratin
 
 
 Route::post('rating-post', 'Rating_Service_Controller@postRating');
-// Route::post
-Route::post('rating-put/{id}', 'Rating_Service_Controller@putRating');
 Route::get('ward', 'tourist_places_controller@GetWardList');
 Route::get('province', 'tourist_places_controller@GetProvinceCity');
 Route::get('ward/{id}', 'tourist_places_controller@GetWardListByID');
@@ -88,12 +85,3 @@ Route::get('get-task-list/{id}', 'Partner_Controller@getTaskList');
 Auth::routes();
  
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('type-event', 'typeEvents@getAllEventType');
-Route::get('list-schedule/{id}', 'tripScheduleController@getListTripSchedule');
-Route::post('post-schedule', 'tripScheduleController@postTripSchedule');
-// ======  NGHIA =====
-
-
-Route::get('ward-service/{id}','Partner_Controller@service_ward');
-Route::get('partner/id={id}&ward={ward}','Partner_Controller@service_ward');

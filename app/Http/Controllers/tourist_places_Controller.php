@@ -73,7 +73,7 @@ class tourist_places_controller extends Controller
                 return json_encode("id_place:".$id_place);
             }
         }
-        return json_encode("status:500");
+        return json_encode("status: 500");
 	}
     public function AddServices(Request $request, $id_place)
     {

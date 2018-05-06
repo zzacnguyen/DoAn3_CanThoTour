@@ -75,17 +75,22 @@ class loginController extends Controller
             $userRegister                      = new usersModel();
             $userRegister->username            = $user;
             $userRegister->password            = bcrypt($pass);
-            $userRegister->user_groups_id      = 1;
-            // $userRegister->user_language       = $language;
-            // $userRegister->user_country        = $country;
             $userRegister->save();
+
+            $lam = usersModel::where('username',$username)->first();
+
+            $id_user = $lam->user_id;
+            $contact = new contact_infoModel();
+            $contact->user_id = $id_user;
+            $contact->save();
+
             return redirect('registersuccess');
         }
     }
 
     function check_username_existW($user){
-        $result = DB::table('vnt_users')
-                        ->select('username','user_language','user_country')
+        $result = DB::table('vnt_user')
+                        ->select('username')
                         ->where('username',$user)
                         ->get();
         foreach ($result as $value) {
@@ -146,22 +151,22 @@ class loginController extends Controller
                 // $contact = DB::select('CALL login_info(?)',array(Auth::user()->user_id));
                 $result = DB::select('CALL login_info_phone(?)',array(Auth::user()->user_id));
                 // dd($result);
-                $level = "1"; // personal
+                $level = "personal";
                 foreach ($result as $result) {
                     if ($result->admin != null) {
-                        $level = "6"; // admin
+                        $level = "admin";
                     }
                     else if($result->moderator != null){
-                        $level = "5"; // moderator
+                        $level = "moderator";
                     }
                     else if($result->partner != null){
-                        $level = "4"; // partner
+                        $level = "partner";
                     }
                     else if($result->enterprise != null){
-                        $level = "2"; // enterprise
+                        $level = "enterprise";
                     }
                     else if($result->tour_guide != null){
-                        $level = "3"; // tour_guide
+                        $level = "tour_guide";
                     }
     
                     $result_info = array(
