@@ -46,7 +46,7 @@ class publicDetail extends Controller
                     $dv = DB::table('vnt_sightseeing')->where('service_id',$id)->select('sightseeing_name as sv_name')->first();
                     break;
                 case 5:
-                    $dv = DB::table('vnt_entertainments')->where('service_id',$id)->select('entertaiments_name as sv_name')->first();
+                    $dv = DB::table('vnt_entertainments')->where('service_id',$id)->select('entertainments_name as sv_name')->first();
                     break;
                 default:
                     $dv = null;
