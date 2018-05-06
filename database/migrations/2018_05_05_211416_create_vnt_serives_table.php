@@ -16,7 +16,7 @@ class CreateVntSerivesTable extends Migration
         Schema::create('vnt_services', function (Blueprint $table) {
             $table->increments('id');
             $table->text('sv_description');
-            $table->text('sv_content')
+            $table->text('sv_content');
             $table->string('sv_open', 25);
             $table->string('sv_close', 25);
             $table->string('sv_highest_price', 15);
