@@ -14,7 +14,7 @@ Route::get('registersuccess','pageController@getregisterSuccess')->name('registe
 Route::get('logoutW','pageController@LogoutSession')->name('logoutW'); // logout
 Route::get('loginW','pageController@getlogin')->name('loginW');
 
-Route::post('loginpost','pageController@LoginSession')->name('loginpost');
+Route::get('loginpost/user={u}&pass={pass}','pageController@LoginSession')->name('loginpost');
 Route::post('registerWpost','loginController@registerW')->name('registerWpost');
 // login facebook
 Route::get('login/facebook/redirect', 'loginController@redirectToProvider')->name('loginfacebook');
@@ -127,6 +127,20 @@ Route::get('city-all/id={id}&district={dis}&type={type}&fil={fil}&page={page}&li
 // =============== user info ===========
 Route::get('info','accountController@get_info_account')->name('info');
 
+
+
+// index
+
+Route::get('checklogin','pageController@checkLogin');
+Route::get('count_city_service_all_image','pageController@count_city_service_all_image');
+
+
+//detail
+
+Route::get('add-view/{id}','publicDetail@addview');
+
+Route::get('get_service_id/{id}&type={t}','publicDetail@get_service_id');
+Route::get('dichvu_lancan/idcity={c}&id={id}&limit={limit}','publicDetail@dichvu_lancan');
 
 
 

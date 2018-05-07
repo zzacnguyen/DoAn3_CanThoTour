@@ -327,33 +327,31 @@ class pageController extends Controller
         return json_encode($result);
     }
 
-    public function LoginSession(Request $request)
+    public function LoginSession($username, $password)
     {
-        $username = $request->input('username');
-        $password = $request->input('password');
         if( Auth::attempt(['username' => $username, 'password' => $password])) {
             $user = Auth::user();
                 
             $result = DB::select('CALL login_info_phone(?)',array(Auth::user()->user_id));
                 // dd($result);
-                $level = "personal";
+                $level = 0;
                 foreach ($result as $result) {
                     if ($result->admin != null) {
-                        $level = "admin";
+                        $level = 1;
                     }
                     else if($result->moderator != null){
-                        $level = "moderator";
+                        $level = 2;
                     }
                     else if($result->partner != null){
-                        $level = "partner";
+                        $level = 3;
                     }
                     else if($result->enterprise != null){
-                        $level = "enterprise";
+                        $level = 4;
                     }
                     else if($result->tour_guide != null){
-                        $level = "tour_guide";
+                        $level = 5;
                     }
-    
+
                     $result_info = array(
                         'id' => $result->user_id,
                         'username' =>$result->username,
@@ -361,21 +359,26 @@ class pageController extends Controller
                         'level' =>$level
                     );
                 }
-
-            Session()->put('login',true);  
-            Session()->put('user_info',$result);
-            return redirect('/');
+            //     $result_info = array(
+            //             'id' => $result->user_id,
+            //             'username' =>$result->username,
+            //             'avatar' =>$result->contact_avatar,
+            //             'level' =>$level
+            //         );
+            // Session()->put('login',true);  
+            // Session()->put('user_info',$result_info);
+            // dd(Session::get('user_info'));
+            return json_encode($result_info);
                 
         } 
         else {
-            return redirect()->back()->with(['erro'=>'Tên tài khoản hoặc mật khẩu không đúng','userold'=>$username]);
+            return null;
         }
     }
 
     public function LogoutSession()
     {
         Session()->flush();
-        return redirect()->back();
     }
 
 
