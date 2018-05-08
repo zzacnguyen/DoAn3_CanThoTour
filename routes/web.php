@@ -50,8 +50,8 @@ Route::get('search/services/keyword={keyword}','SearchController@searchServicesK
 Route::get('search/searchServicesTypeKeyword/type={type}&keyword={keyword}','SearchController@searchServicesTypeKeyword');
 
 // LOGIN-LOGOUT-REGISTER
-Route::post('login2','loginController@postLogin');
-Route::post('register','loginController@register');
+Route::post('login-mobile','loginController@postLogin')->name('login-mobile');
+Route::post('register-mobile','loginController@register')->name('register-mobile');
 Route::get('logout','loginController@logout');
 // web
 
