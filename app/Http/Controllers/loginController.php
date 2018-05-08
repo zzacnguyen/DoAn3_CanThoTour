@@ -151,22 +151,22 @@ class loginController extends Controller
                 // $contact = DB::select('CALL login_info(?)',array(Auth::user()->user_id));
                 $result = DB::select('CALL login_info_phone(?)',array(Auth::user()->user_id));
                 // dd($result);
-                $level = "personal";
+                $level = "1"; // personal
                 foreach ($result as $result) {
                     if ($result->admin != null) {
-                        $level = "admin";
+                        $level = "6"; // admin
                     }
                     else if($result->moderator != null){
-                        $level = "moderator";
+                        $level = "5"; // moderator
                     }
                     else if($result->partner != null){
-                        $level = "partner";
+                        $level = "4"; // partner
                     }
                     else if($result->enterprise != null){
-                        $level = "enterprise";
+                        $level = "2"; // enterprise
                     }
                     else if($result->tour_guide != null){
-                        $level = "tour_guide";
+                        $level = "3"; // tour_guide
                     }
     
                     $result_info = array(

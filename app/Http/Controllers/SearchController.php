@@ -194,12 +194,12 @@ class SearchController extends Controller
         } 
     }
 
-    public function searchServicesKeyword($keyword)
+    public function searchServicesTypeKeyword($type,$keyword)
     {
         $keyword_handing = str_replace("+", " ", $keyword);
-        // $result = dichvuModel::where('dv_gioithieu','like',"%$keyword_handing%")
-        //                         ->select('')->take(30)->paginate(5);
-        $result = DB::table('vnt_services') // idhinhanh, anhimage_detail_1
+        switch ($type) {
+            case '0':
+                $result = DB::table('vnt_services') // idhinhanh, anhimage_detail_1
                                     ->leftJoin('vnt_eating', 'vnt_services.id', '=', 'vnt_eating.service_id')
                                     ->leftJoin('vnt_hotels', 'vnt_services.id', '=', 'vnt_hotels.service_id')
                                     ->leftJoin('vnt_transport', 'vnt_services.id', '=', 'vnt_transport.service_id')
@@ -213,12 +213,7 @@ class SearchController extends Controller
                                     ->orWhere('transport_name','like',"%$keyword_handing%")
                                     ->orWhere('entertainments_name','like',"%$keyword_handing%")->take(30)->paginate(10);
         return json_encode($result);
-    }
-
-    public function searchServicesTypeKeyword($type,$keyword)
-    {
-        $keyword_handing = str_replace("+", " ", $keyword);
-        switch ($type) {
+                break;
             case '1':
                 $result = DB::table('vnt_services')
                                     ->leftJoin('vnt_eating', 'vnt_services.id', '=', 'vnt_eating.service_id')
