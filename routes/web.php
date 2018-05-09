@@ -84,3 +84,7 @@ Route::get('get-task-list/{id}', 'Partner_Controller@getTaskList');
 Auth::routes();
  
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('list-schedule/{id}', 'tripScheduleController@getListTripSchedule');
+Route::post('post-schedule/user={id}', 'tripScheduleController@postTripSchedule');
+Route::post('post-schedule-details/schedule={sid}', 'tripScheduleController@postTripScheduleDetail');
+Route::get('list-schedule-details/{id}', 'tripScheduleController@getDetailTripSchedule');
