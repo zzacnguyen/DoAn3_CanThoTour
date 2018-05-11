@@ -25,7 +25,7 @@ class pageController extends Controller
     public function getindex()
     {   
         $placecount       = $this::count_city_service_all_image();
-
+        return $placecount;
         $services_eat     = $this::getServicesTake(1,8);
         $services_hotel   = $this::getServicesTake(2,6);
         $services_tran    = $this::getServicesTake(3,8);
@@ -273,6 +273,7 @@ class pageController extends Controller
     public function count_city_service_all_image() //load anh len city voi service co point cao nhat
     {
         $result_city = DB::select("CALL c_count_service_city_all()");
+        // return $result_city;
         foreach ($result_city as $value) {
             $id_service = DB::select("CALL get_idServicePointMax_city(?)",array($value->id_city));
             foreach ($id_service as $v) {

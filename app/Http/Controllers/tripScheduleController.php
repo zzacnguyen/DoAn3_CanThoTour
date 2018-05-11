@@ -65,4 +65,14 @@ class tripScheduleController extends Controller
             return json_encode("status:500");
         }
     }
+
+
+    public function getOneTripSchedule($schedule_id)
+    {
+        // return "lam";
+        // $result = tripScheduleModel::where('id','=',$schedule_id);
+        // $result = tripScheduleModel::all();
+        $result = DB::select("SELECT * FROM `vnt_tripschedule` WHERE id = '$schedule_id'");
+        return json_encode($result);
+    }
 }

@@ -144,6 +144,13 @@ Route::get('get_quyen_dangxet_user/{id}','accountController@get_quyen_dangxet_us
 Route::post('savequyendangky/{id}','accountController@savequyendangky');
 
 
+Route::get('get_quyen_userList/{id}','accountController@get_quyen_userList');
+
+Route::get('get_quyen_dangxet_userList/{id}','accountController@get_quyen_dangxet_userList');
+
+Route::get('get_quyen_dangky_moi/{id}','accountController@get_quyen_dangky_moi');
+
+
 // index
 
 Route::get('checklogin','pageController@checkLogin');

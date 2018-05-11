@@ -52,6 +52,11 @@ Route::get('search/searchServicesTypeKeyword/type={type}&keyword={keyword}','Sea
 Route::post('login-mobile','loginController@postLogin')->name('login-mobile');
 Route::post('register-mobile','loginController@register')->name('register-mobile');
 Route::get('logout','loginController@logout');
+
+Route::post('edit_user_mobile','loginController@edit_user_mobile');
+
+
+
 // web
 
 Route::post('upload-image/{id}','ImagesController@Upload');
@@ -88,3 +93,5 @@ Route::get('list-schedule/{id}', 'tripScheduleController@getListTripSchedule');
 Route::post('post-schedule/user={id}', 'tripScheduleController@postTripSchedule');
 Route::post('post-schedule-details/schedule={sid}', 'tripScheduleController@postTripScheduleDetail');
 Route::get('list-schedule-details/{id}', 'tripScheduleController@getDetailTripSchedule');
+
+Route::get('schedule-one/{id}', 'tripScheduleController@getOneTripSchedule');

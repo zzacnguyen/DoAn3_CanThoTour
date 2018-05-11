@@ -88,6 +88,36 @@ class accountController extends Controller
         } 
     }
 
+
+    public function edit_user_mobile(Request $request,$id)
+    {
+        try{
+            if($request->avatar)
+            {
+                contact_infoModel::where('user_id',$id)
+         
+                ->update(['contact_name'=>$request->name,'contact_phone'=>$request->phone,
+                'contact_website'=>$request->website,'contact_email_address'=>$request->email,'contact_language'=>$request->lang,
+                'contact_country'=>$request->address,'contact_avatar'=>$request->avatar]);
+                return "ok";
+            }
+            else
+            {
+                contact_infoModel::where('user_id',$id)
+         
+                ->update(['contact_name'=>$request->name,'contact_phone'=>$request->phone,
+                'contact_website'=>$request->website,'contact_email_address'=>$request->email,'contact_language'=>$request->lang,
+                'contact_country'=>$request->address]);
+                return "ok";
+            }
+         
+
+        }
+        catch(\Illuminate\Database\QueryException $ex){ 
+            return "error";
+        } 
+    }
+
     public function get_quyen_dangky($userid) // lay ra nhung quyen nguoi dung co the dang ky
     {
         $result = DB::select('CALL login_info_phone(?)',array($userid));
@@ -121,6 +151,38 @@ class accountController extends Controller
         return $quyen;      
     }
 
+    public function get_quyen_dangky_moi($userid) // lay ra nhung quyen nguoi dung co the dang ky
+    {
+        $result = DB::select('CALL login_info_phone(?)',array($userid));
+
+        foreach ($result as $result) {
+            // admin cao nhất ko còn nâng quyền
+            if ($result->admin != null || $result->moderator != null) {
+                $quyen[] = array('quyen'=>0);
+            }
+            else {
+            // có thể nâng quyền enterprise
+                if($result->enterprise == null){
+                    $quyen[] = array('quyen'=>1);
+                }
+                // có thể nâng quyền tourguide
+                if($result->tour_guide == null){
+                    $quyen[] = array('quyen'=>2);
+                }
+                // có thể nâng quyền partner
+                if($result->partner == null){
+                    $quyen[] = array('quyen'=>3);
+                }
+                // có thể nâng quyền mod
+                if($result->moderator == null){
+                    $quyen[] = array('quyen'=>4);
+                }
+            }
+                
+        }
+        return $quyen;      
+    }
+
     public function get_quyen_user($userid) // lay ra nhung quyen nguoi dung dang co
     {
         $result = DB::select('CALL login_info_phone(?)',array($userid));
@@ -147,6 +209,68 @@ class accountController extends Controller
             if($result->admin != null){
                 array_push($quyen, 5);
             }                
+        }
+        if ( empty($quyen)) {
+            $quyen[] = 0;
+        }
+        return $quyen;      
+    }
+
+    public function get_quyen_userList($userid) // lay ra nhung quyen nguoi dung dang co
+    {
+        $result = DB::select('CALL login_info_phone(?)',array($userid));
+        // return $result;
+        $quyen = array();
+        foreach ($result as $result) {
+            // 1 là doanh nghiệp
+            if($result->enterprise != null && $result->active_enter == 1){
+                $quyen[] = array('quyen'=>'Doanh nghiệp','active'=>1);
+            }else{$quyen[] = array('quyen'=>'Doanh nghiệp','active'=>0);}
+
+            // 2 là hdv
+            if($result->tour_guide != null && $result->active_tour == 1){
+                $quyen[] = array('quyen'=>'Hướng dẫn viên du lịch','active'=>1);
+            }else{$quyen[] = array('quyen'=>'Hướng dẫn viên du lịch','active'=>0);}
+
+            // 3 là ctv
+            if($result->partner != null && $result->active_partner == 1){
+                $quyen[] = array('quyen'=>'Cộng tác viên','active'=>1);
+            }else{$quyen[] = array('quyen'=>'Cộng tác viên','active'=>0);}
+
+            // 4 là mod
+            if($result->moderator != null && $result->active_mod == 1){
+                $quyen[] = array('quyen'=>'moderator','active'=>1);
+            }else{$quyen[] = array('quyen'=>'moderator','active'=>0);}
+
+            // 5 là admin
+            if($result->admin != null){
+                $quyen[] = array('quyen'=>'admin','active'=>1);
+            }else{$quyen[] = array('quyen'=>'admin','active'=>0);}                
+        }
+        if ( empty($quyen)) {
+            $quyen[] = 0;
+        }
+        return $quyen;      
+    }
+
+    public function get_quyen_dangxet_userList($userid) // lay ra nhung quyen nguoi dung dang co
+    {
+        $result = DB::select('CALL login_info_phone(?)',array($userid));
+        $quyen = array();
+        foreach ($result as $result) {
+
+            if($result->moderator != null && $result->active_mod == 0){
+                array_push($quyen, 2);
+            }
+            if($result->partner != null && $result->active_partner == 0){
+                array_push($quyen, 3);
+            }
+            if($result->enterprise != null && $result->active_enter == 0){
+                array_push($quyen, 4);
+            }
+            if($result->tour_guide != null && $result->active_tour == 0){
+                array_push($quyen, 5);
+            }      
         }
         if ( empty($quyen)) {
             $quyen[] = 0;
@@ -193,7 +317,7 @@ class accountController extends Controller
                     {
                         $mod = new enterpriseUserModel();
                         $mod->user_id = $id;
-                        $mod->account_active = 1;
+                        $mod->account_active = 0;
                         $mod->created_at = $datenow;
                         $mod->save();
                         return 1;
@@ -208,7 +332,7 @@ class accountController extends Controller
                     {
                         $mod = new tourguideModel();
                         $mod->user_id = $id;
-                        $mod->account_active = 1;
+                        $mod->account_active = 0;
                         $mod->user_objective_details = "Đang cập nhật";
                         $mod->user_strengths_details = "Đang cập nhật";
                         $mod->created_at = $datenow;
@@ -225,7 +349,7 @@ class accountController extends Controller
                     {
                         $mod = new partnerModel();
                         $mod->user_id = $id;
-                        $mod->account_active = 1;
+                        $mod->account_active = 0;
                         $mod->created_at = $datenow;
                         $mod->save();
                         return 1;
@@ -240,7 +364,7 @@ class accountController extends Controller
                     {
                         $mod = new moderatorModel();
                         $mod->user_id = $id;
-                        $mod->account_active = 1;
+                        $mod->account_active = 0;
                         $mod->created_at = $datenow;
                         $mod->save();
                         return 1;
