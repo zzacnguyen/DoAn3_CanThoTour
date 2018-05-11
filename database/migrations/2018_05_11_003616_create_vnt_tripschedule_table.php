@@ -18,8 +18,7 @@ class CreateVntTripscheduleTable extends Migration
              $table->string('trip_name', 255);
             $table->date('trip_startdate');
             $table->date('trip_enddate');
-            $table->integer('service_id')->unsigned();
-            $table->foreign('service_id')->references('id')->on('vnt_services')->onDelete('cascade');
+
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('user_id')->on('vnt_user')->onDelete('cascade');
             $table->timestamps();
