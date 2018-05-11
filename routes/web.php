@@ -35,6 +35,7 @@ Route::resource('sightseeing', 'sightseeingController');
 
 Route::resource('entertainments', 'vnt_entertainmentsController');
 Route::resource('like', 'LikeController');
+Route::resource('rating', 'VisitorRatingController');
 
 // TIM KIEM
 // tìm kiếm địa điểm lân cận giới hạn 10 địa điểm
@@ -45,13 +46,11 @@ Route::get('search/placevicinity/location={latitude},{longitude}&radius={radius}
 
 Route::get('search/servicevicinity/location={latitude},{longtitude}&type={type}&radius={radius}','SearchController@searchServicesVicinity');
 
-Route::get('search/services/keyword={keyword}','SearchController@searchServicesKeyword');
-
 Route::get('search/searchServicesTypeKeyword/type={type}&keyword={keyword}','SearchController@searchServicesTypeKeyword');
 
 // LOGIN-LOGOUT-REGISTER
-Route::post('login2','loginController@postLogin');
-Route::post('register','loginController@register');
+Route::post('login-mobile','loginController@postLogin')->name('login-mobile');
+Route::post('register-mobile','loginController@register')->name('register-mobile');
 Route::get('logout','loginController@logout');
 // web
 
@@ -69,7 +68,7 @@ Route::get('rating-service/{id}','Rating_Service_Controller@rating');
 Route::get('rating-view/{id_danhgia}','Rating_Service_Controller@view_rating');
 Route::get('rating-view-by-user/{id_user}','Rating_Service_Controller@view_rating_by_user');
 
-
+Route::post('rating-put/{id}', 'Rating_Service_Controller@putRating');
 Route::post('rating-post', 'Rating_Service_Controller@postRating');
 Route::get('ward', 'tourist_places_controller@GetWardList');
 Route::get('province', 'tourist_places_controller@GetProvinceCity');
@@ -85,3 +84,7 @@ Route::get('get-task-list/{id}', 'Partner_Controller@getTaskList');
 Auth::routes();
  
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('list-schedule/{id}', 'tripScheduleController@getListTripSchedule');
+Route::post('post-schedule/user={id}', 'tripScheduleController@postTripSchedule');
+Route::post('post-schedule-details/schedule={sid}', 'tripScheduleController@postTripScheduleDetail');
+Route::get('list-schedule-details/{id}', 'tripScheduleController@getDetailTripSchedule');

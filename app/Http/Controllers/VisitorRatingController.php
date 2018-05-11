@@ -65,7 +65,7 @@ class VisitorRatingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id) 
     {
         $rating = DB::table('vnt_visitor_ratings')
         ->select('id','service_id', 'user_id','vr_rating', 'vr_ratings_details', 'vr_title')
