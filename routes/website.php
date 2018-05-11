@@ -27,6 +27,8 @@ Route::get('user','pageController@getuser');
 Route::get('detail/id={id}&type={type}','pageController@getdetail')->name("detail");
 Route::get('detail/s','pageController@getServiceTypeVicinity');
 
+Route::get('ThemVaCapNhatLike/{idserivce}&user={id}','publicDetail@ThemVaCapNhatLike'); //
+
 // load addplace
 Route::get('addplace','pageController@getaddplace')->name('addplace');
 Route::post('addplace', 'pageController@postPlace');
@@ -106,6 +108,8 @@ Route::get('searchService_City_Type/idcity={id}&type={t}&keyword={k}','pageContr
 
 Route::get('searchServices_AllCity_idType/type={t}&keyword={k}','pageController@searchServices_AllCity_idType');
 
+Route::get('searchServices_AllCity_idType_ghe/type={t}&keyword={k}','pageController@searchServices_AllCity_idType_ghe');
+
 
 
 
@@ -127,6 +131,17 @@ Route::get('city-all/id={id}&district={dis}&type={type}&fil={fil}&page={page}&li
 // =============== user info ===========
 Route::get('info','accountController@get_info_account')->name('info');
 
+Route::get('check_login','accountController@check_login');
+Route::get('get_info_user/{id}','accountController@get_info_user');
+
+Route::post('edituser/{id}',['as'=>'edituser','uses'=>'accountController@edit_user']);
+
+Route::get('get_quyen_dangky/{id}','accountController@get_quyen_dangky');
+Route::get('get_quyen_user/{id}','accountController@get_quyen_user');
+
+Route::get('get_quyen_dangxet_user/{id}','accountController@get_quyen_dangxet_user');
+
+Route::post('savequyendangky/{id}','accountController@savequyendangky');
 
 
 // index
@@ -143,6 +158,13 @@ Route::get('get_service_id/{id}&type={t}','publicDetail@get_service_id');
 Route::get('dichvu_lancan/idcity={c}&id={id}&limit={limit}','publicDetail@dichvu_lancan');
 
 
+
+// serach web
+
+Route::get('search-all/keyword={key}','pageController@searchServices_All_ghe');
+Route::get('search-city-alltype/{idcity}&keyword={key}','pageController@searchService_City_AllType_ghe');
+Route::get('search-allcity-type/type={type}&keyword={key}','pageController@searchServices_AllCity_idType');
+Route::get('search-city-type/{idcity}&type={type}&keyword={key}','pageController@searchService_City_Type_ghe');
 
 
 

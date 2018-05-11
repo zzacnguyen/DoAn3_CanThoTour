@@ -7,6 +7,7 @@ use DB;
 use App\touristPlacesModel;
 use App\likesModel;
 use App\servicesModel;
+use Carbon;
 
 class publicDetail extends Controller
 {
@@ -231,4 +232,23 @@ class publicDetail extends Controller
 
         $result->save();
     }
+
+    public function ThemVaCapNhatLike($idservice, $userid)
+    {
+        $checkLike = likesModel::where('user_id',$userid)->where('service_id',$idservice)->first();
+        $like = new likesModel();
+        if ($checkLike == null) {
+            $like->user_id = $userid;
+            $like->service_id = $idservice;
+            $mytime = Carbon\Carbon::now();
+            $like->created_at = $mytime->toDateTimeString();
+            $like->save();
+            return 1;
+        }
+        else{
+            DB::table('vnt_likes')->where('user_id', $userid)->where('service_id',$idservice)->delete();
+            return 2;
+        }
+    }
+
 }

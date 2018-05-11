@@ -321,9 +321,9 @@ class pageController extends Controller
     {
         if (Session::has('login') && Session::get('login')) 
         {
-            $result[] = Session::get('user_info');
+            $result = Session::get('user_info');
         }
-        else{ $result = []; }
+        else{ $result = null ; }
         return json_encode($result);
     }
 
@@ -339,16 +339,16 @@ class pageController extends Controller
                     if ($result->admin != null) {
                         $level = 1;
                     }
-                    else if($result->moderator != null){
+                    else if($result->moderator != null && $result->active_mod == 1){
                         $level = 2;
                     }
-                    else if($result->partner != null){
+                    else if($result->partner != null && $result->active_partner == 1){
                         $level = 3;
                     }
-                    else if($result->enterprise != null){
+                    else if($result->enterprise != null && $result->active_enter == 1){
                         $level = 4;
                     }
-                    else if($result->tour_guide != null){
+                    else if($result->tour_guide != null && $result->active_tour == 1){
                         $level = 5;
                     }
 
@@ -365,10 +365,10 @@ class pageController extends Controller
             //             'avatar' =>$result->contact_avatar,
             //             'level' =>$level
             //         );
-            // Session()->put('login',true);  
-            // Session()->put('user_info',$result_info);
-            // dd(Session::get('user_info'));
-            return json_encode($result_info);
+            Session()->put('login',true);  
+            Session()->put('user_info',$result_info);
+    
+            return json_encode(Session::get('user_info'));
                 
         } 
         else {
@@ -428,6 +428,9 @@ class pageController extends Controller
         return json_encode($result);
     }
 
+    
+
+
 
     public function searchService_City_Type($idcity,$type,$keyword)
     {
@@ -481,6 +484,161 @@ class pageController extends Controller
             return json_encode($result);
         }
         else{return null;}
+    }
+
+    public function searchServices_All_ghe($keyword) // tim kiếm tất cả dịch vụ
+    {
+        $keyword_handing = str_replace("+", " ", $keyword);
+
+        $result_eat = DB::select("select s.sv_id,s.sv_types, s.sv_name,s.image_details_1,s.sv_description, s.sv_counter_view,s.sv_counter_point  from sv_eat AS s WHERE s.sv_name LIKE '%$keyword_handing%' AND s.sv_types = 1");
+        $result_eat2 = $this::search_con($result_eat);
+        // return $mang;
+        $result['eat'] = $result_eat2;
+
+        $result_hotel = DB::select("select s.sv_id,s.sv_types, s.sv_name,s.image_details_1,s.sv_description, s.sv_counter_view,s.sv_counter_point  from sv_hotel AS s WHERE s.sv_name LIKE '%$keyword_handing%' AND s.sv_types = 2");
+        $result_hotel2 = $this::search_con($result_hotel);
+        // return $result_hotel2;
+        $result['hotel'] = $result_hotel2;
+
+        $result_tran = DB::select("select s.sv_id,s.sv_types, s.sv_name,s.image_details_1,s.sv_description, s.sv_counter_view,s.sv_counter_point  from sv_stranport AS s WHERE s.sv_name LIKE '%$keyword_handing%' AND s.sv_types = 3");
+        $result_tran2 = $this::search_con($result_tran);
+        $result['tran'] = $result_tran2;
+
+        $result_see = DB::select("select s.sv_id,s.sv_types, s.sv_name,s.image_details_1,s.sv_description, s.sv_counter_view,s.sv_counter_point  from sv_sightseeting AS s WHERE s.sv_name LIKE '%$keyword_handing%' AND s.sv_types = 4");
+        $result_see2 = $this::search_con($result_see);
+        $result['see'] = $result_see2;
+
+        $result_enter = DB::select("select s.sv_id,s.sv_types, s.sv_name,s.image_details_1,s.sv_description, s.sv_counter_view,s.sv_counter_point  from sv_entertaiment AS s WHERE s.sv_name LIKE '%$keyword_handing%' AND s.sv_types = 5");
+        $result_enter2 = $this::search_con($result_enter);
+        $result['enter'] = $result_enter2;
+
+        return json_encode($result);
+    }
+
+    public function searchService_City_AllType_ghe($idcity,$keyword) // tìm kiếm tất cả dịch vụ theo tỉnh được chọn
+    {
+
+        $keyword_handing = str_replace("+", " ", $keyword);
+
+        $result_eat = DB::select("select c.id_city, c.name_city,s.sv_id,s.sv_types, s.sv_name,s.image_details_1,s.sv_description, s.sv_counter_view,s.sv_counter_point from c_city_district_ward_place_service AS c INNER JOIN sv_eat AS s ON c.id_service = s.sv_id WHERE s.sv_name like '%$keyword_handing%' AND c.id_city = '$idcity' AND s.sv_status = 1");
+        $result_eat2 = $this::search_con($result_eat);
+        $result['eat'] = $result_eat2;
+        
+
+        $result_hotel = DB::select("select c.id_city, c.name_city,s.sv_id,s.sv_types, s.sv_name,s.image_details_1,s.sv_description, s.sv_counter_view,s.sv_counter_point from c_city_district_ward_place_service AS c INNER JOIN sv_hotel AS s ON c.id_service = s.sv_id WHERE s.sv_name like '%$keyword_handing%' AND c.id_city = '$idcity' AND s.sv_status = 1");
+        $result_hotel2 = $this::search_con($result_hotel);
+        $result['hotel'] = $result_hotel2;
+
+        $result_tran = DB::select("select c.id_city, c.name_city,s.sv_id,s.sv_types, s.sv_name,s.image_details_1,s.sv_description, s.sv_counter_view,s.sv_counter_point from c_city_district_ward_place_service AS c INNER JOIN sv_stranport AS s ON c.id_service = s.sv_id WHERE s.sv_name like '%$keyword_handing%' AND c.id_city = '$idcity' AND s.sv_status = 1");
+        $result_tran2 = $this::search_con($result_tran);
+        $result['tran'] = $result_tran2;
+
+
+        $result_see = DB::select("select c.id_city, c.name_city,s.sv_id,s.sv_types, s.sv_name,s.image_details_1,s.sv_description, s.sv_counter_view,s.sv_counter_point from c_city_district_ward_place_service AS c INNER JOIN sv_sightseeting AS s ON c.id_service = s.sv_id WHERE s.sv_name like '%$keyword_handing%' AND c.id_city = '$idcity' AND s.sv_status = 1");
+        $result_see2 = $this::search_con($result_see);
+        $result['see'] = $result_see2;
+
+        $result_enter = DB::select("select c.id_city, c.name_city,s.sv_id,s.sv_types, s.sv_name,s.image_details_1,s.sv_description, s.sv_counter_view,s.sv_counter_point from c_city_district_ward_place_service AS c INNER JOIN sv_entertaiment AS s ON c.id_service = s.sv_id WHERE s.sv_name like '%$keyword_handing%' AND c.id_city = '$idcity' AND s.sv_status = 1");
+        $result_enter2 = $this::search_con($result_enter);
+        $result['enter'] = $result_enter2;
+
+        return json_encode($result);
+    }
+
+
+
+    public function searchService_City_Type_ghe($idcity,$type,$keyword) //OK
+    {
+        $keyword_handing = str_replace("+", " ", $keyword);
+
+        switch ($type) {
+            case '1':
+                $result = DB::select("select s.sv_id, s.sv_name, s.sv_counter_view,s.sv_counter_point, s.sv_types,s.image_details_1 FROM c_city_district_ward_place_service AS c INNER JOIN sv_eat AS s ON c.id_service = s.sv_id WHERE s.sv_name like '%$keyword_handing%' AND c.id_city = '$idcity' and s.sv_status = 1");
+                break;
+            case '2':
+                $result = DB::select("select s.sv_id, s.sv_name, s.sv_counter_view,s.sv_counter_point, s.sv_types,s.image_details_1 FROM c_city_district_ward_place_service AS c INNER JOIN sv_hotel AS s ON c.id_service = s.sv_id WHERE s.sv_name like '%$keyword_handing%' AND c.id_city = '$idcity' and s.sv_status = 1");
+                break;
+            case '3':
+                $result = DB::select("select s.sv_id, s.sv_name, s.sv_counter_view,s.sv_counter_point, s.sv_types,s.image_details_1 FROM c_city_district_ward_place_service AS c INNER JOIN sv_stranport AS s ON c.id_service = s.sv_id WHERE s.sv_name like '%$keyword_handing%' AND c.id_city = '$idcity' and s.sv_status = 1");
+                break;
+            case '4':
+                $result = DB::select("select s.sv_id, s.sv_name, s.sv_counter_view,s.sv_counter_point, s.sv_types,s.image_details_1 FROM c_city_district_ward_place_service AS c INNER JOIN sv_sightseeting AS s ON c.id_service = s.sv_id WHERE s.sv_name like '%$keyword_handing%' AND c.id_city = '$idcity' and s.sv_status = 1");
+                break;
+            case '5':
+                $result = DB::select("select s.sv_id, s.sv_name, s.sv_counter_view,s.sv_counter_point, s.sv_types,s.image_details_1 FROM c_city_district_ward_place_service AS c INNER JOIN sv_entertaiment AS s ON c.id_service = s.sv_id WHERE s.sv_name like '%$keyword_handing%' AND c.id_city = '$idcity' and s.sv_status = 1");
+                break;
+        }
+        if (isset($result)) {
+            $result = $this::search_con($result);
+            return ($result);
+        }
+        else{return null;}
+    }
+
+    public function searchServices_AllCity_idType_ghe($type,$keyword)
+    {
+        $keyword_handing = str_replace("+", " ", $keyword);
+
+            
+        $result_eat = DB::select("SELECT c.name_city,c.name_district,c.name_ward,c.id_service as 'sv_id',e.eat_name AS 'sv_name',m.image_details_1,c.sv_description FROM c_city_district_ward_place_service AS c INNER JOIN vnt_eating AS e ON c.id_service = e.service_id INNER JOIN vnt_images AS m ON c.id_service = m.service_id WHERE c.sv_status = 1 AND c.sv_types = 1 AND e.eat_name LIKE N'%$keyword_handing%'");
+        $result_eat2 = $this::search_con($result_eat);
+        $result['eat'] = $result_eat2;
+            
+        $result_hotel = DB::select("SELECT c.name_city,c.name_district,c.name_ward,c.id_service as 'sv_id',e.hotel_name AS 'sv_name',m.image_details_1,c.sv_description FROM c_city_district_ward_place_service AS c INNER JOIN vnt_hotels AS e ON c.id_service = e.service_id INNER JOIN vnt_images AS m ON c.id_service = m.service_id WHERE c.sv_status = 1 AND c.sv_types = 2 AND e.hotel_name LIKE N'%$keyword_handing%'");
+        $result_hotel2 = $this::search_con($result_hotel);
+        $result['hotel'] = $result_hotel2;      
+           
+        $result_tran = DB::select("SELECT c.name_city,c.name_district,c.name_ward,c.id_service as 'sv_id',e.transport_name AS 'sv_name',m.image_details_1,c.sv_description FROM c_city_district_ward_place_service AS c INNER JOIN vnt_transport AS e ON c.id_service = e.service_id INNER JOIN vnt_images AS m ON c.id_service = m.service_id WHERE c.sv_status = 1 AND c.sv_types = 3 AND e.transport_name LIKE N'%$keyword_handing%'");
+                
+            
+        $result_see = DB::select("SELECT c.name_city,c.name_district,c.name_ward,c.id_service as 'sv_id',e.sightseeing_name AS 'sv_name',m.image_details_1,c.sv_description FROM c_city_district_ward_place_service AS c INNER JOIN vnt_sightseeing AS e ON c.id_service = e.service_id INNER JOIN vnt_images AS m ON c.id_service = m.service_id WHERE c.sv_status = 1 AND c.sv_types = 4 AND e.sightseeing_name LIKE N'%$keyword_handing%'");
+               
+        $result_enter = DB::select("SELECT c.name_city,c.name_district,c.name_ward,c.id_service as 'sv_id',e.entertainments_name AS 'sv_name',m.image_details_1,c.sv_description FROM c_city_district_ward_place_service AS c INNER JOIN vnt_entertainments AS e ON c.id_service = e.service_id INNER JOIN vnt_images AS m ON c.id_service = m.service_id WHERE c.sv_status = 1 AND c.sv_types = 5 AND e.entertainments_name LIKE N'%$keyword_handing%'");
+                
+        if (isset($result)) {
+            return json_encode($result);
+        }
+        else{return null;}
+    }
+
+    public function search_con($lam)
+    {
+        foreach ($lam as $value) {
+            $city = $this::FindServiceToCity($value->sv_id); // lay name city chua service
+            if ($city == null) { $name_city = null;}
+            else{
+                foreach ($city as $key => $c) {
+                    $name_city = $c->name_city;
+                }
+            }
+
+            $likes = DB::table('vnt_likes')->where('service_id', '=',$value->sv_id)->count();
+
+            $ratings = DB::table('vnt_visitor_ratings')->where('service_id')->first();
+            if (!empty($ratings)) {
+                $ponit_rating = $ratings->vr_rating;
+            }else{ $ponit_rating = 0; }
+
+            $mang[] = array(
+                        'id_service'        => $value->sv_id,
+                        'name'              => $value->sv_name,
+                        'image'             => $value->image_details_1,
+                        'name_city'         => $name_city,
+                        'like'              => $likes,
+                        'view'              => $value->sv_counter_view,
+                        'point'             => $value->sv_counter_point,
+                        'rating'            => $ponit_rating,
+                        'sv_type'           => $value->sv_types
+                    );
+
+        }
+        if (isset($mang)) {
+            return $mang;
+        }
+        else
+        {
+            return null;
+        }
     }
     
 }
