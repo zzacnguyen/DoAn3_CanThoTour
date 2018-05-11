@@ -173,7 +173,8 @@ Route::get('search-city-alltype/{idcity}&keyword={key}','pageController@searchSe
 Route::get('search-allcity-type/type={type}&keyword={key}','pageController@searchServices_AllCity_idType');
 Route::get('search-city-type/{idcity}&type={type}&keyword={key}','pageController@searchService_City_Type_ghe');
 
-
+//
+Route::get('get_service_lichtrinh','accountController@get_service_lichtrinh');
 
 
 

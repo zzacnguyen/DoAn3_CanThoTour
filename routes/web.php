@@ -94,4 +94,7 @@ Route::post('post-schedule/user={id}', 'tripScheduleController@postTripSchedule'
 Route::post('post-schedule-details/schedule={sid}', 'tripScheduleController@postTripScheduleDetail');
 Route::get('list-schedule-details/{id}', 'tripScheduleController@getDetailTripSchedule');
 
+Route::get('list-schedule-details_web/{id}', 'tripScheduleController@getDetailTripSchedule_web');
+
 Route::get('schedule-one/{id}', 'tripScheduleController@getOneTripSchedule');
+Route::get('schedule-delete/{id}', 'tripScheduleController@delete_DetailSchedule');

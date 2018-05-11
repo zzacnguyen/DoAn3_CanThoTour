@@ -75,4 +75,35 @@ class tripScheduleController extends Controller
         $result = DB::select("SELECT * FROM `vnt_tripschedule` WHERE id = '$schedule_id'");
         return json_encode($result);
     }
+
+    public function delete_DetailSchedule($schedule_id)
+    {
+        $flight = tripScheduleDetailsModel::find($schedule_id);
+        
+        if ($flight->delete()) {
+            return json_encode("status:200");
+        }
+        else{
+            return json_encode("status:500");
+        }
+    }   
+
+    public function getDetailTripSchedule_web($id)
+    {
+        $list_services = DB::table('vnt_tripschedule_details')
+        ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_tripschedule_details.service_id')
+        ->leftJoin('vnt_services', 'vnt_services.id', '=', 'vnt_tripschedule_details.service_id' )
+        ->leftJoin('vnt_tripschedule', 'vnt_tripschedule.id', '=', 'vnt_tripschedule_details.trip_id')
+        ->leftJoin('vnt_hotels', 'vnt_hotels.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_eating', 'vnt_eating.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_entertainments', 'vnt_entertainments.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_sightseeing', 'vnt_sightseeing.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_transport', 'vnt_transport.service_id', '=', 'vnt_services.id')
+        ->select('vnt_services.id','vnt_tripschedule_details.id as id_detail', 'hotel_name', 'sightseeing_name', 'entertainments_name', 'transport_name', 'eat_name', 'vnt_images.id AS image_id','vnt_images.image_details_1')
+        ->where('vnt_tripschedule_details.trip_id', '=', $id)
+        ->paginate(10);
+  
+        $encode=json_encode($list_services);
+        return $encode;
+    } 
 }

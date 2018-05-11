@@ -5,7 +5,7 @@
 </form> -->
 
 <!-- vui choi -->
-<form action="savequyendangky/13" method="post" enctype="multipart/form-data">
+<form action="post-schedule/user=13" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="csrf-token" content="{{ csrf_token() }}">
 	<input type="text" name="username"> <br>
 	<input type="text" name="password">	<br>
@@ -24,7 +24,9 @@
 	</select>
 	<br>
 	<input type="hidden" name="csrf-token" content="{{ csrf_token() }}">
-	<input type="text" name="quyen">
+	<input type="text" name="trip_name">
+	<input type="date" name="trip_startdate">
+	<input type="date" name="trip_enddate">
 	<br>
 	<button type="submit">ddddd</button>
 </form>

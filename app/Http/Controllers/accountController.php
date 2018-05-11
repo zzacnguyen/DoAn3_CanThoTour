@@ -96,19 +96,28 @@ class accountController extends Controller
             {
                 contact_infoModel::where('user_id',$id)
          
-                ->update(['contact_name'=>$request->name,'contact_phone'=>$request->phone,
-                'contact_website'=>$request->website,'contact_email_address'=>$request->email,'contact_language'=>$request->lang,
-                'contact_country'=>$request->address,'contact_avatar'=>$request->avatar]);
-                return "ok";
+                ->update([
+                    'contact_name'=>$request->name,
+                    'contact_phone'=>$request->phone,
+                    'contact_website'=>$request->website,
+                    'contact_email_address'=>$request->email,
+                    'contact_language'=>$request->lang,
+                    'contact_country'=>$request->address,
+                    'contact_avatar'=>$request->avatar]);
+                return "1";
             }
             else
             {
                 contact_infoModel::where('user_id',$id)
          
-                ->update(['contact_name'=>$request->name,'contact_phone'=>$request->phone,
-                'contact_website'=>$request->website,'contact_email_address'=>$request->email,'contact_language'=>$request->lang,
-                'contact_country'=>$request->address]);
-                return "ok";
+                ->update([
+                    'contact_name'=>$request->name,
+                    'contact_phone'=>$request->phone,
+                    'contact_website'=>$request->website,
+                    'contact_email_address'=>$request->email,
+                    'contact_language'=>$request->lang,
+                    'contact_country'=>$request->address]);
+                return "1";
             }
          
 
@@ -380,5 +389,11 @@ class accountController extends Controller
             }
         }
         else{return 0;}
+    }
+
+
+    public function get_service_lichtrinh(){
+        $result = DB::select('SELECT * FROM c_city_district_ward_place_service WHERE sv_status = 1');
+        return json_encode($result);
     }
 }
