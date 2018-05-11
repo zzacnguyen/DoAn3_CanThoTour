@@ -16,8 +16,8 @@ class CreateVntTripscheduleTable extends Migration
         Schema::create('vnt_tripschedule', function (Blueprint $table) {
             $table->increments('id');
              $table->string('trip_name', 255);
-            $table->datetime('trip_startdate');
-            $table->datetime('trip_enddate');
+            $table->date('trip_startdate');
+            $table->date('trip_enddate');
             $table->integer('service_id')->unsigned();
             $table->foreign('service_id')->references('id')->on('vnt_services')->onDelete('cascade');
             $table->integer('user_id')->unsigned();
