@@ -14,7 +14,7 @@ include 'cms.php';
 
 Route::get('couter/couter={name}', 'CounterEventsController@Counter');
 Route::resource('eating', 'EatingController');
-
+Route::get('type-event', 'typeEvents@getAllEventType');
 
 Route::resource('services','ServicesController');
 Route::get('service/service-id={id_service}&user-id={id_user}', 'ServicesDetailsController@showDetails');
