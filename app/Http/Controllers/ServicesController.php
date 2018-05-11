@@ -61,7 +61,8 @@ class ServicesController extends Controller
         $entertainments_name =  $request->input('entertainments_name');
         $id_place = $request->input('id_place');
         if($part_user!=null || $tour_guide != null){
-            if($part_user==null){
+            if($part_user!=null){
+            
                 $user_id = $tour_guide;
                 $vnt_services                 = new servicesModel;
                 $vnt_services->sv_description   = $request->input('sv_description');
@@ -75,7 +76,7 @@ class ServicesController extends Controller
                 $vnt_services->tourist_places_id   = $id_place;
                 $vnt_services->sv_counter_view=0;
                 $vnt_services->sv_counter_point=0;
-                $vnt_services->user_tour_guide_id=$user_id;
+                $vnt_services->user_partner_id=$user_id;
                 $vnt_services->sv_website=$request->input('sv_website');
                 $vnt_services->save();
                 $lastServices = DB::table('vnt_services')->orderBy('id', 'desc')->first();
@@ -171,7 +172,7 @@ class ServicesController extends Controller
                 $vnt_services->tourist_places_id   =$id_place;
                 $vnt_services->sv_counter_view=0;
                 $vnt_services->sv_counter_point=0;
-                $vnt_services->user_tour_guide_id=$user_id;
+                $vnt_services->user_partner_id=$user_id;
                 $vnt_services->sv_website=$request->input('sv_website');
                 $vnt_services->save();
                 $lastServices = DB::table('vnt_services')->orderBy('id', 'desc')->first();

@@ -115,4 +115,6 @@ class ServicesDetailsController extends Controller
         
         return $json_merge;
     }
+
+
 }
