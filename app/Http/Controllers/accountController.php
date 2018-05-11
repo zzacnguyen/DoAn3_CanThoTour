@@ -94,20 +94,25 @@ class accountController extends Controller
 
         $quyen = array();
         foreach ($result as $result) {
-            if ($result->moderator != null || $result->admin != null) {
+            // admin cao nhất ko còn nâng quyền
+            if ($result->admin != null) {
                 array_push($quyen, 0);
             }
             else {
-                if($result->moderator == null){
+            // có thể nâng quyền enterprise
+                if($result->enterprise == null){
                     array_push($quyen, 1);
                 }
-                if($result->partner == null){
+                // có thể nâng quyền tourguide
+                if($result->tour_guide == null){
                     array_push($quyen, 2);
                 }
-                if($result->enterprise == null){
+                // có thể nâng quyền partner
+                if($result->partner == null){
                     array_push($quyen, 3);
                 }
-                if($result->tour_guide == null){
+                // có thể nâng quyền mod
+                if($result->moderator == null){
                     array_push($quyen, 4);
                 }
             }
@@ -122,10 +127,38 @@ class accountController extends Controller
         // return $result;
         $quyen = array();
         foreach ($result as $result) {
-
-            if($result->admin != null){
+            // 1 là doanh nghiệp
+            if($result->enterprise != null && $result->active_enter == 1){
                 array_push($quyen, 1);
             }
+            // 2 là hdv
+            if($result->tour_guide != null && $result->active_tour == 1){
+                array_push($quyen, 2);
+            }
+            // 3 là ctv
+            if($result->partner != null && $result->active_partner == 1){
+                array_push($quyen, 3);
+            }
+            // 4 là mod
+            if($result->moderator != null && $result->active_mod == 1){
+                array_push($quyen, 4);
+            }
+            // 5 là admin
+            if($result->admin != null){
+                array_push($quyen, 5);
+            }                
+        }
+        if ( empty($quyen)) {
+            $quyen[] = 0;
+        }
+        return $quyen;      
+    }
+
+    public function get_quyen_dangxet_user($userid) // lay ra nhung quyen nguoi dung dang co
+    {
+        $result = DB::select('CALL login_info_phone(?)',array($userid));
+        $quyen = array();
+        foreach ($result as $result) {
 
             if($result->moderator != null && $result->active_mod == 1){
                 array_push($quyen, 2);
@@ -147,32 +180,6 @@ class accountController extends Controller
         return $quyen;      
     }
 
-    public function get_quyen_dangxet_user($userid) // lay ra nhung quyen nguoi dung dang co
-    {
-        $result = DB::select('CALL login_info_phone(?)',array($userid));
-        $quyen = array();
-        foreach ($result as $result) {
-
-            if($result->moderator != null && $result->active_mod == 0){
-                array_push($quyen, 2);
-            }
-            if($result->partner != null && $result->active_partner == 0){
-                array_push($quyen, 3);
-            }
-            if($result->enterprise != null && $result->active_enter == 0){
-                array_push($quyen, 4);
-            }
-            if($result->tour_guide != null && $result->active_tour == 0){
-                array_push($quyen, 5);
-            }
-                
-        }
-        if ( empty($quyen)) {
-            $quyen[] = 0;
-        }
-        return $quyen;      
-    }
-
     public function savequyendangky(Request $request,$id){ // 
         $quyen = (int)$request->quyen;
         // 1-moderator 2-partner 3-enterprise 4-tourguide
@@ -180,42 +187,13 @@ class accountController extends Controller
         $datenow = $mytime->toDateTimeString();
         if ($quyen > 0 && $quyen <= 4) {
             switch ($quyen) {
+                // enterprise
                 case 1:
-                    try
-                    {
-                        $mod = new moderatorModel();
-                        $mod->user_id = $id;
-                        $mod->account_active = 0;
-                        $mod->created_at = $datenow;
-                        $mod->save();
-                        return 1;
-                    }
-                    catch(\Illuminate\Database\QueryException $ex){ 
-                        return -1;
-                    }       
-                break;
-
-                case 2:
-                    try
-                    {
-                        $mod = new partnerModel();
-                        $mod->user_id = $id;
-                        $mod->account_active = 0;
-                        $mod->created_at = $datenow;
-                        $mod->save();
-                        return 1;
-                    }
-                    catch(\Illuminate\Database\QueryException $ex){ 
-                        return -1;
-                    }       
-                break;
-
-                case 3:
                     try
                     {
                         $mod = new enterpriseUserModel();
                         $mod->user_id = $id;
-                        $mod->account_active = 0;
+                        $mod->account_active = 1;
                         $mod->created_at = $datenow;
                         $mod->save();
                         return 1;
@@ -224,15 +202,45 @@ class accountController extends Controller
                         return -1;
                     }       
                 break;
-
-                case 4:
+                // tourguide
+                case 2:
                     try
                     {
                         $mod = new tourguideModel();
                         $mod->user_id = $id;
-                        $mod->account_active = 0;
+                        $mod->account_active = 1;
                         $mod->user_objective_details = "Đang cập nhật";
                         $mod->user_strengths_details = "Đang cập nhật";
+                        $mod->created_at = $datenow;
+                        $mod->save();
+                        return 1;
+                    }
+                    catch(\Illuminate\Database\QueryException $ex){ 
+                        return -1;
+                    }       
+                break;
+                // partner
+                case 3:
+                    try
+                    {
+                        $mod = new partnerModel();
+                        $mod->user_id = $id;
+                        $mod->account_active = 1;
+                        $mod->created_at = $datenow;
+                        $mod->save();
+                        return 1;
+                    }
+                    catch(\Illuminate\Database\QueryException $ex){ 
+                        return -1;
+                    }       
+                break;
+                // moderator
+                case 4:
+                    try
+                    {
+                        $mod = new moderatorModel();
+                        $mod->user_id = $id;
+                        $mod->account_active = 1;
                         $mod->created_at = $datenow;
                         $mod->save();
                         return 1;
