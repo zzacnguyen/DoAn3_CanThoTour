@@ -176,6 +176,19 @@ Route::get('search-city-type/{idcity}&type={type}&keyword={key}','pageController
 //
 Route::get('get_service_lichtrinh','accountController@get_service_lichtrinh');
 
+//service user
+Route::post('post_add_service_user/{user_id}','accountController@post_add_service_user');
+Route::get('get_service_user/{user_id}','accountController@get_service_user');
+Route::get('get_edit_service_user/{id}/{user_id}','accountController@get_edit_service_user');
+Route::post('post_edit_service_user/{id}','accountController@post_edit_service_user');
+
+//place user
+Route::get('get_place_user/{id}','accountController@get_place_user');
+Route::get('get_edit_place_user/{user_id}/{id}','accountController@get_edit_place_user');
+Route::post('post_edit_place_user/{user_id}/{id}','accountController@post_edit_place_user');
+Route::get('get_add_place_user','accountController@get_add_place_user');
+Route::post('post_add_place_user/{user_id}','accountController@post_add_place_user');
+
 
 
 

@@ -10,6 +10,17 @@ use App\partnerModel;
 use App\moderatorModel;
 use App\tourguideModel;
 use App\contact_infoModel;
+use App\touristPlacesModel as tp;
+use App\provincecityModel as city;
+use App\districtModel;
+use App\wardModel;
+use App\servicesModel;
+use App\eatingModel;
+use App\hotelsModel;
+use App\transportModel;
+use App\sightseeingModel;
+use App\entertainmentsModel;
+use App\imagesModel;
 use Carbon;
 class accountController extends Controller
 {
@@ -395,5 +406,275 @@ class accountController extends Controller
     public function get_service_lichtrinh(){
         $result = DB::select('SELECT * FROM c_city_district_ward_place_service WHERE sv_status = 1');
         return json_encode($result);
+    }
+
+
+     public function get_service_user($user_id)
+    {
+        $data=servicesModel::where('user_enterprise_id',$user_id)->limit(10)->get();
+        return json_encode($data);
+    }
+    public function get_edit_service_user($id,$user_id)
+    {
+        $city=city::all();
+        $info=servicesModel::find($id);
+        $place=servicesModel::join('vnt_tourist_places','vnt_services.tourist_places_id','=','vnt_tourist_places.id')
+        ->where('vnt_services.id',$id)
+        ->select('vnt_services.tourist_places_id','pl_name')->get();
+        return json_encode(array('city'=>$city,'place'=>$place,'info'=>$info));
+    }
+    public function post_edit_service_user(Request $request,$id)
+    {
+       
+       
+        $table=servicesModel::find($id);
+        try{
+            $table->sv_description=$request->sv_description;
+            $table->sv_content=$request->mota;
+            $table->sv_open=$request->time_begin;
+            $table->sv_close=$request->time_end;
+            $table->sv_highest_price=$request->sv_highest_price;
+            $table->sv_lowest_price=$request->sv_lowest_price;
+        
+            $table->sv_website=$request->sv_website;
+            $table->sv_phone_number=$request->sv_phone_number;
+            $table->sv_counter_view=1;
+            $table->sv_counter_point=1;
+            $table->sv_status='1';
+            $table->sv_types=$request->sv_types;
+            $table->tourist_places_id=$request->diadiem;
+            $table->save();
+        
+            if($request->img1!=''){
+                imagesModel::where('service_id',$id)->update(['image_banner'=>$request->img1]);
+            }
+            if($request->img2!=''){
+                imagesModel::where('service_id',$id)->update(['image_details_1'=>$request->img2]);
+            }
+            if($request->img3!=''){
+                imagesModel::where('service_id',$id)->update(['image_details_2'=>$request->img3]);
+            }
+             switch ($request->sv_types) {
+                case 1:
+                    eatingModel::where('service_id',$id)->update(['eat_name'=>$request->sv_description,'eat_status'=>'1']);
+                    return 'ok';
+                    break;
+                case 2:
+                    hotelsModel::where('service_id',$id)->update(['hotel_name'=>$request->sv_description,'hotel_number_star'=>5,'hotel_status'=>'1']);
+                    return 'ok';
+                    break;
+                case 3:
+                    transportModel::where('service_id',$id)->update(['transport_name'=>$request->sv_description,'transport_status'=>'1']);
+                    return 'ok';
+                    break;
+                case 4:
+                     sightseeingModel::where('service_id',$id)->update(['sightseeing_name'=>$request->sv_description,'sightseeing_status'=>'1']);
+                    return 'ok';
+                    break;
+                case 5:
+                    entertainmentsModel::where('service_id',$id)->update(['entertainments_name'=>$request->sv_description,'entertainments_status'=>'1']);
+                    return 'ok';
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+           
+            
+
+        }
+        catch(\Illuminate\Database\QueryException $ex){ 
+            return "error";
+        }
+    }
+
+    //place user
+    public function get_place_user($id)
+    {
+        // $data=tp::where('user_enterprise_id',$id)->paginate(10)->withPath('http://chinhlytailieu/vntour_web/place-user');;
+        // $boss['link']=$data->links();
+        // $boss['data']=$data->toArray();
+        // return json_encode()
+        $data=tp::where('user_enterprise_id',$id)->get();
+       
+        return json_encode($data);
+  
+       
+    }
+    public function get_edit_place_user($user_id,$id)
+    {
+        $data['info']=tp::where('user_enterprise_id',$user_id)->where('id',$id)->get();
+        $data['address']=DB::select('select * from c_city_district_ward_place WHERE id_place ='.$data['info'][0]->id.' ');
+        $data['city']=city::all();
+        $data['district']=districtModel::all();
+        $data['ward']=wardModel::all();
+        return json_encode($data);
+        
+    
+    }
+    public function post_edit_place_user(Request $request,$user_id,$id)
+    {
+      
+        try
+        {
+            tp::where('id',$id)->update(['pl_name'=>$request->place_name,'pl_address'=>$request->place_address,'pl_phone_number'=>$request->place_phone,
+            'pl_latitude'=>$request->kinhdo,'pl_longitude'=>$request->vido,'id_ward'=>$request->place_ward]);
+            return "ok";
+        }
+        catch(\Illuminate\Database\QueryException $ex){ 
+            return "error";
+        }
+     
+    }
+    public function get_add_place_user()
+    {
+        $data=city::all();
+        return json_encode($data);
+    }
+    public function post_add_place_user(Request $request,$user_id)
+    {
+            // $table=new tp;
+            // $table->pl_name=$request->place_name;
+            // $table->pl_address=$request->place_address;
+            // $table->pl_phone_number=$request->place_phone;
+            // $table->pl_latitude=$request->vido;
+            // $table->pl_longitude=$request->kinhdo;
+            // $table->id_ward=$request->place_ward;
+            // $table->user_enterprise_id=$user_id;
+            // $table->user_partner_id=1;
+            // $table->user_tour_guide_id=1;
+            // $table->pl_status='0';
+            // $table->pl_content='0';
+            // $table->pl_details='0';
+            // $table->save();
+            // return "ok";
+         // return json_encode($request->all());
+       
+        
+        try
+        {
+            $table=new tp;
+            $table->pl_name=$request->place_name;
+            $table->pl_address=$request->place_address;
+            $table->pl_phone_number=$request->place_phone;
+            $table->pl_latitude=$request->vido;
+            $table->pl_longitude=$request->kinhdo;
+            $table->id_ward=$request->place_ward;
+            $table->user_enterprise_id=$user_id;
+            $table->pl_status='0';
+            $table->pl_content='0';
+            $table->pl_details='0';
+            $table->save();
+            return "ok";
+        }
+        catch(\Illuminate\Database\QueryException $ex){ 
+            return "error";
+        }
+    }
+    public function post_add_service_user(Request $request,$user_id)
+    {
+
+        $table=new servicesModel;
+
+        $table->sv_description=$request->sv_description;
+            $table->sv_content=$request->mota;
+            $table->sv_open=$request->time_begin;
+            $table->sv_close=$request->time_end;
+            $table->sv_highest_price=$request->sv_lowest_price;
+            $table->sv_lowest_price=$request->sv_highest_price;
+        
+            $table->sv_website=$request->sv_website;
+            $table->sv_phone_number=$request->sv_phone_number;
+            $table->sv_counter_view=1;
+            $table->sv_counter_point=1;
+            $table->sv_status='1';
+            $table->sv_types=$request->sv_types;
+            $table->tourist_places_id=$request->diadiem;
+            $table->user_enterprise_id=$user_id;
+            $table->save();
+            $max=$table::max('id');
+            imagesModel::insert(['image_banner'=>$request->img1,'image_details_1'=>$request->img2,'image_details_2'=>$request->img3,'image_status'=>'1','service_id'=>$max]);
+
+          
+             switch ($request->sv_types) {
+                case 1:
+                    eatingModel::insert(['eat_name'=>$request->sv_description,'eat_status'=>'1','service_id'=>$max]);
+                    return 'ok';
+                    break;
+                case 2:
+                    hotelsModel::insert(['hotel_name'=>$request->sv_description,'hotel_number_star'=>5,'hotel_status'=>'1','service_id'=>$max]);
+                    return 'ok';
+                    break;
+                case 3:
+                    transportModel::insert(['transport_name'=>$request->sv_description,'transport_status'=>'1','service_id'=>$max]);
+                    return 'ok';
+                    break;
+                case 4:
+                     sightseeingModel::insert(['sightseeing_name'=>$request->sv_description,'sightseeing_status'=>'1','service_id'=>$max]);
+                    return 'ok';
+                    break;
+                case 5:
+                    entertainmentsModel::insert(['entertainments_name'=>$request->sv_description,'entertainments_status'=>'1','service_id'=>$max]);
+                    return 'ok';
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+        
+        // try{
+        //     $table->sv_description=$request->sv_description;
+        //     $table->sv_content=$request->mota;
+        //     $table->sv_open=$request->time_begin;
+        //     $table->sv_close=$request->time_end;
+        //     $table->sv_highest_price=$request->sv_lowest_price;
+        //     $table->sv_lowest_price=$request->sv_highest_price;
+        
+        //     $table->sv_website=$request->sv_website;
+        //     $table->sv_phone_number=$request->sv_phone_number;
+        //     $table->sv_counter_view=1;
+        //     $table->sv_counter_point=1;
+        //     $table->sv_status='1';
+        //     $table->sv_types=$request->sv_types;
+        //     $table->tourist_places_id=$request->diadiem;
+        //     $table->user_enterprise_id=$user_id;
+        //     $table->save();
+        //     $max=$table::max('id');
+        //     imagesModel::insert(['image_banner'=>$request->img1,'image_details_1'=>$request->img2,'image_details_2'=>$request->img3,'image_status'=>'1','service_id'=>$max]);
+
+          
+        //      switch ($request->sv_types) {
+        //         case 1:
+        //             eatingModel::insert(['eat_name'=>$request->sv_description,'eat_status'=>'1','service_id'=>$max]);
+        //             return 'ok';
+        //             break;
+        //         case 2:
+        //             hotelsModel::insert(['hotel_name'=>$request->sv_description,'hotel_number_star'=>5,'hotel_status'=>'1','service_id'=>$max]);
+        //             return 'ok';
+        //             break;
+        //         case 3:
+        //             transportModel::insert(['transport_name'=>$request->sv_description,'transport_status'=>'1','service_id'=>$max]);
+        //             return 'ok';
+        //             break;
+        //         case 4:
+        //              sightseeingModel::insert(['sightseeing_name'=>$request->sv_description,'sightseeing_status'=>'1','service_id'=>$max]);
+        //             return 'ok';
+        //             break;
+        //         case 5:
+        //             entertainmentsModel::insert(['entertainments_name'=>$request->sv_description,'entertainments_status'=>'1','service_id'=>$max]);
+        //             return 'ok';
+        //             break;
+        //         default:
+        //             # code...
+        //             break;
+        //     }
+           
+            
+
+        // }
+        // catch(\Illuminate\Database\QueryException $ex){ 
+        //     return "error";
+        // }
+  
     }
 }

@@ -5,7 +5,7 @@
 </form> -->
 
 <!-- vui choi -->
-<form action="post-schedule/user=13" method="post" enctype="multipart/form-data">
+<form action="http://chinhlytailieu/vntour_api/post_add_place_user/13" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="csrf-token" content="{{ csrf_token() }}">
 	<input type="text" name="username"> <br>
 	<input type="text" name="password">	<br>
@@ -24,9 +24,12 @@
 	</select>
 	<br>
 	<input type="hidden" name="csrf-token" content="{{ csrf_token() }}">
-	<input type="text" name="trip_name">
-	<input type="date" name="trip_startdate">
-	<input type="date" name="trip_enddate">
+	<input type="text" name="place_name">
+	<input type="text" name="place_address">
+	<input type="text" name="place_phone">
+	<input type="text" name="ward">
+	<input type="text" name="vido">
+	<input type="text" name="kinhdo">
 	<br>
 	<button type="submit">ddddd</button>
 </form>
