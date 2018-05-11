@@ -13,7 +13,7 @@ class ImagesController extends Controller
 {
     public function getIcon($service_id)
     {
-        $url  = 'icons/';
+        $url  = 'public/icons/';
         $string_replace = '","id":';
         $icon_image = DB::table('vnt_images') 
         ->select('image_details_1','id')
@@ -31,7 +31,7 @@ class ImagesController extends Controller
 
     public function getBanner($service_id)
     {
-        $url  = 'banners/';
+        $url  = 'public/banners/';
         $string_replace = '","id":';
         $icon_image = DB::table('vnt_images') 
         ->select('image_banner','id')
@@ -51,7 +51,7 @@ class ImagesController extends Controller
 
     public function getThumbnail1($service_id)
     {
-        $url  = 'thumbnails/';
+        $url  = 'public/thumbnails/';
         $string_replace = '","id":';
         $thumb_image = DB::table('vnt_images') ->select('image_details_1','id')
         ->where('service_id', $service_id)->get();
@@ -66,7 +66,7 @@ class ImagesController extends Controller
     }
     public function getThumbnail2($service_id)
     {
-        $url  = 'thumbnails/';
+        $url  = 'public/thumbnails/';
         $string_replace = '","id":';
         $thumb_image = DB::table('vnt_images') ->select('image_details_2','id')
         ->where('service_id', $service_id)->get();
@@ -81,7 +81,7 @@ class ImagesController extends Controller
     }
     public function getImageDetail1($service_id)
     {
-        $url  = 'details1/';
+        $url  = 'public/details1/';
         $string_replace = '","id":';
         $image_detail = DB::table('vnt_images') 
         ->select('image_details_1','id')
@@ -97,7 +97,7 @@ class ImagesController extends Controller
     }
     public function getImageDetail2($service_id)
     {
-        $url  = 'details2/';
+        $url  = 'public/details2/';
         $string_replace = '","id":';
         $image_detail = DB::table('vnt_images') 
         ->select('image_details_2','id')

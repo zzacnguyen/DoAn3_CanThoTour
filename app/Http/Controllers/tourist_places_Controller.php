@@ -331,4 +331,9 @@ class tourist_places_controller extends Controller
         ->get();
         return json_encode($DisTrict);
     }
+
+    public function getƯ($value='')
+    {
+        # code...
+    }
 }

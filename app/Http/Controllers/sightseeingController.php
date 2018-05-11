@@ -13,7 +13,7 @@ class sightseeingController extends Controller
      */
     public function index()
     {
-        $url  = 'http://localhost/DoAn3_CanThoTour/public/thumbnails/';
+
         
         $sightseeing = DB::table('vnt_sightseeing')
         ->select('vnt_sightseeing.service_id AS id','sightseeing_name', 'vnt_images.id AS image_id','vnt_images.image_details_1')
