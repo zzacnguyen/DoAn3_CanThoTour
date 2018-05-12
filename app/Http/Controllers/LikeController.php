@@ -72,6 +72,7 @@ class LikeController extends Controller
         ->join('vnt_services', 'vnt_services.id', '=', 'vnt_likes.service_id')
         ->where('vnt_likes.user_id',$id)
         ->paginate (10);
+        
         $encode=json_encode($like);
         return $encode;
     }

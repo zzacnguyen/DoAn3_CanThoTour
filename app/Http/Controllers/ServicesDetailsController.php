@@ -107,14 +107,18 @@ class ServicesDetailsController extends Controller
 
         $merge[] = ["isLike"=>$like_tmp, "isRating"=>$rating_tmp,"idLike"=>$like_id, 
         "idRating"=>$rating_id, "type_event"=>$type_events,"service"=>$service, "count_like"=>$countLike];  
-        
-        
         $json_merge = json_encode($merge);
-       
+     
+
 
         
         return $json_merge;
     }
 
-
+    public function postCounterView($service_id)
+    {
+        $update_services_view = servicesModel::findOrFail($services_id)
+        $update_services_view->increment('sv_counter_view');
+        $update_services_view->update();
+    }
 }

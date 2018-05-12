@@ -18,6 +18,8 @@ Route::get('type-event', 'typeEvents@getAllEventType');
 
 Route::resource('services','ServicesController');
 Route::get('service/service-id={id_service}&user-id={id_user}', 'ServicesDetailsController@showDetails');
+Route::post('service-postview/id={id}', 'ServicesDetailsController@postCounterView');
+
 Route::resource('usersearch', 'userSearch');
 
 Route::resource('hotels', 'vnt_hotelsController');
