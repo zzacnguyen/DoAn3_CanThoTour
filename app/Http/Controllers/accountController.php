@@ -162,9 +162,9 @@ class accountController extends Controller
                     array_push($quyen, 3);
                 }
                 // có thể nâng quyền mod
-                if($result->moderator == null){
-                    array_push($quyen, 4);
-                }
+                // if($result->moderator == null){
+                //     array_push($quyen, 4);
+                // }
             }
                 
         }
@@ -379,20 +379,20 @@ class accountController extends Controller
                     }       
                 break;
                 // moderator
-                case 4:
-                    try
-                    {
-                        $mod = new moderatorModel();
-                        $mod->user_id = $id;
-                        $mod->account_active = 0;
-                        $mod->created_at = $datenow;
-                        $mod->save();
-                        return 1;
-                    }
-                    catch(\Illuminate\Database\QueryException $ex){ 
-                        return -1;
-                    }       
-                break;
+                // case 4:
+                //     try
+                //     {
+                //         $mod = new moderatorModel();
+                //         $mod->user_id = $id;
+                //         $mod->account_active = 0;
+                //         $mod->created_at = $datenow;
+                //         $mod->save();
+                //         return 1;
+                //     }
+                //     catch(\Illuminate\Database\QueryException $ex){ 
+                //         return -1;
+                //     }       
+                // break;
 
                 default:
                     return 0;
