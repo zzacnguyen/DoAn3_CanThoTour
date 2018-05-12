@@ -50,7 +50,20 @@ class LikeController extends Controller
         $likes                    = new likesModel;
         $likes->service_id       = $request->input('service_id');
         $likes->user_id    = $request->input('user_id');
-        $likes->save();
+        if($likes->save())
+        {
+            $id = DB::table('vnt_likes')
+            ->select('id')
+            ->where('service_id',$request->input('service_id'))
+            ->where('user_id',$request->input('user_id'))
+            ->get();
+            $encode=json_encode($id);
+            return $encode;
+        }
+        else{
+            $encode=json_encode("status:500");
+            return $encode;
+        }
     }
 
     /**
