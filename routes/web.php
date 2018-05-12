@@ -53,7 +53,7 @@ Route::post('login-mobile','loginController@postLogin')->name('login-mobile');
 Route::post('register-mobile','loginController@register')->name('register-mobile');
 Route::get('logout','loginController@logout');
 
-Route::post('edit_user_mobile','loginController@edit_user_mobile');
+Route::post('edit_user_mobile/{id}','accountController@edit_user_mobile');
 
 
 
