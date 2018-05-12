@@ -115,10 +115,10 @@ class ServicesDetailsController extends Controller
         return $json_merge;
     }
 
-    public function postCounterView($service_id)
-    {
-        $update_services_view = servicesModel::findOrFail($services_id)
-        $update_services_view->increment('sv_counter_view');
-        $update_services_view->update();
-    }
+    // public function postCounterView($service_id)
+    // {
+    //     $update_services_view = servicesModel::findOrFail($services_id)
+    //     $update_services_view->increment('sv_counter_view');
+    //     $update_services_view->update();
+    // }
 }
