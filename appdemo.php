@@ -5,7 +5,7 @@
 </form> -->
 
 <!-- vui choi -->
-<form action="http://chinhlytailieu/vntour_api/post_add_place_user/13" method="post" enctype="multipart/form-data">
+<form action="http://chinhlytailieu/vntour_api/register-mobile" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="csrf-token" content="{{ csrf_token() }}">
 	<input type="text" name="username"> <br>
 	<input type="text" name="password">	<br>
@@ -17,7 +17,7 @@
 	
 	<br>
 
-	<label>Ngôn ngữ:</label>
+	<!-- <label>Ngôn ngữ:</label>
 	<select name="language">
 		<option value="viet nam">viet nam</option>
 		<option value="My">My</option>
@@ -30,7 +30,7 @@
 	<input type="text" name="ward">
 	<input type="text" name="vido">
 	<input type="text" name="kinhdo">
-	<br>
+	<br> -->
 	<button type="submit">ddddd</button>
 </form>
 

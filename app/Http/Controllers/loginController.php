@@ -243,6 +243,14 @@ class loginController extends Controller
             $userRegister->password            = bcrypt($password);
             
             $userRegister->save();
+
+            $lam = usersModel::where('username',$user)->first();
+
+            $id_user = $lam->user_id;
+            $contact = new contact_infoModel();
+            $contact->user_id = $id_user;
+            $contact->save();
+
             $erro = array('error' => null, 'status' => 'OK');
             return json_encode($erro);
         }
