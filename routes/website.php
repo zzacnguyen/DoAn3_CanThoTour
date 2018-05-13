@@ -191,8 +191,9 @@ Route::post('post_add_place_user/{user_id}','accountController@post_add_place_us
 
 
 
+// doi mat khau
 
-
+Route::post('change-pass/{id}','accountController@changePassword');
 
 
 

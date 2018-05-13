@@ -21,7 +21,9 @@ use App\transportModel;
 use App\sightseeingModel;
 use App\entertainmentsModel;
 use App\imagesModel;
+use App\usersModel;
 use Carbon;
+use Hash;
 class accountController extends Controller
 {
     public function get_info_account()
@@ -685,5 +687,31 @@ class accountController extends Controller
         //     return "error";
         // }
   
+    }
+
+
+    public function changePassword(Request $request, $iduser){
+        $pass = $request->password_old;
+        // echo $pass;
+        $pass_new = $request->password_new;
+        $u = usersModel::where('user_id',$iduser)->first();
+
+        if ($u != null) {
+            if (Hash::check($pass,$u->password)) {
+                try 
+                {
+                    usersModel::where('user_id', $iduser)->update(['password' => bcrypt($pass_new)]);
+                    return 1;
+                } catch (Exception $e) {
+                    return -1;
+                }  
+            }
+            else{
+                return 0; // mat khau khong khop
+            }
+        }
+        else{
+            return -1;
+        }
     }
 }
