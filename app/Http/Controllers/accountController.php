@@ -102,6 +102,17 @@ class accountController extends Controller
 
     public function edit_user_mobile(Request $request,$id)
     {
+
+        // contact_infoModel::where('user_id',$id)
+         
+        //         ->update([
+        //             'contact_name'=>$request->name,
+        //             'contact_phone'=>$request->phone,
+        //             'contact_website'=>$request->website,
+        //             'contact_email_address'=>$request->email,
+        //             'contact_language'=>$request->lang,
+        //             'contact_country'=>$request->address]);
+        //         return "1";
         try{
             if($request->avatar)
             {
@@ -130,8 +141,6 @@ class accountController extends Controller
                     'contact_country'=>$request->address]);
                 return "1";
             }
-         
-
         }
         catch(\Illuminate\Database\QueryException $ex){ 
             return "error";
