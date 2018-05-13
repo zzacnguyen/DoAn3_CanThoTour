@@ -24,6 +24,7 @@ use App\imagesModel;
 use App\usersModel;
 use Carbon;
 use Hash;
+use App\userSearchModel;
 class accountController extends Controller
 {
     public function get_info_account()
@@ -713,5 +714,56 @@ class accountController extends Controller
         else{
             return -1;
         }
+    }
+
+    public function get_user_search($userid)
+    {
+        // id-type-image-name
+        $search = userSearchModel::where('user_id',$userid)->orderBy('created_at', 'desc')->limit(10)->get();
+        // return $search;
+        foreach ($search as $value) {
+            $sv = servicesModel::where('id',$value->id_service)->first();
+
+            $get_name_image = $this::get_name_image_ser($sv->sv_types,$value->id_service);
+            foreach ($get_name_image as $v) {
+                $name = $v->sv_name;
+                $image = $v->image_details_1;
+            }
+            $result[] = array
+                (
+                    'sv_id' => $value->id_service,
+                    'sv_type' => $sv->sv_types,
+                    'sv_name' => $name,
+                    'sv_description' => $sv->sv_description,
+                    'sv_image' => $image
+                );
+
+        }
+        if (isset($result)) {
+            return $result;
+        }
+        else{return null;}
+
+    }
+
+    public function get_name_image_ser($type,$id_service){
+        switch ($type) {
+            case 1:
+                $lam = DB::select("select * from sv_eat WHERE sv_id = '$id_service'");
+                break;
+            case 2:
+                $lam = DB::select("select * from sv_hotel WHERE sv_id = '$id_service'");
+                break;
+            case 3:
+                $lam = DB::select("select * from sv_stranport WHERE sv_id = '$id_service'");
+                break;
+            case 4:
+                $lam = DB::select("select * from sv_sightseeting WHERE sv_id = '$id_service'");
+                break;
+            case 5:
+                $lam = DB::select("select * from sv_entertaiment WHERE sv_id = '$id_service'");
+                break;
+        }
+        return $lam;
     }
 }

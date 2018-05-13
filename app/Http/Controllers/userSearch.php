@@ -47,7 +47,21 @@ class userSearch extends Controller
     {
             $userSearch =  new userSearchModel;
             $userSearch->id_service  =  $request->input('id_service');
-            $userSearch->id_users  =  $request->input('id_user');
+            $userSearch->user_id  =  $request->input('id_user');
+            if($userSearch->save())
+            {
+                return json_encode("status:200");
+            }
+            else{
+                return json_encode("status:500");
+            }
+    }
+
+    public function save_user_search($id_service,$id_user)
+    {
+            $userSearch =  new userSearchModel;
+            $userSearch->id_service  =  $id_service;
+            $userSearch->user_id  =  $id_user;
             if($userSearch->save())
             {
                 return json_encode("status:200");

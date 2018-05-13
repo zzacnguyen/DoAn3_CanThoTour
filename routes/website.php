@@ -195,6 +195,12 @@ Route::post('post_add_place_user/{user_id}','accountController@post_add_place_us
 
 Route::post('change-pass/{id}','accountController@changePassword');
 
+// user search
+Route::get('userSearch','userSearch@store');
+Route::get('save-user-search/{idserivce}&{iduser}','userSearch@save_user_search');
+
+Route::get('get-list-user-search/{iduser}','accountController@get_user_search');
+
 
 
 

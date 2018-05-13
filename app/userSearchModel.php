@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class userSearchModel extends Model
 {
-     protected $table = 'vnt_usersearch';
+     protected $table = 'vnt_user_search';
 }
