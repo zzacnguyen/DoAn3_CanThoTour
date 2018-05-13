@@ -201,6 +201,8 @@ Route::get('save-user-search/{idserivce}&{iduser}','userSearch@save_user_search'
 
 Route::get('get-list-user-search/{iduser}','accountController@get_user_search');
 
+Route::get('get-top-search','accountController@get_search_nhieunhat');
+
 
 
 

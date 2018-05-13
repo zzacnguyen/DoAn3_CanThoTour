@@ -725,6 +725,7 @@ class accountController extends Controller
             $sv = servicesModel::where('id',$value->id_service)->first();
 
             $get_name_image = $this::get_name_image_ser($sv->sv_types,$value->id_service);
+            // dd($get_name_image);
             foreach ($get_name_image as $v) {
                 $name = $v->sv_name;
                 $image = $v->image_details_1;
@@ -765,5 +766,32 @@ class accountController extends Controller
                 break;
         }
         return $lam;
+    }
+
+    public function get_search_nhieunhat(){
+        $result_lis = DB::select("SELECT id_service, COUNT(id_service) AS 'num' FROM vnt_user_search GROUP BY id_service ORDER BY num desc limit 10");
+        foreach ($result_lis as $value) {
+            $sv = servicesModel::where('id',$value->id_service)->first();
+
+            $get_name_image = $this::get_name_image_ser($sv->sv_types,$value->id_service);
+            // dd($get_name_image);
+            foreach ($get_name_image as $v) {
+                $name = $v->sv_name;
+                $image = $v->image_details_1;
+            }
+            $result[] = array
+                (
+                    'sv_id' => $value->id_service,
+                    'sv_type' => $sv->sv_types,
+                    'sv_name' => $name,
+                    'sv_description' => $sv->sv_description,
+                    'sv_image' => $image
+                );
+
+        }
+        if (isset($result)) {
+            return json_encode($result);
+        }
+        else{return null;}
     }
 }

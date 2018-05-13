@@ -62,14 +62,21 @@ class userSearch extends Controller
             $userSearch =  new userSearchModel;
             $userSearch->id_service  =  $id_service;
             $userSearch->user_id  =  $id_user;
-            if($userSearch->save())
-            {
-                return json_encode("status:200");
+            $check = userSearchModel::where('user_id',$id_user)->where('id_service',$id_service)->first();
+            // return json_encode($check);
+            if ($check == null) {
+                if($userSearch->save())
+                {
+                    return json_encode("status:200");
+                }
+                else{
+                    return json_encode("status:500");
+                }
             }
-            else{
-                return json_encode("status:500");
-            }
+            else{return json_encode("status:500");}
+                
     }
+
 
     /**
      * Display the specified resource.
