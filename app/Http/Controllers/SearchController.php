@@ -296,4 +296,143 @@ class SearchController extends Controller
         } 
     }
 
+
+
+    // search quanh day web
+    public function timquanhday($latitude, $longitude, $radius)
+    {
+        $type = 1;
+        // $place = $this::distance_Radius_web($latitude, $longitude, $radius);
+        $arr_distance = $this::distanceRadius($latitude,$longitude,$radius);
+            // dd($arr_distance);
+            if (!empty($arr_distance)) {
+                ksort($arr_distance);
+                foreach ($arr_distance as $value) {
+                    $arr_distancePlace[$value['id']] = $value['distantce'];
+                }
+                foreach ($arr_distancePlace as $key => $value) {
+                    if (!empty($this::getServicesAll_2($key,$type,$value))) {
+                        foreach ($this::getServicesAll_2($key,$type,$value) as $k => $v) {
+                            $r[] = $v;
+                        }
+                    }
+                }
+                if (isset($r)) {
+                    return $r;
+                }
+                else{
+                    return null;
+                }
+            }
+            else{
+                return null;
+            }
+    }
+
+    public function get_dichvu_moi($latitude, $longitude, $radius){
+        $eat = $this::timquanhday($latitude, $longitude, $radius,1);
+        return $eat;
+        foreach ($eat as $value) {
+            echo $eat->id;
+        }
+    }
+
+    public function distance_Radius_web($latitude, $longitude, $radius)
+    {
+        $places = touristPlacesModel::all();
+        foreach ($places as $p) {
+            $p_latitude = (double)$p['pl_latitude'];
+            $p_longitude = (double)$p['pl_longitude'];
+            $distancePlace = $this::distance($latitude, $longitude, $p_latitude, $p_longitude);
+            if ($distancePlace <= $radius && $distancePlace > 1) {
+                $result[$distancePlace] = array('id' => $p['id'],'pl_name' => $p['pl_name'],'distantce' => $distancePlace, 'latitude' => $p['pl_latitude'],'longitude' => $p['pl_longitude']);
+            }
+        }
+        if (isset($result)) { return $result; }
+        else{ return null; } 
+    }
+
+    public function get_dichvu_place($idplace){
+        // $result = DB::select("select * FROM c_city_district_ward_place_service where id_place = '$idplace' AND sv_status = 1");
+        $result = DB::select("select * FROM c_city_district_ward_place_service where id_place = '$idplace' AND sv_status = 1
+");
+        if ($result != null) {
+            foreach ($result as $value) {
+                $likes = DB::table('vnt_likes')->where('service_id', '=',$value->sv_id)->count();
+
+                $ratings = DB::table('vnt_visitor_ratings')->where('service_id')->first();
+                if (!empty($ratings)) {
+                    $ponit_rating = $ratings->vr_rating;
+                }else{ $ponit_rating = 0; }
+
+                $mang[] = array(
+                    'id_service'        => $value->sv_id,
+                    'name'              => $value->sv_name,
+                    'image'             => $value->image_details_1,
+                    // 'name_city'         => $name_city,
+                    'like'              => $likes,
+                    'view'              => $value->sv_counter_view,
+                    'point'             => $value->sv_counter_point,
+                    'rating'            => $ponit_rating,
+                    'sv_type'           => $value->sv_types
+                );
+            }
+        }
+            
+    }
+
+    public function getServicesAll_2($place_id,$typeServices, $distance)
+    {
+        $result = DB::select("select * FROM c_city_district_ward_place_service where id_place = '$place_id' AND sv_status = 1
+");
+        // return $result;
+        $lamlam = $this::lamlamthue();
+        foreach ($result as $value) {
+            $likes = DB::table('vnt_likes')->where('service_id', '=',$value->id_service)->count();
+            // echo "string";
+            $ratings = DB::table('vnt_visitor_ratings')->where('service_id',$value->id_service)->first();
+            if (!empty($ratings)) {
+                $ponit_rating = $ratings->vr_rating;
+            }else{ $ponit_rating = 0; }
+            
+            $mang[] = array(
+                'id_service'        => $value->id_service
+                // 'name'              => $value->sv_name,
+                // 'image'             => $value->image_details_1,
+                // // 'name_city'         => $name_city,
+                // 'like'              => $likes,
+                // 'view'              => $value->sv_counter_view,
+                // 'point'             => $value->sv_counter_point,
+                // 'rating'            => $ponit_rating,
+                // 'sv_type'           => $value->sv_types
+            );
+            return $mang;
+        }
+    }
+
+    public function lamlamthue(){
+        return 1;
+    }
+
+    public function get_name_ser($id_service, $type){
+        return 1;
+        // switch ($type) {
+        //     case 1:
+        //      $result = DB::select("SELECT sv_name,image_details_1 FROM sv_eat WHERE sv_id='$id_service' AND sv_status=1");
+        //      return $result;
+        //     case 5:
+        //      $result = DB::select("SELECT sv_name,image_details_1 FROM sv_eat WHERE sv_id='$id_service' AND sv_status=1");
+        //      return $result;
+        //     break;
+        // }
+        // if (isset($result)) {
+        //     return $result;
+        // }
+        // else{
+        //     return null;
+        // }
+    }
+
+
+
 }
