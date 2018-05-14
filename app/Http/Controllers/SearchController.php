@@ -387,76 +387,99 @@ class SearchController extends Controller
             // dd($arr_distance);
             if (!empty($arr_distance)) {
                 ksort($arr_distance);
-                // return $arr_distance;
+                // dd($arr_distance);
                 $lamlam = array();
-                $lam = array();
+                
                 $lamlam['eat'] = null;
                 $lamlam['hotel'] = null;
                 $lamlam['tran'] = null;
                 $lamlam['see'] = null;
                 $lamlam['enter'] = null;
-                foreach ($arr_distance as $value) {
-                    // $arr_distancePlace[$value['id']] = $value['distantce'];
-                    if (!empty($this::getServicesAll_type($value['id'],$value['distantce']))) {
-
-                        $lam = $this::getServicesAll_type($value['id'],$value['distantce']);
-                        if ($lam['eat'] != null) {
-                            if ($lamlam['eat'] == null) {
-                                $lamlam['eat'] = $lam['eat'];
-                            }
-                            else{
-                                $lamlam['eat'] = array_merge($lamlam['eat'],$lam['eat']);
-                            }
-                        }
-
-                        if ($lam['hotel'] != null) {
-                            if ($lamlam['hotel'] == null) {
-                                $lamlam['hotel'] = $lam['hotel'];
-                            }
-                            else{
-                                $lamlam['hotel'] = array_merge($lamlam['hotel'],$lam['hotel']);
-                            }
-                        }
-
-                        if ($lam['tran'] != null) {
-                            if ($lamlam['tran'] == null) {
-                                $lamlam['tran'] = $lam['tran'];
-                            }
-                            else{
-                                $lamlam['tran'] = array_merge($lamlam['tran'],$lam['tran']);
-                            }
-                        }
-
-                        if ($lam['see'] != null) {
-                            if ($lamlam['see'] == null) {
-                                $lamlam['see'] = $lam['see'];
-                            }
-                            else{
-                                $lamlam['see'] = array_merge($lamlam['see'],$lam['see']);
-                            }
-                        }
-
-                        if ($lam['enter'] != null) {
-                            if ($lamlam['enter'] == null) {
-                                $lamlam['enter'] = $lam['enter'];
-                            }
-                            else{
-                                $lamlam['enter'] = array_merge($lamlam['enter'],$lam['enter']);
-                            }
-                        }
+                foreach ($arr_distance as $value2) {
+                    $id_place = (int)$value2['id'];
+                    $distance = (float)$value2['distantce'];
+                    $result = DB::select("select * FROM c_city_district_ward_place_service where id_place = '$id_place' AND sv_status = 1");
+                    foreach ($result as $value) {
+                        $likes = DB::table('vnt_likes')->where('service_id', '=',$value->id_service)->count();
+                        // echo "string";
+                        $ratings = DB::table('vnt_visitor_ratings')->where('service_id',$value->id_service)->first();
+                        if (!empty($ratings)) {
+                            $ponit_rating = $ratings->vr_rating;
+                        }else{ $ponit_rating = 0; }
                         
+                        $result_type = $this::get_name_ser($value->id_service,$value->sv_types);
+
+                        $sv_type = (int)$value->sv_types;
+
+                        if ($result_type != null) {
+                            foreach ($result_type as $v) {
+                                $mang[] = array(
+                                    'id_service'        => $value->id_service,
+                                    'name'              => $v->sv_name,
+                                    'image'             => $v->image_details_1,
+                                    // // 'name_city'         => $name_city,
+                                    'like'              => $likes,
+                                    'view'              => $value->sv_counter_view,
+                                    'point'             => $value->sv_counter_point,
+                                    'rating'            => $ponit_rating,
+                                    'sv_type'           => $sv_type,
+                                    'distance'          => $distance
+                                );
+
+                                if ($sv_type == 1) {
+                                    if ($lamlam['eat'] == null) {
+                                        $lamlam['eat'] = $mang;
+                                    }
+                                    else{
+                                        $lamlam['eat'] = array_merge($lamlam['eat'],$mang);
+                                    }
+                                    $mang = null;
+                                }
+
+                                if($sv_type == 2){
+                                    if ($lamlam['hotel'] == null) {
+                                        $lamlam['hotel'] = $mang;
+                                    }
+                                    else{
+                                        $lamlam['hotel'] = array_merge($lamlam['hotel'],$mang);
+                                    }
+                                    $mang = null;
+                                }
+
+                                if($sv_type == 3){
+                                    if ($lamlam['tran'] == null) {
+                                        $lamlam['tran'] = $mang;
+                                    }
+                                    else{
+                                        $lamlam['tran'] = array_merge($lamlam['tran'],$mang);
+                                    }
+                                    $mang = null;
+                                }
+
+                                if($sv_type == 4){
+                                    if ($lamlam['see'] == null) {
+                                        $lamlam['see'] = $mang;
+                                    }
+                                    else{
+                                        $lamlam['see'] = array_merge($lamlam['see'],$mang);
+                                    }
+                                    $mang = null;
+                                }
+
+                                if($sv_type == 5){
+                                    if ($lamlam['enter'] == null) {
+                                        $lamlam['enter'] = $mang;
+                                    }
+                                    else{
+                                        $lamlam['enter'] = array_merge($lamlam['enter'],$mang);
+                                    }
+                                    $mang = null;
+                                }
+                            }
+                        }      
                     }
                 }
-                
-
-                dd($lamlam);
-
-                if (isset($result)) {
-                    return $result;
-                }
-                else{
-                    return null;
-                }
+                return $lamlam;
             }
             else{
                 return null;
@@ -469,7 +492,7 @@ class SearchController extends Controller
     {
         $result = DB::select("select * FROM c_city_district_ward_place_service where id_place = '$place_id' AND sv_status = 1
 ");
-        // return $result;
+         // dd($result);
         foreach ($result as $value) {
             $likes = DB::table('vnt_likes')->where('service_id', '=',$value->id_service)->count();
             // echo "string";
@@ -479,8 +502,9 @@ class SearchController extends Controller
             }else{ $ponit_rating = 0; }
             
             $result_type = $this::get_name_ser($value->id_service,$value->sv_types);
+            $result_type2[] = $this::get_name_ser($value->id_service,$value->sv_types);
 
-            $sv_type = $value->sv_types;
+            $sv_type = (int)$value->sv_types;
 
             if ($result_type != null) {
                 foreach ($result_type as $v) {
@@ -497,34 +521,39 @@ class SearchController extends Controller
                         'distance'          => $distance
                     );
 
-                    if ($sv_type == 1) {
-                        $result2['eat'] = $mang;
-                    }else{$result2['eat'] = null;}
+                    // if ($sv_type == 1) {
+                    //     $result2['eat'] = $mang;
+                    //     $mang = null;
+                    // }else{$result2['eat'] = null;}
 
-                    if($sv_type == 2){
-                        $result2['hotel'] = $mang;
-                    }else{$result2['hotel'] = null;}
+                    // if($sv_type == 2){
+                    //     $result2['hotel'] = $mang;
+                    //     $mang = null;
+                    // }else{$result2['hotel'] = null;}
 
-                    if($sv_type == 3){
-                        $result2['tran'] = $mang;
-                    }else{$result2['tran'] = null;}
+                    // if($sv_type == 3){
+                    //     $result2['tran'] = $mang;
+                    //     $mang = null;
+                    // }else{$result2['tran'] = null;}
 
-                    if($sv_type == 4){
-                        $result2['see'] = $mang;
-                    }else{$result2['see'] = null;}
+                    // if($sv_type == 4){
+                    //     $result2['see'] = $mang;
+                    //     $mang = null;
+                    // }else{$result2['see'] = null;}
 
-                    if($sv_type == 5){
-                        $result2['enter'] = $mang;
-                    }else{$result2['enter'] = null;}
-
-                    
+                    // if($sv_type == 5){
+                    //     $result2['enter'] = $mang;
+                    //     $mang = null;
+                    // }else{$result2['enter'] = null;}
                 }
             }      
         }
 
-        if (isset($result2)) {
-            return $result2;
-            // dd($result2);
+        if (isset($mang)) {
+            return $mang;
+            // dd($mang);
+            // return $result_type2;
+            // dd($result_type2);
         }
         else{
             return null;
