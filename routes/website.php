@@ -208,6 +208,7 @@ Route::get('get-top-search','accountController@get_search_nhieunhat');
 // tim quanh day
 Route::get('timquanhday/lat={latitude}&lon={longitude}&radius={radius}','SearchController@timquanhday');
 Route::get('timquanhday-moi/lat={latitude}&lon={longitude}&radius={radius}','SearchController@get_dichvu_moi');
+Route::get('timquanhday-type/lat={latitude}&lon={longitude}&radius={radius}','SearchController@timquanhday_type');
 
 
 
