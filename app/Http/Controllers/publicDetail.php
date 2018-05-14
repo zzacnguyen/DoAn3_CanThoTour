@@ -251,4 +251,68 @@ class publicDetail extends Controller
         }
     }
 
+    public function get_service_top_view($limit){
+        $sv = DB::select("SELECT id_city,name_city,id_service, sv_types,sv_counter_point,sv_counter_view FROM c_city_district_ward_place_service WHERE sv_status = 1 ORDER BY sv_counter_view DESC LIMIT $limit");
+        // return $sv;
+        foreach ($sv as $value) {
+            $likes = DB::table('vnt_likes')->where('service_id', '=',$value->id_service)->count();
+            // echo "string";
+            $ratings = DB::table('vnt_visitor_ratings')->where('service_id',$value->id_service)->first();
+            if (!empty($ratings)) {
+                $ponit_rating = $ratings->vr_rating;
+            }else{ $ponit_rating = 0; }
+            
+            $result_type = $this::get_name_ser($value->id_service,$value->sv_types);
+            if ($result_type != null) {
+                foreach ($result_type as $v) {
+                    $mang[] = array(
+                        'id_service'        => $value->id_service,
+                        'name'              => $v->sv_name,
+                        'image'             => $v->image_details_1,
+                        'name_city'         => $value->name_city,
+                        'like'              => $likes,
+                        'view'              => $value->sv_counter_view,
+                        'point'             => $value->sv_counter_point,
+                        'rating'            => $ponit_rating,
+                        'sv_type'           => $value->sv_types
+                    );
+                }
+            }      
+        }
+
+        if (isset($mang)) {
+            return $mang;
+        }
+        else{
+            return null;
+        }
+    }
+
+    public function get_name_ser($id_service, $type)
+    {
+        switch ($type) {
+            case 1:
+             $result = DB::select("SELECT sv_name,image_details_1 FROM sv_eat WHERE sv_id='$id_service' AND sv_status=1");
+            break;
+            case 2:
+             $result = DB::select("SELECT sv_name,image_details_1 FROM sv_hotel WHERE sv_id='$id_service' AND sv_status=1");
+            break;
+            case 3:
+             $result = DB::select("SELECT sv_name,image_details_1 FROM sv_stranport WHERE sv_id='$id_service' AND sv_status=1");
+            break;
+            case 4:
+             $result = DB::select("SELECT sv_name,image_details_1 FROM sv_sightseeting WHERE sv_id='$id_service' AND sv_status=1");
+            break;
+            case 5:
+             $result = DB::select("SELECT sv_name,image_details_1 FROM sv_entertaiment WHERE sv_id='$id_service' AND sv_status=1");
+            break;
+        }
+        if (isset($result)) {
+            return $result;
+        }
+        else{
+            return null;
+        }
+    }
+
 }

@@ -116,6 +116,9 @@ Route::get('searchServices_AllCity_idType_ghe/type={t}&keyword={k}','pageControl
 //================= detail ==================
 Route::get('checkLogin','pageController@checkLogin');
 
+Route::get('get_service_top_view/{limit}','publicDetail@get_service_top_view');
+
+
 //============ check like
 Route::get('checkLike/userid={d}&svid={s}','publicDetail@checkLike');
 
