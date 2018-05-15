@@ -423,7 +423,7 @@ class accountController extends Controller
 
      public function get_service_user($user_id)
     {
-        $data=servicesModel::where('user_enterprise_id',$user_id)->limit(10)->get();
+        $data=servicesModel::where('user_id',$user_id)->limit(10)->get();
         return json_encode($data);
     }
     public function get_edit_service_user($id,$user_id)
@@ -507,7 +507,7 @@ class accountController extends Controller
         // $boss['link']=$data->links();
         // $boss['data']=$data->toArray();
         // return json_encode()
-        $data=tp::where('user_enterprise_id',$id)->get();
+        $data=tp::where('user_id',$id)->get();
        
         return json_encode($data);
   
@@ -515,7 +515,7 @@ class accountController extends Controller
     }
     public function get_edit_place_user($user_id,$id)
     {
-        $data['info']=tp::where('user_enterprise_id',$user_id)->where('id',$id)->get();
+        $data['info']=tp::where('user_id',$user_id)->where('id',$id)->get();
         $data['address']=DB::select('select * from c_city_district_ward_place WHERE id_place ='.$data['info'][0]->id.' ');
         $data['city']=city::all();
         $data['district']=districtModel::all();
@@ -572,7 +572,7 @@ class accountController extends Controller
             $table->pl_latitude=$request->vido;
             $table->pl_longitude=$request->kinhdo;
             $table->id_ward=$request->place_ward;
-            $table->user_enterprise_id=$user_id;
+            $table->user_id=$user_id;
             $table->pl_status='0';
             $table->pl_content='0';
             $table->pl_details='0';
@@ -599,10 +599,10 @@ class accountController extends Controller
             $table->sv_phone_number=$request->sv_phone_number;
             $table->sv_counter_view=1;
             $table->sv_counter_point=1;
-            $table->sv_status='1';
+            $table->sv_status='0';
             $table->sv_types=$request->sv_types;
             $table->tourist_places_id=$request->diadiem;
-            $table->user_enterprise_id=$user_id;
+            $table->user_id=$user_id;
             $table->save();
             $max=$table::max('id');
             imagesModel::insert(['image_banner'=>$request->img1,'image_details_1'=>$request->img2,'image_details_2'=>$request->img3,'image_status'=>'1','service_id'=>$max]);
@@ -793,5 +793,10 @@ class accountController extends Controller
             return json_encode($result);
         }
         else{return null;}
+    }
+
+    public function load_place_ward($idward){
+        $result = tp::where('id_ward',$idward)->get();
+        return json_encode($result);
     }
 }

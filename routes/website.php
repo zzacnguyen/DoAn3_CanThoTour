@@ -184,6 +184,10 @@ Route::post('post_add_service_user/{user_id}','accountController@post_add_servic
 Route::get('get_service_user/{user_id}','accountController@get_service_user');
 Route::get('get_edit_service_user/{id}/{user_id}','accountController@get_edit_service_user');
 Route::post('post_edit_service_user/{id}','accountController@post_edit_service_user');
+Route::get('load_place_ward/{id}','accountController@load_place_ward');
+
+
+
 
 //place user
 Route::get('get_place_user/{id}','accountController@get_place_user');
