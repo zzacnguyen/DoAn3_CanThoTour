@@ -126,8 +126,7 @@ class tourist_places_controller extends Controller
                 else if($id_type == 2)
                 {
                     $vnt_hotels = new hotelsModel;
-                    $vnt_hotels->hotel_name =  $hotel_name;
-                    $vnt_hotels->hotel_website =  $request->input('hotel_website');
+                    $vnt_hotels->hotel_name =  $hotel_name;;
                     $vnt_hotels->hotel_number_star =  $request->input('hotel_number_star');
                     $vnt_hotels->hotel_status =  1;
                     $vnt_hotels->service_id =  $id_service;
@@ -224,7 +223,6 @@ class tourist_places_controller extends Controller
                 {
                     $vnt_hotels = new hotelsModel;
                     $vnt_hotels->hotel_name =  $hotel_name;
-                    $vnt_hotels->hotel_website =  $request->input('hotel_website');
                     $vnt_hotels->hotel_number_star =  $request->input('hotel_number_star');
                     $vnt_hotels->hotel_status =  1;
                     $vnt_hotels->service_id =  $id_service;
@@ -295,7 +293,7 @@ class tourist_places_controller extends Controller
         ->leftJoin('vnt_sightseeing', 'vnt_sightseeing.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_transport', 'vnt_transport.service_id', '=', 'vnt_services.id')  
         ->where('vnt_services.id', $id)
-        ->groupBy('vnt_services.id','hotel_name','entertainments_name','transport_name', 'sightseeing_name', 'hotel_website','eat_name')
+        ->groupBy('vnt_services.id','hotel_name','entertainments_name','transport_name', 'sightseeing_name','eat_name')
         ->get();
         return json_encode($service);
     }
