@@ -188,6 +188,10 @@ Route::get('get_edit_service_user/{id}/{user_id}','accountController@get_edit_se
 Route::post('post_edit_service_user/{id}','accountController@post_edit_service_user');
 Route::get('load_place_ward/{id}','accountController@load_place_ward');
 
+Route::get('get_service_user_active/{id}&{type}','accountController@get_service_user_active');
+Route::get('top-service-view','accountController@Top_service_view');
+Route::get('top-service-rating-like/{type}','accountController@Top_service_rating_like');
+
 
 
 
