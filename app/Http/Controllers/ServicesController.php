@@ -71,6 +71,7 @@ class ServicesController extends Controller
                 $vnt_services->sv_highest_price  = $request->input('sv_highest_price');
                 $vnt_services->sv_lowest_price = $request->input('sv_lowest_price');
                 $vnt_services->sv_phone_number   = $request->input('sv_phone_number');
+                $vnt_services->sv_content   = $request->input('sv_content');
                 $vnt_services->sv_status   = 0;
                 $vnt_services->sv_types   = $request->input('sv_types');
                 $vnt_services->tourist_places_id   = $id_place;

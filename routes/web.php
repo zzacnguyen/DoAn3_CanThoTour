@@ -11,15 +11,21 @@ include 'cms.php';
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//sai
 Route::get('couter/couter={name}', 'CounterEventsController@Counter');
+
+//đã test get page
 Route::resource('eating', 'EatingController');
+
+//đã test
 Route::get('type-event', 'typeEvents@getAllEventType');
 
+//đã test get
 Route::resource('services','ServicesController');
+
 Route::get('service/service-id={id_service}&user-id={id_user}', 'ServicesDetailsController@showDetails');
 Route::post('service-postview/id={id}', 'ServicesDetailsController@postCounterView');
-
+ 
 
 Route::resource('usersearch', 'userSearch');
 
@@ -110,3 +116,4 @@ Route::get('list-schedule-details_web/{id}', 'tripScheduleController@getDetailTr
 
 Route::get('schedule-one/{id}', 'tripScheduleController@getOneTripSchedule');
 Route::get('schedule-delete/{id}', 'tripScheduleController@delete_DetailSchedule');
+

@@ -30,7 +30,6 @@ class ServicesDetailsController extends Controller
         ->leftJoin('vnt_transport', 'vnt_transport.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_tourist_places', 'vnt_tourist_places.id', '=', 'vnt_services.tourist_places_id')
         ->leftjoin('vnt_visitor_ratings', 'vnt_visitor_ratings.service_id','=', 'vnt_services.id')
-        
         ->where('vnt_services.id', $services_id)
         ->groupBy('vnt_services.id','hotel_name','entertainments_name','transport_name', 'sightseeing_name', 
                  'eat_name', 'sv_website', 'sv_description', 'sv_open','sv_close','sv_lowest_price','sv_highest_price', 'vnt_tourist_places.pl_phone_number',
