@@ -92,6 +92,8 @@ Route::get('count_city_service_all','pageController@count_city_service_all');
 //================== add place ================
 Route::get('addplace','publicaddplaceController@getaddplace')->name('addplace');
 
+Route::get('loadCity','publicaddplaceController@loadTinh')->name('loadDistrict');
+
 Route::get('loadDistrict/{idcity}','publicaddplaceController@loadDistrict');
 Route::get('loadWard/{id}','publicaddplaceController@loadWard');
 

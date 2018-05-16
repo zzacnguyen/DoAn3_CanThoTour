@@ -423,8 +423,29 @@ class accountController extends Controller
 
      public function get_service_user($user_id)
     {
-        $data=servicesModel::where('user_id',$user_id)->limit(10)->get();
-        return json_encode($data);
+        $data=servicesModel::where('user_id',$user_id)->orderBy('created_at','desc')->get();
+        // dd($data);
+        foreach ($data as $sv) {
+            $get_name_image = $this::get_name_image_ser($sv->sv_types,$sv->id);
+            // dd($get_name_image);
+            foreach ($get_name_image as $v) {
+                $name = $v->sv_name;
+                $image = $v->image_details_1;
+            }
+            $result[] = array
+                (
+                    'sv_id' => $sv->id,
+                    'sv_type' => $sv->sv_types,
+                    'sv_name' => $name,
+                    'sv_image' => $image,
+                    'sv_created_at' => $sv->created_at,
+                    'sv_status' => $sv->sv_status
+                );   
+        }
+        if (isset($result)) {
+            return json_encode($result);
+        }else{return null;}
+        
     }
     public function get_edit_service_user($id,$user_id)
     {
@@ -507,7 +528,7 @@ class accountController extends Controller
         // $boss['link']=$data->links();
         // $boss['data']=$data->toArray();
         // return json_encode()
-        $data=tp::where('user_id',$id)->get();
+        $data=tp::where('user_id',$id)->orderBy('created_at','desc')->get();
        
         return json_encode($data);
   
