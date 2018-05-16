@@ -192,6 +192,9 @@ Route::get('get_service_user_active/{id}&{type}','accountController@get_service_
 Route::get('top-service-view','accountController@Top_service_view');
 Route::get('top-service-rating-like/{type}','accountController@Top_service_rating_like');
 
+Route::get('get-service-user-max-view/{userid}','accountController@get_service_user_max_view');
+Route::get('get-service-user-max-ating-like/{type}&{userid}','accountController@get_service_user_max_rating_like');
+
 
 
 

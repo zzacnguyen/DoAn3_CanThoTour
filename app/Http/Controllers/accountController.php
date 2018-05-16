@@ -963,4 +963,94 @@ class accountController extends Controller
             return json_encode($result);
         }else{return null;}
     }
+
+    public function get_service_user_max_view($user_id){
+        $data = servicesModel::where('user_id',$user_id)->where('sv_status',1)->orderBy('sv_counter_view','desc')->first();
+        // dd($data);
+        $get_name_image = $this::get_name_image_ser($data->sv_types,$data->id);
+        // dd($get_name_image);
+        foreach ($get_name_image as $v) {
+            $name = $v->sv_name;
+            $image = $v->image_details_1;
+        }
+        $likes = DB::table('vnt_likes')->where('service_id', '=',$data->id)->count();
+        // echo "string";
+        $ratings = DB::table('vnt_visitor_ratings')->where('service_id',$data->id)->first();
+
+        if ($ratings != null) {
+            $ponit_rating = $ratings->vr_rating;
+        }else{ $ponit_rating = 0; }
+
+        $result[] = array
+            (
+                'sv_id' => $data->id,
+                'sv_type' => $data->sv_types,
+                'sv_name' => $name,
+                'sv_image' => $image,
+                'sv_created_at' => $data->created_at,
+                'sv_status' => $data->sv_status,
+                'view' =>$data->sv_counter_view,
+                'like' => $likes,
+                'rating' => $ponit_rating
+            );     
+        if (isset($result)) {
+            return json_encode($result);
+        }else{return null;}
+    }
+
+    public function get_service_user_max_rating_like($type,$userid){
+        if ($type == "like") {
+            $data_like = DB::select("SELECT COUNT(service_id) AS 'num_like', service_id FROM `vnt_likes` WHERE user_id = '$userid' GROUP BY service_id ORDER BY num_like DESC");
+            if ($data_like == null) {
+                return null;
+            }
+            else{
+                foreach ($data_like as $value) {
+                    $data[] = servicesModel::where('id',$value->service_id)->first();
+                }
+            }
+                
+        }
+        else{
+            $data_rating = DB::select("SELECT COUNT(service_id) as 'num_rating',service_id FROM vnt_visitor_ratings WHERE vr_rating = 5 AND user_id = '$userid' GROUP BY service_id ORDER BY num_rating LIMIT 1");
+            if ($data_rating != null) {
+                foreach ($data_rating as $value) {
+                    $data[] = servicesModel::where('id',$value->service_id)->first();
+                }
+            } else{return null;}
+        }
+        // dd($data);
+        
+        foreach ($data as $sv) {
+            $get_name_image = $this::get_name_image_ser($sv['sv_types'],$sv['id']);
+            // dd($get_name_image);
+            foreach ($get_name_image as $v) {
+                $name = $v->sv_name;
+                $image = $v->image_details_1;
+            }
+            $likes = DB::table('vnt_likes')->where('service_id', '=',$sv['id'])->count();
+            // echo "string";
+            $ratings = DB::table('vnt_visitor_ratings')->where('service_id',$sv['id'])->first();
+
+            if ($ratings != null) {
+                $ponit_rating = $ratings->vr_rating;
+            }else{ $ponit_rating = 0; }
+
+            $result[] = array
+                (
+                    'sv_id' => $sv['id'],
+                    'sv_type' => $sv['sv_types'],
+                    'sv_name' => $name,
+                    'sv_image' => $image,
+                    'sv_created_at' => $sv['created_at'],
+                    'sv_status' => $sv['sv_status'],
+                    'view' =>$sv['sv_counter_view'],
+                    'like' => $likes,
+                    'rating' => $ponit_rating
+                );     
+        }
+        if (isset($result)) {
+            return json_encode($result);
+        }else{return null;}
+    }
 }
