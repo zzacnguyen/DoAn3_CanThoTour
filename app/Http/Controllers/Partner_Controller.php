@@ -23,8 +23,10 @@ class Partner_Controller extends Controller
         ->select('vnt_services.id','sv_description', 'sv_open','sv_close','sv_lowest_price','sv_highest_price',  'tourist_places_id', 'sv_types','sv_status', 
         DB::raw('DATE_FORMAT(vnt_services.created_at, "%d-%m-%Y") as created_at'))
         ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_services.id')
+        ->join('vnt_user','vnt_user.user_id', '=', 'vnt_services.user_id')
+        ->join('vnt_partner_user','vnt_user.user_id', '=', 'vnt_partner_user.user_id')
         ->whereMonth('vnt_services.created_at', '=', $month_select)
-        ->where('vnt_services.user_partner_id', '=', $user_id)
+        ->where('vnt_partner_user.user_id', '=', $user_id)
         ->where('sv_status','=', 1)
         ->orderBy('vnt_services.id', 'DESC')
         ->paginate(10);

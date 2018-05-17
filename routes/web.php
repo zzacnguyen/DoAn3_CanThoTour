@@ -35,7 +35,9 @@ Route::resource('usersearch', 'userSearch');
 //đã check
 Route::resource('hotels', 'vnt_hotelsController');
 
+//đã check
 Route::post('add-places', 'tourist_places_controller@AddPlace');
+//đã check
 Route::post('add-services/{id}','tourist_places_controller@AddServices');
 
 //đã check
@@ -54,8 +56,13 @@ Route::get('counter-events', 'CounterEventsController@countEvent');
 //tham quan
 Route::resource('sightseeing', 'sightseeingController');
 
+//đã check
 Route::resource('entertainments', 'vnt_entertainmentsController');
+
+//đã check
 Route::resource('like', 'LikeController');
+
+//đã check
 Route::resource('rating', 'VisitorRatingController');
 
 // TIM KIEM
@@ -81,42 +88,80 @@ Route::post('edit_user_mobile/{id}','accountController@edit_user_mobile');
 // web
 
 Route::post('upload-image/{id}','ImagesController@Upload');
+
+//đã check
 Route::get('get-icon/{id}', 'ImagesController@getIcon');
+
+//đã check
 Route::get('get-banner/{id}', 'ImagesController@getBanner');
+
+//đã check
 Route::get('get-thumb-1/{id}', 'ImagesController@getThumbnail1');
+//đã check
 Route::get('get-thumb-2/{id}', 'ImagesController@getThumbnail2');
+//đã check
 Route::get('get-detail-1/{id}', 'ImagesController@getImageDetail1');
+//đã check
 Route::get('get-detail-2/{id}', 'ImagesController@getImageDetail2');
+
+//không sử dụng
 Route::get('get-only-icon-image', 'ImagesController@GetOnlyIconImage');
 
 
+//đã check
 Route::get('rating-service/{id}','Rating_Service_Controller@rating');
+//đã check
 Route::get('rating-view/{id_danhgia}','Rating_Service_Controller@view_rating');
+//đã check
+
 Route::get('rating-view-by-user/{id_user}','Rating_Service_Controller@view_rating_by_user');
+//đã check
 
 Route::post('rating-put/{id}', 'Rating_Service_Controller@putRating');
+//đã check
+
 Route::post('rating-post', 'Rating_Service_Controller@postRating');
+//đã check
 Route::get('ward', 'tourist_places_controller@GetWardList');
+//đã check
 Route::get('province', 'tourist_places_controller@GetProvinceCity');
+//đã check
 Route::get('ward/{id}', 'tourist_places_controller@GetWardListByID');
+//đã check
 Route::get('district/{id}', 'tourist_places_controller@GetDisTrictListByID');
 
+//test
 Route::get('google-maps','testGoogleMapsApi@FunctionName');
 //partner
 Route::get('get-services-poseted_by/month={month}&user_id={id}','Partner_Controller@getServices');
+
+//đã check
 Route::get('get-places-poseted_by/month={month}&user_id={id}','Partner_Controller@getServices');
+
+//đã check
 Route::get('get-task-list/{id}', 'Partner_Controller@getTaskList');
 
 Auth::routes();
  
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('list-schedule/{id}', 'tripScheduleController@getListTripSchedule');
-Route::post('post-schedule/user={id}', 'tripScheduleController@postTripSchedule');
-Route::post('post-schedule-details/schedule={sid}', 'tripScheduleController@postTripScheduleDetail');
-Route::get('list-schedule-details/{id}', 'tripScheduleController@getDetailTripSchedule');
 
+//đã check
+Route::get('list-schedule/{id}', 'tripScheduleController@getListTripSchedule');
+
+//đã check
+Route::post('post-schedule/user={id}', 'tripScheduleController@postTripSchedule');
+//đã check
+Route::post('post-schedule-details/schedule={sid}', 'tripScheduleController@postTripScheduleDetail');
+
+//đã check
+Route::get('list-schedule-details/{id}', 'tripScheduleController@getDetailTripSchedule_web');
+
+//đã check
 Route::get('list-schedule-details_web/{id}', 'tripScheduleController@getDetailTripSchedule_web');
 
+//đã check
 Route::get('schedule-one/{id}', 'tripScheduleController@getOneTripSchedule');
+
+//đã check - LỖI
 Route::get('schedule-delete/{id}', 'tripScheduleController@delete_DetailSchedule');
 
