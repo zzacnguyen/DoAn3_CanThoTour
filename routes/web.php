@@ -165,3 +165,4 @@ Route::get('schedule-one/{id}', 'tripScheduleController@getOneTripSchedule');
 //đã check - LỖI
 Route::get('schedule-delete/{id}', 'tripScheduleController@delete_DetailSchedule');
 
+Route::get('get-serives-enterprise/{id}', 'vnt_enterprise_userController@getServices');
