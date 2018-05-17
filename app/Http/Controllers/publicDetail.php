@@ -315,4 +315,10 @@ class publicDetail extends Controller
         }
     }
 
+
+    public function count_rating_service($idserive){
+        $result = DB::select("select COUNT(service_id) as 'num_rating' FROM vnt_visitor_ratings WHERE service_id = '$idserive' GROUP BY service_id");
+        return json_encode($result);
+    }
+
 }

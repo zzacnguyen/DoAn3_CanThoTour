@@ -507,12 +507,56 @@ class accountController extends Controller
 
     public function get_edit_service_user($id,$user_id)
     {
-        $city=city::all();
-        $info=servicesModel::find($id);
-        $place=servicesModel::join('vnt_tourist_places','vnt_services.tourist_places_id','=','vnt_tourist_places.id')
-        ->where('vnt_services.id',$id)
-        ->select('vnt_services.tourist_places_id','pl_name')->get();
-        return json_encode(array('city'=>$city,'place'=>$place,'info'=>$info));
+        $city = city::all();
+        $info = servicesModel::find($id);
+
+        if($info != null)
+        {
+            $get_name_image = $this::get_name_image_ser($info->sv_types,$info->id);
+            // dd($get_name_image);
+            foreach ($get_name_image as $v) {
+                $name = $v->sv_name;
+                $image = $v->image_details_1;
+            }
+            $likes = DB::table('vnt_likes')->where('service_id', '=',$info->id)->count();
+            // echo "string";
+            $ratings = DB::table('vnt_visitor_ratings')->where('service_id',$info->id)->first();
+
+            if ($ratings != null) {
+                $ponit_rating = $ratings->vr_rating;
+            }else{ $ponit_rating = 0; }
+
+            $result[] = array
+                (
+                    'sv_id' => $info->id,
+                    'sv_type' => $info->sv_types,
+                    'sv_name' => $name,
+                    'sv_image' => $image,
+                    'sv_created_at' => $info->created_at,
+                    'sv_status' => $info->sv_status,
+                    'view' =>$info->sv_counter_view,
+                    'like' => $likes,
+                    'rating' => $ponit_rating,
+                    'sv_description' => (string)$info->sv_description,
+                    'sv_open' => $info->sv_open,
+                    'sv_close' => $info->sv_close,
+                    'sv_highest_price' => $info->sv_highest_price,
+                    'sv_lowest_price' => $info->sv_lowest_price,
+                    'sv_website' => $info->sv_website,
+                    'sv_phone_number' => $info->sv_phone_number,
+                    'tourist_places_id' => $info->tourist_places_id,
+                    'sv_status' => $info->sv_status
+                );     
+        }
+        else{
+            return null;
+        }
+        
+        if (!isset($result)) {
+            return null;
+        }
+
+        return json_encode($result);
     }
     public function post_edit_service_user(Request $request,$id)
     {
@@ -520,8 +564,8 @@ class accountController extends Controller
        
         $table=servicesModel::find($id);
         try{
-            $table->sv_description=$request->sv_description;
-            $table->sv_content=$request->mota;
+            $table->sv_content=$request->sv_description;
+            $table->sv_description=$request->mota;
             $table->sv_open=$request->time_begin;
             $table->sv_close=$request->time_end;
             $table->sv_highest_price=$request->sv_highest_price;
@@ -531,7 +575,7 @@ class accountController extends Controller
             $table->sv_phone_number=$request->sv_phone_number;
             $table->sv_counter_view=1;
             $table->sv_counter_point=1;
-            $table->sv_status='1';
+            $table->sv_status=$request->status;
             $table->sv_types=$request->sv_types;
             $table->tourist_places_id=$request->diadiem;
             $table->save();
@@ -668,7 +712,7 @@ class accountController extends Controller
         $table=new servicesModel;
 
         $table->sv_description=$request->sv_description;
-            $table->sv_content=$request->mota;
+            $table->sv_content=$request->sv_description;
             $table->sv_open=$request->time_begin;
             $table->sv_close=$request->time_end;
             $table->sv_highest_price=$request->sv_lowest_price;
@@ -944,7 +988,7 @@ class accountController extends Controller
 
             if ($ratings != null) {
                 $ponit_rating = $ratings->vr_rating;
-            }else{ $ponit_rating = 0; }
+            }else{ $ponit_rating = "0"; }
 
             $result[] = array
                 (
@@ -967,57 +1011,74 @@ class accountController extends Controller
     public function get_service_user_max_view($user_id){
         $data = servicesModel::where('user_id',$user_id)->where('sv_status',1)->orderBy('sv_counter_view','desc')->first();
         // dd($data);
-        $get_name_image = $this::get_name_image_ser($data->sv_types,$data->id);
-        // dd($get_name_image);
-        foreach ($get_name_image as $v) {
-            $name = $v->sv_name;
-            $image = $v->image_details_1;
+        if ($data == null) {
+            return "0";
         }
-        $likes = DB::table('vnt_likes')->where('service_id', '=',$data->id)->count();
-        // echo "string";
-        $ratings = DB::table('vnt_visitor_ratings')->where('service_id',$data->id)->first();
+        else{
+            $get_name_image = $this::get_name_image_ser($data->sv_types,$data->id);
+            // dd($get_name_image);
+            foreach ($get_name_image as $v) {
+                $name = $v->sv_name;
+                $image = $v->image_details_1;
+            }
+            $likes = DB::table('vnt_likes')->where('service_id', '=',$data->id)->count();
+            // echo "string";
+            $ratings = DB::table('vnt_visitor_ratings')->where('service_id',$data->id)->first();
 
-        if ($ratings != null) {
-            $ponit_rating = $ratings->vr_rating;
-        }else{ $ponit_rating = 0; }
+            if ($ratings != null) {
+                $ponit_rating = $ratings->vr_rating;
+            }else{ $ponit_rating = 0; }
 
-        $result[] = array
-            (
-                'sv_id' => $data->id,
-                'sv_type' => $data->sv_types,
-                'sv_name' => $name,
-                'sv_image' => $image,
-                'sv_created_at' => $data->created_at,
-                'sv_status' => $data->sv_status,
-                'view' =>$data->sv_counter_view,
-                'like' => $likes,
-                'rating' => $ponit_rating
-            );     
-        if (isset($result)) {
-            return json_encode($result);
-        }else{return null;}
+            $result[] = array
+                (
+                    'sv_id' => $data->id,
+                    'sv_type' => $data->sv_types,
+                    'sv_name' => $name,
+                    'sv_image' => $image,
+                    'sv_created_at' => $data->created_at,
+                    'sv_status' => $data->sv_status,
+                    'view' =>$data->sv_counter_view,
+                    'like' => $likes,
+                    'rating' => $ponit_rating
+                );     
+            if (isset($result)) {
+                return json_encode($result);
+            }else{return "0";}
+        }
+            
     }
 
     public function get_service_user_max_rating_like($type,$userid){
         if ($type == "like") {
-            $data_like = DB::select("SELECT COUNT(service_id) AS 'num_like', service_id FROM `vnt_likes` WHERE user_id = '$userid' GROUP BY service_id ORDER BY num_like DESC");
-            if ($data_like == null) {
-                return null;
-            }
-            else{
-                foreach ($data_like as $value) {
-                    $data[] = servicesModel::where('id',$value->service_id)->first();
+            $data_user = servicesModel::where('user_id',$userid)->get();
+            if ($data_user != null) {
+                foreach ($data_user as $value) {
+                    $likes = DB::table('vnt_likes')->where('service_id', '=',$value->id)->count();
+                    $array_like[$value->id] = $likes;
                 }
+                if (isset($array_like) && $array_like != null) {
+                    $id_service_max_like = array_search(max($array_like),$array_like);
+                    $data = servicesModel::where('id',$id_service_max_like)->get();
+                }
+                else{ return "-2"; }
             }
-                
+            else{ return "-1"; }
         }
         else{
-            $data_rating = DB::select("SELECT COUNT(service_id) as 'num_rating',service_id FROM vnt_visitor_ratings WHERE vr_rating = 5 AND user_id = '$userid' GROUP BY service_id ORDER BY num_rating LIMIT 1");
-            if ($data_rating != null) {
-                foreach ($data_rating as $value) {
-                    $data[] = servicesModel::where('id',$value->service_id)->first();
+            $data_user = servicesModel::where('user_id',$userid)->get();
+            if ($data_user != null) {
+                foreach ($data_user as $value) {
+                    $likes = DB::select("select avg(vr_rating) as 'rating' FROM vnt_visitor_ratings WHERE service_id = '$value->id' GROUP BY service_id");
+                    $array_rating[$value->id] = $likes;
                 }
-            } else{return null;}
+                if (isset($array_rating) && $likes != null) {
+                    $id_service_max_rating = array_search(max($array_rating),$array_rating);
+                    $data = servicesModel::where('id',$id_service_max_rating)->get();
+                }
+                else{ return "-2"; }
+            }
+            else{ return "-1"; }
+            // return $data;
         }
         // dd($data);
         
@@ -1051,6 +1112,6 @@ class accountController extends Controller
         }
         if (isset($result)) {
             return json_encode($result);
-        }else{return null;}
+        }else{return "0";}
     }
 }
