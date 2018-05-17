@@ -29,6 +29,9 @@ Route::get('detail/s','pageController@getServiceTypeVicinity');
 
 Route::get('ThemVaCapNhatLike/{idserivce}&user={id}','publicDetail@ThemVaCapNhatLike'); //
 
+Route::get('count-rating-service/{idserivce}','publicDetail@count_rating_service'); //
+
+
 // load addplace
 Route::get('addplace','pageController@getaddplace')->name('addplace');
 Route::post('addplace', 'pageController@postPlace');
