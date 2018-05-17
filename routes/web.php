@@ -20,10 +20,13 @@ Route::resource('eating', 'EatingController');
 //đã test
 Route::get('type-event', 'typeEvents@getAllEventType');
 
-//đã test get
+//đã test get, post
 Route::resource('services','ServicesController');
 
+//đã check
 Route::get('service/service-id={id_service}&user-id={id_user}', 'ServicesDetailsController@showDetails');
+
+//chưa code
 Route::post('service-postview/id={id}', 'ServicesDetailsController@postCounterView');
  
 

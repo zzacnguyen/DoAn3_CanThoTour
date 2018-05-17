@@ -35,8 +35,8 @@ class tourist_places_controller extends Controller
         $pl_latitude = $request->input('pl_latitude');
         $pl_longitude   = $request->input('pl_longitude');
         $pl_ward = $request->input('id_ward');
-        $part_user = $request->input('partner_user');
-        $tour_guide = $request->input('tourguide_user');
+        $part_user = $request->input('user_id');
+        $tour_guide = $request->input('user_id');
         $user_id = 0;
         if($part_user!=null || $tour_guide != null){
             if($part_user==null){
@@ -50,7 +50,9 @@ class tourist_places_controller extends Controller
                 $place->pl_longitude    = $pl_longitude;
                 $place->id_ward    = $pl_ward;
                 $place->pl_status       = 0;
-                $place->user_tour_guide_id   =$user_id;
+                $place->user_id   =$user_id;
+                $place->pl_content   = "_";
+                
                 $place->save();
                 $id_place = $this::GetIDLastPlace();
                 return json_encode("id_place:".$id_place);
@@ -65,9 +67,10 @@ class tourist_places_controller extends Controller
                 $place->pl_phone_number = $pl_phone_number;
                 $place->pl_latitude     = $pl_latitude;
                 $place->pl_longitude    = $pl_longitude;
+                $place->pl_content    =  "_";
                 $place->id_ward    = $pl_ward;
                 $place->pl_status       = 0;
-                $place->user_partner_id = $user_id;
+                $place->user_id = $user_id;
                 $place->save();
                 $id_place = $this::GetIDLastPlace();
                 return json_encode("id_place:".$id_place);
@@ -77,8 +80,8 @@ class tourist_places_controller extends Controller
 	}
     public function AddServices(Request $request, $id_place)
     {
-        $part_user = $request->input('partner_user');
-        $tour_guide = $request->input('tourguide_user');
+        $part_user = $request->input('user_id');
+        $tour_guide = $request->input('user_id');
         $user_id = 0;
         $eat_name = $request->input('eat_name');
         $hotel_name = $request->input('hotel_name');
@@ -101,7 +104,8 @@ class tourist_places_controller extends Controller
                 $vnt_services->tourist_places_id   =$id_place;
                 $vnt_services->sv_counter_view=0;
                 $vnt_services->sv_counter_point=0;
-                $vnt_services->user_tour_guide_id=$user_id;
+                $vnt_services->user_id=$user_id;
+                $vnt_services->sv_content = $request->input('sv_content');
                 $vnt_services->sv_website=$request->input('sv_website');
                 $vnt_services->save();
                 $lastServices = DB::table('vnt_services')->orderBy('id', 'desc')->first();
@@ -196,8 +200,9 @@ class tourist_places_controller extends Controller
                 $vnt_services->tourist_places_id   =$id_place;
                 $vnt_services->sv_counter_view=0;
                 $vnt_services->sv_counter_point=0;
-                $vnt_services->user_tour_guide_id=$user_id;
+                $vnt_services->user_id=$user_id;
                 $vnt_services->sv_website=$request->input('sv_website');
+                $vnt_services->sv_content = $request->input('sv_content');
                 $vnt_services->save();
                 $lastServices = DB::table('vnt_services')->orderBy('id', 'desc')->first();
                 $convert = (array)$lastServices;
