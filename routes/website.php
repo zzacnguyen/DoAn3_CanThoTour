@@ -60,6 +60,10 @@ Route::get('detail/id={id}&type={type}','publicDetail@get_detail');
 
 Route::get('diadiem2/id={id}','publicDetail@dichvu_lancan');
 
+Route::get('getRating/{id}','publicDetail@getRating');
+Route::get('checkUserRating/{idservice}&user_id={id}','publicDetail@checkUserRating');
+Route::get('save_rating/id={id}&rating={r}&detail={t}&user={iduser}','publicDetail@save_rating');
+Route::get('save_update_rating/id={id}&rating={r}&detail={t}&user={iduser}','publicDetail@save_update_rating');
 
 
 //search public

@@ -211,9 +211,13 @@ class pageController extends Controller
                     
                 $likes = DB::table('vnt_likes')->where('service_id', '=',$value->sv_id)->count();
 
-                $ratings = DB::table('vnt_visitor_ratings')->where('service_id')->first();
-                if (!empty($ratings)) {
-                    $ponit_rating = $ratings->vr_rating;
+                // $ratings = DB::table('vnt_visitor_ratings')->where('service_id',$value->sv_id)->first();
+                $ratings = DB::select("SELECT avg(vr_rating) as 'rating' FROM `vnt_visitor_ratings` WHERE service_id = '$value->sv_id'");
+                foreach ($ratings as $val) {
+                    $rating_sv = round($val->rating,1);
+                }
+                if (!empty($rating_sv)) {
+                    $ponit_rating = $rating_sv;
                 }else{ $ponit_rating = 0; }
 
                 if (isset($value->hotel_number_star )) {
@@ -249,6 +253,7 @@ class pageController extends Controller
                 }
                 
             }
+            // dd($mang);
             if (isset($mang)) {return $mang;}else{ return null; }
         }
         else

@@ -7,6 +7,7 @@ use DB;
 use App\touristPlacesModel;
 use App\likesModel;
 use App\servicesModel;
+use App\ratingsModel;
 use Carbon;
 
 class publicDetail extends Controller
@@ -58,14 +59,13 @@ class publicDetail extends Controller
 
             $likes = DB::table('vnt_likes')->where('service_id', '=',$id)->count();
 
-            $ratings = DB::table('vnt_visitor_ratings')->where('service_id',$id)->first();
-            if (!empty($ratings)) {
-                if ($ratings->vr_rating > 0) {
-                    $ponit_rating = CEIL($ratings->vr_rating);
-                }else{
-                    $ponit_rating = 1;
-                }
-            }else{ $ponit_rating = 1; }
+            $ratings = DB::select("SELECT avg(vr_rating) as 'rating' FROM `vnt_visitor_ratings` WHERE service_id = '$id'");
+            foreach ($ratings as $val) {
+                $rating_sv = round($val->rating,1);
+            }
+            if (!empty($rating_sv)) {
+                $ponit_rating = $rating_sv;
+            }else{ $ponit_rating = 0; }
 
             if ($dv == null || !isset($dv)) {
                 $result = null;
@@ -205,6 +205,62 @@ class publicDetail extends Controller
         else{
             return $dv->sv_name;
         }
+    }
+
+    public function getRating($idservice)
+    {
+        // $result = DB::select("SELECT vr_title, vr_ratings_details,vr_rating,user_id,service_id,created_at,username FROM `vnt_visitor_ratings` AS r INNER JOIN vnt_user AS i ON r.user_id = i.user_id WHERE r.service_id = '$idservice'");
+
+        $result = DB::table('vnt_visitor_ratings')
+                    ->join('vnt_user','vnt_visitor_ratings.user_id','=','vnt_user.user_id')
+                    ->leftjoin('vnt_contact_info','vnt_visitor_ratings.user_id','=','vnt_contact_info.user_id')
+                    ->select('vr_title','vr_ratings_details','vr_rating','vnt_visitor_ratings.user_id','service_id','vnt_visitor_ratings.created_at','username','contact_avatar')
+                    ->where('service_id',$idservice)->get();
+        return $result;
+    }
+
+    public function checkUserRating($idservice,$iduser)
+    {
+        $result = DB::table('vnt_visitor_ratings')
+                    ->join('vnt_user','vnt_visitor_ratings.user_id','=','vnt_user.user_id')
+                    ->leftjoin('vnt_contact_info','vnt_visitor_ratings.user_id','=','vnt_contact_info.user_id')
+                    ->select('vr_title','vr_ratings_details','vr_rating','vnt_visitor_ratings.user_id','service_id','vnt_visitor_ratings.created_at','username','contact_avatar')
+                    ->where('service_id',$idservice)
+                    ->where('vnt_visitor_ratings.user_id',$iduser)
+                    ->orderBy('vnt_visitor_ratings.created_at','desc')
+                    ->limit(10)
+                    ->get();
+        return json_encode($result);
+    }
+
+    public function save_rating($id_service, $rating, $detail,$userid)
+    {
+        $ra = (int)$rating;
+        $user_id = $userid;
+        $rating = new ratingsModel();
+        $rating->vr_title = "d";
+        $rating->vr_ratings_details = $detail;
+        $rating->vr_rating = $ra;
+        $rating->user_id = $user_id;
+        $rating->service_id = $id_service;
+
+        $mytime = Carbon\Carbon::now();
+        $rating->created_at = $mytime->toDateTimeString();
+
+        if($rating->save()){
+            return 1;
+        }
+        else{return -1;}
+    }
+
+    public function save_update_rating($id_service, $rating, $detail,$user_id)
+    {
+        $mytime = Carbon\Carbon::now();
+        DB::table('vnt_visitor_ratings')
+            ->where('user_id', $user_id)
+            ->where('service_id', $id_service)
+            ->update(['vr_rating' => $rating, 'vr_ratings_details' => $detail,'created_at' => $mytime->toDateTimeString()]);
+        return 1;
     }
 
     public function checkLike($userid,$idservice)
