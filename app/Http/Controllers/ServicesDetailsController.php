@@ -19,9 +19,13 @@ class ServicesDetailsController extends Controller
     public function showDetails($services_id, $user_id)
     {
         $service = DB::table('vnt_services')
-        ->select('vnt_services.id', 'hotel_name', 'sightseeing_name', 'entertainments_name', 'transport_name', 'eat_name', 
+        ->select(
+            'vnt_services.id'
+            ,'hotel_name', 'sightseeing_name', 'entertainments_name', 'transport_name', 'eat_name', 
             'sv_website', 'sv_description', 'sv_open', 'sv_close', 'sv_lowest_price', 'sv_highest_price', 'pl_phone_number', 
-            'pl_address', DB::raw('AVG(vnt_visitor_ratings.vr_rating) as rating'), 'pl_latitude', 'pl_longitude','pl_name')
+            'pl_address', DB::raw('AVG(vnt_visitor_ratings.vr_rating) as rating'), 'pl_latitude', 'pl_longitude','pl_name'
+
+        )
         ->leftJoin('vnt_events', 'vnt_events.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_hotels', 'vnt_hotels.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_eating', 'vnt_eating.service_id', '=', 'vnt_services.id')
