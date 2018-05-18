@@ -233,7 +233,11 @@ Route::get('timquanhday-type/lat={latitude}&lon={longitude}&radius={radius}','Se
 
 
 
+// lich trinh
+Route::get('getListTripSchedule_web_type/{userid}&type={type}','tripScheduleController@getListTripSchedule_web_type');
 
+Route::get('searchServices_All_lichtrinh/{keyword}','pageController@searchServices_All_lichtrinh');
+Route::get('get_idtripschedule_web','tripScheduleController@get_idtripschedule_web');
 
 
 

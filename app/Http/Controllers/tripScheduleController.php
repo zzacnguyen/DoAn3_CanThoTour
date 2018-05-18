@@ -106,4 +106,23 @@ class tripScheduleController extends Controller
         $encode=json_encode($list_services);
         return $encode;
     } 
+
+
+    public function getListTripSchedule_web_type($user_id,$type) // lay ra danh sach lich trinh da ket thuc hay chua
+    {
+        // 1 ket thuc; 2- chua ket thuc
+        if ($type == 1) {
+            $scheduleList = DB::select("select * from vnt_tripschedule WHERE DATE(trip_enddate) > CURRENT_DATE() AND user_id = '$user_id' ORDER BY trip_startdate ASC");
+        }
+        else{
+            $scheduleList = DB::select("select * from vnt_tripschedule WHERE DATE(trip_enddate) < CURRENT_DATE() AND user_id = '$user_id' ORDER BY trip_startdate ASC");
+        }
+        return json_encode($scheduleList);
+    }
+
+    public function get_idtripschedule_web(){
+        $id = tripScheduleModel::max('id');
+        return $id;
+    }
+
 }

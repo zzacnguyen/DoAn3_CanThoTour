@@ -646,5 +646,43 @@ class pageController extends Controller
             return null;
         }
     }
+
+
+    public function searchServices_All_lichtrinh($keyword) // tim kiếm tất cả dịch vụ
+    {
+        $keyword_handing = str_replace("+", " ", $keyword);
+        $result_all = array();
+        $result_eat = DB::select("select c.name_city,c.name_district,c.name_ward,s.sv_id, s.sv_name,s.image_details_1,s.sv_types FROM sv_eat AS s INNER JOIN c_city_district_ward_place_service AS c ON s.sv_id = c.id_service WHERE s.sv_name LIKE '%$keyword_handing%'");
+        if ($result_eat != null) {
+            $result_all = array_merge($result_all,$result_eat);
+        }
+
+
+        $result_hotel = DB::select("select c.name_city,c.name_district,c.name_ward,s.sv_id, s.sv_name,s.image_details_1,s.sv_types FROM sv_hotel AS s INNER JOIN c_city_district_ward_place_service AS c ON s.sv_id = c.id_service WHERE s.sv_name LIKE '%$keyword_handing%'");
+        // $result[] = $result_hotel;
+        if ($result_hotel != null) {
+            $result_all = array_merge($result_all,$result_hotel);
+        }
+
+        // $result_tran = DB::select("select c.name_city,c.name_district,c.name_ward,s.sv_id, s.sv_name,s.image_details_1,s.sv_types FROM sv_stranport AS s INNER JOIN c_city_district_ward_place_service AS c ON s.sv_id = c.id_service WHERE s.sv_name LIKE '%$keyword_handing%'");
+        // // $result[] = $result_tran;
+        // if ($result_tran != null) {
+        //     $result_all = array_merge($result_all,$result_tran);
+        // }
+
+        $result_see = DB::select("select c.name_city,c.name_district,c.name_ward,s.sv_id, s.sv_name,s.image_details_1,s.sv_types FROM sv_sightseeting AS s INNER JOIN c_city_district_ward_place_service AS c ON s.sv_id = c.id_service WHERE s.sv_name LIKE '%$keyword_handing%'");
+        // $result[] = $result_see;
+        if ($result_see != null) {
+            $result_all = array_merge($result_all,$result_see);
+        }
+
+        $result_enter = DB::select("select c.name_city,c.name_district,c.name_ward,s.sv_id, s.sv_name,s.image_details_1,s.sv_types FROM sv_entertaiment AS s INNER JOIN c_city_district_ward_place_service AS c ON s.sv_id = c.id_service WHERE s.sv_name LIKE '%$keyword_handing%'");
+        // $result[] = $result_enter;
+        if ($result_enter != null) {
+            $result_all = array_merge($result_all,$result_enter);
+        }
+
+        return json_encode($result_all);
+    }
     
 }
