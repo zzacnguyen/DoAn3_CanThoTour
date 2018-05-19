@@ -27,15 +27,10 @@ class vnt_enterprise_userController extends Controller
             'sightseeing_name',
             'entertainments_name',
             'transport_name',
-            'eat_name', 
-            'vnt_transport.id as id_transport' ,
-            'vnt_eating.id as id_eating' ,
-            'vnt_hotels.id as id_hotel',
-            'vnt_sightseeing.id as id_sightseeing',
-            'vnt_entertainments.id as id_entertainment',
+            'eat_name',
             DB::raw('AVG(vnt_visitor_ratings.vr_rating) as rating'),
             DB::raw('count(vnt_likes.id) as num_like'),
-            DB::raw('count(vnt_share.id) as num_share'),
+            DB::raw('count(vnt_visitor_ratings.id) as num_rating'),
             'vnt_images.id as image_id',
             'vnt_images.image_details_1'
         )
@@ -43,7 +38,6 @@ class vnt_enterprise_userController extends Controller
         ->leftJoin('vnt_hotels', 'vnt_hotels.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_eating', 'vnt_eating.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_likes', 'vnt_likes.service_id', '=','vnt_services.id')
-        ->leftJoin('vnt_share', 'vnt_share.service_id', '=','vnt_services.id')
         ->leftJoin('vnt_entertainments', 'vnt_entertainments.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_sightseeing', 'vnt_sightseeing.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_transport', 'vnt_transport.service_id', '=', 'vnt_services.id')
@@ -55,7 +49,7 @@ class vnt_enterprise_userController extends Controller
         ->where('vnt_enterprise_user.user_id', '=', $user_id)
 
         ->groupBy('vnt_services.id','hotel_name','entertainments_name','transport_name', 'sightseeing_name', 
-                 'eat_name','vnt_images.id', 'vnt_images.image_details_1','id_transport' ,'id_eating' ,'id_hotel' ,'id_sightseeing',  'id_entertainment')
+                 'eat_name','vnt_images.id', 'vnt_images.image_details_1')
         
         ->get();
         return json_encode($service);
