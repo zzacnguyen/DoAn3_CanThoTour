@@ -45,16 +45,15 @@ class vnt_enterprise_userController extends Controller
         ->leftJoin('vnt_tourist_places', 'vnt_tourist_places.id', '=', 'vnt_services.tourist_places_id')
         ->leftjoin('vnt_visitor_ratings', 'vnt_visitor_ratings.service_id','=', 'vnt_services.id')
         ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
-        ->join('vnt_user', 'vnt_user.user_id', '=' , 'vnt_services.user_id')
+        ->join('vnt_user', 'vnt_user.user_id', '=' , 'vnt_tourist_places.user_id')
         ->join( 'vnt_enterprise_user','vnt_enterprise_user.user_id','=','vnt_user.user_id')
         ->where('vnt_enterprise_user.user_id', '=', $user_id)
 
         ->groupBy('vnt_services.id','hotel_name','entertainments_name','transport_name', 'sightseeing_name', 
-                 'eat_name', 'sv_website', 'sv_description', 'sv_open','sv_close','sv_lowest_price','sv_highest_price', 'vnt_tourist_places.pl_phone_number',
-                 'vnt_tourist_places.pl_address', 'vnt_tourist_places.pl_latitude', 'vnt_tourist_places.pl_longitude','pl_name')
+                 'eat_name','vnt_images.id', 'vnt_images.image_details_1')
         
         ->get();
-        return $service;
+        return json_encode($service);
         // $date = Carbon::now();
         // $year_now = $date->year;
         // $month_now = $date->month;
