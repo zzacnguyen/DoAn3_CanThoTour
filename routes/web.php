@@ -166,3 +166,5 @@ Route::get('schedule-one/{id}', 'tripScheduleController@getOneTripSchedule');
 Route::get('schedule-delete/{id}', 'tripScheduleController@delete_DetailSchedule');
 
 Route::get('get-serives-enterprise/{id}', 'vnt_enterprise_userController@getServices');
+
+Route::resource('seenevents', 'SeenEventController');
