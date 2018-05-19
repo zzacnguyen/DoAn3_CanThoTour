@@ -239,6 +239,9 @@ Route::get('getListTripSchedule_web_type/{userid}&type={type}','tripScheduleCont
 Route::get('searchServices_All_lichtrinh/{keyword}','pageController@searchServices_All_lichtrinh');
 Route::get('get_idtripschedule_web','tripScheduleController@get_idtripschedule_web');
 
+Route::get('delete-all-detail-schedule-web/{id}','tripScheduleController@delete_All_detailSchedule_web');
+Route::get('delete-schedule-web/{id}','tripScheduleController@delete_Schedule');
+
 
 
 

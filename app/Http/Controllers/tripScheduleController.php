@@ -125,4 +125,25 @@ class tripScheduleController extends Controller
         return $id;
     }
 
+
+    public function delete_All_detailSchedule_web($id){
+        $result = tripScheduleDetailsModel::where('trip_id',$id)->delete();
+        if ($result) {
+            return json_encode("status:200");
+        }
+        else{
+            return json_encode("status:500");
+        }
+    }
+
+    public function delete_Schedule($id){
+        $result = tripScheduleModel::where('id',$id)->delete();
+        if ($result) {
+            return json_encode("status:200");
+        }
+        else{
+            return json_encode("status:500");
+        }
+    }
+
 }
