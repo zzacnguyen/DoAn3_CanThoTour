@@ -51,7 +51,7 @@ class vnt_enterprise_userController extends Controller
         ->groupBy('vnt_services.id','hotel_name','entertainments_name','transport_name', 'sightseeing_name', 
                  'eat_name','vnt_images.id', 'vnt_images.image_details_1')
         
-        ->get();
+        ->paginate(10);
         return json_encode($service);
         // $date = Carbon::now();
         // $year_now = $date->year;
