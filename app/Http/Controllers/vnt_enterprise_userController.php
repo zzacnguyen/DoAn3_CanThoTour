@@ -28,6 +28,11 @@ class vnt_enterprise_userController extends Controller
             'entertainments_name',
             'transport_name',
             'eat_name', 
+            'vnt_transport.id as id_transport' ,
+            'vnt_eating.id as id_eating' ,
+            'vnt_hotels.id as id_hotel',
+            'vnt_sightseeing.id as id_sightseeing',
+            'vnt_entertainments.id as id_entertainment',
             DB::raw('AVG(vnt_visitor_ratings.vr_rating) as rating'),
             DB::raw('count(vnt_likes.id) as num_like'),
             DB::raw('count(vnt_share.id) as num_share'),
@@ -50,7 +55,7 @@ class vnt_enterprise_userController extends Controller
         ->where('vnt_enterprise_user.user_id', '=', $user_id)
 
         ->groupBy('vnt_services.id','hotel_name','entertainments_name','transport_name', 'sightseeing_name', 
-                 'eat_name','vnt_images.id', 'vnt_images.image_details_1')
+                 'eat_name','vnt_images.id', 'vnt_images.image_details_1','id_transport' ,'id_eating' ,'id_hotel' ,'id_sightseeing',  'id_entertainment')
         
         ->get();
         return json_encode($service);
