@@ -28,20 +28,11 @@ class vnt_enterprise_userController extends Controller
             'entertainments_name',
             'transport_name',
             'eat_name', 
-            'sv_website',
-            'sv_description',
-            'sv_open',
-            'sv_close',
-            'sv_lowest_price',
-            'sv_highest_price',
-            'pl_phone_number', 
-            'pl_address', 
-            DB::raw('AVG(vnt_visitor_ratings.vr_rating) as rating'), 
-            'pl_latitude', 
-            'pl_longitude',
-            'pl_name',
+            DB::raw('AVG(vnt_visitor_ratings.vr_rating) as rating'),
             DB::raw('count(vnt_likes.id) as num_like'),
-            DB::raw('count(vnt_share.id) as num_share')
+            DB::raw('count(vnt_share.id) as num_share'),
+            'vnt_images.id as image_id',
+            'vnt_images.image_details_1'
         )
         ->leftJoin('vnt_events', 'vnt_events.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_hotels', 'vnt_hotels.service_id', '=', 'vnt_services.id')
@@ -53,6 +44,7 @@ class vnt_enterprise_userController extends Controller
         ->leftJoin('vnt_transport', 'vnt_transport.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_tourist_places', 'vnt_tourist_places.id', '=', 'vnt_services.tourist_places_id')
         ->leftjoin('vnt_visitor_ratings', 'vnt_visitor_ratings.service_id','=', 'vnt_services.id')
+        ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
         ->join('vnt_user', 'vnt_user.user_id', '=' , 'vnt_services.user_id')
         ->join( 'vnt_enterprise_user','vnt_enterprise_user.user_id','=','vnt_user.user_id')
         ->where('vnt_enterprise_user.user_id', '=', $user_id)
