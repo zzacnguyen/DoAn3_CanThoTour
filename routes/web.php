@@ -82,7 +82,7 @@ Route::post('register-mobile','loginController@register')->name('register-mobile
 Route::get('logout','loginController@logout');
 
 Route::post('edit_user_mobile/{id}','accountController@edit_user_mobile');
-
+Route::get('get_info_user_mobile/{id}','accountController@get_info_user_mobile');
 
 
 // web

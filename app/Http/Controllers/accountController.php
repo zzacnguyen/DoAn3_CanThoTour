@@ -67,6 +67,13 @@ class accountController extends Controller
     //     return json_encode($result);
     // }
 
+    public function get_info_user_mobile($user_id)
+    {
+        $result = contact_infoModel::where('user_id',$user_id)->select('user_id','contact_name','contact_phone','contact_website','contact_email_address','contact_avatar','contact_language','contact_country')->first();
+        return json_encode($result);
+    }
+
+
     public function get_info_user($user_id)
     {
         $result = contact_infoModel::where('user_id',$user_id)->first();

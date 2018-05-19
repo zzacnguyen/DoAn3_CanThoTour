@@ -238,4 +238,9 @@ class publicCityController extends Controller
         $result = DB::select("SELECT * FROM c_city_district AS c WHERE c.id_city = '$idcity'");
         return $result;
     }
+
+    public function get_name_city($id){
+        $result = DB::table('vnt_province_city')->where('id',$id)->select('province_city_name')->first();
+        return json_encode($result);
+    }
 }
