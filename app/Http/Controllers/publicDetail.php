@@ -214,7 +214,7 @@ class publicDetail extends Controller
         $result = DB::table('vnt_visitor_ratings')
                     ->join('vnt_user','vnt_visitor_ratings.user_id','=','vnt_user.user_id')
                     ->leftjoin('vnt_contact_info','vnt_visitor_ratings.user_id','=','vnt_contact_info.user_id')
-                    ->select('vr_title','vr_ratings_details','vr_rating','vnt_visitor_ratings.user_id','service_id','vnt_visitor_ratings.created_at','username','contact_avatar')
+                    ->select('id','vr_title','vr_ratings_details','vr_rating','vnt_visitor_ratings.user_id','service_id','vnt_visitor_ratings.created_at','username','contact_avatar')
                     ->where('service_id',$idservice)->get();
         return $result;
     }
@@ -224,7 +224,7 @@ class publicDetail extends Controller
         $result = DB::table('vnt_visitor_ratings')
                     ->join('vnt_user','vnt_visitor_ratings.user_id','=','vnt_user.user_id')
                     ->leftjoin('vnt_contact_info','vnt_visitor_ratings.user_id','=','vnt_contact_info.user_id')
-                    ->select('vr_title','vr_ratings_details','vr_rating','vnt_visitor_ratings.user_id','service_id','vnt_visitor_ratings.created_at','username','contact_avatar')
+                    ->select('id','vr_title','vr_ratings_details','vr_rating','vnt_visitor_ratings.user_id','service_id','vnt_visitor_ratings.created_at','username','contact_avatar')
                     ->where('service_id',$idservice)
                     ->where('vnt_visitor_ratings.user_id',$iduser)
                     ->orderBy('vnt_visitor_ratings.created_at','desc')
@@ -375,6 +375,49 @@ class publicDetail extends Controller
     public function count_rating_service($idserive){
         $result = DB::select("select COUNT(service_id) as 'num_rating' FROM vnt_visitor_ratings WHERE service_id = '$idserive' GROUP BY service_id");
         return json_encode($result);
+    }
+
+    public function get_quyen_user($userid)
+    {
+        $result = DB::select('CALL login_info_phone(?)',array($userid));
+            // dd($result);
+            $level = 0;
+            foreach ($result as $result) {
+                if ($result->admin != null) {
+                    $level = 1;
+                }
+                else if($result->moderator != null && $result->active_mod == 1){
+                    $level = 2;
+                }
+                else if($result->partner != null && $result->active_partner == 1){
+                    $level = 3;
+                }
+                else if($result->enterprise != null && $result->active_enter == 1){
+                    $level = 4;
+                }
+                else if($result->tour_guide != null && $result->active_tour == 1){
+                    $level = 5;
+                }
+
+                $result_info = array(
+                    'id' => $result->user_id,
+                    'username' =>$result->username,
+                    'avatar' =>$result->contact_avatar,
+                    'level' =>$level
+                );
+            }
+        return json_encode($result_info);
+    }
+
+    public function delete_rating($id)
+    {
+        $result = ratingsModel::where('id',$id)->delete();
+        if ($result) {
+            return 1;
+        }
+        else{
+            return -1;
+        }
     }
 
 }

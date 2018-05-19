@@ -393,19 +393,19 @@ class pageController extends Controller
     {
         $keyword_handing = str_replace("+", " ", $keyword);
 
-        $result_eat = DB::select("select s.sv_id, s.sv_name,s.image_details_1,s.sv_description FROM sv_eat AS s WHERE s.sv_name LIKE '%$keyword_handing%'");
+        $result_eat = DB::select("select s.sv_id, s.sv_name,s.image_details_1,s.sv_description FROM sv_eat AS s WHERE s.sv_name LIKE '%$keyword_handing%' AND s.sv_status = 1");
         $result['eat'] = $result_eat;
 
-        $result_hotel = DB::select("select s.sv_id, s.sv_name,s.image_details_1,s.sv_description FROM sv_hotel AS s WHERE s.sv_name LIKE '%$keyword_handing%'");
+        $result_hotel = DB::select("select s.sv_id, s.sv_name,s.image_details_1,s.sv_description FROM sv_hotel AS s WHERE s.sv_name LIKE '%$keyword_handing%' AND s.sv_status = 1");
         $result['hotel'] = $result_hotel;
 
-        $result_tran = DB::select("select s.sv_id, s.sv_name,s.image_details_1,s.sv_description FROM sv_stranport AS s WHERE s.sv_name LIKE '%$keyword_handing%'");
+        $result_tran = DB::select("select s.sv_id, s.sv_name,s.image_details_1,s.sv_description FROM sv_stranport AS s WHERE s.sv_name LIKE '%$keyword_handing%' AND s.sv_status = 1");
         $result['tran'] = $result_tran;
 
-        $result_see = DB::select("select s.sv_id, s.sv_name,s.image_details_1,s.sv_description FROM sv_sightseeting AS s WHERE s.sv_name LIKE '%$keyword_handing%'");
+        $result_see = DB::select("select s.sv_id, s.sv_name,s.image_details_1,s.sv_description FROM sv_sightseeting AS s WHERE s.sv_name LIKE '%$keyword_handing%' AND s.sv_status = 1");
         $result['see'] = $result_see;
 
-        $result_enter = DB::select("select s.sv_id, s.sv_name,s.image_details_1,s.sv_description FROM sv_entertaiment AS s WHERE s.sv_name LIKE '%$keyword_handing%'");
+        $result_enter = DB::select("select s.sv_id, s.sv_name,s.image_details_1,s.sv_description FROM sv_entertaiment AS s WHERE s.sv_name LIKE '%$keyword_handing%' AND s.sv_status = 1");
         $result['enter'] = $result_enter;
 
         return json_encode($result);
@@ -496,25 +496,25 @@ class pageController extends Controller
     {
         $keyword_handing = str_replace("+", " ", $keyword);
 
-        $result_eat = DB::select("select s.sv_id,s.sv_types, s.sv_name,s.image_details_1,s.sv_description, s.sv_counter_view,s.sv_counter_point  from sv_eat AS s WHERE s.sv_name LIKE '%$keyword_handing%' AND s.sv_types = 1");
+        $result_eat = DB::select("select s.sv_id,s.sv_types, s.sv_name,s.image_details_1,s.sv_description, s.sv_counter_view,s.sv_counter_point  from sv_eat AS s WHERE s.sv_name LIKE '%$keyword_handing%' AND s.sv_types = 1 AND s.sv_status = 1");
         $result_eat2 = $this::search_con($result_eat);
         // return $mang;
         $result['eat'] = $result_eat2;
 
-        $result_hotel = DB::select("select s.sv_id,s.sv_types, s.sv_name,s.image_details_1,s.sv_description, s.sv_counter_view,s.sv_counter_point  from sv_hotel AS s WHERE s.sv_name LIKE '%$keyword_handing%' AND s.sv_types = 2");
+        $result_hotel = DB::select("select s.sv_id,s.sv_types, s.sv_name,s.image_details_1,s.sv_description, s.sv_counter_view,s.sv_counter_point  from sv_hotel AS s WHERE s.sv_name LIKE '%$keyword_handing%' AND s.sv_types = 2 AND s.sv_status = 1");
         $result_hotel2 = $this::search_con($result_hotel);
         // return $result_hotel2;
         $result['hotel'] = $result_hotel2;
 
-        $result_tran = DB::select("select s.sv_id,s.sv_types, s.sv_name,s.image_details_1,s.sv_description, s.sv_counter_view,s.sv_counter_point  from sv_stranport AS s WHERE s.sv_name LIKE '%$keyword_handing%' AND s.sv_types = 3");
+        $result_tran = DB::select("select s.sv_id,s.sv_types, s.sv_name,s.image_details_1,s.sv_description, s.sv_counter_view,s.sv_counter_point  from sv_stranport AS s WHERE s.sv_name LIKE '%$keyword_handing%' AND s.sv_types = 3 AND s.sv_status = 1");
         $result_tran2 = $this::search_con($result_tran);
         $result['tran'] = $result_tran2;
 
-        $result_see = DB::select("select s.sv_id,s.sv_types, s.sv_name,s.image_details_1,s.sv_description, s.sv_counter_view,s.sv_counter_point  from sv_sightseeting AS s WHERE s.sv_name LIKE '%$keyword_handing%' AND s.sv_types = 4");
+        $result_see = DB::select("select s.sv_id,s.sv_types, s.sv_name,s.image_details_1,s.sv_description, s.sv_counter_view,s.sv_counter_point  from sv_sightseeting AS s WHERE s.sv_name LIKE '%$keyword_handing%' AND s.sv_types = 4 AND s.sv_status = 1");
         $result_see2 = $this::search_con($result_see);
         $result['see'] = $result_see2;
 
-        $result_enter = DB::select("select s.sv_id,s.sv_types, s.sv_name,s.image_details_1,s.sv_description, s.sv_counter_view,s.sv_counter_point  from sv_entertaiment AS s WHERE s.sv_name LIKE '%$keyword_handing%' AND s.sv_types = 5");
+        $result_enter = DB::select("select s.sv_id,s.sv_types, s.sv_name,s.image_details_1,s.sv_description, s.sv_counter_view,s.sv_counter_point  from sv_entertaiment AS s WHERE s.sv_name LIKE '%$keyword_handing%' AND s.sv_types = 5 AND s.sv_status = 1");
         $result_enter2 = $this::search_con($result_enter);
         $result['enter'] = $result_enter2;
 

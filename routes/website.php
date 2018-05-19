@@ -30,6 +30,9 @@ Route::get('detail/s','pageController@getServiceTypeVicinity');
 Route::get('ThemVaCapNhatLike/{idserivce}&user={id}','publicDetail@ThemVaCapNhatLike'); //
 
 Route::get('count-rating-service/{idserivce}','publicDetail@count_rating_service'); //
+Route::get('get-quyen-user/{iduser}','publicDetail@get_quyen_user'); //
+Route::get('delete-rating/{idrating}','publicDetail@delete_rating'); //
+
 
 
 // load addplace
@@ -78,6 +81,10 @@ Route::get('get_all_place_city_type/{id}&type={t}','publicSearchController@get_a
 Route::get('image_city/{id}','pageController@image_city');
 
 Route::get('get_name_city/{id}','publicCityController@get_name_city');
+
+Route::get('get_service_city_new/{idcity}&{id_district}&{type}&{boloc}','publicCityController@get_service_city_new');
+Route::get('count_service_all_and_type/{id}','publicCityController@count_service_all_and_type');
+Route::get('get_district_city/{id}','publicCityController@get_district_city');
 
 
 //================================= TEST ======================================

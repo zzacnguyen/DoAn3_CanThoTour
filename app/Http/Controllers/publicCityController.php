@@ -9,7 +9,7 @@ class publicCityController extends Controller
 {
     public function getCity($idcity,$type,$current_page)
     {
-        $service_city = $this::paginate($this::get_service_city_new($idcity,0,$type,1), $current_page,9);
+        $service_city = $this::paginate($this::get_service_city_new($idcity,0,$type,1), $current_page,18);
         
         $count_sv     = $this::count_service_all_and_type($idcity);
         $district      = $this::get_district_city($idcity);
@@ -135,6 +135,11 @@ class publicCityController extends Controller
             return $mang;
         }
      }
+
+
+
+
+
     public function get_image($id_service)
     {
         $image = DB::table('vnt_images')->where('service_id',$id_service)->first();// load anh cua servic
