@@ -38,11 +38,11 @@ class ServicesDetailsController extends Controller
             'pl_latitude', 
             'pl_longitude',
             'pl_name',
-            'vnt_transport.id as id_transport' ,
-            'vnt_eating.id as id_eating' ,
-            'vnt_hotels.id as id_hotel',
-            'vnt_sightseeing.id as id_sightseeing',
-            'vnt_entertainments.id as id_entertainment'
+            // 'vnt_transport.id as id_transport' ,
+            // 'vnt_eating.id as id_eating' ,
+            // 'vnt_hotels.id as id_hotel',
+            // 'vnt_sightseeing.id as id_sightseeing',
+            // 'vnt_entertainments.id as id_entertainment'
 
         )
         ->leftJoin('vnt_events', 'vnt_events.service_id', '=', 'vnt_services.id')
@@ -56,7 +56,9 @@ class ServicesDetailsController extends Controller
         ->where('vnt_services.id', $services_id)
         ->groupBy('vnt_services.id','hotel_name','entertainments_name','transport_name', 'sightseeing_name', 
                  'eat_name', 'sv_website', 'sv_description', 'sv_open','sv_close','sv_lowest_price','sv_highest_price', 'vnt_tourist_places.pl_phone_number',
-                 'vnt_tourist_places.pl_address', 'vnt_tourist_places.pl_latitude', 'vnt_tourist_places.pl_longitude','pl_name','id_transport' ,'id_eating' ,'id_hotel' ,'id_sightseeing',  'id_entertainment')
+                 'vnt_tourist_places.pl_address', 'vnt_tourist_places.pl_latitude', 'vnt_tourist_places.pl_longitude','pl_name',
+                 // 'id_transport' ,'id_eating' ,'id_hotel' ,'id_sightseeing',  'id_entertainment'
+             )
         
         ->get();
 
