@@ -51,7 +51,7 @@ Route::resource('transport', 'transportController');
 Route::resource('events', 'EventsController');
 
 //đã check
-Route::get('counter-events', 'CounterEventsController@countEvent'); 
+Route::get('counter-events/{id}', 'CounterEventsController@countEvent'); 
 
 //tham quan
 Route::resource('sightseeing', 'sightseeingController');

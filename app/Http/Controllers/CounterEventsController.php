@@ -9,23 +9,26 @@ use Illuminate\Database\Eloquent\Colection;
 
 class CounterEventsController extends Controller
 {
-    public function countEvent()
+    public function countEvent($id)
     {
         $dt = Carbon::now();
         $year = $dt->year;
         $month = $dt->month;
         $day = $dt->day;
-        $events = DB::table('vnt_events')
-        ->select('vnt_events.service_id as id', 'vnt_events.event_name', 'vnt_images.id as image_id','vnt_images.image_details_1', 
-        DB::raw('DATE_FORMAT(event_start, "%d-%m-%Y") as event_start'),
-        DB::raw('DATE_FORMAT(event_end, "%d-%m-%Y") as event_end'))
-        ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_events.service_id')
+        $eventSeen = DB::table('vnt_events')
+        ->select('id')
         ->whereYear('event_end', '>=', $year)
         ->whereDay('event_end', '>=',$day)
         ->whereMonth('event_end', '>=', $month)
         ->where('event_status','=', 1)
         ->count();
-        return  json_encode($events);
+
+        $events = DB::table('vnt_vieweventuser')
+        ->select('id_events')
+        ->where('user_id','=', $id)
+        ->count();
+
+        return  json_encode($eventSeen -  $events);
     }
     public function Counter($name)
     {
