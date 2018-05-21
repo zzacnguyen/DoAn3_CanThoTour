@@ -340,22 +340,22 @@ class pageController extends Controller
                 
             $result = DB::select('CALL login_info_phone(?)',array(Auth::user()->user_id));
                 // dd($result);
-                $level = 0;
+                $level = array();
                 foreach ($result as $result) {
                     if ($result->admin != null) {
-                        $level = 1;
+                        $level[] = 1;
                     }
-                    else if($result->moderator != null && $result->active_mod == 1){
-                        $level = 2;
+                    if($result->moderator != null && $result->active_mod == 1){
+                        $level[] = 2;
                     }
-                    else if($result->partner != null && $result->active_partner == 1){
-                        $level = 3;
+                    if($result->partner != null && $result->active_partner == 1){
+                        $level[] = 3;
                     }
-                    else if($result->enterprise != null && $result->active_enter == 1){
-                        $level = 4;
+                    if($result->enterprise != null && $result->active_enter == 1){
+                        $level[] = 4;
                     }
-                    else if($result->tour_guide != null && $result->active_tour == 1){
-                        $level = 5;
+                    if($result->tour_guide != null && $result->active_tour == 1){
+                        $level[] = 5;
                     }
 
                     $result_info = array(

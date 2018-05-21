@@ -5,11 +5,11 @@
 </form> -->
 
 <!-- vui choi -->
-<form action="http://chinhlytailieu/vntour_api/edit_user_mobile/15" method="post" enctype="multipart/form-data">
+<form action="login-mobile" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="csrf-token" content="{{ csrf_token() }}">
-	<input type="text" name="name"> <br>
-	<input type="text" name="phone">	<br>
-	<input type="text" name="website">	<br>
+	<input type="text" name="username"> <br>
+	<input type="text" name="password">	<br>
+	<!-- <input type="text" name="website">	<br>
 	<input type="text" name="email">	<br>
 	<input type="text" name="lang">	<br>
 	<input type="text" name="address">	<br>
@@ -17,7 +17,7 @@
 	<select name="country">
 		<option value="viet nam">viet nam</option>
 		<option value="My">My</option>
-	</select>
+	</select> -->
 	
 	<br>
 
