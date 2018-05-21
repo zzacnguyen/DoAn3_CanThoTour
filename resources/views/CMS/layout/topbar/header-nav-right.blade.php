@@ -19,12 +19,12 @@
     <a href="#" class="hdr-btn sb-toggle-left" id="chatbox-btn" title="Người dùng đang truy cập">
         <i class="glyph-icon icon-wifi"></i>
     </a>
-    <div class="dropdown" id="notifications-btn">
+{{--     <div class="dropdown" id="notifications-btn" >
         <a data-toggle="dropdown" href="#" title="">
             <span class="small-badge bg-yellow"></span>
             <i class="glyph-icon icon-linecons-megaphone"></i>
         </a>
-        <div class="dropdown-menu box-md float-right">
+        <div class="dropdown-menu box-md float-right ">
             <div class="popover-title display-block clearfix pad10A">Thông báo</div>
             <div class="scrollable-content scrollable-slim-box">
                 <ul class="no-border notifications-box">
@@ -124,8 +124,8 @@
                 </a>
             </div>
         </div>
-    </div>
-    <div class="dropdown" id="progress-btn">
+    </div> --}}
+{{--     <div class="dropdown" id="progress-btn">
         <a data-toggle="dropdown" href="#" title="">
             <span class="small-badge bg-azure"></span>
             <i class="glyph-icon icon-linecons-params"></i>
@@ -225,7 +225,7 @@
                 </a>
             </div>
         </div>
-    </div>
+    </div> --}}
     
     <div class="dropdown" id="dashnav-btn">
         <a href="#" data-toggle="dropdown" data-placement="bottom" class="popover-button-header tooltip-button" title="Dashboard Quick Menu">
@@ -269,7 +269,7 @@
                         <span class="glyph-icon icon-separator-vertical pad0A medium">
                             <i class="glyph-icon icon-code opacity-80 font-size-20"></i>
                         </span>
-                        Dịch vụ
+                        Hướng dẫn sử dụng
                     </a>
                 </div>
             </div>
