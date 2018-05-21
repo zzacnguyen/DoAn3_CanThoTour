@@ -26,6 +26,9 @@ Route::resource('services','ServicesController');
 //đã check
 Route::get('service/service-id={id_service}&user-id={id_user}', 'ServicesDetailsController@showDetails');
 
+//dang lam
+Route::post('edit-services/services-id={id_service}&user-id={id_user}', 'ServicesDetailsController@EditServices');
+
 //chưa code
 Route::post('service-postview/id={id}', 'ServicesDetailsController@postCounterView');
  
