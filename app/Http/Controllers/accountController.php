@@ -432,38 +432,47 @@ class accountController extends Controller
     {
         $data=servicesModel::where('user_id',$user_id)->orderBy('created_at','desc')->get();
         // dd($data);
-        foreach ($data as $sv) {
-            $get_name_image = $this::get_name_image_ser($sv->sv_types,$sv->id);
-            // dd($get_name_image);
-            foreach ($get_name_image as $v) {
-                $name = $v->sv_name;
-                $image = $v->image_details_1;
+        if ($data != null) {
+            foreach ($data as $sv) {
+                $get_name_image = $this::get_name_image_ser($sv->sv_types,$sv->id);
+                // dd($get_name_image);
+                foreach ($get_name_image as $v) {
+                    $name = $v->sv_name;
+                    $image = $v->image_details_1;
+                }
+
+                $likes = DB::table('vnt_likes')->where('service_id', '=',$sv->id)->count();
+                // echo "string";
+                $ratings = DB::table('vnt_visitor_ratings')->where('service_id',$sv->id)->first();
+
+                if ($ratings != null) {
+                    $ponit_rating = $ratings->vr_rating;
+                }else{ $ponit_rating = 0; }
+
+                $result[] = array
+                    (
+                        'sv_id' => $sv->id,
+                        'sv_type' => $sv->sv_types,
+                        'sv_name' => $name,
+                        'sv_image' => $image,
+                        'sv_created_at' => $sv->created_at,
+                        'sv_status' => $sv->sv_status,
+                        'view' =>$sv->sv_counter_view,
+                        'like' => $likes,
+                        'rating' => $ponit_rating
+                    );   
             }
 
-            $likes = DB::table('vnt_likes')->where('service_id', '=',$sv->id)->count();
-            // echo "string";
-            $ratings = DB::table('vnt_visitor_ratings')->where('service_id',$sv->id)->first();
-
-            if ($ratings != null) {
-                $ponit_rating = $ratings->vr_rating;
-            }else{ $ponit_rating = 0; }
-
-            $result[] = array
-                (
-                    'sv_id' => $sv->id,
-                    'sv_type' => $sv->sv_types,
-                    'sv_name' => $name,
-                    'sv_image' => $image,
-                    'sv_created_at' => $sv->created_at,
-                    'sv_status' => $sv->sv_status,
-                    'view' =>$sv->sv_counter_view,
-                    'like' => $likes,
-                    'rating' => $ponit_rating
-                );   
+            if (isset($result)) {
+                return $result;
+            }else{return null;}
         }
-        if (isset($result)) {
-            return json_encode($result);
-        }else{return null;}
+        else
+        {
+            return null;
+        }
+            
+            
         
     }
 
@@ -552,7 +561,8 @@ class accountController extends Controller
                     'sv_website' => $info->sv_website,
                     'sv_phone_number' => $info->sv_phone_number,
                     'tourist_places_id' => $info->tourist_places_id,
-                    'sv_status' => $info->sv_status
+                    'sv_status' => $info->sv_status,
+                    'sv_content' =>$info->sv_content
                 );     
         }
         else{
@@ -571,8 +581,8 @@ class accountController extends Controller
        
         $table=servicesModel::find($id);
         try{
-            $table->sv_content=$request->sv_description;
-            $table->sv_description=$request->mota;
+            $table->sv_content=$request->mota;
+            $table->sv_description=$request->sv_name;
             $table->sv_open=$request->time_begin;
             $table->sv_close=$request->time_end;
             $table->sv_highest_price=$request->sv_highest_price;
@@ -580,8 +590,8 @@ class accountController extends Controller
         
             $table->sv_website=$request->sv_website;
             $table->sv_phone_number=$request->sv_phone_number;
-            $table->sv_counter_view=1;
-            $table->sv_counter_point=1;
+            // $table->sv_counter_view=1;
+            // $table->sv_counter_point=1;
             $table->sv_status=$request->status;
             $table->sv_types=$request->sv_types;
             $table->tourist_places_id=$request->diadiem;
@@ -598,23 +608,23 @@ class accountController extends Controller
             }
              switch ($request->sv_types) {
                 case 1:
-                    eatingModel::where('service_id',$id)->update(['eat_name'=>$request->sv_description,'eat_status'=>'1']);
+                    eatingModel::where('service_id',$id)->update(['eat_name'=>$request->sv_name,'eat_status'=>'1']);
                     return 'ok';
                     break;
                 case 2:
-                    hotelsModel::where('service_id',$id)->update(['hotel_name'=>$request->sv_description,'hotel_number_star'=>5,'hotel_status'=>'1']);
+                    hotelsModel::where('service_id',$id)->update(['hotel_name'=>$request->sv_name,'hotel_number_star'=>5,'hotel_status'=>'1']);
                     return 'ok';
                     break;
                 case 3:
-                    transportModel::where('service_id',$id)->update(['transport_name'=>$request->sv_description,'transport_status'=>'1']);
+                    transportModel::where('service_id',$id)->update(['transport_name'=>$request->sv_name,'transport_status'=>'1']);
                     return 'ok';
                     break;
                 case 4:
-                     sightseeingModel::where('service_id',$id)->update(['sightseeing_name'=>$request->sv_description,'sightseeing_status'=>'1']);
+                     sightseeingModel::where('service_id',$id)->update(['sightseeing_name'=>$request->sv_name,'sightseeing_status'=>'1']);
                     return 'ok';
                     break;
                 case 5:
-                    entertainmentsModel::where('service_id',$id)->update(['entertainments_name'=>$request->sv_description,'entertainments_status'=>'1']);
+                    entertainmentsModel::where('service_id',$id)->update(['entertainments_name'=>$request->sv_name,'entertainments_status'=>'1']);
                     return 'ok';
                     break;
                 default:
@@ -715,49 +725,58 @@ class accountController extends Controller
     }
     public function post_add_service_user(Request $request,$user_id)
     {
-
+        // return $request->all();
         $table=new servicesModel;
 
-        $table->sv_description=$request->sv_description;
-            $table->sv_content=$request->sv_description;
+        $table->sv_description=$request->sv_name;
+            $table->sv_content=$request->mota;
             $table->sv_open=$request->time_begin;
             $table->sv_close=$request->time_end;
             $table->sv_highest_price=$request->sv_lowest_price;
-            $table->sv_lowest_price=$request->sv_highest_price;
+            $table->sv_highest_price=$request->sv_highest_price;
         
             $table->sv_website=$request->sv_website;
             $table->sv_phone_number=$request->sv_phone_number;
-            $table->sv_counter_view=1;
-            $table->sv_counter_point=1;
-            $table->sv_status='0';
+            $table->sv_counter_view=0;
+            $table->sv_counter_point=0;
+            $table->sv_status=0;
             $table->sv_types=$request->sv_types;
             $table->tourist_places_id=$request->diadiem;
             $table->user_id=$user_id;
             $table->save();
-            $max=$table::max('id');
-            imagesModel::insert(['image_banner'=>$request->img1,'image_details_1'=>$request->img2,'image_details_2'=>$request->img3,'image_status'=>'1','service_id'=>$max]);
 
+            $max=$table::max('id');
+
+            $img_ = new imagesModel();
+            $img_->image_banner = $request->img1;
+            $img_->image_details_1 = $request->img2;
+            $img_->image_details_2 = $request->img3;
+            $img_->image_status = 1;
+            $img_->service_id = $max;
+            if ($img_->save()) {
+            }
+            // imagesModel::insert(['image_banner'=>$request->img1,'image_details_1'=>$request->img2,'image_details_2'=>$request->img3,'image_status'=>'1','service_id'=>$max]);
           
              switch ($request->sv_types) {
                 case 1:
-                    eatingModel::insert(['eat_name'=>$request->sv_description,'eat_status'=>'1','service_id'=>$max]);
-                    return 'ok';
+                    eatingModel::insert(['eat_name'=>$request->sv_name,'eat_status'=>'1','service_id'=>$max]);
+                    return json_encode(1);
                     break;
                 case 2:
-                    hotelsModel::insert(['hotel_name'=>$request->sv_description,'hotel_number_star'=>5,'hotel_status'=>'1','service_id'=>$max]);
-                    return 'ok';
+                    hotelsModel::insert(['hotel_name'=>$request->sv_name,'hotel_number_star'=>5,'hotel_status'=>'1','service_id'=>$max]);
+                    return json_encode(1);
                     break;
                 case 3:
-                    transportModel::insert(['transport_name'=>$request->sv_description,'transport_status'=>'1','service_id'=>$max]);
-                    return 'ok';
+                    transportModel::insert(['transport_name'=>$request->sv_name,'transport_status'=>'1','service_id'=>$max]);
+                    return json_encode(1);
                     break;
                 case 4:
-                     sightseeingModel::insert(['sightseeing_name'=>$request->sv_description,'sightseeing_status'=>'1','service_id'=>$max]);
-                    return 'ok';
+                     sightseeingModel::insert(['sightseeing_name'=>$request->sv_name,'sightseeing_status'=>'1','service_id'=>$max]);
+                    return json_encode(1);
                     break;
                 case 5:
-                    entertainmentsModel::insert(['entertainments_name'=>$request->sv_description,'entertainments_status'=>'1','service_id'=>$max]);
-                    return 'ok';
+                    entertainmentsModel::insert(['entertainments_name'=>$request->sv_name,'entertainments_status'=>'1','service_id'=>$max]);
+                    return json_encode(1);
                     break;
                 default:
                     # code...

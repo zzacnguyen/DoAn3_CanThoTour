@@ -83,6 +83,7 @@ class publicDetail extends Controller
                     $result['sv_point'] = $value->sv_counter_point;
                     $result['sv_like'] = $likes;
                     $result['sv_rating'] = $ponit_rating;
+                    $result['sv_content'] = $value->sv_content;
 
                     $result['id_place'] = $value->id_place;
                     $result['pl_latitude'] = $value->pl_latitude;
@@ -255,11 +256,12 @@ class publicDetail extends Controller
 
     public function save_update_rating($id_service, $rating, $detail,$user_id)
     {
+        // return $detail;
         $mytime = Carbon\Carbon::now();
         DB::table('vnt_visitor_ratings')
             ->where('user_id', $user_id)
             ->where('service_id', $id_service)
-            ->update(['vr_rating' => $rating, 'vr_ratings_details' => $detail,'created_at' => $mytime->toDateTimeString()]);
+            ->update(['vr_rating' => $rating,'vr_title'=>'s', 'vr_ratings_details' => $detail]);
         return 1;
     }
 

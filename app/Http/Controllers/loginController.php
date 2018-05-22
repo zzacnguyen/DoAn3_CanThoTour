@@ -54,19 +54,23 @@ class loginController extends Controller
         $messages = [
             'username.email'        => 'Không đúng định dạng email',
             'password.min'    => 'Tài khoản có độ dài từ 4-20 ký tự',
+            'password.max' => 'sdsdsdsd',
+            'username.min' => 'sdsdsd'
         ];
         $validator = Validator::make($request->all(), [
             'username' => 'min:4',
-            'password' => 'required:min:4'
+            'username' => 'max:20',
+            'password' => 'required:min:4',
+            'password' => 'required:max:20'
         ],$messages);
         if ($validator->fails()) {
-            return redirect('registerW')->withErrors($validator)->withInput();
+            return -1; // validate
         } 
         elseif ($this->check_username_existW($user)) {
-            return redirect('registerW')->with(['userexist' => 'exist']);
+            return -2;
         }
         elseif($pass != $passold){
-            return redirect('registerW')->with(['password' => 'pass']);
+            return -3;
         }
         else 
         {
@@ -82,9 +86,14 @@ class loginController extends Controller
             $id_user = $lam->user_id;
             $contact = new contact_infoModel();
             $contact->user_id = $id_user;
-            $contact->save();
-
-            return redirect('registersuccess');
+            
+            if ($contact->save()) {
+                return 1;
+            }
+            else{
+                return -4;
+            }
+            
         }
     }
 
