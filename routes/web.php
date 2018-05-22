@@ -91,6 +91,7 @@ Route::get('get_info_user_mobile/{id}','accountController@get_info_user_mobile')
 // web
 
 Route::post('upload-image/{id}','ImagesController@Upload');
+Route::post('edit-image/{id}','ImagesController@EditImage');
 
 //đã check
 Route::get('get-icon/{id}', 'ImagesController@getIcon');
