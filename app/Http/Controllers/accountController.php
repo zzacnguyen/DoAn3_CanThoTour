@@ -129,13 +129,13 @@ class accountController extends Controller
                 contact_infoModel::where('user_id',$id)
          
                 ->update([
-                    'contact_name'=>$request->name,
-                    'contact_phone'=>$request->phone,
-                    'contact_website'=>$request->website,
-                    'contact_email_address'=>$request->email,
-                    'contact_language'=>$request->lang,
-                    'contact_country'=>$request->address,
-                    'contact_avatar'=>$request->avatar]);
+                    'contact_name'=>$request->contact_name,
+                    'contact_phone'=>$request->contact_phone,
+                    'contact_website'=>$request->contact_website,
+                    'contact_email_address'=>$request->contact_email_address,
+                    'contact_language'=>$request->contact_language,
+                    'contact_country'=>$request->contact_country,
+                    'contact_avatar'=>$request->contact_avatar]);
                 return "1";
             }
             else
@@ -143,12 +143,12 @@ class accountController extends Controller
                 contact_infoModel::where('user_id',$id)
          
                 ->update([
-                    'contact_name'=>$request->name,
-                    'contact_phone'=>$request->phone,
-                    'contact_website'=>$request->website,
-                    'contact_email_address'=>$request->email,
-                    'contact_language'=>$request->lang,
-                    'contact_country'=>$request->address]);
+                    'contact_name'=>$request->contact_name,
+                    'contact_phone'=>$request->contact_phone,
+                    'contact_website'=>$request->contact_website,
+                    'contact_email_address'=>$request->contact_email_address,
+                    'contact_language'=>$request->contact_language,
+                    'contact_country'=>$request->contact_country]);
                 return "1";
             }
         }

@@ -26,6 +26,9 @@ Route::resource('services','ServicesController');
 //đã check
 Route::get('service/service-id={id_service}&user-id={id_user}', 'ServicesDetailsController@showDetails');
 
+//dang lam
+Route::post('edit-services/services-id={id_service}&user-id={id_user}', 'ServicesDetailsController@EditServices');
+
 //chưa code
 Route::post('service-postview/id={id}', 'ServicesDetailsController@postCounterView');
  
@@ -168,5 +171,3 @@ Route::get('schedule-delete/{id}', 'tripScheduleController@delete_DetailSchedule
 Route::get('get-serives-enterprise/{id}', 'vnt_enterprise_userController@getServices');
 
 Route::resource('seenevents', 'SeenEventController');
-Route::get('is-seen-event/{id}', 'ViewEventsController@isSeenEvent');
-Route::get('isnot-seen-event/{id}', 'ViewEventsController@isNotSeenEvent');
