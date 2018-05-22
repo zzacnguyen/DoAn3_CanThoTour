@@ -1,14 +1,22 @@
 <?php
 include 'website.php';
-// include 'cms.php';
+include 'cms.php';
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
+|	1. Đếm sự kiện
+|	
+|	
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+|
+|
+|
+|
+|
+|
+
+| 
 |
 */
 //sai
@@ -91,6 +99,7 @@ Route::get('get-info-user-mobile/{id}','accountController@getInfoUserMobile');
 // web
 
 Route::post('upload-image/{id}','ImagesController@Upload');
+Route::post('edit-image/{id}','ImagesController@EditImage');
 
 //đã check
 Route::get('get-icon/{id}', 'ImagesController@getIcon');
