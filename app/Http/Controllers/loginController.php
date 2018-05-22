@@ -251,17 +251,21 @@ class loginController extends Controller
             $userRegister->username      	   = $user;
             $userRegister->password            = bcrypt($password);
             
-            $userRegister->save();
+            if ($userRegister->save()) {
+                $lam = usersModel::where('username',$user)->first();
 
-            $lam = usersModel::where('username',$user)->first();
+                $id_user = $lam->user_id;
+                $contact = new contact_infoModel();
+                $contact->user_id = $id_user;
+                $contact->save();
 
-            $id_user = $lam->user_id;
-            $contact = new contact_infoModel();
-            $contact->user_id = $id_user;
-            $contact->save();
-
-            $erro = array('error' => null, 'status' => 'OK');
-            return json_encode($erro);
+                $erro = array('error' => null, 'status' => 'OK');
+                return json_encode($erro);
+            }
+            else
+            {
+                $erro = array('error' => 6, 'status' => 'ERROR');
+            }   
         }
     }
 

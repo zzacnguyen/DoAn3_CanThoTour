@@ -261,7 +261,7 @@ class publicDetail extends Controller
         DB::table('vnt_visitor_ratings')
             ->where('user_id', $user_id)
             ->where('service_id', $id_service)
-            ->update(['vr_rating' => $rating,'vr_title'=>'s', 'vr_ratings_details' => $detail]);
+            ->update(['vr_rating' => $rating,'vr_title'=>'s', 'vr_ratings_details' => $detail, 'created_at' => $mytime->toDateTimeString()]);
         return 1;
     }
 

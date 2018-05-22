@@ -67,7 +67,7 @@ class accountController extends Controller
     //     return json_encode($result);
     // }
 
-    public function get_info_user_mobile($user_id)
+    public function getInfoUserMobile($user_id)
     {
         $result = contact_infoModel::where('user_id',$user_id)->select('user_id','contact_name','contact_phone','contact_website','contact_email_address','contact_avatar','contact_language','contact_country')->first();
         return json_encode($result);
@@ -110,19 +110,8 @@ class accountController extends Controller
     }
 
 
-    public function edit_user_mobile(Request $request,$id)
+    public function editUserMobile(Request $request,$id)
     {
-
-        // contact_infoModel::where('user_id',$id)
-         
-        //         ->update([
-        //             'contact_name'=>$request->name,
-        //             'contact_phone'=>$request->phone,
-        //             'contact_website'=>$request->website,
-        //             'contact_email_address'=>$request->email,
-        //             'contact_language'=>$request->lang,
-        //             'contact_country'=>$request->address]);
-        //         return "1";
         try{
             if($request->avatar)
             {
@@ -136,20 +125,44 @@ class accountController extends Controller
                     'contact_language'=>$request->contact_language,
                     'contact_country'=>$request->contact_country,
                     'contact_avatar'=>$request->contact_avatar]);
-                return "1";
+                return 1;
             }
             else
             {
-                contact_infoModel::where('user_id',$id)
-         
-                ->update([
-                    'contact_name'=>$request->contact_name,
-                    'contact_phone'=>$request->contact_phone,
-                    'contact_website'=>$request->contact_website,
-                    'contact_email_address'=>$request->contact_email_address,
-                    'contact_language'=>$request->contact_language,
-                    'contact_country'=>$request->contact_country]);
-                return "1";
+
+                $info = contact_infoModel::where('user_id',$id)->first();
+
+                if ($info != null) {
+                    contact_infoModel::where('user_id',$id)
+             
+                    ->update([
+                        'contact_name'=>$request->contact_name,
+                        'contact_phone'=>$request->contact_phone,
+                        'contact_website'=>$request->contact_website,
+                        'contact_email_address'=>$request->contact_email_address,
+                        'contact_language'=>$request->contact_language,
+                        'contact_country'=>$request->contact_country]);
+                    return 1;
+                }
+                else
+                {
+                    
+                    $contact = new contact_infoModel;
+                    $contact->user_id = $id;
+                    $contact->contact_name = $request->contact_name;
+                    $contact->contact_phone = $request->contact_phone;
+                    $contact->contact_website = $request->contact_website;
+                    $contact->contact_email_address = $request->contact_email_address;
+                    $contact->contact_language = $request->contact_language;
+                    $contact->contact_country = $request->contact_country;
+                    if ($contact->save()) {
+                        return 1;
+                    }
+                    else{
+                        return -1;
+                    }
+
+                }   
             }
         }
         catch(\Illuminate\Database\QueryException $ex){ 
