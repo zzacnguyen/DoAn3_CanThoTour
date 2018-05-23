@@ -100,7 +100,7 @@ Route::get('get-info-user-mobile/{id}','accountController@getInfoUserMobile');
 
 Route::post('upload-image/{id}','ImagesController@Upload');
 Route::post('edit-image/{id}','ImagesController@EditImage');
-
+Route::post('upload-image-user/{id}','ImagesController@UploadImageUser');
 //đã check
 Route::get('get-icon/{id}', 'ImagesController@getIcon');
 
