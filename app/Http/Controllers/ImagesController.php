@@ -6,6 +6,8 @@ use App\Http\Controllers\Image;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use App\imagesModel;
+use App\contact_infoModel;
+
 use DateTime;
 
 
@@ -246,9 +248,44 @@ class ImagesController extends Controller
             return json_encode("status:500");   
         }
     }
-    public function UploadImageUser(Request $request)
+    public function UploadImageUser(Request $request, $user_id)
     {
+        $date = date("Y_m_d");
+        $timedate = date("h_i_s");
+        $time = '_'.$date.'_'.$timedate;
 
+        $path_avatar = public_path().'/avatar/';
+        $file_avatar = $request->file('avatar');
+        $name_avatar = "avatar".$time.'.'.$file_avatar->getClientOriginalExtension();
+        $image_avatar = \Image::make($file_avatar);
+        $image_avatar->resize(198,198);
+        $image_avatar->save($path_avatar.$name_avatar);
+        contact_infoModel::where('user_id',$user_id)
+            ->update(['contact_avatar'=>$name_avatar]);
+        return json_encode("status: 200");
     }
 
+
+    public function UploadMultipleImage(Request $request, $services)
+    {
+        $date = date("Y_m_d");
+        $timedate = date("h_i_s");
+        $time = '_'.$date.'_'.$timedate;
+
+        $duong_dan   = public_path().'\banner\\';
+        if( $file_anh = $request->file('ten_hinh'))
+        {
+            for($i = 0; $i < sizeof($file_anh); $i++)
+            {
+                $hinh_anh = \Image::make($file_anh[$i]);
+                $hinh_anh->resize(286,400);
+                $hinh_anh->save($duong_dan.'banner'.$time.$i.'.'.$file_anh[$i]->getClientOriginalExtension());
+                $hinh_anh = new imagesModel();
+                $hinh_anh->image_banner = "banner".$time.$i.'.'.$file_anh[$i]->getClientOriginalExtension();
+                $hinh_anh->service_id= $services;
+                $hinh_anh->save();
+            }
+        }
+
+    }
 }
