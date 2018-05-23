@@ -179,4 +179,6 @@ Route::get('schedule-delete/{id}', 'tripScheduleController@delete_DetailSchedule
 
 Route::get('get-serives-enterprise/{id}', 'vnt_enterprise_userController@getServices');
 
+Route::get('get-list-serives-venue/{id}', 'vnt_enterprise_userController@getListServices');
+
 Route::resource('seenevents', 'SeenEventController');
