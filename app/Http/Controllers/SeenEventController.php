@@ -58,13 +58,6 @@ class SeenEventController extends Controller
      */
     public function show($id)
     {
-        $event = DB::table('vnt_vieweventuser')
-        ->select('vnt_vieweventuser.id as id_view', 'vnt_events.event_name', 'event_start', 'event_end' )
-        ->join('vnt_user', 'vnt_user.user_id', '=', 'vnt_vieweventuser.user_id')
-        ->join('vnt_events', 'vnt_events.id', '=', 'vnt_vieweventuser.id_events')
-        ->where('vnt_user.user_id', '=', $id)
-        ->paginate(10);
-        return json_encode($event);
     }
 
     /**
