@@ -179,46 +179,42 @@ class ImagesController extends Controller
 
     public function EditImage(Request $request,$id)
     {
+        $date = date("Y_m_d");
+        $timedate = date("h_i_s");
+        $time = '_'.$date.'_'.$timedate;
+
         $path_banner = public_path().'\\banners\\';
-        $path_details1 = public_path().'/details1/';
-        $path_details2 = public_path().'/details2/';
-        $path_icon = public_path().'/icons/';
-        $path_thumb = public_path().'/thumbnails/';
+        $path_details1 = public_path().'\\details1\\';
+        $path_details2 = public_path().'\\details2\\';
+        $path_icon = public_path().'\\icons\\';
+        $path_thumb = public_path().'\\thumbnails\\';
 
-
-        $file_banner = $request->file('file_banner');
-        $name_banner  = $request->input('name_banner');
+        //upload banner
+        $file_banner = $request->file('banner');
+        $file_details_1 = $request->file('details1');
+        $file_details_2 = $request->file('details2');
 
         if(!empty($file_banner) || !empty($file_details_1) || !empty($file_details_2))
         {
-            if(($request->input('name_banner')) != NULL || ($request->file('name_details_1')) != NULL || ($request->file('name_details_2')) != NULL)
-            {
-                if(!empty($file_banner))
+            if(!empty($file_banner))
                 {
-                    $path_and_image_name = $path_banner.$name_banner;
-                    \File::delete($path_and_image_name);
                     $image_banner = \Image::make($file_banner);
+                    $name_banner = "banner_".$time.'.'.$file_banner->getClientOriginalExtension();
                     $image_banner->resize(768,720);
                     $image_banner->save($path_banner.$name_banner);
                     $image_banner->resize(600,400);
                     $image_banner->save($path_thumb.$name_banner);
                     $image_banner->resize(50,50);
                     $image_banner->save($path_icon.$name_banner);
-
+                    $name_banner = "banner_".$time.'.'.$file_banner->getClientOriginalExtension();
                     imagesModel::where('id',$id)
-                    
                         ->update(['image_banner'=>$name_banner]);
-
                 }
-
-                $file_details_1 = $request->file('details1');
-                if(!empty($file_details_1))
+            if(!empty($file_details_1))
                 {
 
-                    $name_details_1 = $request->file('name_details_1');
-                    $path_and_image_name = $path_details1.$name_details_1;
-                    \File::delete($path_and_image_name);
-                    $image_details1 = \Image::make($file_details_2);
+                    $name_details_1 = "details1_".$time.'.'.$file_details_1->getClientOriginalExtension();
+                    $image_details1 = \Image::make($file_details_1);
                     $image_details1->resize(1280,720);
                     $image_details1->save($path_details1.$name_details_1);
                     $image_details1->resize(600,400);
@@ -227,14 +223,11 @@ class ImagesController extends Controller
                     $image_details1->save($path_icon.$name_details_1);
                     imagesModel::where('id',$id)
 
-                        ->update(['name_details_1'=>$name_details_1]);
-                }     
-                $file_details_2 = $request->file('details2');
-                if(!empty($file_details_2))
+                        ->update(['image_details_1'=>$name_details_1]);
+                }
+            if(!empty($file_details_2))
                 {
-                    $name_details_2 = $request->file('name_details_2');
-                    $path_and_image_name = $file_details_2.$name_details_2;
-                    \File::delete($path_and_image_name);
+                    $name_details_2 = "details2_".$time.'.'.$file_details_2->getClientOriginalExtension();
                     $image_details2 = \Image::make($file_details_2);
                     $image_details2->resize(1280,720);
                     $image_details2->save($path_details2.$name_details_2);
@@ -243,22 +236,19 @@ class ImagesController extends Controller
                     $image_details2->resize(50,50);
                     $image_details2->save($path_icon.$name_details_2);
                     imagesModel::where('id',$id)
-
-                        ->update(['name_details_2'=>$name_details_2]);
+                        ->update(['image_details_2'=>$name_details_2]);
 
                 }
-                return json_encode("status:200");
-            }
-            else
-            {
-                return json_encode("status:500");   
-            }
+            return json_encode("status:200");
         }
         else
         {
             return json_encode("status:500");   
         }
     }
+    public function UploadImageUser(Request $request)
+    {
 
+    }
 
 }
