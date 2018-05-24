@@ -132,6 +132,33 @@ class vnt_enterprise_userController extends Controller
         // $encode=json_encode($services);
         // return $encode;
     }
+
+public function getListServices($user_id)
+    {
+
+        
+        $service = DB::table('vnt_services')
+        ->select(
+            'vnt_services.id',
+            'hotel_name',
+            'sightseeing_name',
+            'entertainments_name',
+            'transport_name',
+            'eat_name'
+        )
+        ->leftJoin('vnt_hotels', 'vnt_hotels.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_eating', 'vnt_eating.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_entertainments', 'vnt_entertainments.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_sightseeing', 'vnt_sightseeing.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_transport', 'vnt_transport.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_tourist_places', 'vnt_tourist_places.id', '=', 'vnt_services.tourist_places_id')
+        ->join('vnt_user', 'vnt_user.user_id', '=' , 'vnt_tourist_places.user_id')
+        ->join( 'vnt_enterprise_user','vnt_enterprise_user.user_id','=','vnt_user.user_id')
+        ->where('vnt_enterprise_user.user_id', '=', $user_id)        
+        ->get();
+        return json_encode($service);
+    }    
+
     public function getTouristPlaces($month, $user_id)
     {
     	if($month == 0)

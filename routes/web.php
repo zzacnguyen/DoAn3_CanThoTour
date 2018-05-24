@@ -100,7 +100,7 @@ Route::get('get-info-user-mobile/{id}','accountController@getInfoUserMobile');
 
 Route::post('upload-image/{id}','ImagesController@Upload');
 Route::post('edit-image/{id}','ImagesController@EditImage');
-
+Route::post('upload-image-user/{id}','ImagesController@UploadImageUser');
 //đã check
 Route::get('get-icon/{id}', 'ImagesController@getIcon');
 
@@ -178,5 +178,7 @@ Route::get('schedule-one/{id}', 'tripScheduleController@getOneTripSchedule');
 Route::get('schedule-delete/{id}', 'tripScheduleController@delete_DetailSchedule');
 
 Route::get('get-serives-enterprise/{id}', 'vnt_enterprise_userController@getServices');
+
+Route::get('get-list-serives-venue/{id}', 'vnt_enterprise_userController@getListServices');
 
 Route::resource('seenevents', 'SeenEventController');

@@ -69,7 +69,7 @@ class accountController extends Controller
 
     public function getInfoUserMobile($user_id)
     {
-        $result = contact_infoModel::where('user_id',$user_id)->select('user_id','contact_name','contact_phone','contact_website','contact_email_address','contact_avatar','contact_language','contact_country')->first();
+        $result = contact_infoModel::where('user_id',$user_id)->select('contact_name','contact_phone','contact_website','contact_email_address','contact_avatar','contact_language','contact_country')->first();
         return json_encode($result);
     }
 
