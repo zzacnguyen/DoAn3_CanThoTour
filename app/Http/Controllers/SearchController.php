@@ -316,14 +316,6 @@ class SearchController extends Controller
                         }
                     }
                 }
-                // return $arr_distancePlace;
-                // foreach ($arr_distancePlace as $key => $value) {
-                //     if (!empty($this::getServicesAll_2($key,$type,$value))) {
-                //         foreach ($this::getServicesAll_2($key,$type,$value) as $k => $v) {
-                //             $r[] = $v;
-                //         }
-                //     }
-                // }
                 if (isset($r)) {
                     return $r;
                 }

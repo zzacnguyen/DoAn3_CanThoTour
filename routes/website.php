@@ -65,8 +65,8 @@ Route::get('diadiem2/id={id}','publicDetail@dichvu_lancan');
 
 Route::get('getRating/{id}','publicDetail@getRating');
 Route::get('checkUserRating/{idservice}&user_id={id}','publicDetail@checkUserRating');
-Route::get('save_rating/id={id}&rating={r}&detail={t}&user={iduser}','publicDetail@save_rating');
-Route::get('save_update_rating/id={id}&rating={r}&detail={t}&user={iduser}','publicDetail@save_update_rating');
+Route::get('save-rating/id={id}&rating={r}&detail={t}&user={iduser}','publicDetail@save_rating');
+Route::get('save-update-rating/id={id}&rating={r}&detail={t}&user={iduser}','publicDetail@save_update_rating');
 
 
 //search public
@@ -78,13 +78,13 @@ Route::get('p_search','publicSearchController@get_search');
 Route::get('count_ser/{id}','publicSearchController@count_servies_type');
 Route::get('get_all_place_city_type/{id}&type={t}','publicSearchController@get_all_place_city_type');
 
-Route::get('image_city/{id}','pageController@image_city');
+Route::get('image-city/{id}','pageController@image_city');
 
-Route::get('get_name_city/{id}','publicCityController@get_name_city');
+Route::get('get-name-city/{id}','publicCityController@get_name_city');
 
-Route::get('get_service_city_new/{idcity}&{id_district}&{type}&{boloc}','publicCityController@get_service_city_new');
-Route::get('count_service_all_and_type/{id}','publicCityController@count_service_all_and_type');
-Route::get('get_district_city/{id}','publicCityController@get_district_city');
+Route::get('get-service-city-new/{idcity}&{id_district}&{type}&{boloc}','publicCityController@get_service_city_new');
+Route::get('count-service-all-and-type/{id}','publicCityController@count_service_all_and_type');
+Route::get('get-district-city/{id}','publicCityController@get_district_city');
 
 
 //================================= TEST ======================================
@@ -101,7 +101,7 @@ Route::get('getServicesTake/type={t}&id={i}','pageController@getServicesTake');
 //================================ NEW ========================================
 
 //get num service of city all
-Route::get('count_city_service_all','pageController@count_city_service_all');
+Route::get('count-city-service-all','pageController@count_city_service_all');
 
 
 
@@ -118,15 +118,15 @@ Route::get('loadWard/{id}','publicaddplaceController@loadWard');
 
 
 //================== search header =============
-Route::get('searchServices_All/keyword={k}','pageController@searchServices_All');
+Route::get('search-services-all/keyword={k}','pageController@searchServices_All');
 
-Route::get('searchService_City_AllType/idcity={id}&keyword={k}','pageController@searchService_City_AllType');
+Route::get('search-service-city-all-type/idcity={id}&keyword={k}','pageController@searchService_City_AllType');
 
-Route::get('searchService_City_Type/idcity={id}&type={t}&keyword={k}','pageController@searchService_City_Type');
+Route::get('search-service-city-type/idcity={id}&type={t}&keyword={k}','pageController@searchService_City_Type');
 
-Route::get('searchServices_AllCity_idType/type={t}&keyword={k}','pageController@searchServices_AllCity_idType');
+Route::get('search-services-all-city-id-type/type={t}&keyword={k}','pageController@searchServices_AllCity_idType');
 
-Route::get('searchServices_AllCity_idType_ghe/type={t}&keyword={k}','pageController@searchServices_AllCity_idType_ghe');
+Route::get('search-services-all-city-idtype-ghe/type={t}&keyword={k}','pageController@searchServices_AllCity_idType_ghe');
 
 
 
@@ -134,7 +134,7 @@ Route::get('searchServices_AllCity_idType_ghe/type={t}&keyword={k}','pageControl
 //================= detail ==================
 Route::get('checkLogin','pageController@checkLogin');
 
-Route::get('get_service_top_view/{limit}','publicDetail@get_service_top_view');
+Route::get('get-service-top-view/{limit}','publicDetail@get_service_top_view');
 
 
 //============ check like
@@ -153,37 +153,37 @@ Route::get('city-all/id={id}&district={dis}&type={type}&fil={fil}&page={page}&li
 Route::get('info','accountController@get_info_account')->name('info');
 
 Route::get('check_login','accountController@check_login');
-Route::get('get_info_user/{id}','accountController@get_info_user');
+Route::get('get-info-user/{id}','accountController@get_info_user');
 
 Route::post('edituser/{id}',['as'=>'edituser','uses'=>'accountController@edit_user']);
 
-Route::get('get_quyen_dangky/{id}','accountController@get_quyen_dangky');
-Route::get('get_quyen_user/{id}','accountController@get_quyen_user');
+Route::get('get-quyen-dangky/{id}','accountController@get_quyen_dangky');
+Route::get('get-quyen-user/{id}','accountController@get_quyen_user');
 
-Route::get('get_quyen_dangxet_user/{id}','accountController@get_quyen_dangxet_user');
+Route::get('get-quyen-dangxet-user/{id}','accountController@get_quyen_dangxet_user');
 
 Route::post('save-upgrade-level-user/{id}','accountController@SaveUpgradeLevelUser');
 
 
-Route::get('get_quyen_userList/{id}','accountController@get_quyen_userList');
+Route::get('get-quyen-user-list/{id}','accountController@get_quyen_userList');
 
-Route::get('get_quyen_dangxet_userList/{id}','accountController@get_quyen_dangxet_userList');
+Route::get('get-quyen-dangxet-user-list/{id}','accountController@get_quyen_dangxet_userList');
 
-Route::get('get_quyen_dangky_moi/{id}','accountController@get_quyen_dangky_moi');
+Route::get('get-quyen-dangky-moi/{id}','accountController@get_quyen_dangky_moi');
 
 
 // index
 
 Route::get('checklogin','pageController@checkLogin');
-Route::get('count_city_service_all_image','pageController@count_city_service_all_image');
+Route::get('count-city-service-all-image','pageController@count_city_service_all_image');
 
 
 //detail
 
 Route::get('add-view/{id}','publicDetail@addview');
 
-Route::get('get_service_id/{id}&type={t}','publicDetail@get_service_id');
-Route::get('dichvu_lancan/idcity={c}&id={id}&limit={limit}','publicDetail@dichvu_lancan');
+Route::get('get-service-id/{id}&type={t}','publicDetail@get_service_id');
+Route::get('dichvu-lancan/idcity={c}&id={id}&limit={limit}','publicDetail@dichvu_lancan');
 
 
 
@@ -195,16 +195,16 @@ Route::get('search-allcity-type/type={type}&keyword={key}','pageController@searc
 Route::get('search-city-type/{idcity}&type={type}&keyword={key}','pageController@searchService_City_Type_ghe');
 
 //
-Route::get('get_service_lichtrinh','accountController@get_service_lichtrinh');
+Route::get('get-service-lichtrinh','accountController@get_service_lichtrinh');
 
 //service user
-Route::post('post_add_service_user/{user_id}','accountController@post_add_service_user');
-Route::get('get_service_user/{user_id}','accountController@get_service_user');
-Route::get('get_edit_service_user/{id}/{user_id}','accountController@get_edit_service_user');
-Route::post('post_edit_service_user/{id}','accountController@post_edit_service_user');
-Route::get('load_place_ward/{id}','accountController@load_place_ward');
+Route::post('post-add-service-user/{userid}','accountController@post_add_service_user');
+Route::get('get-service-user/{userid}','accountController@get_service_user');
+Route::get('get-edit-service-user/{id}/{userid}','accountController@get_edit_service_user');
+Route::post('post-edit-service-user/{id}','accountController@post_edit_service_user');
+Route::get('load-place-ward/{id}','accountController@load_place_ward');
 
-Route::get('get_service_user_active/{id}&{type}','accountController@get_service_user_active');
+Route::get('get-service-user-active/{id}&{type}','accountController@get_service_user_active');
 Route::get('top-service-view','accountController@Top_service_view');
 Route::get('top-service-rating-like/{type}','accountController@Top_service_rating_like');
 
@@ -215,11 +215,11 @@ Route::get('get-service-user-max-ating-like/{type}&{userid}','accountController@
 
 
 //place user
-Route::get('get_place_user/{id}','accountController@get_place_user');
-Route::get('get_edit_place_user/{user_id}/{id}','accountController@get_edit_place_user');
-Route::post('post_edit_place_user/{user_id}/{id}','accountController@post_edit_place_user');
-Route::get('get_add_place_user','accountController@get_add_place_user');
-Route::post('post_add_place_user/{user_id}','accountController@post_add_place_user');
+Route::get('get-place-user/{id}','accountController@get_place_user');
+Route::get('get-edit-place-user/{userid}/{id}','accountController@get_edit_place_user');
+Route::post('post-edit-place-user/{userid}/{id}','accountController@post_edit_place_user');
+Route::get('get-add-place-user','accountController@get_add_place_user');
+Route::post('post-add-place-user/{user_id}','accountController@post_add_place_user');
 
 
 
@@ -234,19 +234,20 @@ Route::get('save-user-search/{idserivce}&{iduser}','userSearch@save_user_search'
 Route::get('get-list-user-search/{iduser}','accountController@get_user_search');
 
 Route::get('get-top-search','accountController@get_search_nhieunhat');
+
 // tim quanh day
 Route::get('timquanhday/lat={latitude}&lon={longitude}&radius={radius}','SearchController@timquanhday');
-Route::get('timquanhday-moi/lat={latitude}&lon={longitude}&radius={radius}','SearchController@get_dichvu_moi');
+// Route::get('timquanhday-moi/lat={latitude}&lon={longitude}&radius={radius}','SearchController@get_dichvu_moi');
 Route::get('timquanhday-type/lat={latitude}&lon={longitude}&radius={radius}','SearchController@timquanhday_type');
 
 
 
 
 // lich trinh
-Route::get('getListTripSchedule_web_type/{userid}&type={type}','tripScheduleController@getListTripSchedule_web_type');
+Route::get('get-list-trip-schedule-web-type/{userid}&type={type}','tripScheduleController@getListTripSchedule_web_type');
 
-Route::get('searchServices_All_lichtrinh/{keyword}','pageController@searchServices_All_lichtrinh');
-Route::get('get_idtripschedule_web','tripScheduleController@get_idtripschedule_web');
+Route::get('search-services-all-lichtrinh/{keyword}','pageController@searchServices_All_lichtrinh');
+Route::get('get-idtripschedule-web','tripScheduleController@get_idtripschedule_web');
 
 Route::get('delete-all-detail-schedule-web/{id}','tripScheduleController@delete_All_detailSchedule_web');
 Route::get('delete-schedule-web/{id}','tripScheduleController@delete_Schedule');

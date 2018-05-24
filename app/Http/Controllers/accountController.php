@@ -741,11 +741,11 @@ class accountController extends Controller
         // return $request->all();
         $table=new servicesModel;
 
-        $table->sv_description=$request->sv_name;
+            $table->sv_description=$request->sv_name;
             $table->sv_content=$request->mota;
             $table->sv_open=$request->time_begin;
             $table->sv_close=$request->time_end;
-            $table->sv_highest_price=$request->sv_lowest_price;
+            $table->sv_lowest_price=$request->sv_lowest_price;
             $table->sv_highest_price=$request->sv_highest_price;
         
             $table->sv_website=$request->sv_website;
