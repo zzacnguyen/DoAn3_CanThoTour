@@ -162,7 +162,7 @@ Route::get('get_quyen_user/{id}','accountController@get_quyen_user');
 
 Route::get('get_quyen_dangxet_user/{id}','accountController@get_quyen_dangxet_user');
 
-Route::post('savequyendangky/{id}','accountController@savequyendangky');
+Route::post('save-upgrade-level-user/{id}','accountController@SaveUpgradeLevelUser');
 
 
 Route::get('get_quyen_userList/{id}','accountController@get_quyen_userList');

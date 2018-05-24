@@ -162,19 +162,19 @@ class loginController extends Controller
                 // dd($result);
                 $level = "1"; // personal
                 foreach ($result as $result) {
-                    if ($result->admin != null) {
+                    if ($result->admin != null ) {
                         $level = "6"; // admin
                     }
-                    else if($result->moderator != null){
+                    else if($result->moderator != null && $result->active_mod == 1){
                         $level = "5"; // moderator
                     }
-                    else if($result->partner != null){
+                    else if($result->partner != null && $result->active_partner == 1){
                         $level = "4"; // partner
                     }
-                    else if($result->enterprise != null){
+                    else if($result->enterprise != null && $result->active_enter == 1){
                         $level = "2"; // enterprise
                     }
-                    else if($result->tour_guide != null){
+                    else if($result->tour_guide != null && $result->active_tour == 1){
                         $level = "3"; // tour_guide
                     }
     

@@ -356,7 +356,7 @@ class accountController extends Controller
         return $quyen;      
     }
 
-    public function savequyendangky(Request $request,$id){ // 
+    public function SaveUpgradeLevelUser(Request $request,$id){ // 
         $quyen = (int)$request->quyen;
         // 1-moderator 2-partner 3-enterprise 4-tourguide
         $mytime = Carbon\Carbon::now();
