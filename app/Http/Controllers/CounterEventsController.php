@@ -25,6 +25,10 @@ class CounterEventsController extends Controller
 
         $events = DB::table('vnt_vieweventuser')
         ->select('id_events')
+        ->join('vnt_events', 'vnt_events.id', '=', 'vnt_vieweventuser.id_events')
+        ->whereYear('event_end', '>=', $year)
+        ->whereDay('event_end', '>=',$day)
+        ->whereMonth('event_end', '>=', $month)
         ->where('user_id','=', $id)
         ->count();
 
