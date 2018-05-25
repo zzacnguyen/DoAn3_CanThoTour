@@ -176,9 +176,9 @@ class ServicesDetailsController extends Controller
                 try {
                     eatingModel::where('service_id', $id)
                         ->update(['eat_name' => $eat_name]);
-                    return json_encode("id_service:" . $id);
+                    return json_encode("status:200");
                 } catch (Exception $e) {
-                    return json_encode("status: 500");
+                    return json_encode("status:500");
                 }
             }
             else if ($type_services == 2) {
@@ -187,9 +187,9 @@ class ServicesDetailsController extends Controller
                 try {
                     hotelModel::where('service_id', $id)
                         ->update(['hotel_name' => $hotel_name, 'hotel_number_star' => $hotel_number_star]);
-                    return json_encode("id_service:" . $id);
+                    return json_encode("status:200");
                 } catch (Exception $e) {
-                    return json_encode("status: 500");
+                    return json_encode("status:500");
                 }
             }
             else if($type_services == 3){
@@ -198,9 +198,9 @@ class ServicesDetailsController extends Controller
                 try {
                     transportModel::where('service_id', $id)
                         ->update(['transport_name' => $transport_name]);
-                    return json_encode("id_service:" . $id);
+                    return json_encode("status:200");
                 } catch (Exception $e) {
-                    return json_encode("status: 500");
+                    return json_encode("status:500");
                 }
             }
             else if($type_services == 4){
@@ -208,9 +208,9 @@ class ServicesDetailsController extends Controller
                 try {
                     sightseeingModel::where('service_id', $id)
                         ->update(['sightseeing_name' => $sightseeing_name]);
-                    return json_encode("id_service:" . $id);
+                    return json_encode("status:200");
                 } catch (Exception $e) {
-                    return json_encode("status: 500");
+                    return json_encode("status:500");
                 }
             }
             else if($type_services == 5){
@@ -218,14 +218,14 @@ class ServicesDetailsController extends Controller
                 try {
                     entertainmentsModel::where('service_id', $id)
                         ->update(['entertainments_name' => $entertainments_name]);
-                    return json_encode("id_service:" . $id);
+                    return json_encode("status:200");
                 } catch (Exception $e) {
-                    return json_encode("status: 500");
+                    return json_encode("status:500");
                 }
             }
         }
         else{
-            return "status: 500";
+            return "status:500";
         }
     }
 
