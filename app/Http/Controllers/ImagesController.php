@@ -7,8 +7,9 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use App\imagesModel;
 use App\contact_infoModel;
-
+use File;
 use DateTime;
+
 
 
 class ImagesController extends Controller
@@ -181,11 +182,21 @@ class ImagesController extends Controller
 
     public function EditImage(Request $request,$id)
     {
+
+        $image_old = DB::table('vnt_images')
+        ->where('id', '=', $id)
+        ->select('image_banner', 'image_details_1', 'image_details_2')
+        ->get();
+        $name_old_banner = $image_old[0]->image_banner;
+        $name_old_image_details_1 = $image_old[0]->image_details_1;
+        $name_old_image_details_2 = $image_old[0]->image_details_2;
+        // return $name_old_banner;
+        
         $date = date("Y_m_d");
         $timedate = date("h_i_s");
         $time = '_'.$date.'_'.$timedate;
 
-        $path_banner = public_path().'\\banners\\';
+        
         $path_details1 = public_path().'\\details1\\';
         $path_details2 = public_path().'\\details2\\';
         $path_icon = public_path().'\\icons\\';
@@ -200,6 +211,14 @@ class ImagesController extends Controller
         {
             if(!empty($file_banner))
                 {
+                    $image_path_banner = $path_banner.$name_old_banner;
+                    $image_path_thumb_banner = $path_thumb.$name_old_banner;
+                    $image_path_icon_banner = $path_icon.$name_old_banner;
+                    if(File::exists($image_path_banner)) {
+                        File::delete($image_path_banner);
+                        File::delete($image_path_thumb_banner);
+                        File::delete($image_path_icon_banner);
+                    }
                     $image_banner = \Image::make($file_banner);
                     $name_banner = "banner_".$time.'.'.$file_banner->getClientOriginalExtension();
                     $image_banner->resize(768,720);
@@ -214,7 +233,14 @@ class ImagesController extends Controller
                 }
             if(!empty($file_details_1))
                 {
-
+                    $image_path_details_1 = $path_details1.$name_old_image_details_1;
+                    $image_path_thumb_details_1 = $path_thumb.$name_old_image_details_1;
+                    $image_path_icon_details_1 = $path_icon.$name_old_image_details_1;
+                    if(File::exists($image_path_details_1)) {
+                        File::delete($image_path_details_1);
+                        File::delete($image_path_thumb_details_1);
+                        File::delete($image_path_icon_details_1);
+                    }
                     $name_details_1 = "details1_".$time.'.'.$file_details_1->getClientOriginalExtension();
                     $image_details1 = \Image::make($file_details_1);
                     $image_details1->resize(1280,720);
@@ -229,6 +255,14 @@ class ImagesController extends Controller
                 }
             if(!empty($file_details_2))
                 {
+                    $image_path_details_2 = $path_details1.$name_old_image_details_2;
+                    $image_path_thumb_details_2 = $path_thumb.$name_old_image_details_2;
+                    $image_path_icon_details_2 = $path_icon.$name_old_image_details_2;
+                    if(File::exists($image_path_details_2)) {
+                        File::delete($image_path_details_2);
+                        File::delete($image_path_thumb_details_2);
+                        File::delete($image_path_icon_details_2);
+                    }
                     $name_details_2 = "details2_".$time.'.'.$file_details_2->getClientOriginalExtension();
                     $image_details2 = \Image::make($file_details_2);
                     $image_details2->resize(1280,720);
