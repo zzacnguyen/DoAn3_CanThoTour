@@ -1,39 +1,6 @@
 @extends('CMS.components.index')
 @section('content')
-<script type="text/javascript">
 
-    /* Datatables export */
-
-    $(document).ready(function() {
-        var table = $('#datatable-tabletools').DataTable();
-        var tt = new $.fn.dataTable.TableTools( table );
-
-        $( tt.fnContainer() ).insertBefore('#datatable-tabletools_wrapper div.dataTables_filter');
-
-        $('.DTTT_container').addClass('btn-group');
-        $('.DTTT_container a').addClass('btn btn-default btn-md');
-
-        $('.dataTables_filter input').attr("placeholder", "Search...");
-
-    } );
-
-    /* Datatables reorder */
-
-    $(document).ready(function() {
-        $('#datatable-reorder').DataTable( {
-            dom: 'Rlfrtip'
-        });
-
-        $('#datatable-reorder_length').hide();
-        $('#datatable-reorder_filter').hide();
-
-    });
-
-    $(document).ready(function() {
-        $('.dataTables_filter input').attr("placeholder", "Search...");
-    });
-
-</script>
 
 <div id="page-title">
     <h2>Danh sách người dùng</h2>
@@ -73,6 +40,7 @@
                     <th>Email</th>
                     <th>Website</th>
                     <th>Ngày đăng ký</th>
+                    <th>Được duyệt</th>
                     <th>Thao tác</th>
                 </tr>
                 </tfoot>
@@ -91,10 +59,30 @@
                                  else 
                                  echo "Chưa duyệt"; ?> </td>
                         <td><a href="{{ route('ACCTIVE_MOD', $item->user_id) }}">
-                            <i class="glyph-icon tooltip-button demo-icon icon-bolt bg-success"></i>
+                            <i title="Bật chức năng duyệt bài của kiểm duyệt viên" class="glyph-icon tooltip-button demo-icon icon-bolt bg-success"></i>
                         </a>
                             
-                           <a href="{{ route('UNACCTIVE_MOD', $item->user_id) }}"> <i class="glyph-icon tooltip-button demo-icon icon-bell-slash bg-danger"></a></i>
+                           <a href="" > </a>
+                           <a data-toggle="modal"   data-target="#removeUser{{ $item->user_id }}"> <i title="Tắt chức năng duyệt bài của kiểm duyệt viên" class="glyph-icon tooltip-button demo-icon icon-warning bg-danger"></i></a>
+                            <div aria-labelledby="myModalLabel" class="modal fade" id="removeUser{{ $item->user_id }}" role="dialog" tabindex="-1">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Bạn có chắc chắn?</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p style="color:red">Sau khi nhấn đồng ý, Kiểm duyệt viên  <b>{{ $item->contact_name }}</b> <small>({{ $item->contact_name }})</small>  sẽ bị tắt chức năng kiểm duyệt!</p>
+                                            <small> Lưu ý: Dữ liệu sẽ không bị xoá! </small>
+                                            
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-default" data-dismiss="modal" type="button">Hủy bỏ</button>
+                                            <a class="btn btn-danger" href="{{ route('UNACCTIVE_MOD', $item->user_id) }}" id="remove-button" type="submit">Đồng ý</a>
+                                            {{-- <a href="javascript:void(0)" class="btn btn-danger">ĐỒNG Ý</a> --}}
+                                        </div>
+                                    </div><!-- end modal-content -->
+                                </div><!-- end modal-dialog -->
+                            </div><!-- end modal -->
                         </td>
                     </tr>
                     @endforeach

@@ -99,7 +99,7 @@
                         </a>
                             
                         <a data-toggle="modal"   data-target="#removeUser{{ $item->id }}"> <i class="glyph-icon tooltip-button demo-icon icon-eye-slash bg-danger"></a></i>
-                       <div aria-labelledby="myModalLabel" class="modal fade" id="removeUser{{ $item->id }}" role="dialog" tabindex="-1">
+                        <div aria-labelledby="myModalLabel" class="modal fade" id="removeUser{{ $item->id }}" role="dialog" tabindex="-1">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
