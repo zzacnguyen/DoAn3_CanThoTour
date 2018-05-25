@@ -581,5 +581,44 @@ class SearchController extends Controller
     }
 
 
-
+    public function searchServicesVicinity222($latitude,$longitude, $type,int $radius)
+    {
+        if ($radius >=100) 
+        {
+            $arr_distance = $this::distanceRadius($latitude,$longitude,$radius);
+            // dd($arr_distance);
+            if (!empty($arr_distance)) {
+                ksort($arr_distance);
+                // return $arr_distance;
+                // foreach ($arr_distance as $value) {
+                //     $arr_distancePlace[$value['id']] = $value['distantce'];
+                // }
+                foreach ($arr_distance as $key => $value) {
+                    if (!empty($this::getServicesAll($key,$type,$value))) {
+                        foreach ($this::getServicesAll($key,$type,$value) as $k => $v) {
+                            $r[] = $v;
+                        }
+                    }
+                }
+                if (isset($r)) {
+                    $resultAll['data'] = $r;
+                    $resultAll['status'] = "OK";
+                    return json_encode($resultAll);
+                }
+                else{
+                    $resultAll = array('data' => null,'status' => 'NOT FOUND');
+                    return json_encode($resultAll);
+                }
+            }
+            else{
+                $resultAll = array('data' => null,'status' => 'NOT FOUND');
+                return json_encode($resultAll);
+            }
+        }
+        else
+        {
+            $resultAll = array('data' => null,'status' => 'DISTANCE');
+            return json_encode($resultAll);
+        } 
+    }
 }

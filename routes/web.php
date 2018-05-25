@@ -85,7 +85,10 @@ Route::get('search/placevicinity/location={latitude},{longitude}&radius={radius}
 
 Route::get('search/servicevicinity/location={latitude},{longtitude}&type={type}&radius={radius}','SearchController@searchServicesVicinity');
 
+Route::get('search-service-vicinity/location={latitude},{longtitude}&type={type}&radius={radius}','SearchController@searchServicesVicinity222');
+
 Route::get('search/searchServicesTypeKeyword/type={type}&keyword={keyword}','SearchController@searchServicesTypeKeyword');
+
 
 // LOGIN-LOGOUT-REGISTER
 Route::post('login-mobile','loginController@postLogin')->name('login-mobile');
