@@ -95,7 +95,7 @@ Route::get('logout','loginController@logout');
 Route::post('edit-user-mobile/{id}','accountController@editUserMobile');
 Route::get('get-info-user-mobile/{id}','accountController@getInfoUserMobile');
 
-Route::get('upgrade-member/{id}','accountController@get_quyen_dangky');
+Route::get('get-permission-registrable/{id}','accountController@get_quyen_dangky');
 
 // web
 
