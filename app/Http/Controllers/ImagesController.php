@@ -262,7 +262,7 @@ class ImagesController extends Controller
         $image_avatar->save($path_avatar.$name_avatar);
         contact_infoModel::where('user_id',$user_id)
             ->update(['contact_avatar'=>$name_avatar]);
-        return json_encode("status: 200");
+        return json_encode("status:200");
     }
 
 
