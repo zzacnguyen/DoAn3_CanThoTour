@@ -59,10 +59,8 @@
                                  else 
                                  echo "Chưa duyệt"; ?> </td>
                         <td><a href="{{ route('ACCTIVE_MOD', $item->user_id) }}">
-                            <i title="Bật chức năng duyệt bài của kiểm duyệt viên" class="glyph-icon tooltip-button demo-icon icon-bolt bg-success"></i>
-                        </a>
-                            
-                           <a href="" > </a>
+                                <i title="Bật chức năng duyệt bài của kiểm duyệt viên" class="glyph-icon tooltip-button demo-icon icon-bolt bg-success"></i>
+                            </a>
                            <a data-toggle="modal"   data-target="#removeUser{{ $item->user_id }}"> <i title="Tắt chức năng duyệt bài của kiểm duyệt viên" class="glyph-icon tooltip-button demo-icon icon-warning bg-danger"></i></a>
                             <div aria-labelledby="myModalLabel" class="modal fade" id="removeUser{{ $item->user_id }}" role="dialog" tabindex="-1">
                                 <div class="modal-dialog" role="document">

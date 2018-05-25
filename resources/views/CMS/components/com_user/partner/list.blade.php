@@ -1,47 +1,15 @@
 @extends('CMS.components.index')
 @section('content')
-<script type="text/javascript">
 
-    /* Datatables export */
-
-    $(document).ready(function() {
-        var table = $('#datatable-tabletools').DataTable();
-        var tt = new $.fn.dataTable.TableTools( table );
-
-        $( tt.fnContainer() ).insertBefore('#datatable-tabletools_wrapper div.dataTables_filter');
-
-        $('.DTTT_container').addClass('btn-group');
-        $('.DTTT_container a').addClass('btn btn-default btn-md');
-
-        $('.dataTables_filter input').attr("placeholder", "Search...");
-
-    } );
-
-    /* Datatables reorder */
-
-    $(document).ready(function() {
-        $('#datatable-reorder').DataTable( {
-            dom: 'Rlfrtip'
-        });
-
-        $('#datatable-reorder_length').hide();
-        $('#datatable-reorder_filter').hide();
-
-    });
-
-    $(document).ready(function() {
-        $('.dataTables_filter input').attr("placeholder", "Search...");
-    });
-
-</script>
 
 <div id="page-title">
     <h2>Danh sách người dùng</h2>
     <p>Dưới đây là dữ liệu tất cả người dùng hiện có.</p>
     <div id="theme-options" class="admin-options">
-    <a href="javascript:void(0);" class="btn btn-primary theme-switcher tooltip-button" data-placement="left" title="Color schemes and layout options">
-        <i class="glyph-icon icon-linecons-cog icon-spin"></i>
-    </a>
+        <a href="javascript:void(0);" class="btn btn-primary theme-switcher tooltip-button" data-placement="left" title="Color schemes and layout options">
+            <i class="glyph-icon icon-linecons-cog icon-spin"></i>
+        </a>
+    </div>
 </div>
 <div class="panel">
     <div class="panel-body">
@@ -59,6 +27,7 @@
                     <th>Email</th>
                     <th>Website</th>
                     <th>Ngày đăng ký</th>
+                    
                 </tr>
                 </thead>
 
@@ -71,6 +40,7 @@
                     <th>Email</th>
                     <th>Website</th>
                     <th>Ngày đăng ký</th>
+
                 </tr>
                 </tfoot>
                 <tbody>

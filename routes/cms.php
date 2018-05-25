@@ -75,6 +75,10 @@
 	//NGƯỜI DÙNG - DOANH NGHIỆP
 	Route::get('lvnt-list-enterpirse','CMS_ComponentController@_DISPLAY_LIST_ENTERPRISE')->name('ALL_LIST_ENTERPRISE');
 
+	Route::get('lvtn-active-enterpirse/user={user_id}', 'CMS_AddDataController@ACCTIVE_ENTERPRISE')->name('ACCTIVE_ENTERPRISE');
+	Route::get('lvtn-unactive-enterpirse/user={user_id}', 'CMS_AddDataController@UNACCTIVE_ENTERPRISE')->name('UNACCTIVE_ENTERPRISE');
+
+
 
 	//NGƯỜI DÙNG - CỘNG TÁC VIÊN
 	Route::get('lvnt-list-partner','CMS_ComponentController@_DISPLAY_LIST_PARTNER')->name('ALL_LIST_PARTNER');

@@ -134,7 +134,7 @@ class CMS_ComponentController extends Controller
     {
         $data = DB::table('vnt_user') 
         ->select( DB::raw('DATE_FORMAT(vnt_user.created_at, "%d-%m-%Y") as created_at'),
-            'username', 'contact_name','social_login_id', 'contact_phone', 'contact_website', 'contact_email_address'
+            'username','vnt_user.user_id'  ,'account_active'  ,'contact_name','social_login_id', 'contact_phone', 'contact_website', 'contact_email_address'
         )
         ->join('vnt_enterprise_user', 'vnt_enterprise_user.user_id', '=', 'vnt_user.user_id')
         ->leftJoin('vnt_contact_info', 'vnt_contact_info.user_id', '=', 'vnt_user.user_id')
