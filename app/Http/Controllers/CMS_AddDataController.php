@@ -34,7 +34,8 @@ use App\entertainmentsModel;
 use App\pointModel;
 use App\typesModel;
 use App\SocialModel;
-use App\ModModel;
+use App\moderatorModel;
+use App\enterpriseUserModel;
 
 class CMS_AddDataController extends Controller
 {
@@ -314,29 +315,29 @@ class CMS_AddDataController extends Controller
 
     public function AcctiveMod($user_id)
     {
-        ModModel::where('user_id',$user_id)
+        moderatorModel::where('user_id',$user_id)
         ->update(['account_active'=>1]);
         return redirect()->route('ALL_LIST_MOD')->with('message', "Hoàn tất, Tài khoản đã trở thành kiểm duyệt viên!");
     }
     
      public function UnAcctiveMod($user_id)
     {
-        ModModel::where('user_id',$user_id)
+        moderatorModel::where('user_id',$user_id)
         ->update(['account_active'=>0]);
-        return redirect()->route('ALL_LIST_MOD')->with('message', "Hoàn tất, Tài khoản đã tắt chức năng kiểm duyệt!");
+        return redirect()->route('ALL_LIST_MOD')->with('message', "Hoàn tất, Tài khoản đã bị tắt chức năng kiểm duyệt!");
     }
     public function ACCTIVE_TOURGUIDE($user_id)
     {
         tourguideModel::where('user_id',$user_id)
         ->update(['account_active'=>1]);
-        return redirect()->route('ALL_LIST_MOD')->with('message', "Hoàn tất, Tài khoản đã trở thành tài khoản hướng dẫn viên du lịch!");
+        return redirect()->route('ALL_LIST_TOURGUIDE')->with('message', "Hoàn tất, Tài khoản đã trở thành tài khoản hướng dẫn viên du lịch!");
     }
     
      public function UNACCTIVE_TOURGUIDE($user_id)
     {
         tourguideModel::where('user_id',$user_id)
         ->update(['account_active'=>0]);
-        return redirect()->route('ALL_LIST_MOD')->with('message', "Hoàn tất, Tài khoản đã tắt chức năng dành cho hướng dẫn viên du lịch!");
+        return redirect()->route('ALL_LIST_TOURGUIDE')->with('message', "Hoàn tất, Tài khoản đã bị tắt chức năng dành cho hướng dẫn viên du lịch!");
     }
     public function ACCTIVE_PLACES($id)
     {
@@ -365,6 +366,17 @@ class CMS_AddDataController extends Controller
         return redirect()->route('ALL_LIST_PLACE')->with('message', "Hoàn tất, Địa điểm đã bị tắt!");
     }
 
+    public function ACCTIVE_ENTERPRISE($id)
+    {
+        enterpriseUserModel::where('user_id',$id)
+        ->update(['account_active'=>1]);
+        return redirect()->route('ALL_LIST_ENTERPRISE')->with('message', "Hoàn tất, Tài khoản đã bị bật chức năng dành cho doanh nghiệp!");
+    }
 
-
+    public function UNACCTIVE_ENTERPRISE($id)
+    {
+        enterpriseUserModel::where('user_id',$id)
+        ->update(['account_active'=>0]);
+        return redirect()->route('ALL_LIST_ENTERPRISE')->with('message', "Hoàn tất, Tài khoản đã bị tắt chức năng dành cho doanh nghiệp!");
+    }
 }
