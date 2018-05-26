@@ -333,8 +333,10 @@ class pageController extends Controller
         return json_encode($result);
     }
 
-    public function LoginSession($username, $password)
+    public function LoginSession(Request $request)
     {
+        $username = $request->username;
+        $password = $request->password;
         if( Auth::attempt(['username' => $username, 'password' => $password])) {
             $user = Auth::user();
                 
