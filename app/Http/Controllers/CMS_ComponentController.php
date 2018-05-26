@@ -447,4 +447,13 @@ class CMS_ComponentController extends Controller
             return view('CMS.components.error');
         }
     }
+    public function _GETVIEW_USAGE_MANUAL()
+    {
+        if(view()->exists('CMS.components.usage_manual.list')){
+            return view('CMS.components.usage_manual.list');
+        }
+        else {
+            return view('CMS.components.error');
+        }
+    }
 }

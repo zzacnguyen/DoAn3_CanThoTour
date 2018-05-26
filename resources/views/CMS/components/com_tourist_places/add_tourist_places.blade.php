@@ -92,7 +92,7 @@
                     <label for="content"   title="Nội dung giới thiệu địa điểm">Nội dung chi tiết: </label>
                     <textarea style="height: 500px" id="content" ></textarea>
                     <input type="hidden" value="{{ old('content') }}" name="content" id="content2">
-                    <script src="vntour_web/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+                    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
                     <script>
                         var editor = CKEDITOR.replace( 'content' );
 
@@ -207,8 +207,8 @@ function Load_toado() {
                 var sum = 'Vĩ độ: ' + e.latLng.lat() + ', Kinh độ: '+  e.latLng.lng() ;
                 document.getElementById("lat_and_long").value = sum;
             });
-            var input = document.getElementById('pac-input');
-            var searchBox = new google.maps.places.SearchBox(input);
+          
+          
         } 
         google.maps.event.addDomListener(window, 'load', init_map);
 

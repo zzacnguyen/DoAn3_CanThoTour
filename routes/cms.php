@@ -171,4 +171,4 @@
 
 
 
-
+	Route::get('lvtn-using-sytem', 'CMS_ComponentController@_GETVIEW_USAGE_MANUAL')->name('_GETVIEW_USAGE_MANUAL');

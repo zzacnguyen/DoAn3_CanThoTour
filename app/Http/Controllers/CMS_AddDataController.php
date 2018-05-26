@@ -128,7 +128,32 @@ class CMS_AddDataController extends Controller
         $id_type =  $convert['sv_types'];
 
 
-        //THIẾU UPLOAD IMAGES
+        
+
+        $date = date("Y_m_d"); 
+        $timedate = date("h_i_s");
+        $time = '_'.$date.'_'.$timedate;
+
+        $duong_dan   = public_path().'\banners\\';
+
+        if( $file_anh = $request->file('upload_file'))
+        {
+            for($i = 0; $i < sizeof($file_anh); $i++)
+            {
+                $hinh_anh = \Image::make($file_anh[$i]);
+                $hinh_anh->resize(286,400);
+                $hinh_anh->save($duong_dan.'banner'.$time.$i.'.'.$file_anh[$i]->getClientOriginalExtension());
+                $hinh_anh = new imagesModel();
+                $hinh_anh->image_banner = "banner".$time.$i.'.'.$file_anh[$i]->getClientOriginalExtension();
+                $hinh_anh->image_details_1="_";
+                $hinh_anh->image_details_2="_";
+                $hinh_anh->image_status=1;
+                $hinh_anh->service_id= $id_service;
+                $hinh_anh->save();
+            }
+        }
+
+       
 
 
 

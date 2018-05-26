@@ -141,7 +141,7 @@
                             <div id="image_orther" hidden="hidden">
                                 <small class="label-warning">Bạn có thể chọn nhiều ảnh cùng lúc</small>
 
-                                <input type="file" id="upload_file" name="upload_file[]" onchange="preview_image();" multiple/>
+                                <input type="file"  accept="image/*"  id="upload_file" name="upload_file[]" multiple/>
                                 <div id="preview" >
                                     <div id="image_preview"></div>
                                 </div>

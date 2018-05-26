@@ -265,7 +265,7 @@
                         </span>
                         Công việc
                     </a>
-                    <a href="#" class="btn vertical-button remove-border btn-warning" title="">
+                    <a href="{{ route('_GETVIEW_USAGE_MANUAL') }}" class="btn vertical-button remove-border btn-warning" title="">
                         <span class="glyph-icon icon-separator-vertical pad0A medium">
                             <i class="glyph-icon icon-code opacity-80 font-size-20"></i>
                         </span>
