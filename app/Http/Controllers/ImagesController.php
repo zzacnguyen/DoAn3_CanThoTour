@@ -118,6 +118,7 @@ class ImagesController extends Controller
 
     public function Upload(Request $request, $id_service)
     {
+        // return $request->all();
         $date = date("Y_m_d");
         $timedate = date("h_i_s");
         $time = '_'.$date.'_'.$timedate;

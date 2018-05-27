@@ -760,14 +760,15 @@ class accountController extends Controller
 
             $max=$table::max('id');
 
-            $img_ = new imagesModel();
-            $img_->image_banner = $request->img1;
-            $img_->image_details_1 = $request->img2;
-            $img_->image_details_2 = $request->img3;
-            $img_->image_status = 1;
-            $img_->service_id = $max;
-            if ($img_->save()) {
-            }
+            // $img_ = new imagesModel();
+            // $img_->image_banner = $request->img1;
+            // $img_->image_details_1 = $request->img2;
+            // $img_->image_details_2 = $request->img3;
+            // $img_->image_status = 1;
+            // $img_->service_id = $max;
+            
+            // if ($img_->save()) {
+            // }
             // imagesModel::insert(['image_banner'=>$request->img1,'image_details_1'=>$request->img2,'image_details_2'=>$request->img3,'image_status'=>'1','service_id'=>$max]);
           
              switch ($request->sv_types) {
