@@ -47,8 +47,7 @@
 
                         <div class="col-md-4  form-group"  >
                             <label for="name" >Trạng thái hiển thị: </label>
-                            <select name="status" id="" class="form-control">
-
+                            <select name="status" id=""  class="form-control">
                                 @if($data[0]->type_status == 1)
                                 <option selected value="1">Hiển thị</option>
                                 <option  value="0">Ẩn</option>
