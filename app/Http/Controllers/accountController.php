@@ -25,6 +25,7 @@ use App\usersModel;
 use Carbon;
 use Hash;
 use App\userSearchModel;
+use App\ImagesController;
 class accountController extends Controller
 {
     public function get_info_account()
@@ -1157,5 +1158,62 @@ class accountController extends Controller
     
 
 
-    // LICH TRINH
+    // ADD SERVICE
+    public function post_add_service_user2(Request $request,$user_id)
+    {
+        // return $request->all();
+        $table=new servicesModel;
+
+            $table->sv_description=$request->sv_name;
+            $table->sv_content=$request->mota;
+            $table->sv_open=$request->time_begin;
+            $table->sv_close=$request->time_end;
+            $table->sv_lowest_price=$request->sv_lowest_price;
+            $table->sv_highest_price=$request->sv_highest_price;
+        
+            $table->sv_website=$request->sv_website;
+            $table->sv_phone_number=$request->sv_phone_number;
+            $table->sv_counter_view=0;
+            $table->sv_counter_point=0;
+            $table->sv_status=0;
+            $table->sv_types=$request->sv_types;
+            $table->tourist_places_id=$request->diadiem;
+            $table->user_id=$user_id;
+            if ($table->save()) {
+                $max=$table::max('id');
+
+                switch ($request->sv_types) {
+                    case 1:
+                        eatingModel::insert(['eat_name'=>$request->sv_name,'eat_status'=>'1','service_id'=>$max]);
+                        // return json_encode(1);
+                        break;
+                    case 2:
+                        hotelsModel::insert(['hotel_name'=>$request->sv_name,'hotel_number_star'=>5,'hotel_status'=>'1','service_id'=>$max]);
+                        // return json_encode(1);
+                        break;
+                    case 3:
+                        transportModel::insert(['transport_name'=>$request->sv_name,'transport_status'=>'1','service_id'=>$max]);
+                        // return json_encode(1);
+                        break;
+                    case 4:
+                         sightseeingModel::insert(['sightseeing_name'=>$request->sv_name,'sightseeing_status'=>'1','service_id'=>$max]);
+                        // return json_encode(1);
+                        break;
+                    case 5:
+                        entertainmentsModel::insert(['entertainments_name'=>$request->sv_name,'entertainments_status'=>'1','service_id'=>$max]);
+                        // return json_encode(1);
+                        break;
+                    default:
+                        # code...
+                        break;
+                }
+
+                return $max;
+            }
+            else
+            {
+                return json_encode("status:500");     
+            }  
+  
+    }
 }

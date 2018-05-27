@@ -198,7 +198,7 @@ Route::get('search-city-type/{idcity}&type={type}&keyword={key}','pageController
 Route::get('get-service-lichtrinh','accountController@get_service_lichtrinh');
 
 //service user
-Route::post('post-add-service-user/{userid}','accountController@post_add_service_user');
+Route::post('post-add-service-user/{userid}','accountController@post_add_service_user2');
 Route::get('get-service-user/{userid}','accountController@get_service_user');
 Route::get('get-edit-service-user/{id}/{userid}','accountController@get_edit_service_user');
 Route::post('post-edit-service-user/{id}','accountController@post_edit_service_user');
