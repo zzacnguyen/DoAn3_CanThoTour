@@ -453,6 +453,8 @@ class accountController extends Controller
                 foreach ($get_name_image as $v) {
                     $name = $v->sv_name;
                     $image = $v->image_details_1;
+                    $image2 = $v->image_banner;
+                    $image3 = $v->image_details_2;
                 }
 
                 $likes = DB::table('vnt_likes')->where('service_id', '=',$sv->id)->count();
@@ -473,7 +475,9 @@ class accountController extends Controller
                         'sv_status' => $sv->sv_status,
                         'view' =>$sv->sv_counter_view,
                         'like' => $likes,
-                        'rating' => $ponit_rating
+                        'rating' => $ponit_rating,
+                        'image_banner'=>$image2,
+                        'image_details_2'=>$image3,
                     );   
             }
 
@@ -547,6 +551,8 @@ class accountController extends Controller
             foreach ($get_name_image as $v) {
                 $name = $v->sv_name;
                 $image = $v->image_details_1;
+                $image2 = $v->image_banner;
+                $image3 = $v->image_details_2;
             }
             $likes = DB::table('vnt_likes')->where('service_id', '=',$info->id)->count();
             // echo "string";
@@ -576,7 +582,9 @@ class accountController extends Controller
                     'sv_phone_number' => $info->sv_phone_number,
                     'tourist_places_id' => $info->tourist_places_id,
                     'sv_status' => $info->sv_status,
-                    'sv_content' =>$info->sv_content
+                    'sv_content' =>$info->sv_content,
+                    'image_banner'=>$image2,
+                    'image_details_2'=>$image3,
                 );     
         }
         else{
@@ -592,66 +600,73 @@ class accountController extends Controller
     public function post_edit_service_user(Request $request,$id)
     {
        
-       
+        // return $request->all();
         $table=servicesModel::find($id);
-        try{
-            $table->sv_content=$request->mota;
-            $table->sv_description=$request->sv_name;
+        $table->sv_content=$request->mota;
+            $table->sv_description=$request->sv_description;
             $table->sv_open=$request->time_begin;
             $table->sv_close=$request->time_end;
             $table->sv_highest_price=$request->sv_highest_price;
             $table->sv_lowest_price=$request->sv_lowest_price;
         
-            $table->sv_website=$request->sv_website;
-            $table->sv_phone_number=$request->sv_phone_number;
+            // $table->sv_website=$request->sv_website;
+            if ($request->sv_website == null) {
+                $sv_website = "Đang cập nhật";
+            }
+            else{$sv_website = $request->sv_website;}
+            $table->sv_website=$sv_website;
+
+            if ($request->sv_phone_number == null) {
+                $sv_phone_number = "Đang cập nhật";
+            }
+            else{$sv_phone_number = $request->sv_phone_number;}
+            $table->sv_phone_number=$sv_phone_number;
+            // $table->sv_phone_number=$request->sv_phone_number;
             // $table->sv_counter_view=1;
             // $table->sv_counter_point=1;
-            $table->sv_status=$request->status;
+            $table->sv_status=$request->sv_status;
             $table->sv_types=$request->sv_types;
             $table->tourist_places_id=$request->diadiem;
             $table->save();
         
-            if($request->img1!=''){
-                imagesModel::where('service_id',$id)->update(['image_banner'=>$request->img1]);
-            }
-            if($request->img2!=''){
-                imagesModel::where('service_id',$id)->update(['image_details_1'=>$request->img2]);
-            }
-            if($request->img3!=''){
-                imagesModel::where('service_id',$id)->update(['image_details_2'=>$request->img3]);
-            }
+            // if($request->img1!=''){
+            //     imagesModel::where('service_id',$id)->update(['image_banner'=>$request->img1]);
+            // }
+            // if($request->img2!=''){
+            //     imagesModel::where('service_id',$id)->update(['image_details_1'=>$request->img2]);
+            // }
+            // if($request->img3!=''){
+            //     imagesModel::where('service_id',$id)->update(['image_details_2'=>$request->img3]);
+            // }
              switch ($request->sv_types) {
                 case 1:
                     eatingModel::where('service_id',$id)->update(['eat_name'=>$request->sv_name,'eat_status'=>'1']);
-                    return 'ok';
+                    return 1;
                     break;
                 case 2:
                     hotelsModel::where('service_id',$id)->update(['hotel_name'=>$request->sv_name,'hotel_number_star'=>5,'hotel_status'=>'1']);
-                    return 'ok';
+                    return 1;
                     break;
                 case 3:
                     transportModel::where('service_id',$id)->update(['transport_name'=>$request->sv_name,'transport_status'=>'1']);
-                    return 'ok';
+                    return 1;
                     break;
                 case 4:
                      sightseeingModel::where('service_id',$id)->update(['sightseeing_name'=>$request->sv_name,'sightseeing_status'=>'1']);
-                    return 'ok';
+                    return 1;
                     break;
                 case 5:
                     entertainmentsModel::where('service_id',$id)->update(['entertainments_name'=>$request->sv_name,'entertainments_status'=>'1']);
-                    return 'ok';
+                    return 1;
                     break;
-                default:
-                    # code...
-                    break;
-            }
-           
+                }
+        // try{
             
-
-        }
-        catch(\Illuminate\Database\QueryException $ex){ 
-            return "error";
-        }
+        //     }
+        // }
+        // catch(\Illuminate\Database\QueryException $ex){ 
+        //     return -1;
+        // }
     }
 
     //place user
@@ -748,7 +763,11 @@ class accountController extends Controller
             $table->sv_close=$request->time_end;
             $table->sv_lowest_price=$request->sv_lowest_price;
             $table->sv_highest_price=$request->sv_highest_price;
-        
+            if ($request->sv_website == null) {
+                $sv_website = "Đang cập nhật";
+            }
+            else{$sv_website = $request->sv_website;}
+
             $table->sv_website=$request->sv_website;
             $table->sv_phone_number=$request->sv_phone_number;
             $table->sv_counter_view=0;
@@ -1170,9 +1189,19 @@ class accountController extends Controller
             $table->sv_close=$request->time_end;
             $table->sv_lowest_price=$request->sv_lowest_price;
             $table->sv_highest_price=$request->sv_highest_price;
-        
-            $table->sv_website=$request->sv_website;
-            $table->sv_phone_number=$request->sv_phone_number;
+            
+            if ($request->sv_website == null) {
+                $sv_website = "Đang cập nhật";
+            }
+            else{$sv_website = $request->sv_website;}
+            $table->sv_website=$sv_website;
+
+            if ($request->sv_phone_number == null) {
+                $sv_phone_number = "Đang cập nhật";
+            }
+            else{$sv_phone_number = $request->sv_phone_number;}
+            $table->sv_phone_number=$sv_phone_number;
+
             $table->sv_counter_view=0;
             $table->sv_counter_point=0;
             $table->sv_status=0;
