@@ -10,6 +10,7 @@ use DB;
 use Hash;
 use Socialite;
 use App\contact_infoModel;
+use App\persionalUserModel;
 class loginController extends Controller
 {
     // web 
@@ -86,6 +87,11 @@ class loginController extends Controller
             $id_user = $lam->user_id;
             $contact = new contact_infoModel();
             $contact->user_id = $id_user;
+
+            $per = new persionalUserModel();
+            $per->user_id = $lam->user_id;
+            $per->account_active = 1;
+            $per->save();
             
             if ($contact->save()) {
                 return 1;
@@ -160,22 +166,25 @@ class loginController extends Controller
                 // $contact = DB::select('CALL login_info(?)',array(Auth::user()->user_id));
                 $result = DB::select('CALL login_info_phone(?)',array(Auth::user()->user_id));
                 // dd($result);
-                $level = "1"; // personal
+                $level = array(); // personal
                 foreach ($result as $result) {
                     if ($result->admin != null ) {
-                        $level = "6"; // admin
+                        $level[] = 6; // admin
                     }
-                    else if($result->moderator != null && $result->active_mod == 1){
-                        $level = "5"; // moderator
+                    if($result->moderator != null && $result->active_mod == 1){
+                        $level[] = 5; // moderator
                     }
-                    else if($result->partner != null && $result->active_partner == 1){
-                        $level = "4"; // partner
+                    if($result->partner != null && $result->active_partner == 1){
+                        $level[] = 4; // partner
                     }
-                    else if($result->enterprise != null && $result->active_enter == 1){
-                        $level = "2"; // enterprise
+                    if($result->enterprise != null && $result->active_enter == 1){
+                        $level[] = 2; // enterprise
                     }
-                    else if($result->tour_guide != null && $result->active_tour == 1){
-                        $level = "3"; // tour_guide
+                    if($result->tour_guide != null && $result->active_tour == 1){
+                        $level[] = 3; // tour_guide
+                    }
+                    else{
+                        $level[] = 1;
                     }
     
                     $result_info = array(
@@ -258,6 +267,11 @@ class loginController extends Controller
                 $contact = new contact_infoModel();
                 $contact->user_id = $id_user;
                 $contact->save();
+
+                $per = new persionalUserModel();
+                $per->user_id = $lam->user_id;
+                $per->account_active = 1;
+                $per->save();
 
                 $erro = array('error' => null, 'status' => 'OK');
                 return json_encode($erro);
