@@ -61,7 +61,7 @@ class tourist_places_controller extends Controller
         $vnt_services->sv_counter_view=0;
         $vnt_services->sv_counter_point=0;
         $vnt_services->user_id= $request->input('user_id');
-        $vnt_services->sv_content = "-";
+        $vnt_services->sv_content = "Đang cập nhật";
         $vnt_services->sv_website = $request->input('sv_website');
         $vnt_services->save();
         $id_service = $this::GetIDLast(DB::table('vnt_services'));
