@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\likesModel;
 use App\PointDetailsModel;
+use App\PointUserModel;
+use App\servicesModel;
 class LikeController extends Controller
 {
     /**
@@ -54,14 +56,12 @@ class LikeController extends Controller
 
         if($likes->save())
         {
-
-
-
             $id = DB::table('vnt_likes')
             ->select('id')
             ->where('service_id',$request->input('service_id'))
             ->where('user_id',$request->input('user_id'))
             ->get();
+
             $tmp_id_like = 0;
             $service_id =  $request->input('service_id');
             foreach ($id as $value) {
@@ -69,12 +69,13 @@ class LikeController extends Controller
             }
 
             $user_id = DB::table('vnt_services')
-            ->select('user_id')
-            ->where('id', '=', $service_id )
+            ->select('user_id', 'sv_counter_point')
+            ->where('id', '=', $service_id)
             ->get();
 
             foreach ($user_id as $value) {
                 $user_id = $value->user_id;
+                $sv_counter_point = $value->sv_counter_point;
             }
 
             $point_detail = new PointDetailsModel();
@@ -83,12 +84,43 @@ class LikeController extends Controller
             $point_detail->point_user_id = $user_id;
             $point_detail->save();
 
-            
+            $get_point_like = DB::table('vnt_point')
+            ->select('point_rate')
+            ->where('id','=',2)
+            ->get();
+            $point_rate = 0;
+            foreach ($get_point_like as $value) {
+                $point_rate = $value->point_rate;
+            }
+
+
+            $point = DB::table('vnt_point_user')->select('point_now',
+            'point_exchanged', 'point_total')
+            ->where('user_id', '=' ,$user_id)
+            ->get();
+            $point_now = 0;
+            $point_total = 0;
+
+            foreach ($point as $value) {
+                $point_now = $value->point_now;
+                $point_total = $value->point_total;
+
+            }
+            $point_now = $point_now  + $point_rate;
+            $point_total = $point_total + $point_now;
+            PointUserModel::where('user_id', $user_id)
+            ->update(['point_now'=>$point_now, 'point_total'=>$point_total]);
+
+            $sv_counter_point = $sv_counter_point + $point_rate;
+            servicesModel::where('id', $service_id)
+            ->update(['sv_counter_point'=>$sv_counter_point]);
+
 
             $encode=json_encode($id);
             return $encode;
         }
         else{
+
             $encode=json_encode("status:500");
             return $encode;
         }
