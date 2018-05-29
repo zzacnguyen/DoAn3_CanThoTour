@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\likesModel;
+use App\PointDetailsModel;
 class LikeController extends Controller
 {
     /**
@@ -50,13 +51,39 @@ class LikeController extends Controller
         $likes                    = new likesModel;
         $likes->service_id       = $request->input('service_id');
         $likes->user_id    = $request->input('user_id');
+
         if($likes->save())
         {
+
+
+
             $id = DB::table('vnt_likes')
             ->select('id')
             ->where('service_id',$request->input('service_id'))
             ->where('user_id',$request->input('user_id'))
             ->get();
+            $tmp_id_like = 0;
+            $service_id =  $request->input('service_id');
+            foreach ($id as $value) {
+                $tmp_id_like = $value->id;
+            }
+
+            $user_id = DB::table('vnt_services')
+            ->select('user_id')
+            ->where('id', '=', $service_id )
+            ->get();
+
+            foreach ($user_id as $value) {
+                $user_id = $value->user_id;
+            }
+
+            $point_detail = new PointDetailsModel();
+            $point_detail->like_id = $tmp_id_like;
+            $point_detail->point_id = 2;
+            $point_detail->point_user_id = $user_id;
+            $point_detail->save();
+
+
             $encode=json_encode($id);
             return $encode;
         }
