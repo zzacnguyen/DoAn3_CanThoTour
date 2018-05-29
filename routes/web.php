@@ -174,7 +174,7 @@ Route::post('post-schedule-details/schedule={sid}', 'tripScheduleController@post
 Route::get('list-schedule-details/{id}', 'tripScheduleController@getDetailTripSchedule_web');
 
 //đã check
-Route::get('list-schedule-details_web/{id}', 'tripScheduleController@getDetailTripSchedule_web');
+Route::get('list-schedule-details-web/{id}', 'tripScheduleController@getDetailTripSchedule_web');
 
 //đã check
 Route::get('schedule-one/{id}', 'tripScheduleController@getOneTripSchedule');

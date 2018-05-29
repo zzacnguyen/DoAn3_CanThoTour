@@ -11,6 +11,7 @@ use Hash;
 use Socialite;
 use App\contact_infoModel;
 use App\persionalUserModel;
+use App\PointUserModel;
 class loginController extends Controller
 {
     // web 
@@ -272,6 +273,13 @@ class loginController extends Controller
                 $per->user_id = $lam->user_id;
                 $per->account_active = 1;
                 $per->save();
+
+                $point = new PointUserModel();
+                $point->point_now = 0;
+                $point->point_exchanged = 0;
+                $point->point_total = 0;
+                $point->user_id = $id_user;
+                $point->save();
 
                 $erro = array('error' => null, 'status' => 'OK');
                 return json_encode($erro);
