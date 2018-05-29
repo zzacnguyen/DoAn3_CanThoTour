@@ -987,33 +987,36 @@ class accountController extends Controller
     public function Top_service_view(){
         $data = servicesModel::where('sv_status',1)->orderBy('sv_counter_view','desc')->take(10)->get();
         // dd($data);
+        // return $data;
         foreach ($data as $sv) {
             $get_name_image = $this::get_name_image_ser($sv->sv_types,$sv->id);
-            // dd($get_name_image);
-            foreach ($get_name_image as $v) {
-                $name = $v->sv_name;
-                $image = $v->image_details_1;
+            if ($get_name_image != null) {
+                foreach ($get_name_image as $v) {
+                    $name = $v->sv_name;
+                    $image = $v->image_details_1;
+                }
+            
+                $likes = DB::table('vnt_likes')->where('service_id', '=',$sv->id)->count();
+                // echo "string";
+                $ratings = DB::table('vnt_visitor_ratings')->where('service_id',$sv->id)->first();
+
+                if ($ratings != null) {
+                    $ponit_rating = $ratings->vr_rating;
+                }else{ $ponit_rating = 0; }
+
+                $result[] = array
+                    (
+                        'sv_id' => $sv->id,
+                        'sv_type' => $sv->sv_types,
+                        'sv_name' => $name,
+                        'sv_image' => $image,
+                        'sv_created_at' => $sv->created_at,
+                        'sv_status' => $sv->sv_status,
+                        'view' =>$sv->sv_counter_view,
+                        'like' => $likes,
+                        'rating' => $ponit_rating
+                    );     
             }
-            $likes = DB::table('vnt_likes')->where('service_id', '=',$sv->id)->count();
-            // echo "string";
-            $ratings = DB::table('vnt_visitor_ratings')->where('service_id',$sv->id)->first();
-
-            if ($ratings != null) {
-                $ponit_rating = $ratings->vr_rating;
-            }else{ $ponit_rating = 0; }
-
-            $result[] = array
-                (
-                    'sv_id' => $sv->id,
-                    'sv_type' => $sv->sv_types,
-                    'sv_name' => $name,
-                    'sv_image' => $image,
-                    'sv_created_at' => $sv->created_at,
-                    'sv_status' => $sv->sv_status,
-                    'view' =>$sv->sv_counter_view,
-                    'like' => $likes,
-                    'rating' => $ponit_rating
-                );     
         }
         if (isset($result)) {
             return json_encode($result);
