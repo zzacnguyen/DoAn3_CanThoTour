@@ -19,6 +19,19 @@ class ServicesDetailsController extends Controller
 {
     public function showDetails($services_id, $user_id)
     {
+        $counter_view =DB::table('vnt_services')
+        ->select('vnt_services.sv_counter_view')
+        ->where('vnt_services.id', $services_id)
+        ->get();
+        $tmp_count = 0;
+        foreach ($counter_view as $value) {
+            $tmp_count = $value->sv_counter_view;
+        }
+
+        servicesModel::where('vnt_services.id',$services_id)
+        ->update(['sv_counter_view'=>($tmp_count+1)]);
+        
+
         $service = DB::table('vnt_services')
         ->select(
             'vnt_services.id',
