@@ -76,9 +76,10 @@ Route::resource('like', 'LikeController');
 //đã check
 Route::resource('rating', 'VisitorRatingController');
 
+Route::post('share/service={id}&user={user}', 'ShareController@Share');
 // TIM KIEM
 // tìm kiếm địa điểm lân cận giới hạn 10 địa điểm
-
+Route::get('point-for-user/{id}', 'PointController@AllPoint');
 
 // search new
 Route::get('search/placevicinity/location={latitude},{longitude}&radius={radius}','SearchController@searchPlaceVicinity');
