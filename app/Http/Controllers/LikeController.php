@@ -83,6 +83,7 @@ class LikeController extends Controller
             $point_detail->point_user_id = $user_id;
             $point_detail->save();
 
+            
 
             $encode=json_encode($id);
             return $encode;
