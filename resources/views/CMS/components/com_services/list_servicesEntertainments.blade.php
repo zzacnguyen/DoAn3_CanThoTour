@@ -23,7 +23,7 @@
                     <th>Số điện thoại</th>
                     <th>Giá</th>
                     <th>Trạng thái</th>
-                    <th>Chỉnh sửa lần cuối</th>
+                    <th>Chức năng</th>
                 </tr>
                 </thead>
                 <tfoot>
@@ -33,7 +33,7 @@
                     <th>Giá</th>
                     <th>Chỉnh sửa lần cuối</th>
                     <th>Trạng thái</th>
-                    <th>Lần cập nhật cuối</th>
+                    <th>Chức năng</th>
                 </tr>
                 </tfoot>
                 <tbody>
@@ -47,25 +47,33 @@
                         </td>
                         <td>Từ {{ $item->sv_open }} đến {{ $item->sv_close }}</td>
                         <td>{{ $item->sv_phone_number }} </td>
-                        <td>Từ {{ $item->sv_lowest_price }} đến {{ $item->sv_highest_price }}</td>
+                        <td style="text-align: center;">
+                            <?php if($item->sv_highest_price == 0) echo "Đang cập nhật";  else echo "Từ:" . $item->sv_lowest_price." đến ".  $item->sv_highest_price; ?>
+                        </td>
                         <td>
-                            <?php  
-                               if($item->sv_status == 1)
-                               {
-                                    echo '<small class="label-success">Hiển thị</small>' ;
-                               }
-                               else if($item->sv_status == 0)
-                               {
-                                    echo '<small class="label-warning">Chờ duyệt</small>' ;
-                               }
-                               else if ($item->sv_status == -1 )
-                               {
-                                    echo '<small class="label-danger">Spam</small>' ;
-                               }
+                            {{-- <a href="{{  route('EDIT_STATUS_UNACTIVE_SERVICES', $item->id)}}"><i class="fa fa-edit"></i> --}}
+                                <?php  
+                                   if($item->sv_status == 1)
+                                   {
+                                        echo '<small class="label-success">Hiển thị</small>' ;
+                                   }
+                                   else if($item->sv_status == 0)
+                                   {
+                                        echo '<small class="label-warning">Chờ duyệt</small>' ;
+                                   }
+                                   else if ($item->sv_status == -1 )
+                                   {
+                                        echo '<small class="label-danger">Spam</small>' ;
+                                   }
+                                   else
+                                   {
+                                        echo "";
+                                   }
 
-                            ?> 
-                            </td>
-
+                                ?> 
+                                {{-- </a> --}}
+                        </td>
+                            
                         <td>{{ $item->updated_at }} </td>
                     </tr>
                     @endforeach

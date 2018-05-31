@@ -7,6 +7,7 @@ use App\pointModel;
 use App\typesModel;
 use App\Http\Requests\AddPointRequest;
 use App\Http\Requests\AddTypeEventRequest;
+use App\servicesModel;
 class CMS_EditDataController extends Controller
 {
     public function _POST_EDIT_POINT(AddPointRequest $request, $id)
@@ -40,5 +41,10 @@ class CMS_EditDataController extends Controller
         {
             return json_encode("status:500");
         }
+    }
+    public function EDIT_STATUS_UNACTIVE_SERVICES($id)
+    {
+        servicesModel::where('id', $id)
+        ->update(['pl_status'=>1]);
     }
 }

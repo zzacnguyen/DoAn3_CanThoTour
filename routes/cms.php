@@ -172,3 +172,5 @@
 
 
 	Route::get('lvtn-using-sytem', 'CMS_ComponentController@_GETVIEW_USAGE_MANUAL')->name('_GETVIEW_USAGE_MANUAL');
+
+	Route::get('lvtn-unactive-service/{id}', 'CMS_EditDataController@EDIT_STATUS_UNACTIVE_SERVICES')->name('EDIT_STATUS_UNACTIVE_SERVICES');

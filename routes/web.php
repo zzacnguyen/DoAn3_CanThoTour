@@ -188,3 +188,4 @@ Route::get('get-serives-enterprise/{id}', 'vnt_enterprise_userController@getServ
 Route::get('get-list-serives-venue/{id}', 'vnt_enterprise_userController@getListServices');
 
 Route::resource('seenevents', 'SeenEventController');
+

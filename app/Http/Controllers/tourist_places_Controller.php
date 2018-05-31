@@ -27,6 +27,19 @@ class tourist_places_controller extends Controller
 
     public function AddPlace(Request $request)
 	{
+        $select_old_latitude_logitude = DB::table('vnt_tourist_places')
+        ->select('id','pl_latitude', 'pl_longitude')
+        ->get();
+        foreach ($select_old_latitude_logitude as $value) {
+            $tmp_latitude = $value->pl_latitude;
+            $tmp_longitude = $value->pl_longitude;
+            $tmp_id = $value->id;
+            if($request->input('pl_latitude') == $tmp_latitude && $request->input('pl_longitude') == $tmp_longitude )
+            {
+                touristPlacesModel::where('id',$tmp_id)
+                ->update(['pl_status'=>2]);
+            }
+        }
         $place                  = new touristPlacesModel;
         $place->pl_name         = $request->pl_name;
         $place->pl_details      = $request->input('pl_details');
@@ -38,7 +51,6 @@ class tourist_places_controller extends Controller
         $place->pl_status       = 1;
         $place->user_id   = $request->input('user_id');
         $place->pl_content   = "_";
-        
         if($place->save()){
             $id_place = $this::GetIDLast(DB::table('vnt_tourist_places'));
             return json_encode("id_place:".$id_place);
