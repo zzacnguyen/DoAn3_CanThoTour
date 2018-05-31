@@ -195,12 +195,16 @@ class loginController extends Controller
                     else{
                         $level[] = 1;
                     }
+
+                    $point = PointUserModel::where('user_id',Auth::user()->user_id)
+                    ->select('point_now','point_exchanged','point_total')->first();
     
                     $result_info = array(
                         'id' => $result->user_id,
-                        'username' =>$result->username,
-                        'avatar' =>$result->contact_avatar,
-                        'level' =>$level
+                        'username' => $result->username,
+                        'avatar'   => $result->contact_avatar,
+                        'level'    => $level,
+                        'point'    => $point
                     );
                 }
                 $result_user['result'] = $result_info;  
