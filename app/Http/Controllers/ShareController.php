@@ -78,14 +78,10 @@ class ShareController extends Controller
             servicesModel::where('id', $service_id)
             ->update(['sv_counter_point'=>$sv_counter_point]);
 
-
-            $encode=json_encode($id);
-            return $encode;
+            return json_encode("status:200");
         }
         else{
-
-            $encode=json_encode("status:500");
-            return $encode;
+            return json_encode("status:500");
         }
     }
 }
