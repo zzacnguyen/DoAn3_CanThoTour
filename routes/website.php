@@ -19,6 +19,10 @@ Route::post('registerWpost','loginController@registerW')->name('registerWpost');
 // login facebook
 Route::get('login/facebook/redirect', 'loginController@redirectToProvider')->name('loginfacebook');
 Route::get('login/facebook/callback', 'loginController@handleProviderCallback');
+Route::get('check-user-social/{id}&{email}', 'loginController@checkUserSocial');
+Route::post('register-social', 'loginController@registerSocial');
+Route::get('get-info-user-social/{id}', 'loginController@getInfoUserSocial');
+
 
 //user
 Route::get('user','pageController@getuser');

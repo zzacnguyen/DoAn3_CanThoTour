@@ -88,11 +88,19 @@ class loginController extends Controller
             $id_user = $lam->user_id;
             $contact = new contact_infoModel();
             $contact->user_id = $id_user;
+            // $contact->save();
 
             $per = new persionalUserModel();
             $per->user_id = $lam->user_id;
             $per->account_active = 1;
             $per->save();
+
+            $point = new PointUserModel();
+            $point->point_now = 0;
+            $point->point_exchanged = 0;
+            $point->point_total = 0;
+            $point->user_id = $id_user;
+            $point->save();
             
             if ($contact->save()) {
                 return 1;
@@ -304,4 +312,88 @@ class loginController extends Controller
         else
             return "true";  
     }
+
+    public function checkUserSocial($idSocial,$email)
+    {
+        // $u = usersModel::where('social_login_id',$idSocial)->orWhere('username',$email)->first();
+        $u = DB::table('vnt_user')->join('vnt_contact_info', 'vnt_user.user_id', '=', 'vnt_contact_info.user_id')
+            ->where('social_login_id',$idSocial)->orWhere('contact_email_address',$email)->first();
+        return json_encode($u);
+    }
+
+    public function registerSocial(Request $request)
+    {
+        $user            = $request->input('username');
+        $pass            = $request->input('password');
+        $social_login_id = $request->social_login_id;
+        try 
+        {
+            $username = $request->input('username');
+            $pass     = $request->input('password');
+            $userRegister                      = new usersModel();
+            $userRegister->username            = $user;
+            $userRegister->password            = bcrypt($pass);
+            $userRegister->social_login_id            = $social_login_id;
+            $userRegister->save();
+
+            $lam = usersModel::where('username',$username)->first();
+
+            $id_user = $lam->user_id;
+            $contact = new contact_infoModel();
+            $contact->user_id = $id_user;
+            $contact->contact_email_address = $username;
+            // $contact->save();
+
+            $per = new persionalUserModel();
+            $per->user_id = $lam->user_id;
+            $per->account_active = 1;
+            $per->save();
+
+            $point = new PointUserModel();
+            $point->point_now = 0;
+            $point->point_exchanged = 0;
+            $point->point_total = 0;
+            $point->user_id = $id_user;
+            $point->save();
+            
+            if ($contact->save()) {
+                return 1;
+            }
+        } catch (Exception $e) {
+            return -1;
+        }
+            
+    }
+
+    public function getInfoUserSocial($user_id){
+        $result = DB::select('CALL login_info_phone(?)',array($user_id));
+        // dd($result);
+        $level = array();
+        foreach ($result as $result) {
+            if ($result->admin != null) {
+                $level[] = 1;
+            }
+            if($result->moderator != null && $result->active_mod == 1){
+                $level[] = 2;
+            }
+            if($result->partner != null && $result->active_partner == 1){
+                $level[] = 3;
+            }
+            if($result->enterprise != null && $result->active_enter == 1){
+                $level[] = 4;
+            }
+            if($result->tour_guide != null && $result->active_tour == 1){
+                $level[] = 5;
+            }
+
+            $result_info = array(
+                'id' => $result->user_id,
+                'username' =>$result->username,
+                'avatar' =>$result->contact_avatar,
+                'level' =>$level
+            );
+        }
+        return json_encode($result_info);
+    }
+
 }
