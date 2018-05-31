@@ -20,7 +20,7 @@ include 'cms.php';
 |
 */
 //sai
-Route::get('couter/couter={name}', 'CounterEventsController@Counter');
+Route::get('couter/couter={id}', 'CounterEventsController@Counter');
 
 //đã test get page
 Route::resource('eating', 'EatingController');
