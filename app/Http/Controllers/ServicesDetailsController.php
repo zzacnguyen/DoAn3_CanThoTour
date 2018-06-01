@@ -162,13 +162,11 @@ class ServicesDetailsController extends Controller
 
         $status = $iD_user_check[0]->sv_status;
         $checkedid =  $iD_user_check[0]->user_id;
-//
-//
-//
+
         $id_place = $request->input('id_place');
 //        return $request->input('user_id');
         if ($user_id == $checkedid) {
-            $user_id = $user_id;
+            $user_id = $checkedid;
             $vnt_services = servicesModel::findOrFail($id);
             $vnt_services->sv_description = $request->input('sv_description');
             $vnt_services->sv_open = $request->input('sv_open');
