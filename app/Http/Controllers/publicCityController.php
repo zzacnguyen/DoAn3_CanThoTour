@@ -22,9 +22,9 @@ class publicCityController extends Controller
     }
 
 
-    public function get_service_city_fillter($idcity, $id_district, $type, $boloc,$current_page,$limit)
+    public function get_service_city_fillter($idcity, $id_district, $type, $boloc)
     {
-        $service_city = $this::paginate($this::get_service_city_new($idcity,$id_district,$type,$boloc), $current_page,$limit);
+        $service_city = $this::get_service_city_new($idcity,$id_district,$type,$boloc);
         return $service_city;
         // $count_sv     = $this::count_service_all_and_type($idcity);
         // $district      = $this::get_district_city($idcity);

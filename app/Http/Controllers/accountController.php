@@ -1025,7 +1025,7 @@ class accountController extends Controller
 
     public function Top_service_rating_like($type){
         if ($type == "like") {
-            $data_like = DB::select("SELECT COUNT(service_id) AS 'num_like', service_id FROM `vnt_likes` GROUP BY service_id ORDER BY num_like DESC");
+            $data_like = DB::select("SELECT COUNT(service_id) AS 'num_like', service_id FROM `vnt_likes` GROUP BY service_id ORDER BY num_like DESC LIMIT 10");
             foreach ($data_like as $value) {
                 $data[] = servicesModel::where('id',$value->service_id)->first();
             }

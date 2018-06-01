@@ -16,6 +16,8 @@ Route::get('loginW','pageController@getlogin')->name('loginW');
 
 Route::post('loginpost','pageController@LoginSession')->name('loginpost');
 Route::post('registerWpost','loginController@registerW')->name('registerWpost');
+
+Route::get('point-for-userw/{id}', 'PointController@AllPoint_web');
 // login facebook
 Route::get('login/facebook/redirect', 'loginController@redirectToProvider')->name('loginfacebook');
 Route::get('login/facebook/callback', 'loginController@handleProviderCallback');
@@ -67,8 +69,8 @@ Route::get('detail/id={id}&type={type}','publicDetail@get_detail');
 
 Route::get('diadiem2/id={id}','publicDetail@dichvu_lancan');
 
-Route::get('getRating/{id}','publicDetail@getRating');
-Route::get('checkUserRating/{idservice}&user_id={id}','publicDetail@checkUserRating');
+Route::get('get-rating-w/{id}','publicDetail@getRating');
+Route::get('check-user-rating/{idservice}&user_id={id}','publicDetail@checkUserRating');
 Route::get('save-rating/id={id}&rating={r}&detail={t}&user={iduser}','publicDetail@save_rating');
 Route::get('save-update-rating/id={id}&rating={r}&detail={t}&user={iduser}','publicDetail@save_update_rating');
 
@@ -94,13 +96,13 @@ Route::get('get-district-city/{id}','publicCityController@get_district_city');
 //================================= TEST ======================================
 Route::get('count_city_service_all_image','pageController@count_city_service_all_image');
 Route::get('searchServices_All/keyword={k}','pageController@searchServices_All');
-Route::get('getlam/id={id}&l={l}','pageController@getServicesTake');
+
 Route::get('likelam/{idser}','publicDetail@count_service_all_and_type');
 
 Route::get('count_service_all_and_type/{id}','publicCityController@count_service_all_and_type');//test add view service
 Route::get('phantrang/{id}','publicCityController@checkPaginate');
 
-Route::get('getServicesTake/type={t}&id={i}','pageController@getServicesTake');
+Route::get('get-services-take/type={t}&take={i}','pageController@getServicesTake');
 
 //================================ NEW ========================================
 
@@ -148,7 +150,7 @@ Route::get('checkLike/userid={d}&svid={s}','publicDetail@checkLike');
 // ================ serviece city ==============
 Route::get('city/{id}&type={type}&page={p}','publicCityController@getCity');
 
-Route::get('city-all/id={id}&district={dis}&type={type}&fil={fil}&page={page}&li={li}','publicCityController@get_service_city_fillter');
+Route::get('city-all/id={id}&district={dis}&type={type}&fil={fil}','publicCityController@get_service_city_fillter');
 
 
 
@@ -187,7 +189,7 @@ Route::get('count-city-service-all-image','pageController@count_city_service_all
 Route::get('add-view/{id}','publicDetail@addview');
 
 Route::get('get-service-id/{id}&type={t}','publicDetail@get_service_id');
-Route::get('dichvu-lancan/idcity={c}&id={id}&limit={limit}','publicDetail@dichvu_lancan');
+Route::get('service-same-city/idcity={c}&id={id}&limit={limit}','publicDetail@dichvu_lancan');
 
 
 
@@ -240,7 +242,7 @@ Route::get('get-list-user-search/{iduser}','accountController@get_user_search');
 Route::get('get-top-search','accountController@get_search_nhieunhat');
 
 // tim quanh day
-Route::get('timquanhday/lat={latitude}&lon={longitude}&radius={radius}','SearchController@timquanhday');
+Route::get('search-near/lat={latitude}&lon={longitude}&radius={radius}','SearchController@timquanhday');
 // Route::get('timquanhday-moi/lat={latitude}&lon={longitude}&radius={radius}','SearchController@get_dichvu_moi');
 Route::get('timquanhday-type/lat={latitude}&lon={longitude}&radius={radius}','SearchController@timquanhday_type');
 
