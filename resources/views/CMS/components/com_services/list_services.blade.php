@@ -59,6 +59,7 @@
                             </a>
                         </td>
                         <td>Từ {{ $item->sv_open }} đến {{ $item->sv_close }}</td>
+                        <td> {{ $item->sv_phone_number }}</td>
                         <td>Từ {{ $item->sv_lowest_price }} đến {{ $item->sv_highest_price }}</td>
                         <td> <?php 
                             if($item->sv_types == 1)

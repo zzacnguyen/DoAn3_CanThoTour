@@ -177,7 +177,7 @@ class ServicesDetailsController extends Controller
             $vnt_services->sv_content = "Đang cập nhật";
             $vnt_services->sv_status = $status;
             $vnt_services->sv_types = $request->input('sv_types');
-            $vnt_services->tourist_places_id = $id_place;
+            // $vnt_services->tourist_places_id = $id_place;
             $vnt_services->sv_counter_view = 0;
             $vnt_services->sv_counter_point = 0;
             $vnt_services->user_id = $user_id;
