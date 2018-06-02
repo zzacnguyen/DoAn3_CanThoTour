@@ -456,4 +456,30 @@ class CMS_ComponentController extends Controller
             return view('CMS.components.error');
         }
     }
+    public function LIST_UNACTICE_SERVICES()
+    {
+        $data = DB::table('vnt_services') 
+        ->select( DB::raw('DATE_FORMAT(vnt_services.updated_at, "%d-%m-%Y") as updated_at'),
+            'sv_description', 'sv_open','sv_close', 'sv_highest_price', 'sv_lowest_price',
+             'sv_phone_number','sv_types', 'sv_website', 'vnt_hotels.hotel_name'
+             , 'entertainments_name', 'sightseeing_name', 'transport_name', 'eat_name', 'sv_status'
+        )     
+        ->leftJoin('vnt_events', 'vnt_events.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_hotels', 'vnt_hotels.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_eating', 'vnt_eating.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_entertainments', 'vnt_entertainments.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_sightseeing', 'vnt_sightseeing.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_transport', 'vnt_transport.service_id', '=', 'vnt_services.id')
+        ->where('vnt_services.sv_status', 0)
+        ->orderBy('vnt_services.id', 'desc')
+        ->orderBy('vnt_services.updated_at', 'desc')
+        ->paginate(15);
+        // return $data;
+        if (view()->exists('CMS.components.com_services.list_services_waiting')){
+            return view('CMS.components.com_services.list_services_waiting', ['data'=>$data]);
+        }
+        else    {
+            return view('CMS.components.error');
+        }
+    }
 }

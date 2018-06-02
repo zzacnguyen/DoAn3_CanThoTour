@@ -125,7 +125,7 @@ Route::get('get-detail-2/{id}', 'ImagesController@getImageDetail2');
 //không sử dụng
 Route::get('get-only-icon-image', 'ImagesController@GetOnlyIconImage');
 
-
+Route::get('get-avatar/{id}', 'ImagesController@getAvatar');
 //đã check
 Route::get('rating-service/{id}','Rating_Service_Controller@rating');
 //đã check

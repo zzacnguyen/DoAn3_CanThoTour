@@ -61,7 +61,7 @@
                             }
                         ?>
                         </td>
-                         <td><a href="{{ route('ACCTIVE_PLACES2', $item->id) }}">
+                        <td><a href="{{ route('ACCTIVE_PLACES2', $item->id) }}">
                             <i class="glyph-icon tooltip-button demo-icon icon-upload bg-success" title="Active"></i>
                         </a>
                             

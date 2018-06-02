@@ -300,6 +300,19 @@ class ImagesController extends Controller
         return json_encode("status:200");
     }
 
+    public function getAvatar($user)
+    {
+        $url  = 'public/avatar/';
+        $string_replace = '","id":';
+        $image_detail = DB::table('vnt_contact_info') 
+        ->select('contact_avatar')
+        ->where('user_id', $user)->get();
+        $tmp = "";
+        foreach ($image_detail as $value) {
+            $tmp = $value->contact_avatar;
+        }
+        return json_encode($tmp);
+    }
 
     public function UploadMultipleImage(Request $request, $services)
     {
