@@ -754,10 +754,10 @@ class accountController extends Controller
     }
     public function post_add_service_user(Request $request,$user_id)
     {
-        // return $request->all();
+        return $request->all();
         $table=new servicesModel;
 
-            $table->sv_description=$request->sv_name;
+            $table->sv_description=$request->sv_description;
             $table->sv_content=$request->mota;
             $table->sv_open=$request->time_begin;
             $table->sv_close=$request->time_end;
@@ -1113,7 +1113,7 @@ class accountController extends Controller
 
     public function get_service_user_max_rating_like($type,$userid){
         if ($type == "like") {
-            $data_user = servicesModel::where('user_id',$userid)->get();
+            $data_user = servicesModel::where('user_id',$userid)->where('sv_status',1)->get();
             if ($data_user != null) {
                 foreach ($data_user as $value) {
                     $likes = DB::table('vnt_likes')->where('service_id', '=',$value->id)->count();
@@ -1183,10 +1183,10 @@ class accountController extends Controller
     // ADD SERVICE
     public function post_add_service_user2(Request $request,$user_id)
     {
-        // return $request->all();
+        return $request->all();
         $table=new servicesModel;
 
-            $table->sv_description=$request->sv_name;
+            $table->sv_description=$request->sv_description;
             $table->sv_content=$request->mota;
             $table->sv_open=$request->time_begin;
             $table->sv_close=$request->time_end;

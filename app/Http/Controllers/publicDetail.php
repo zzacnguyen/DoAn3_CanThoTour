@@ -422,4 +422,112 @@ class publicDetail extends Controller
         }
     }
 
+
+//====================  MAP ===========================
+
+    public function distance($lat1, $lon1, $lat2, $lon2) 
+    {
+        // có thế thêm tham số $unit vào hàm để tính theo các đơn vị khác 
+        $theta = $lon1 - $lon2;
+        $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+        $dist = acos($dist);
+        $dist = rad2deg($dist);
+        $miles = $dist * 60 * 1.1515;
+        // $unit = strtoupper($unit);
+        return ($miles * 1.609344)*1000; //trả về mét
+        
+    }
+
+    public function distanceRadius($latitude, $longitude, $radius)
+    {
+        $places = touristPlacesModel::where('pl_status',1)->get();
+        // return 1;
+        foreach ($places as $p) {
+            $p_latitude = (double)$p['pl_latitude'];
+            $p_longitude = (double)$p['pl_longitude'];
+            $distancePlace = $this::distance($latitude, $longitude, $p_latitude, $p_longitude);
+            if ($distancePlace <= $radius && $distancePlace > 1) {
+                $result[$distancePlace] = array('id' => $p['id'],'pl_name' => $p['pl_name'],'distantce' => $distancePlace, 'latitude' => $p['pl_latitude'],'longitude' => $p['pl_longitude']);
+            }
+        }
+        if (isset($result)) { return $result; }
+        else{ return null; } 
+    }
+
+    public function get_location_service_vicinity($latitude, $longitude, $radius)
+    {
+        $type = 1;
+        
+        $arr_distance = $this::distanceRadius($latitude,$longitude,$radius);
+            // dd($arr_distance);
+            if (!empty($arr_distance)) {
+                // ksort($arr_distance);
+                // return $arr_distance;
+                foreach ($arr_distance as $value) {
+                    
+                    if (!empty($this::getServicesAll_2($value['id'],$value['distantce'],$value['latitude'],$value['longitude']))) {
+                        foreach ($this::getServicesAll_2($value['id'],$value['distantce'],$value['latitude'],$value['longitude']) as $k => $v) {
+                            $r[] = $v;
+                        }
+                    }
+                }
+                if (isset($r)) {
+                    return $r;
+                }
+                else{
+                    return null;
+                }
+            }
+            else{
+                return null;
+            }
+    }
+
+
+    public function getServicesAll_2($place_id, $distance, $lat, $lng)
+    {
+        $result = DB::select("select * FROM c_city_district_ward_place_service where id_place = '$place_id' AND sv_status = 1
+");
+        // return $result;
+        foreach ($result as $value) {
+            $likes = DB::table('vnt_likes')->where('service_id', '=',$value->id_service)->count();
+            // echo "string";
+            $ratings = DB::select("SELECT avg(vr_rating) as 'rating' FROM `vnt_visitor_ratings` WHERE service_id = '$value->id_service'");
+            foreach ($ratings as $val) {
+                $rating_sv = round($val->rating,1);
+            }
+            if (!empty($rating_sv)) {
+                $ponit_rating = $rating_sv;
+            }else{ $ponit_rating = 0; }
+            
+            $result_type = $this::get_name_ser($value->id_service,$value->sv_types);
+            if ($result_type != null) {
+                foreach ($result_type as $v) {
+                    $mang[] = array(
+                        'id_service'        => $value->id_service,
+                        'name'              => $v->sv_name,
+                        'image'             => $v->image_details_1,
+                        // // 'name_city'         => $name_city,
+                        'like'              => $likes,
+                        'view'              => $value->sv_counter_view,
+                        'point'             => $value->sv_counter_point,
+                        'rating'            => $ponit_rating,
+                        'sv_type'           => $value->sv_types,
+                        'distance'          => $distance,
+                        'lat'               => $lat,
+                        'lng'               => $lng
+                    );
+                }
+            }      
+        }
+        if (isset($mang)) {
+            return $mang;
+        }
+        else{
+            return null;
+        }
+    }
+
+    
+
 }

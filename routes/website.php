@@ -74,6 +74,8 @@ Route::get('check-user-rating/{idservice}&user_id={id}','publicDetail@checkUserR
 Route::get('save-rating/id={id}&rating={r}&detail={t}&user={iduser}','publicDetail@save_rating');
 Route::get('save-update-rating/id={id}&rating={r}&detail={t}&user={iduser}','publicDetail@save_update_rating');
 
+Route::get('get-location-service-vicinity/location={lat},{log}&radius={r}','publicDetail@get_location_service_vicinity');
+
 
 //search public
 Route::get('p_search','publicSearchController@get_search');
