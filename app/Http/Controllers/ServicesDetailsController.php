@@ -163,7 +163,7 @@ class ServicesDetailsController extends Controller
         $status = $iD_user_check[0]->sv_status;
         $checkedid =  $iD_user_check[0]->user_id;
 
-        $id_place = $request->input('id_place');
+        // $id_place = $request->input('id_place');
 //        return $request->input('user_id');
         if ($user_id == $checkedid) {
             $user_id = $checkedid;
@@ -178,8 +178,6 @@ class ServicesDetailsController extends Controller
             $vnt_services->sv_status = $status;
             $vnt_services->sv_types = $request->input('sv_types');
             // $vnt_services->tourist_places_id = $id_place;
-            $vnt_services->sv_counter_view = 0;
-            $vnt_services->sv_counter_point = 0;
             $vnt_services->user_id = $user_id;
             $vnt_services->sv_website = $request->input('sv_website');
             $vnt_services->save();
