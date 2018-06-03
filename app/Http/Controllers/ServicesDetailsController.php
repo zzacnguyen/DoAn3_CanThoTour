@@ -12,6 +12,7 @@ use App\eatingModel;
 use App\sightseeingModel;
 use App\transportModel;
 use App\hotelsModel;
+use App\PointUserModel;
 use App\entertainmentsModel;
 use Carbon\Carbon;
 
@@ -19,19 +20,37 @@ class ServicesDetailsController extends Controller
 {
     public function showDetails($services_id, $user_id)
     {
-        $counter_view =DB::table('vnt_services')
-        ->select('vnt_services.sv_counter_view')
+        $counter_view = DB::table('vnt_services')
+        ->select('vnt_services.sv_counter_view','sv_counter_point', 'vnt_services.user_id')
         ->where('vnt_services.id', $services_id)
         ->get();
         $tmp_count = 0;
+        $tmp_pointuser_id = 0;
+        $sv_counter_point = 0;
         foreach ($counter_view as $value) {
             $tmp_count = $value->sv_counter_view;
+            $tmp_pointuser_id = $value->user_id;
+            $sv_counter_point = $value->sv_counter_point;
+        }
+
+        $tmp_count_user = DB::table('vnt_point_user')
+        ->select('point_now', 'point_exchanged', 'point_total', 'user_id')
+        ->where('user_id', $tmp_pointuser_id)
+        ->get();
+        $tmp_point_now = 0;
+        $tmp_point_exchanged = 0;
+        $tmp_point_total = 0;
+        foreach ($tmp_count_user as $value) {
+            $tmp_point_now = $value->point_now;
+            $tmp_point_exchanged =  $value->point_exchanged;
+            $tmp_point_total =  $value->point_total;
         }
 
         servicesModel::where('vnt_services.id',$services_id)
-        ->update(['sv_counter_view'=>($tmp_count+1)]);
-        
-
+        ->update(['sv_counter_view'=>($tmp_count+1), 'sv_counter_point'=>($sv_counter_point+1)]);
+        PointUserModel::where('user_id',$tmp_pointuser_id)
+        ->update(['point_now'=>($tmp_point_now+1), 'point_total'=>($tmp_point_total+1)]);
+    
         $service = DB::table('vnt_services')
         ->select(
             'vnt_services.id',

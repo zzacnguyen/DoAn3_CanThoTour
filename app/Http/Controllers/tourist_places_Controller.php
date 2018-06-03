@@ -38,6 +38,8 @@ class tourist_places_controller extends Controller
             {
                 touristPlacesModel::where('id',$tmp_id)
                 ->update(['pl_status'=>2]);
+                servicesModel::where('tourist_places_id', $tmp_id)
+                ->update(['sv_status'=>2]);
             }
         }
         $place                  = new touristPlacesModel;
