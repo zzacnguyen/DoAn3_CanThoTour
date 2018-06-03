@@ -192,13 +192,14 @@ class loginController extends Controller
                     if($result->tour_guide != null && $result->active_tour == 1){
                         $level[] = 3; // tour_guide
                     }
-                    else{
+                    if($result->personal != null && $result->active_personal == 1){
                         $level[] = 1;
                     }
     
                     $result_info = array(
                         'id' => $result->user_id,
                         'username' => $result->username,
+                        'fullname'   => $result->contact_name,
                         'avatar'   => $result->contact_avatar,
                         'level'    => $level
                     );
