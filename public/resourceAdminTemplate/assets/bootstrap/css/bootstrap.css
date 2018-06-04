@@ -4729,7 +4729,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   line-height: 1.42857143;
   color: #337ab7;
   text-decoration: none;
-  background-color: #fff;
+  background-color: #23b9a6;
   border: 1px solid #ddd;
 }
 .pagination > li:first-child > a,
@@ -6758,3 +6758,6 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+.color-black{
+  color: #000;
+}

@@ -448,6 +448,16 @@ class CMS_ModuleController extends Controller
         return CEIL($percent);
 	}
 
+	public function _GET_DATA_PLACES_CHANGE()
+	{
+		$data_place  = DB::table('vnt_tourist_places')
+		->select('pl_name', 'updated_at')
+		->where('vnt_tourist_places.pl_status', '=', 2)
+		->orderBy('updated_at', 'DESC')
+		->get();
+		return $data_place;
+	}
+
     public function getDashboard(){
 
 
@@ -466,6 +476,7 @@ class CMS_ModuleController extends Controller
 		$data_percent_user = $this::_DISPLAY_PERCENT_USER();
 		$data_percent_place = $this::_DISPLAY_PERCENT_PLACES();
 		$data_percent_services = $this::_DISPLAY_PERCENT_SERVICES();
+		$data_place = $this::_GET_DATA_PLACES_CHANGE(); 
     	if (view()->exists('view.CMS.master')){return view('CMS.components.error');}
     	else	{
 			return view('CMS.master', [
@@ -483,6 +494,7 @@ class CMS_ModuleController extends Controller
 					'data12'=>$data_percent_user,
 					'data13'=>$data_percent_place,
 					'data14'=>$data_percent_services,
+					'data15'=>$data_place
 			]);
 		}
 

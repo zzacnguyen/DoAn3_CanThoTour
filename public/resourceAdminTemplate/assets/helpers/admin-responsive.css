@@ -29,9 +29,13 @@
 /* === Tablet devices - Landscape (900px wide) === */
 
 @media only screen and (min-width: 56.25em) {
-    #theme-options,
-    #header-logo {
+    #header-logo
+    {
         display: block;
+    }
+    #theme-options{
+        display: none;
+        
     }
     #mobile-navigation {
         display: none;
@@ -181,4 +185,7 @@
         right: 24px;
     }
 
+}
+.p_top_35{
+    padding-top: 30px;
 }

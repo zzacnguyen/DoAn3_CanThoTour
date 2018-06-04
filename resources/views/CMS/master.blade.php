@@ -3,7 +3,7 @@
 
 @section('content')
 
-                @include('CMS.script.container-charts-srcipt')
+@include('CMS.script.container-charts-srcipt')
 <script type="text/javascript" src="{{asset('public/resourceAdminTemplate/assets\myscript\style.js')}}"></script>
 <div id="page-title">
     <h2>Dashboard</h2>
@@ -12,7 +12,7 @@
         <a href="javascript:void(0);" class="btn btn-primary theme-switcher tooltip-button" data-placement="left" title="Cài đặt giao diện và chỉnh sửa layout">
             <i class="glyph-icon icon-linecons-cog icon-spin"></i>
         </a>
-        @include('CMS.layout.setting')
+        
     </div>
 </div>
 <div class="row">

@@ -102,7 +102,7 @@
         </li>
         <li>
             <a href="{{ route('_GET_VIEW_LIST_SERVICES_BY_TRANSPORT') }}" title="Danh sách dịch vụ vận chuyển">
-                <i class="glyph-icon icon-rocket"></i>
+                <i class="glyph-icon icon-taxi"></i>
                 <span>Phương tiện di chuyển</span>
             </a>
         </li>

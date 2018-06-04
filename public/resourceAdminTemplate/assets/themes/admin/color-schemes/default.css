@@ -9,11 +9,11 @@ body {
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 13px;
     color: #3e4855;
-    background-color: #fff;
+    background-color: #e67e22;
     line-height: 1.42857143;
 }
 label {
-    color: #3e4855;
+    color: #000000;
 }
 h1, h2, h3, h4, h5, h6,
 #page-title > h2,
@@ -63,7 +63,7 @@ h1, h2, h3, h4, h5, h6,
     color: #000;
 }
 #page-sidebar ul li a .glyph-icon {
-    color: #0093d9;
+    color: #fff;
 }
 #page-sidebar ul li.sfHover > a.sf-with-ul,
 #page-sidebar ul li a:hover {
@@ -79,11 +79,12 @@ h1, h2, h3, h4, h5, h6,
 }
 #sidebar-menu li .sidebar-submenu ul li a:hover,
 #sidebar-menu li .sidebar-submenu ul li a.sfActive {
-    background: #fcfdfe;
+    /*background: #fcfdfe;*/
+       background: #85bcf3;
 }
 
 #sidebar-menu li .sidebar-submenu ul li a.sfActive {
-    color: #1c82e1;
+    color: #ffffff;
 }
 
 /* Sidebar alternate style */
@@ -110,7 +111,7 @@ h1, h2, h3, h4, h5, h6,
     background: rgba(255, 255, 255, 0.05);
 }
 #page-sidebar.font-inverse #sidebar-menu li a {
-    color: rgba(255, 255, 255, 0.62);
+    color: rgb(255, 255, 255);
 }
 #page-sidebar.font-inverse #sidebar-menu li a:hover {
     color: rgba(255, 255, 255, 0.96);

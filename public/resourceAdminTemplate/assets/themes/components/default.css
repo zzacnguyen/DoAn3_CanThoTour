@@ -14,7 +14,7 @@ body .content-box-header > .ui-tabs-nav li.ui-tabs-active > a:hover,
 .pagination > li > span,
 .btn-link,
 a {
-    color: #8da0aa;
+    color: #fff;
 }
 /* Primary font color */
 
@@ -30,7 +30,7 @@ table.dataTable thead th.sorting_desc:after,
 .btn-link:hover,
 #page-sidebar ul li.sfHover > a.sf-with-ul,
 a:hover {
-    color: #1c82e1;
+    color: #061bff;
 }
 /* Primary border color */
 
@@ -236,6 +236,12 @@ div[id^='uniform-'] span,
     color: #555a60;
     background-color: #FEFEFF;
 }
+td {
+    color: blue;
+}
+td > a{
+    color: blue;
+}
 .irs-diapason,
 .ui-datepicker-buttonpane,
 .ui-dialog-buttonpane,
@@ -247,7 +253,7 @@ div[id^='uniform-'] span,
 .table > tbody > tr > th,
 .table > tfoot > tr > th {
     color: #4b5056;
-    background-color: #f9fafe;
+    background-color: #e1e7ff;
 }
 /* Button default hover */
 

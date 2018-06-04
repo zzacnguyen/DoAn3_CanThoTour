@@ -19,7 +19,7 @@
             </div>
             <div class="button-pane bg-gradient-9">
                 <div class="size-md float-left">
-                    <a href="{{ route('ALL_LIST_USER') }}" title="Danh sách người dùng">
+                    <a class="color-black" href="{{ route('ALL_LIST_USER') }}" title="Danh sách người dùng">
                         Xem danh sách người dùng
                     </a>
                 </div>
@@ -49,7 +49,7 @@
             </div>
             <div class="button-pane bg-gradient-9">
                 <div class="size-md float-left">
-                    <a href="{{ route('ALL_LIST_PLACE') }}" title="">
+                    <a class="color-black" href="{{ route('ALL_LIST_PLACE') }}" title="">
                         Xem danh sách địa điểm
                     </a>
                 </div>
@@ -79,7 +79,7 @@
             </div>
             <div class="button-pane bg-gradient-9" >
                 <div class="size-md float-left">
-                    <a href="{{ route('ALL_LIST_SERVICES') }}" title="">
+                    <a class="color-black" href="{{ route('ALL_LIST_SERVICES') }}" title="">
                         Xem danh sách dịch vụ
                     </a>
                 </div>
