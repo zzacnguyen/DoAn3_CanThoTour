@@ -125,6 +125,12 @@ class accountController extends Controller
                     'contact_email_address'=>$request->contact_email_address,
                     'contact_language'=>$request->contact_language,
                     'contact_country'=>$request->contact_country]);
+
+                tourguideModel::where('user_id',$id)->update([
+                    'user_objective_details'=>$request->user_objective_details,
+                    'user_strengths_details'=>$request->user_strengths_details
+                ]);
+
                 return 1;
             }
             else
