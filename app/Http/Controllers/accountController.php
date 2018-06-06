@@ -114,7 +114,7 @@ class accountController extends Controller
     public function editUserMobile(Request $request,$id)
     {
         try{
-            if($request->avatar)
+            if($request->tourguide)
             {
                 contact_infoModel::where('user_id',$id)
          
@@ -124,8 +124,7 @@ class accountController extends Controller
                     'contact_website'=>$request->contact_website,
                     'contact_email_address'=>$request->contact_email_address,
                     'contact_language'=>$request->contact_language,
-                    'contact_country'=>$request->contact_country,
-                    'contact_avatar'=>$request->contact_avatar]);
+                    'contact_country'=>$request->contact_country]);
                 return 1;
             }
             else
@@ -147,7 +146,6 @@ class accountController extends Controller
                 }
                 else
                 {
-                    
                     $contact = new contact_infoModel;
                     $contact->user_id = $id;
                     $contact->contact_name = $request->contact_name;
@@ -167,7 +165,7 @@ class accountController extends Controller
             }
         }
         catch(\Illuminate\Database\QueryException $ex){ 
-            return "error";
+            return -1;
         } 
     }
 
