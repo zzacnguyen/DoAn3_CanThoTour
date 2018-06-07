@@ -12,6 +12,7 @@ use Socialite;
 use App\contact_infoModel;
 use App\persionalUserModel;
 use App\PointUserModel;
+use App\tourguideModel;
 class loginController extends Controller
 {
     // web 
@@ -191,18 +192,32 @@ class loginController extends Controller
                     }
                     if($result->tour_guide != null && $result->active_tour == 1){
                         $level[] = 3; // tour_guide
+                        $tour = tourguideModel::where('user_id',Auth::user()->user_id)
+                        ->select('user_objective_details','user_strengths_details')->first();
                     }
                     if($result->personal != null && $result->active_personal == 1){
                         $level[] = 1;
                     }
-    
-                    $result_info = array(
-                        'id' => $result->user_id,
-                        'username' => $result->username,
-                        'fullname'   => $result->contact_name,
-                        'avatar'   => $result->contact_avatar,
-                        'level'    => $level
-                    );
+                    if (isset($tour)) {
+                        $result_info = array(
+                            'id' => $result->user_id,
+                            'username' => $result->username,
+                            'fullname' => $result->contact_name,
+                            'avatar'   => $result->contact_avatar,
+                            'tourguide'=> $tour,
+                            'level'    => $level
+                        );
+                    }else
+                    {
+                        $result_info = array(
+                            'id'       => $result->user_id,
+                            'username' => $result->username,
+                            'fullname' => $result->contact_name,
+                            'avatar'   => $result->contact_avatar,
+                            'level'    => $level
+                        );
+                    }
+                    
                 }
                 $result_user['result'] = $result_info;  
                 $result_user['error'] = null;
