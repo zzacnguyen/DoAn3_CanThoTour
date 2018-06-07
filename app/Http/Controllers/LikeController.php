@@ -94,26 +94,27 @@ class LikeController extends Controller
             }
 
 
-            $point = DB::table('vnt_point_user')->select('point_now',
-            'point_exchanged', 'point_total')
+            $point = DB::table('vnt_point_user')
+            ->select('point_now','point_exchanged', 'point_total')
             ->where('user_id', '=' ,$user_id)
             ->get();
             $point_now = 0;
             $point_total = 0;
-
+            $point_total_1 = 0;
             foreach ($point as $value) {
                 $point_now = $value->point_now;
                 $point_total = $value->point_total;
 
             }
-            $point_now = $point_now  + $point_rate;
-            $point_total = $point_total + $point_now;
+            $point_now_1 = $point_now  + $point_rate;
+            // return $point_now_1;
+            $point_total_1 = $point_total + $point_rate;
             PointUserModel::where('user_id', $user_id)
-            ->update(['point_now'=>$point_now, 'point_total'=>$point_total]);
+            ->update(['point_now'=>$point_now_1, 'point_total'=>($point_total_1)]);
 
             $sv_counter_point = $sv_counter_point + $point_rate;
             servicesModel::where('id', $service_id)
-            ->update(['sv_counter_point'=>$sv_counter_point]);
+            ->update(['sv_counter_point'=>($sv_counter_point)]);
 
 
             $encode=json_encode($id);
