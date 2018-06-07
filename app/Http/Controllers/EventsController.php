@@ -147,7 +147,7 @@ class EventsController extends Controller
         // thong tin event, da xem hay chua, loai hinh
         //
         $event_public = DB::table('vnt_events')
-        ->select('vnt_events.service_id as id_sv', 'vnt_events.id as id_event', 'vnt_events.event_name', 'vnt_images.id as image_id','vnt_images.image_details_1', 
+        ->select('vnt_events.service_id as id_sv', 'vnt_events.id as id_event', 'vnt_events.event_name', 'vnt_images.id as image_id','vnt_images.image_details_1', 'vnt_events.event_status', 'vnt_events.type_id', 
                 DB::raw('DATE_FORMAT(event_start, "%d-%m-%Y") as event_start'),
                 DB::raw('DATE_FORMAT(event_end, "%d-%m-%Y") as event_end'),
                 'vnt_vieweventuser.user_id as seen'

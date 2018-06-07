@@ -36,6 +36,7 @@ use App\typesModel;
 use App\SocialModel;
 use App\moderatorModel;
 use App\enterpriseUserModel;
+use App\eventModel;
 
 class CMS_AddDataController extends Controller
 {
@@ -374,6 +375,7 @@ class CMS_AddDataController extends Controller
     {
         tourguideModel::where('user_id',$user_id)
         ->update(['account_active'=>1]);
+
         return redirect()->route('ALL_LIST_TOURGUIDE')->with('message', "Hoàn tất, Tài khoản đã trở thành tài khoản hướng dẫn viên du lịch!");
     }
     
@@ -414,6 +416,7 @@ class CMS_AddDataController extends Controller
     {
         enterpriseUserModel::where('user_id',$id)
         ->update(['account_active'=>1]);
+        $this::add_event(2,"Vai trò doanh nghiệp đã được kích hoạt", $id);
         return redirect()->route('ALL_LIST_ENTERPRISE')->with('message', "Hoàn tất, Tài khoản đã bị bật chức năng dành cho doanh nghiệp!");
     }
 
@@ -422,5 +425,25 @@ class CMS_AddDataController extends Controller
         enterpriseUserModel::where('user_id',$id)
         ->update(['account_active'=>0]);
         return redirect()->route('ALL_LIST_ENTERPRISE')->with('message', "Hoàn tất, Tài khoản đã bị tắt chức năng dành cho doanh nghiệp!");
+    }
+
+
+    public function add_event($type_event,$event_name, $user_id){
+        // try 
+        // {
+            
+        // } catch (Exception $e) {
+            
+        // }
+            $dt = Carbon::now();
+            $event = new eventModel();
+            $event->event_name   = $event_name;
+            $event->user_id      = $user_id;
+            $event->event_start  = $dt;
+            $event->event_end    = $dt;
+            $event->event_status = 1;
+            $event->type_id      = $type_event;
+            $event->service_id   = null;
+            $event->save();
     }
 }
