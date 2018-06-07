@@ -111,12 +111,9 @@ class LikeController extends Controller
             $point_total_1 = $point_total + $point_rate;
             PointUserModel::where('user_id', $user_id)
             ->update(['point_now'=>$point_now_1, 'point_total'=>($point_total_1)]);
-
             $sv_counter_point = $sv_counter_point + $point_rate;
             servicesModel::where('id', $service_id)
             ->update(['sv_counter_point'=>($sv_counter_point)]);
-
-
             $encode=json_encode($id);
             return $encode;
         }
