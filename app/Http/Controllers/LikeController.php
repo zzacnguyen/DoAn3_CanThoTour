@@ -104,7 +104,6 @@ class LikeController extends Controller
             foreach ($point as $value) {
                 $point_now = $value->point_now;
                 $point_total = $value->point_total;
-
             }
             $point_now_1 = $point_now  + $point_rate;
             // return $point_now_1;
