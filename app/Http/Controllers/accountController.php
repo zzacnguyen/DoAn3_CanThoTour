@@ -203,9 +203,9 @@ class accountController extends Controller
                     array_push($quyen, 2);
                 }
                 // có thể nâng quyền partner
-                if($result->partner == null){
-                    array_push($quyen, 3);
-                }
+                // if($result->partner == null){
+                //     array_push($quyen, 3);
+                // }
                 // có thể nâng quyền mod
                 // if($result->moderator == null){
                 //     array_push($quyen, 4);
