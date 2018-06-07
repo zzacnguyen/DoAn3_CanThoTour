@@ -269,6 +269,7 @@ Route::delete('delete-gallery-image/{id}','ImagesController@multipleUploadImage'
 
 //================= EVENT ================
 Route::post('add-event','EventsController@add_event_web');
+Route::get('load-event/{id}','EventsController@load_event');
 
 
 
