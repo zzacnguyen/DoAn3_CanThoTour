@@ -9,6 +9,8 @@ use App\imagesModel;
 use App\contact_infoModel;
 use File;
 use DateTime;
+use App\handler;
+use App\servicesModel;
 
 
 
@@ -337,8 +339,8 @@ class ImagesController extends Controller
 
     }
 
-    public function test_mul(Request $request){
-        $uploader = new UploadHandler();
+    public function multipleUploadImage(Request $request, $id){
+        $uploader = new handler();
 
         // Specify the list of valid extensions, ex. array("jpeg", "xml", "bmp")
         $uploader->allowedExtensions = array(); // all files types allowed by default
@@ -352,26 +354,13 @@ class ImagesController extends Controller
         // If you want to use the chunking/resume feature, specify the folder to temporarily save parts.
         $uploader->chunksFolder = "chunks";
 
-        $method = get_request_method();
+        $method = $uploader->ismemethod();
 
         // This will retrieve the "intended" request method.  Normally, this is the
         // actual method of the request.  Sometimes, though, the intended request method
         // must be hidden in the parameters of the request.  For example, when attempting to
         // delete a file using a POST request. In that case, "DELETE" will be sent along with
         // the request in a "_method" parameter.
-        function get_request_method() {
-            global $HTTP_RAW_POST_DATA;
-
-            if(isset($HTTP_RAW_POST_DATA)) {
-                parse_str($HTTP_RAW_POST_DATA, $_POST);
-            }
-
-            if (isset($_POST["_method"]) && $_POST["_method"] != null) {
-                return $_POST["_method"];
-            }
-
-            return $_SERVER["REQUEST_METHOD"];
-        }
 
         if ($method == "POST") {
             header("Content-Type: text/plain");
@@ -384,21 +373,52 @@ class ImagesController extends Controller
             // Handles upload requests
             else {
                 // Call handleUpload() with the name of the folder, relative to PHP's getcwd()
-                $result = $uploader->handleUpload("thumbnails/test");
+                $id_sv = servicesModel::where('id',$id)->select('id')->first();
+                if ($id_sv != null) {
+                    $result = $uploader->handleUpload("public/thumbnails/gallery",$id);
+                    // $lam = getcwd();
 
-                // To return a name used for uploaded file you can use the following line.
-                $result["uploadName"] = $uploader->getUploadName();
+                    // To return a name used for uploaded file you can use the following line.
+                    $result["uploadName"] = $uploader->getUploadName();
+                }
             }
 
             echo json_encode($result);
         }
         // for delete file requests
         else if ($method == "DELETE") {
-            $result = $uploader->handleDelete("files");
-            echo json_encode($result);
+            // return $request->all();
+            $result = $uploader->handleDelete("public/thumbnails/gallery",$id,$request->name);
+            return json_encode($result);
         }
         else {
             header("HTTP/1.0 405 Method Not Allowed");
+        }
+    }
+
+
+    public function get_gallery($id){
+        $path = "public/thumbnails/gallery/".$id."/*.*";
+        try {
+            foreach(glob($path) as $filename){
+                $dataImage[] = $filename;
+            }
+            if (isset($dataImage)) {
+                $arrImage['data'] = $dataImage;
+                $arrImage['error'] = null;
+                // return $arrImage;
+                return $arrImage;
+            }
+            else
+            {
+                $arrImage['data'] = null;
+                $arrImage['error'] = -1;
+                return $arrImage;
+            }
+        } catch (Exception $e) {
+            $arrImage['data'] = null;
+            $arrImage['error'] = $e;
+            return $arrImage;
         }
     }
 }

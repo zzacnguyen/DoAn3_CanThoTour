@@ -5,8 +5,9 @@
  * Instead, this should be required via the endpoint.php or endpoint-cors.php
  * file(s).
  */
+namespace App;
 
-class UploadHandler {
+class handler {
 
     public $allowedExtensions = array();
     public $sizeLimit = null;
@@ -21,6 +22,22 @@ class UploadHandler {
     /**
      * Get the original filename
      */
+
+
+    public function ismemethod() {
+        global $HTTP_RAW_POST_DATA;
+
+        if(isset($HTTP_RAW_POST_DATA)) {
+            parse_str($HTTP_RAW_POST_DATA, $_POST);
+        }
+
+        if (isset($_POST["_method"]) && $_POST["_method"] != null) {
+            return $_POST["_method"];
+        }
+
+        return $_SERVER["REQUEST_METHOD"];
+    }
+
     public function getName(){
         if (isset($_REQUEST['qqfilename']))
             return $_REQUEST['qqfilename'];
@@ -91,7 +108,7 @@ class UploadHandler {
      * @param string $uploadDirectory Target directory.
      * @param string $name Overwrites the name of the file.
      */
-    public function handleUpload($uploadDirectory, $name = null){
+    public function handleUpload($uploadDirectory, $newDirectory, $name = null){
 
         if (is_writable($this->chunksFolder) &&
             1 == mt_rand(1, 1/$this->chunksCleanupProbability)){
@@ -191,14 +208,14 @@ class UploadHandler {
         else {
         # non-chunked upload
 
-            $target = join(DIRECTORY_SEPARATOR, array($uploadDirectory, $name));
+            $target = join(DIRECTORY_SEPARATOR, array($uploadDirectory, $newDirectory, $name));
 
             if ($target){
                 $this->uploadName = basename($target);
 
-                // if (!is_dir(dirname($target))){
-                //     mkdir(dirname($target), 0777, true);
-                // }
+                if (!is_dir(dirname($target))){
+                    mkdir(dirname($target), 0777, true);
+                }
                 if (move_uploaded_file($file['tmp_name'], $target)){
                     return array('success'=> true, "uuid" => $uuid);
                 }
@@ -215,7 +232,7 @@ class UploadHandler {
      * @params string $name Overwrites the name of the file.
      *
      */
-    public function handleDelete($uploadDirectory, $name=null)
+    public function handleDelete($uploadDirectory, $newDirectory, $name=null)
     {
         if ($this->isInaccessible($uploadDirectory)) {
             return array('error' => "Server error. Uploads directory isn't writable" . ((!$this->isWindows()) ? " or executable." : "."));
@@ -236,10 +253,11 @@ class UploadHandler {
             );
         }
 
-        $target = join(DIRECTORY_SEPARATOR, array($targetFolder, $uuid));
-
-        if (is_dir($target)){
-            $this->removeDir($target);
+        $target = join(DIRECTORY_SEPARATOR, array($targetFolder, $newDirectory, $name));
+        // return $target;
+        if (file_exists($target)){
+            // $this->removeDir($target);
+            unlink($target);
             return array("success" => true, "uuid" => $uuid);
         } else {
             return array("success" => false,

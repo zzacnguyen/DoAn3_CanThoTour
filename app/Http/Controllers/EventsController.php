@@ -114,4 +114,27 @@ class EventsController extends Controller
     {
         //
     }
+
+    public function add_event_web(Request $request)
+    {
+        $events = new eventModel();
+        $events->event_name=$request->input("event_name");
+        $events->event_start=$request->input("event_start");
+        $events->event_end=$request->input("event_end");
+        $events->event_status = $request->event_status;
+        $events->type_id=$request->input("type_id");
+        $events->service_id=$request->input("service_id");
+        $events->user_id=$request->input("user_id");
+        
+        if($events->save()){
+            $result['success'] = true;
+            $result['error'] = null;
+            return json_encode($result);            
+        }
+        else{
+            $result['success'] = false;
+            $result['error'] = -1;
+            return json_encode($result);   
+        }
+    }
 }

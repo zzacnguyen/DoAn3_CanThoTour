@@ -261,11 +261,14 @@ Route::get('delete-all-detail-schedule-web/{id}','tripScheduleController@delete_
 Route::get('delete-schedule-web/{id}','tripScheduleController@delete_Schedule');
 
 //test multiple image
-Route::post('test-mul','ImagesController@test_mul'); 
+Route::post('multiple-upload-image/{id}','ImagesController@multipleUploadImage'); 
+Route::get('get-gallery/{id}','ImagesController@get_gallery'); 
+Route::delete('delete-gallery-image/{id}','ImagesController@multipleUploadImage'); 
 
 
 
-
+//================= EVENT ================
+Route::post('add-event','EventsController@add_event_web');
 
 
 
