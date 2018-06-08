@@ -146,4 +146,21 @@ class tripScheduleController extends Controller
         }
     }
 
+    public function edit_Schedule(Request $request)
+    {
+        try {
+            tripScheduleModel::where('id',$request->id)
+                                ->update(
+                                [
+                                    'trip_name' => $request->trip_name,
+                                    'trip_startdate' => $request->trip_startdate, 
+                                    'trip_enddate' => $request->trip_enddate
+                                ]);
+            return 1;
+        } catch (Exception $e) {
+            return -1;
+        }
+            
+    }
+
 }
