@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\taskModel;
 use Illuminate\Http\Request;
 use App\pointModel;
+use App\servicesModel;
+
 use App\touristPlacesModel;
 class CMS_DeleteDataController extends Controller
 {
@@ -22,5 +24,11 @@ class CMS_DeleteDataController extends Controller
         $places =  touristPlacesModel::findOrFail($id);
         $places->delete();
         return redirect('/lvtn-dashboard')->with('message', "Cảm ơn, Địa điểm bạn vừa chọn đã bị xoá");
+    }
+    public function DELETE_SERVICES($id)
+    {
+        $services =  servicesModel::findOrFail($id);
+        $services->delete();
+        return redirect('/lvtn-dashboard')->with('message', "Cảm ơn, Dịch vụ bạn vừa chọn đã bị xoá");
     }
 }

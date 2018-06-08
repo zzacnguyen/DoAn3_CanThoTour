@@ -45,6 +45,20 @@ class CMS_EditDataController extends Controller
     public function EDIT_STATUS_UNACTIVE_SERVICES($id)
     {
         servicesModel::where('id', $id)
-        ->update(['pl_status'=>1]);
+        ->update(['sv_status'=>1]);
+        return redirect()->route('LIST_UNACTICE_SERVICES')->with('message', "Hoàn tất, duyệt thành công một dịch vụ!");
     }
+    public function EDIT_STATUS_UNACTIVE_SERVICES2($id)
+    {
+        servicesModel::where('id', $id)
+        ->update(['sv_status'=>-1]);
+        return redirect()->route('LIST_UNACTICE_SERVICES')->with('message', "Hoàn tất, đánh dấu spam một dịch vụ!");
+    }
+
+     public function EDIT_STATUS_UNACTIVE_SERVICES3($id)
+    {
+        servicesModel::where('id', $id)
+        ->update(['sv_status'=>0]);
+        return redirect()->route('LIST_UNACTICE_SERVICES')->with('message', "Hoàn tất, đánh dấu spam một dịch vụ!");
+    }   
 }

@@ -11,7 +11,7 @@
 
 <div class="row">
     <div class="col-md-4">
-        <a href="{{ route("_DISPLAY_TOURIST_PLACES_UNACTIVE") }}" title="Example tile shortcut" class="tile-box tile-box-alt btn-success">
+        <a href="{{ route("_DISPLAY_TOURIST_PLACES_UNACTIVE") }}" title="Địa điểm đang chờ duyệt" class="tile-box tile-box-alt btn-success">
             <div class="tile-header">
                 Địa điểm chờ duyệt
             </div>
@@ -21,7 +21,7 @@
         </a>
     </div>
     <div class="col-md-4">
-        <a href="{{ route("ALL_LIST_SERVICES") }}" title="Example tile shortcut" class="tile-box tile-box-alt btn-info">
+        <a href="{{ route("LIST_UNACTICE_SERVICES") }}" title="Danh sách các dịch vụ chờ duyệt" class="tile-box tile-box-alt btn-info">
             <div class="tile-header">
                 Dịch vụ chờ duyệt
             </div>
@@ -31,7 +31,7 @@
         </a>
     </div>
     <div class="col-md-4">
-        <a href="{{ route('ALL_LIST_USER') }}" title="Example tile shortcut" class="tile-box tile-box-alt btn-warning">
+        <a href="{{ route('ALL_LIST_USER') }}" title="Danh sách các người dùng đang chờ duyệt" class="tile-box tile-box-alt btn-warning">
             <div class="tile-header">
                 Người dùng chờ duyệt
             </div>

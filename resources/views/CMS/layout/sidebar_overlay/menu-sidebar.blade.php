@@ -126,6 +126,22 @@
                 <span>Danh mục mạng xã hội</span>
             </a>
         </li>
+
+
+        <li class="header"><span>SPAM</span></li>
+
+        <li>
+            <a href="{{ route('LIST_SPAM_SERVICES') }}" title="Dịch vụ spam">
+                <i class="glyph-icon icon-alert"></i>
+                <span>Dịch vụ spam</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('LIST_SPAM_SERVICES') }}" title="Danh sách địa điểm spam">
+                <i class="glyph-icon icon-alert"></i>
+                <span>Danh sách địa điểm spam</span>
+            </a>
+        </li>
         {{-- <li>
             <a href="javascript:void(0)" title="Danh mục người dùng">
                 <i class="glyph-icon icon-location-arrow"></i>

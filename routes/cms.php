@@ -174,5 +174,13 @@
 	Route::get('lvtn-using-sytem', 'CMS_ComponentController@_GETVIEW_USAGE_MANUAL')->name('_GETVIEW_USAGE_MANUAL');
 
 	Route::get('lvtn-unactive-service/{id}', 'CMS_EditDataController@EDIT_STATUS_UNACTIVE_SERVICES')->name('EDIT_STATUS_UNACTIVE_SERVICES');
+		Route::get('lvtn-unactive-service2/{id}', 'CMS_EditDataController@EDIT_STATUS_UNACTIVE_SERVICES2')->name('EDIT_STATUS_UNACTIVE_SERVICES2');
 
-	Route::get('lvtn-list-services-unactive', 'CMS_ComponentController@LIST_UNACTICE_SERVICES')->name('LIST_UNACTICE_SERVICES');
+	Route::get('lvtn-list-services-unactive', 'CMS_ComponentController@LIST_UNACTICE_SERVICES')->name('LIST_UNACTICE_SERVICES'); 
+	Route::get('lvtn-list-services-spam', 'CMS_ComponentController@LIST_SPAM_SERVICES')->name('LIST_SPAM_SERVICES'); 
+
+	Route::get('lvtn-delete-services/{id}', 'CMS_DeleteDataController@DELETE_SERVICES')->name('DELETE_SERVICES');
+
+	// Route::get('lvtn-list-services-spam', 'CMS_ComponentController@LIST_SPAM_SERVICES')->name('LIST_SPAM_SERVICES'); 
+
+	

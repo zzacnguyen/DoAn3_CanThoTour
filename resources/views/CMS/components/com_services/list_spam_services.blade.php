@@ -102,7 +102,8 @@
                         </td>
                         <td>
                             <a data-toggle="modal"   data-target="#removeUser{{ $item->id }}">
-                              <i class="glyph-icon tooltip-button demo-icon icon-upload bg-success"></i>
+                              <i class="glyph-icon tooltip-button demo-icon icon-upload bg-success">
+                              </i>
                             </a>
                             <div aria-labelledby="myModalLabel" class="modal fade" id="removeUser{{ $item->id }}" role="dialog" tabindex="-1">
                                 <div class="modal-dialog" role="document">
@@ -111,7 +112,7 @@
                                             <h4 class="modal-title">Bạn có chắc chắn?</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <p style="color:red">Cho phép hiển thị dịch vụ                             
+                                            <p style="color:red">Khôi phục dịch vụ    
                                           @if($item->hotel_name != null)
                                               {{$item->hotel_name}} 
                                           @elseif($item->eat_name != null)
@@ -126,7 +127,6 @@
                                               -{{ $item->entertainments_name }}
                                           @endif </p>
                                             <small> Lưu ý: Dịch vụ sẽ được hiển thị trên website và ứng dụng di động! </small>
-                                            
                                         </div>
                                         <div class="modal-footer">
                                             <button class="btn btn-default" data-dismiss="modal" type="button">Hủy bỏ</button>
@@ -136,8 +136,6 @@
                                     </div><!-- end modal-content -->
                                 </div><!-- end modal-dialog -->
                             </div><!-- end modal -->
-
-
                             <a data-toggle="modal"   data-target="#removeUser2{{ $item->id }}">
                               <i class="glyph-icon tooltip-button demo-icon icon-minus-circle bg-danger"></i>
                             </a>
@@ -148,7 +146,7 @@
                                             <h4 class="modal-title">Bạn có chắc chắn?</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <p style="color:red">Đánh dấu spam                          
+                                            <p style="color:red">Xoá bỏ dịch vụ 
                                           @if($item->hotel_name != null)
                                               {{$item->hotel_name}} 
                                           @elseif($item->eat_name != null)
@@ -162,12 +160,12 @@
                                           @elseif($item->entertainments_name != null)
                                               -{{ $item->entertainments_name }}
                                           @endif </p>
-                                            <small> Lưu ý: Dịch vụ sẽ bị đánh dấu spam</small>
+                                            <small> Lưu ý: Dịch vụ sẽ không còn tồn tại trong dữ liệu hệ thống </small>
                                             
                                         </div>
                                         <div class="modal-footer">
                                             <button class="btn btn-default" data-dismiss="modal" type="button">Hủy bỏ</button>
-                                            <a class="btn btn-success" href="{{ route('EDIT_STATUS_UNACTIVE_SERVICES2', $item->id) }}" id="remove-button" type="submit">Đồng ý</a>
+                                            <a class="btn btn-success" href="{{ route('DELETE_SERVICES', $item->id) }}" id="remove-button" type="submit">Đồng ý</a>
                                             {{-- <a href="javascript:void(0)" class="btn btn-danger">ĐỒNG Ý</a> --}}
                                         </div>
                                     </div><!-- end modal-content -->
