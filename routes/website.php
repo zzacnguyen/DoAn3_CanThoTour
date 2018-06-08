@@ -143,6 +143,7 @@ Route::get('search-services-all-city-idtype-ghe/type={t}&keyword={k}','pageContr
 Route::get('checkLogin','pageController@checkLogin');
 
 Route::get('get-service-top-view/{limit}','publicDetail@get_service_top_view');
+Route::get('load-event-sv/{id_sv}','EventsController@load_event_sv');
 
 
 //============ check like
@@ -270,6 +271,8 @@ Route::delete('delete-gallery-image/{id}','ImagesController@multipleUploadImage'
 //================= EVENT ================
 Route::post('add-event','EventsController@add_event_web');
 Route::get('load-event/{id}','EventsController@load_event');
+Route::post('seen-event-user','EventsController@seen_event_user');
+
 
 
 
