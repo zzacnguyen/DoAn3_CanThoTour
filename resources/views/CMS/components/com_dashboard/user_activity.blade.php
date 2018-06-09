@@ -15,7 +15,7 @@
                             <div class="popover right">
                                 <div class="arrow"></div>
                                 <div class="popover-content">
-                                    <div class="tl-label bs-label label-info">{{  $element->title }}</div>
+                                    <div class="tl-label bs-label label-info">{{  $element->pl_name }}</div>
                                     <div class="tl-time">
                                         <i class="glyph-icon icon-clock-o"></i>
                                         {{  $element->updated_at }}

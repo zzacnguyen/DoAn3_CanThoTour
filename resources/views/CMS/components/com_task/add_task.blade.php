@@ -51,7 +51,7 @@
                  </div>
                  <div class="col-md-12 form-group" style="padding-top: 20px" >
                     <label for="content" >Nội dung chi tiết: </label>
-                    <textarea class="form-control" id="content" name="content">{{ old('content') }}</textarea>
+                    <textarea class="form-control border-custom" id="content" name="content">{{ old('content') }}</textarea>
 
                 </div> 
             </div>
