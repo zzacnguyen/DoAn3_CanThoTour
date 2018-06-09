@@ -317,4 +317,5 @@ Route::post('seen-event-user','EventsController@seen_event_user');
 
 
 
+
 ?>

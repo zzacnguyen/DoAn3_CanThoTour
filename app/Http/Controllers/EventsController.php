@@ -76,7 +76,7 @@ class EventsController extends Controller
         ->whereYear('event_end', '>=', $year)
         ->whereDay('event_end', '>=',$day)
         ->whereMonth('event_end', '>=', $month)
-        ->where('event_status','=', 1)
+        ->where('event_status','<>', -1)
         ->distinct()
         ->paginate(10);
         $encode=json_encode($event);
