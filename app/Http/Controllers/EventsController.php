@@ -10,6 +10,16 @@ use App\ServicesModel;
 use App\SeenEventModel;
 class EventsController extends Controller
 {
+
+    /**
+     * type_id = 1: event all user - cột user_id là người đăng sự kiện đó
+     * type_id = 2: event a user - cột user_id là sự kiện riêng đối với user_id đó
+     *  
+     * @return \Illuminate\Http\Response
+     */
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -152,18 +162,20 @@ class EventsController extends Controller
         ->select('vnt_events.service_id as id_sv', 'vnt_events.id as id_event', 'vnt_events.event_name', 'vnt_images.id as image_id','vnt_images.image_details_1', 'vnt_events.event_status', 'vnt_events.type_id', 
                 DB::raw('DATE_FORMAT(event_start, "%d-%m-%Y") as event_start'),
                 DB::raw('DATE_FORMAT(event_end, "%d-%m-%Y") as event_end'),
-                'vnt_vieweventuser.user_id as seen','vnt_services.sv_types'
+                'vnt_vieweventuser.user_id as seen','vnt_services.sv_types','event_user'
             )
         ->leftJoin('vnt_vieweventuser', 'vnt_events.id', '=', 'vnt_vieweventuser.id_events')
         ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_events.service_id')
         ->join('vnt_services','vnt_events.service_id','=','vnt_services.id')
-        ->where('vnt_events.type_id','=', 1)->orderBy('vnt_events.created_at','desc')->limit(10)->get();
+        ->where('event_status','<>', -1)
+        ->where('vnt_events.type_id','=', 1)->orderBy('vnt_events.id','desc')->limit(10)->get();
 
         $event_user = DB::table('vnt_events')
                         ->leftJoin('vnt_vieweventuser', 'vnt_events.id', '=', 'vnt_vieweventuser.id_events')
                         ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_events.service_id')
-                        ->where('vnt_events.type_id','<>', '1')->where('vnt_events.user_id',$user_id)
-                        ->select('vnt_events.service_id as id_sv', 'vnt_events.id as id_event',  'vnt_events.event_name','vnt_events.user_id','vnt_events.event_start', 'vnt_events.event_end', 'vnt_images.id as image_id','vnt_images.image_details_1', 'vnt_events.event_status', 'vnt_events.type_id','vnt_vieweventuser.user_id as seen')
+                        ->where('vnt_events.user_id',$user_id)
+                        ->where('event_user', 1)
+                        ->select('vnt_events.service_id as id_sv', 'vnt_events.id as id_event',  'vnt_events.event_name','vnt_events.user_id','vnt_events.event_start', 'vnt_events.event_end', 'vnt_images.id as image_id','vnt_images.image_details_1', 'vnt_events.event_status', 'vnt_events.type_id','vnt_vieweventuser.user_id as seen','event_user')
                         ->get();
 
         $data_event = array('event_public' => $event_public, 'event_user' => $event_user);
@@ -202,5 +214,17 @@ class EventsController extends Controller
         else{
             return -1;
         }
+    }
+
+
+    /**
+     * khi người dùng click vào thông báo, chuyển trạng thái event_status = 1 - đã cũ
+     * chỉ áp dụng cho event có type_id khác 1
+     * @param id_event - array evens.id 
+     */
+    public function old_event_user($id_event){
+        eventModel::where('id',$id_event)->where('event_user',1)
+                        ->update(['event_status' => 1]);
+        return 1;
     }
 }

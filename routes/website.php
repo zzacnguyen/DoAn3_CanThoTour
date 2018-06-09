@@ -274,6 +274,7 @@ Route::delete('delete-gallery-image/{id}','ImagesController@multipleUploadImage'
 Route::post('add-event','EventsController@add_event_web');
 Route::get('load-event/{id}','EventsController@load_event');
 Route::post('seen-event-user','EventsController@seen_event_user');
+Route::get('old-event-user/{id_event}','EventsController@old_event_user');
 
 
 

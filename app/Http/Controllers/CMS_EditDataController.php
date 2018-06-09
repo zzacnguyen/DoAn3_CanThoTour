@@ -8,6 +8,8 @@ use App\typesModel;
 use App\Http\Requests\AddPointRequest;
 use App\Http\Requests\AddTypeEventRequest;
 use App\servicesModel;
+use App\eventModel;
+use Carbon\Carbon;
 class CMS_EditDataController extends Controller
 {
     public function _POST_EDIT_POINT(AddPointRequest $request, $id)
@@ -46,6 +48,8 @@ class CMS_EditDataController extends Controller
     {
         servicesModel::where('id', $id)
         ->update(['sv_status'=>1]);
+        $user = servicesModel::where('id', $id)->select('user_id')->first();
+        $this::add_event(1,"Dịch vụ của bạn đã được duyệt", $user->user_id);
         return redirect()->route('LIST_UNACTICE_SERVICES')->with('message', "Hoàn tất, duyệt thành công một dịch vụ!");
     }
     public function EDIT_STATUS_UNACTIVE_SERVICES2($id)
@@ -61,4 +65,24 @@ class CMS_EditDataController extends Controller
         ->update(['sv_status'=>0]);
         return redirect()->route('LIST_UNACTICE_SERVICES')->with('message', "Hoàn tất, đánh dấu spam một dịch vụ!");
     }   
+
+    public function add_event($type_event,$event_name, $user_id){
+        // try 
+        // {
+            
+        // } catch (Exception $e) {
+            
+        // }
+            $dt = Carbon::now();
+            $event = new eventModel();
+            $event->event_name   = $event_name;
+            $event->user_id      = $user_id;
+            $event->event_start  = $dt;
+            $event->event_end    = $dt;
+            $event->event_status = 0;
+            $event->type_id      = 1;
+            $event->event_user   = $type_event;
+            $event->service_id   = 0;
+            $event->save();
+    }
 }

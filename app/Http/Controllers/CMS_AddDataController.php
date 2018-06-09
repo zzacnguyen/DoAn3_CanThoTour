@@ -375,7 +375,7 @@ class CMS_AddDataController extends Controller
     {
         tourguideModel::where('user_id',$user_id)
         ->update(['account_active'=>1]);
-
+        $this::add_event(1,"Vai trò Hướng Dẫn Viên đã được duyệt", $user_id);
         return redirect()->route('ALL_LIST_TOURGUIDE')->with('message', "Hoàn tất, Tài khoản đã trở thành tài khoản hướng dẫn viên du lịch!");
     }
     
@@ -389,6 +389,10 @@ class CMS_AddDataController extends Controller
     {
         touristPlacesModel::where('id',$id)
         ->update(['pl_status'=>1]);
+
+        $user_id = touristPlacesModel::where('id',$id)->select('user_id','pl_name')->first();
+        $this::add_event(1,"Địa điểm đã được duyệt", $user_id->user_id);
+        
         return redirect()->route('ALL_LIST_PLACE')->with('message', "Hoàn tất, Địa điểm đã được duyệt!");
     }
     
@@ -396,6 +400,10 @@ class CMS_AddDataController extends Controller
     {
         touristPlacesModel::where('id',$id)
         ->update(['pl_status'=>1]);
+
+        $user_id = touristPlacesModel::where('id',$id)->select('user_id','pl_name')->first();
+        $this::add_event(1,"Địa điểm đã được duyệt", $user_id->user_id);
+
         return redirect()->route('_DISPLAY_TOURIST_PLACES_UNACTIVE')->with('message', "Hoàn tất, Địa điểm vừa chọn đã được duyệt!");
     }
     
@@ -416,7 +424,7 @@ class CMS_AddDataController extends Controller
     {
         enterpriseUserModel::where('user_id',$id)
         ->update(['account_active'=>1]);
-        $this::add_event(2,"Vai trò doanh nghiệp đã được kích hoạt", $id);
+        $this::add_event(1,"Vai trò doanh nghiệp đã được kích hoạt", $id);
         return redirect()->route('ALL_LIST_ENTERPRISE')->with('message', "Hoàn tất, Tài khoản đã bị bật chức năng dành cho doanh nghiệp!");
     }
 
@@ -441,9 +449,10 @@ class CMS_AddDataController extends Controller
             $event->user_id      = $user_id;
             $event->event_start  = $dt;
             $event->event_end    = $dt;
-            $event->event_status = 1;
-            $event->type_id      = $type_event;
-            $event->service_id   = null;
+            $event->event_status = 0;
+            $event->type_id      = 1;
+            $event->event_user   = $type_event;
+            $event->service_id   = 0;
             $event->save();
     }
 }
