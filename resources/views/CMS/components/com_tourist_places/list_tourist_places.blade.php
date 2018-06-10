@@ -47,7 +47,7 @@
                     @foreach($data as $item)
                     <tr>
                         <td class="p_top_35">{{ $item->id }}</td>
-                        <td class="p_top_35"><a href="">{{ $item->pl_name }}</a></td>
+                        <td class="p_top_35"><a href="{{ route('_PLACES_DETAILS', $item->id) }}">{{ $item->pl_name }}</a></td>
                         <td class="p_top_35">{{ $item->pl_address }}</td>
                         <td class="p_top_35">{{ $item->pl_phone_number }}</td>
                         <td class="p_top_35">{{ $item->updated_at }}</td>
@@ -65,7 +65,7 @@
                             <i class="glyph-icon tooltip-button demo-icon icon-upload bg-success" title="Active"></i>
                         </a>
                         
-                        <a data-toggle="modal"   data-target="#removeUser{{ $item->id }}"> <i class="glyph-icon tooltip-button demo-icon icon-eye-slash bg-danger"></a></i>
+                        <a data-toggle="modal" data-target="#removeUser{{ $item->id }}"> <i class="glyph-icon tooltip-button demo-icon icon-eye-slash bg-danger"></a></i>
                         <div aria-labelledby="myModalLabel" class="modal fade" id="removeUser{{ $item->id }}" role="dialog" tabindex="-1">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">

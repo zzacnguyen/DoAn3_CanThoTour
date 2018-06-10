@@ -1,137 +1,174 @@
 @extends('CMS.components.index')
 @section('content')
 <div id="page-title">
-    <h2>{{ $data2[0]->pl_name  }}</h2>
-    <p hidden="">Example invoice page build with MonarchUI Framework</p>
+    <h2>{{ $data_places[0]->pl_name }}</h2>
+	<input type="hidden" id="lat" value="{{ $data_places[0]->pl_latitude }}">
+	<input type="hidden" id="log" value="{{ $data_places[0]->pl_longitude }}">
 
-	<div class="content-box pad25A">
-	    <div class="row">
-	        <div class="col-sm-3">
-	            <div class="dummy-logo">
-	                img
-	            </div>
-	            <address class="invoice-address">
-	                {{ $data2[0]->province_city_name  }}
-	                <br>
-	                {{ $data2[0]->district_name  }}
-	                <br>
-	                {{ $data2[0]->pl_address  }}, {{ $data2[0]->ward_name }}
-	            </address>
-	        </div>
-	        <div class="col-sm-6 float-right text-right">
-	            <h4 class="invoice-title">{{ $data2[0]->pl_name  }}</h4>
-	            Số điện thoại. <b>{{ $data2[0]->pl_phone_number  }}</b>
-	            <div class="divider"></div>
-	            <div class="invoice-date mrg20B">{{ $data2[0]->created_at  }}</div>
-	            <button onclick="printInvoice()" class="btn btn-alt btn-hover btn-info">
-	                <span><a href="" title="" style="color: #fff">Thêm dịch vụ</a></span>
-	                <i class="glyph-icon icon-plus"></i>
-	            </button>
-	            <button onclick="printInvoice()" class="btn btn-alt btn-hover btn-danger">
-	                <span>Ẩn địa điểm</span>
-	                <i class="glyph-icon icon-trash"></i>
-	            </button>
-	        </div>
-	    </div>
+	<div class="panel">
+    <div class="panel-body">
+        <h3 class="title-hero">
+            Thông tin tổng quan địa điểm
+        </h3>
+		<div class="row">
+			<div class="col-md-3">
+			    <ul class="list-group">
+			        <li class="mrg10B">
+			            <a href="#faq-tab-1" data-toggle="tab" class="list-group-item bg-white">
+			                Tổng quan
+			                <i class="glyph-icon icon-angle-right mrg0A"></i>
+			            </a>
+			        </li>
+			        <li class="mrg10B">
+			            <a href="#faq-tab-2" data-toggle="tab" class="list-group-item bg-white">
+			                Mở google maps
+			                <i class="glyph-icon font-green icon-angle-right mrg0A"></i>
+			            </a>
+			        </li>
+			    </ul>
+			</div>
+			<div class="col-md-9">
+			    <div class="tab-content">
+			        <div class="tab-pane fade active in pad0A" id="faq-tab-1">
+			            <div class="panel-group" id="accordion5">
+			                <div class="panel">
+			                    <div class="panel-heading">
+			                        <h4 class="panel-title">
+			                            <a data-toggle="collapse" data-parent="#accordion5" href="#collapseOne">
+			                                Thông tin chi tiết
+			                            </a>
+			                        </h4>
+			                    </div>
+			                    <div id="collapseOne" class="panel-collapse collapse in">
+			                        <div class="panel-body pad0B">
+			                        	<table class="table">
+				                        <thead>
+				                        <tr>
+				                            <th>Tên địa điểm</th>
+				                            <th>{{ $data_places[0]->pl_name }}</th>
+				                            <input type="hidden" id="id_place" value="{{ $data_places[0]->id }}">
+				                        </tr>
+				                        </thead>
+				                        <tbody>
+				                        <tr>
+				                            <td>Địa chỉ</td>
+				                            <th style="background-color: #fff">{{ $data_places[0]->pl_address }}</th>
+				                        </tr>
+				                        </tbody>
+				                        <thead>
+				                        <tr>
+				                            <th>Số điện thoại</th>
+				                            <th>{{ $data_places[0]->pl_phone_number }}</th>
+				                        </tr>
+				                        </thead>
+				                        <tbody>
+				                        <tr>
+				                            <td>Toạ độ</td>
+				                            <th style="background-color: #fff">{{ $data_places[0]->pl_longitude }}, {{ $data_places[0]->pl_latitude }}</th>
+				                        </tr>
+				                        </tbody>
+				                        <thead>
+				                        <tr>
+				                            <th>Trạng thái</th>
+											<?php 
+												$status = $data_places[0]->pl_status;
+												$str = "";
+												if($status == 0){
+													$str = "Chờ duyệt";
+												}
+												else if($status == 1){
+													$str = "Hiển thị";
+												}
+												else if($status == 2){
+													$str = "Đang chờ giải quyết tranh chấp";
+												}
+												else if($status == -1){
+													$str = "Bị đánh dấu spam";	
+												}
+												else{
+													$str = "Chưa xác định";	
+												}
 
-	    <div class="divider"></div>
+											?>
 
-	    <div class="row">
-	        <div class="col-md-4">
-	            <h2 class="invoice-client mrg10T">Vị trí:</h2>
-	            <h5>{{ $data2[0]->pl_name  }}</h5>
-	            <address class="invoice-address">
-	                Kinh độ: {{ $data2[0]->pl_longitude   }}
-	                <br>
-	                Vĩ độ: {{ $data2[0]->pl_latitude   }} 
-	            </address>
-	        </div>
-	        <div class="col-md-4">
-	            <h2 class="invoice-client mrg10T">Trạng thái:</h2>
-	            <ul class="reset-ul">
-	                <li><b>Chỉnh sửa lần cuối:</b> {{ $data2[0]->updated_at  }}</li>
-	                <li><b>Trạng thái:</b> <span class="bs-label label-<?php 
-	                if( $data2[0]->updated_at == 0 )
-	                {echo "warning";}
-	                else {	echo "success";}
-	                ?>"><?php 
-	                if( $data2[0]->updated_at == 0 )
-	                {echo "Không hiển thị";}
-	                else {	echo "Hiển thị";}
-	                ?></span></li>
-	                <li><b>Id:</b> #{{ $data2[0]->id  }}</li>
-	            </ul>
-	        </div>
-	        <div class="col-md-4">
-	            <h2 class="invoice-client mrg10T">Mô tả:</h2>
-	            <p>{{ $data2[0]->pl_details  }}</p>
-	        
-	        </div>
-	    </div>
+				                            <th><?= $str; ?></th>
 
-	    <table class="table mrg20T table-hover">
-	        <thead>
-	            <tr>
-	            	<?php $stt = 1; ?>
-	                <th style="width: 1%">STT</th>
-	                <th style="width: 1%">ID</th>
-	                <th style="width: 20%">Tên dịch vụ</th>
-	                <th style="width: 10%" class="text-center">Hình ảnh</th>
-	                <th style="width: 5%">Hiển thị</th>
-	                <th style="width: 10%">#</th>
-	            </tr>
-	        </thead>
-	        <tbody>
-	            <tr>
-	            	@foreach($data1 as $item)
-	                <td style="padding-top: 20px" class="text-center"><?php echo $stt; $stt++; ?></td>
-	                <td style="padding-top: 20px" class="text-center">{{ $item->id  }}</td>
-	                <td style="padding-top: 20px"> <a href="#" title="Chi tiết dịch vụ">
-	                	@if($item->hotel_name != null)
-                                {{$item->hotel_name}} 
-                            @elseif($item->eat_name != null)
-                                - {{ $item->eat_name }}
-                            @elseif($item->transport_name != null)
-                                -{{ $item->transport_name }}
-                            @elseif($item->sightseeing_name != null)
-                                -{{ $item->sightseeing_name }}
-                            @elseif($item->eat_name != null)
-                                -{{ $item->eat_name }}
-                        @endif
-		                </a>
-	                </td>
-	                <td style="padding-top: 20px" class="text-center">
-	                	<img src="/public/icons/{{ $item->image_banner  }}" alt="{{ $item->id  }}">
-	                </td>
-	                <td style="padding-top: 20px">
-	                	<span class="bs-label label-<?php 
-	                								if( $item->sv_status == 0 )
-										                {echo "warning";}
-									                else {	echo "success";}
-									                ?>">
-									                <?php 
-										                if( $item->sv_status == 0 )
-										                {echo "Không hiển thị";}
-										                else {	echo "Hiển thị";}
-									                ?>
-									                	
-		                </span>
-		            </td>
-	                <td style="padding-top: 0px">
-	                	<a href="#" title="Chi tiết dịch vụ">
-	                		<i  class="glyph-icon bg-info demo-icon icon-external-link-square"></i>
-	                	</a>
-		                <a href="#" title="Ẩn dịch vụ">
-		                	<i class="glyph-icon bg-danger demo-icon icon-ban"></i>
-		                </a>
-		            </td>
-	                
-                   @endforeach
-	            </tr>
-	            	            
-	        </tbody>
-	    </table>
+				                        </tr>
+				                        </thead>
+				                        <tbody>
+				                        <tr>
+				                            <td>Chức năng</td>
+				                            <th style="background-color: #fff">
+				                            	<a class="btn btn-success" 
+				                            		href="{{ route('_AJAX_ACTIVE_PLACE', $data_places[0]->id) }}">Duyệt địa điểm</a>
+				                            	<a class="btn btn-danger" href="{{ route('_AJAX_SPAM_PLACE', $data_places[0]->id) }}">Đánh dấu địa điểm</a>
+				                            	<a class="btn btn-warning" href="{{ route('_AJAX_UNACTIVE_PLACE', $data_places[0]->id) }}">Ẩn địa điểm</a>
+				                            </th>
+				                        </tr>
+				                        </tbody>
+				                    </table>
+		                                <p class="mrg15B"><?= $data_places[0]->pl_details ?></p>
+
+			                            <p class="mrg15B"><?= $data_places[0]->pl_content ?></p>
+			                        </div>
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			        <div class="tab-pane fade pad0A" id="faq-tab-2">
+			            <div class="panel-group" id="accordion1">
+			                <div class="panel">
+			                    <div class="panel-heading">
+			                        <h4 class="panel-title">
+			                            <a data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1">
+			                                Vị trí
+			                            </a>
+			                        </h4>
+			                    </div>
+			                    <div id="collapseOne1" class="panel-collapse collapse in">
+			                        <div class="panel-body pad0B">
+			                            <div class="example-box-wrapper">
+									        <div class="row">
+									            <div class="content-box pad10A center-margin col-md-12">
+									                <div id="map-marker" style="height: 250px;"></div>
+									            </div>
+									        </div>
+									    </div>   
+			                        </div>
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			        
+			    </div>
+			</div>
+		</div>
 
 	</div>
+	<script>
+
+      function initMap() {
+      	var getLat = document.getElementById('lat').value;
+      	var getLlong = document.getElementById('log').value;
+      	
+        var myLatLng = {lat: parseFloat(getLat), lng: parseFloat(getLlong)};
+
+        var map = new google.maps.Map(document.getElementById('map-marker'), {
+          zoom: 10,
+          center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'Hello World!'
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQnUfJIUr14br8WuniuuUMGkq0zDFoAc4&callback=initMap">
+    </script>
+
+
 </div>
 @endsection

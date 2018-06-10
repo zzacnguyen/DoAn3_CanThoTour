@@ -183,4 +183,6 @@
 
 	// Route::get('lvtn-list-services-spam', 'CMS_ComponentController@LIST_SPAM_SERVICES')->name('LIST_SPAM_SERVICES'); 
 
-	
+	Route::get('lvtn-places-details/{id}', 'CMS_ComponentController@_PLACES_DETAILS')->name('_PLACES_DETAILS');
+
+	Route::get('lvtn-active-places/{id}', 'CMS_EditDataController@_DETAIL_ACTIVE_PLACE')->name('_AJAX_ACTIVE_PLACE');

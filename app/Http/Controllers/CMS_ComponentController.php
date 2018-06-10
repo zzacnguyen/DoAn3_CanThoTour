@@ -508,4 +508,22 @@ class CMS_ComponentController extends Controller
             return view('CMS.components.error');
         }
     }
+
+    public function _SERVICE_DETAILS($id)
+    {
+        
+    }
+
+
+    public function _PLACES_DETAILS($id)
+    {
+        $data = DB::table('vnt_tourist_places')
+        ->select('id','pl_name', 'pl_details', 'pl_content', 'pl_address', 'pl_phone_number', 'pl_latitude'
+        ,'pl_longitude', 'pl_status', 'id_ward')
+        ->where('id', '=', $id)
+        ->get();
+        return view('CMS.components.com_tourist_places.tourist_places_details',['data_places'=>$data]);
+    }
+
+
 }

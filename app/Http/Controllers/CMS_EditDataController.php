@@ -85,4 +85,11 @@ class CMS_EditDataController extends Controller
             $event->service_id   = 0;
             $event->save();
     }
+
+    public function _DETAIL_ACTIVE_PLACE($id)
+    {
+        touristPlacesModel::where('id',$id)
+        ->update(['pl_status'=>1]);
+        
+    }
 }

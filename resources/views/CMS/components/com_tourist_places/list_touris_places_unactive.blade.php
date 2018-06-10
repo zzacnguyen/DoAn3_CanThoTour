@@ -48,7 +48,7 @@
                     @foreach($data as $item)
                     <tr>
                         <td class="p_top_35">{{ $item->id }}</td>
-                        <td class="p_top_35"><a href="">{{ $item->pl_name }}</a></td>
+                        <td class="p_top_35"><a href="{{ route('_PLACES_DETAILS', $item->id) }}">{{ $item->pl_name }}</a></td>
                         <td class="p_top_35">{{ $item->pl_address }}</td>
                         <td class="p_top_35">{{ $item->pl_phone_number }}</td>
                         <td class="p_top_35">{{ $item->updated_at }}</td>

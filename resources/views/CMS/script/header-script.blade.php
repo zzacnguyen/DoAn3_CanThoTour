@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="{{asset('public/resourceAdminTemplate/assets/css/myscss.css')}}">
-<script src="resource/js/p/addplace.js"></script>
+<script src="{{asset('public/resource/js/p/addplace.js')}}"></script>
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('public/resourceAdminTemplate/assets/images/icons/apple-touch-icon-144-precomposed.png')}}">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('public/resourceAdminTemplate/assets/images/icons/apple-touch-icon-114-precomposed.png')}}">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('public/resourceAdminTemplate/assets/images/icons/apple-touch-icon-72-precomposed.png')}}">
@@ -146,7 +146,6 @@
 <!--<script type="text/javascript" src="assets/js-core/transition.js"></script>-->
 <script type="text/javascript" src="{{ asset('public/resourceAdminTemplate/assets/js-core/modernizr.js')}}"></script>
 <script type="text/javascript" src="{{ asset('public/resourceAdminTemplate/assets/js-core/jquery-cookie.js')}}"></script>
-
 
 
 
