@@ -113,9 +113,8 @@
 				                        </tr>
 				                        </tbody>
 				                    </table>
-				                    	<p><b>MÔ TẢ: </b> </p>
 		                                <p class="mrg15B"><?= $data_places[0]->pl_details ?></p>
-										<p><b>NỘI DUNG: </b> </p>
+
 			                            <p class="mrg15B"><?= $data_places[0]->pl_content ?></p>
 			                            <div class="clearfix" style="padding-top: 30px"></div>
 			                        </div>
@@ -149,79 +148,6 @@
 			        </div>
 			        
 			    </div>
-			</div>
-
-			<div class="col-md-12">
-				<div class="panel-group" id="accordion5">
-			                <div class="panel">
-			                    <div class="panel-heading">
-			                        <h4 class="panel-title">
-			                            <a data-toggle="collapse" data-parent="#accordion5" href="#collapseOne">
-			                                Thông tin chi tiết
-			                            </a>
-			                        </h4>
-			                    </div>
-			                    <div id="collapseOne" class="panel-collapse collapse in">
-			                        <div class="panel-body pad0B">
-			                        	<table class="table">
-					                        <thead>
-					                        <tr>
-					                            <th>Mã DV</th>
-					                            <th>Loại hình</th>
-					                            <th>Tên dịch vụ</th>
-					                        </tr>
-					                        </thead>
-					                        <tbody>
-				                        	@foreach ($data_services as $element)
-					                        <tr>	
-					                            <td>{{ $element->service_id}}</td>
-					                            <td> <?php 
-							                            if($element->sv_types == 1)
-							                           {
-							                                echo '<small>Ăn uống</small>' ;
-							                           }
-							                           else if($element->sv_types == 2)
-							                           {
-							                                echo '<small>Khách sạn</small>' ;
-							                           }
-							                           else if ($element->sv_types == 3 )
-							                           {
-							                                echo '<small>Di chuyển</small>' ;    
-							                           }
-							                           else if ($element->sv_types == 4 )
-							                           {
-							                                echo '<small>Tham quan</small>' ;    
-							                           }
-							                           else
-							                           {
-							                                echo '<small>Vui chơi</small>' ;    
-							                           }
-							                           ?>
-												</td>
-					                            <td>
-				                        			@if($element->hotel_name != null)
-						                                {{$element->hotel_name}} 
-						                            @elseif($element->eat_name != null)
-						                                - {{ $element->eat_name }}
-						                            @elseif($element->transport_name != null)
-						                                -{{ $element->transport_name }}
-						                            @elseif($element->sightseeing_name != null)
-						                                -{{ $element->sightseeing_name }}
-						                            @elseif($element->eat_name != null)
-						                                -{{ $element->eat_name }}
-						                            @elseif($element->entertainments_name != null)
-						                                -{{ $element->entertainments_name }}
-						                            @endif
-				                        		</td>
-					                        </tr>
-					                        @endforeach
-					                        </tbody>
-					                    </table>
-		                               
-			                        </div>
-			                    </div>
-			                </div>
-			            </div>
 			</div>
 		</div>
 

@@ -84,7 +84,7 @@
         </li>
         <li>
             <a href="{{ route('_GET_VIEW_LIST_SERVICES_BY_HOTEL') }}" title="Danh sách dịch vụ khách sạn - nơi ở">
-                <i class="glyph-icon icon-elusive-home"></i>
+                <i class="glyph-icon icon-home"></i>
                 <span>Khách sạn</span>
             </a>
         </li>

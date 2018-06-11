@@ -522,7 +522,23 @@ class CMS_ComponentController extends Controller
         ,'pl_longitude', 'pl_status', 'id_ward')
         ->where('id', '=', $id)
         ->get();
-        return view('CMS.components.com_tourist_places.tourist_places_details',['data_places'=>$data]);
+        $data2 = DB::table('vnt_services') 
+        ->select('vnt_services.id as service_id' ,'sv_types', 'sv_website', 'vnt_hotels.hotel_name'
+             , 'entertainments_name', 'sightseeing_name', 'transport_name', 'eat_name', 'sv_status', 'vnt_services.id'
+        )     
+        ->leftJoin('vnt_events', 'vnt_events.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_hotels', 'vnt_hotels.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_eating', 'vnt_eating.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_entertainments', 'vnt_entertainments.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_sightseeing', 'vnt_sightseeing.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_transport', 'vnt_transport.service_id', '=', 'vnt_services.id')
+        ->orderBy('vnt_services.id', 'desc')
+        ->orderBy('vnt_services.updated_at', 'desc')
+        ->where('vnt_services.tourist_places_id', '=',$id)
+        ->paginate(10);
+
+        return view('CMS.components.com_tourist_places.tourist_places_details',['data_places'=>$data,
+            'data_services'=>$data2]);
     }
 
 

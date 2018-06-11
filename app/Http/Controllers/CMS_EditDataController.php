@@ -9,6 +9,7 @@ use App\Http\Requests\AddPointRequest;
 use App\Http\Requests\AddTypeEventRequest;
 use App\servicesModel;
 use App\eventModel;
+use App\touristPlacesModel;
 use Carbon\Carbon;
 class CMS_EditDataController extends Controller
 {
@@ -90,6 +91,26 @@ class CMS_EditDataController extends Controller
     {
         touristPlacesModel::where('id',$id)
         ->update(['pl_status'=>1]);
-        
+        servicesModel::where('')
+        return redirect()->route('_PLACES_DETAILS', $id);
     }
+    public function _DETAIL_UNACTIVE_PLACE($id)
+    {
+        touristPlacesModel::where('id',$id)
+        ->update(['pl_status'=>0]);
+        return redirect()->route('_PLACES_DETAILS', $id);   
+    }
+    public function _DETAIL_SPAM_PLACE($id)
+    {
+        touristPlacesModel::where('id',$id)
+        ->update(['pl_status'=>-1]);
+        return redirect()->route('_PLACES_DETAILS', $id);   
+    }
+    public function _DETAIL_UNSPAM_PLACE($id)
+    {
+        touristPlacesModel::where('id',$id)
+        ->update(['pl_status'=>0]);
+        return redirect()->route('_PLACES_DETAILS', $id);   
+    }
+    
 }

@@ -186,3 +186,7 @@
 	Route::get('lvtn-places-details/{id}', 'CMS_ComponentController@_PLACES_DETAILS')->name('_PLACES_DETAILS');
 
 	Route::get('lvtn-active-places/{id}', 'CMS_EditDataController@_DETAIL_ACTIVE_PLACE')->name('_AJAX_ACTIVE_PLACE');
+	Route::get('lvtn-unactive-places/{id}', 'CMS_EditDataController@_DETAIL_UNACTIVE_PLACE')->name('_AJAX_UNACTIVE_PLACE');
+	Route::get('lvtn-spam-places/{id}', 'CMS_EditDataController@_DETAIL_SPAM_PLACE')->name('_AJAX_SPAM_PLACE');
+	Route::get('lvtn-unspam-places/{id}', 'CMS_EditDataController@_DETAIL_UNSPAM_PLACE')->name('_AJAX_UNSPAM_PLACE');
+	
