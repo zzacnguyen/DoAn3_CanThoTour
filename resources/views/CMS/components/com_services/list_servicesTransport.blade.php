@@ -6,7 +6,7 @@
     <h2>Danh sách dịch vụ</h2>
     <p>Dưới đây là dữ liệu dịch vụ Vui chơi giải trí.</p>
     <div id="theme-options" class="admin-options">
-    <a href="javascript:void(0);" class="btn btn-primary theme-switcher tooltip-button" data-placement="left" title="Color schemes and layout options">
+    <a href="{{ route('_SERVICE_DETAILS', $item->id) }}" class="btn btn-primary theme-switcher tooltip-button" data-placement="left" title="Color schemes and layout options">
         <i class="glyph-icon icon-linecons-cog icon-spin"></i>
     </a>
 </div>
@@ -40,7 +40,7 @@
                 <tbody>
                     @foreach($data as $item)
                     <tr>
-                        <td><a href="javascript:void(0);">
+                        <td><a href="{{ route('_SERVICE_DETAILS', $item->id) }}">
                             @if($item->transport_name != null)
                                 -{{ $item->transport_name }}
                             @endif

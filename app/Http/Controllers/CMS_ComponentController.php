@@ -217,7 +217,7 @@ class CMS_ComponentController extends Controller
 		->select( DB::raw('DATE_FORMAT(vnt_services.updated_at, "%d-%m-%Y") as updated_at'),
             'sv_description', 'sv_open','sv_close', 'sv_highest_price', 'sv_lowest_price',
              'sv_phone_number','sv_types', 'sv_website', 'vnt_hotels.hotel_name'
-             , 'entertainments_name', 'sightseeing_name', 'transport_name', 'eat_name', 'sv_status'
+             , 'entertainments_name', 'sightseeing_name', 'transport_name', 'eat_name', 'sv_status','vnt_services.id'
         )     
         ->leftJoin('vnt_events', 'vnt_events.service_id', '=', 'vnt_services.id')
         ->leftJoin('vnt_hotels', 'vnt_hotels.service_id', '=', 'vnt_services.id')
@@ -511,7 +511,54 @@ class CMS_ComponentController extends Controller
 
     public function _SERVICE_DETAILS($id)
     {
+        $service = DB::table('vnt_services')
+        ->select(
+            'vnt_services.id as service_id',
+            'hotel_name', 
+            'sightseeing_name', 
+            'entertainments_name', 
+            'transport_name', 
+            'eat_name', 
+            'sv_website', 
+            'sv_description',
+            'sv_content',
+            'sv_open', 
+            'sv_types',
+            'sv_close', 
+            'sv_lowest_price', 
+            'sv_highest_price', 
+            'pl_phone_number', 
+            'pl_address', 
+            DB::raw('AVG(vnt_visitor_ratings.vr_rating) as rating'), 
+            'pl_latitude', 
+            'pl_longitude',
+            'pl_name',
+            'sv_status'
+            // 'vnt_transport.id as id_transport' ,
+            // 'vnt_eating.id as id_eating' ,
+            // 'vnt_hotels.id as id_hotel',
+            // 'vnt_sightseeing.id as id_sightseeing',
+            // 'vnt_entertainments.id as id_entertainment'
+
+        )
+        ->leftJoin('vnt_events', 'vnt_events.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_hotels', 'vnt_hotels.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_eating', 'vnt_eating.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_entertainments', 'vnt_entertainments.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_sightseeing', 'vnt_sightseeing.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_transport', 'vnt_transport.service_id', '=', 'vnt_services.id')
+        ->leftJoin('vnt_tourist_places', 'vnt_tourist_places.id', '=', 'vnt_services.tourist_places_id')
+        ->leftjoin('vnt_visitor_ratings', 'vnt_visitor_ratings.service_id','=', 'vnt_services.id')
+        ->where('vnt_services.id', $id)
+        ->groupBy('vnt_services.id','hotel_name','entertainments_name','transport_name', 'sightseeing_name', 
+                 'eat_name', 'sv_website', 'sv_description', 'sv_open','sv_close','sv_lowest_price','sv_highest_price', 'vnt_tourist_places.pl_phone_number',
+                 'vnt_tourist_places.pl_address', 'vnt_tourist_places.pl_latitude', 'vnt_tourist_places.pl_longitude','pl_name','sv_status',
+                 'sv_description',
+            'sv_content','sv_types'
+             )
         
+        ->get();
+        return view('CMS.components.com_services.service_details',['data_service'=>$service]);
     }
 
 
@@ -540,6 +587,7 @@ class CMS_ComponentController extends Controller
         return view('CMS.components.com_tourist_places.tourist_places_details',['data_places'=>$data,
             'data_services'=>$data2]);
     }
+
 
 
 }

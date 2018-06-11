@@ -91,7 +91,7 @@ class CMS_EditDataController extends Controller
     {
         touristPlacesModel::where('id',$id)
         ->update(['pl_status'=>1]);
-        servicesModel::where('')
+        
         return redirect()->route('_PLACES_DETAILS', $id);
     }
     public function _DETAIL_UNACTIVE_PLACE($id)
@@ -112,5 +112,34 @@ class CMS_EditDataController extends Controller
         ->update(['pl_status'=>0]);
         return redirect()->route('_PLACES_DETAILS', $id);   
     }
+
+
+    public function _DETAIL_ACTIVE_SERVICE($id)
+    {
+        servicesModel::where('id',$id)
+        ->update(['sv_status'=>1]);
+        return redirect()->route('_SERVICE_DETAILS', $id);
+    }
+    public function _DETAIL_UNACTIVE_SERVICES($id)
+    {
+        servicesModel::where('id',$id)
+        ->update(['sv_status'=>0]);
+        return redirect()->route('_SERVICE_DETAILS', $id);   
+    }
+    public function _AJAX_SPAM_SERVICES($id)
+    {
+        servicesModel::where('id',$id)
+        ->update(['sv_status'=>-1]);
+        return redirect()->route('_SERVICE_DETAILS', $id);   
+    }
+    public function _DETAIL_UNSPAM_SERVICES($id)
+    {
+        servicesModel::where('id',$id)
+        ->update(['sv_status'=>0]);
+        return redirect()->route('_SERVICE_DETAILS', $id);   
+    }
+
+
+    
     
 }

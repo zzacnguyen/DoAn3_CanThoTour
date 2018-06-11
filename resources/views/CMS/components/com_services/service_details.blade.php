@@ -1,26 +1,26 @@
 @extends('CMS.components.index')
 @section('content')
 <div id="page-title">
-    <h2>{{ $data_places[0]->pl_name }}</h2>
-	<input type="hidden" id="lat" value="{{ $data_places[0]->pl_latitude }}">
-	<input type="hidden" id="log" value="{{ $data_places[0]->pl_longitude }}">
+    <h2>{{ $data_service[0]->pl_name }}</h2>
+	<input type="hidden" id="lat" value="{{ $data_service[0]->pl_latitude }}">
+	<input type="hidden" id="log" value="{{ $data_service[0]->pl_longitude }}">
 
 	<div class="panel">
     <div class="panel-body">
         <h3 class="title-hero">
-            Thông tin tổng quan địa điểm
+            THÔNG TIN DỊCH VỤ
         </h3>
 		<div class="row">
 			<div class="col-md-3">
 			    <ul class="list-group">
 			        <li class="mrg10B">
-			            <a href="#faq-tab-1" data-toggle="tab" class="list-group-item bg-white">
+			            <a href="#faq-tab-1" data-toggle="tab" class="list-group-data_service[0] bg-white">
 			                Tổng quan
 			                <i class="glyph-icon icon-angle-right mrg0A"></i>
 			            </a>
 			        </li>
 			        <li class="mrg10B">
-			            <a href="#faq-tab-2" data-toggle="tab" class="list-group-item bg-white">
+			            <a href="#faq-tab-2" data-toggle="tab" class="list-group-data_service[0] bg-white">
 			                Mở google maps
 			                <i class="glyph-icon font-green icon-angle-right mrg0A"></i>
 			            </a>
@@ -36,6 +36,32 @@
 			                        <h4 class="panel-title">
 			                            <a data-toggle="collapse" data-parent="#accordion5" href="#collapseOne">
 			                                Thông tin chi tiết
+			                                <div style="float: right;">
+			                                	Loại hình dịch vụ: 
+			                                	<?php 
+					                            if($data_service[0]->sv_types == 1)
+					                           {
+					                                echo '<small>Ăn uống</small>' ;
+					                           }
+					                           else if($data_service[0]->sv_types == 2)
+					                           {
+					                                echo '<small>Khách sạn</small>' ;
+					                           }
+					                           else if ($data_service[0]->sv_types == 3 )
+					                           {
+					                                echo '<small>Di chuyển</small>' ;    
+					                           }
+					                           else if ($data_service[0]->sv_types == 4 )
+					                           {
+					                                echo '<small>Tham quan</small>' ;    
+					                           }
+					                           else
+					                           {
+					                                echo '<small>Vui chơi</small>' ;    
+					                           }
+					                           ?>
+			                                </div>
+			                                
 			                            </a>
 			                        </h4>
 			                    </div>
@@ -44,34 +70,60 @@
 			                        	<table class="table">
 				                        <thead>
 				                        <tr>
-				                            <th>Tên địa điểm</th>
-				                            <th>{{ $data_places[0]->pl_name }}</th>
-				                            <input type="hidden" id="id_place" value="{{ $data_places[0]->id }}">
+				                            <th>Tên dịch vụ</th>
+				                            <th> 
+				                            	@if($data_service[0]->hotel_name != null)
+					                                {{$data_service[0]->hotel_name}} 
+					                            @elseif($data_service[0]->eat_name != null)
+					                                - {{ $data_service[0]->eat_name }}
+					                            @elseif($data_service[0]->transport_name != null)
+					                                -{{ $data_service[0]->transport_name }}
+					                            @elseif($data_service[0]->sightseeing_name != null)
+					                                -{{ $data_service[0]->sightseeing_name }}
+					                            @elseif($data_service[0]->eat_name != null)
+					                                -{{ $data_service[0]->eat_name }}
+					                            @elseif($data_service[0]->entertainments_name != null)
+					                                -{{ $data_service[0]->entertainments_name }}
+					                            @endif
+					                        </th>
+				                            <input type="hidden" id="id_place" value="{{ $data_service[0]->service_id }}">
 				                        </tr>
 				                        </thead>
-				                        <tbody>
+				                        <tbody> 
 				                        <tr>
 				                            <td>Địa chỉ</td>
-				                            <th style="background-color: #fff">{{ $data_places[0]->pl_address }}</th>
+				                            <th style="background-color: #fff">{{ $data_service[0]->pl_address }}</th>
 				                        </tr>
 				                        </tbody>
 				                        <thead>
 				                        <tr>
 				                            <th>Số điện thoại</th>
-				                            <th>{{ $data_places[0]->pl_phone_number }}</th>
+				                            <th>{{ $data_service[0]->pl_phone_number }}</th>
+				                        </tr>
+				                        </thead>
+				                        <tbody> 
+				                        <tr>
+				                            <td>Giá dịch vụ</td>
+				                            <th style="background-color: #fff">{{ $data_service[0]->sv_lowest_price }} - {{ $data_service[0]->sv_highest_price }}</th>
+				                        </tr>
+				                        </tbody>
+				                        <thead>
+				                        <tr>
+				                            <th>Mở cửa</th>
+				                            <th>{{ $data_service[0]->sv_open }} - {{ $data_service[0]->sv_close }}</th>
 				                        </tr>
 				                        </thead>
 				                        <tbody>
 				                        <tr>
 				                            <td>Toạ độ</td>
-				                            <th style="background-color: #fff">{{ $data_places[0]->pl_longitude }}, {{ $data_places[0]->pl_latitude }}</th>
+				                            <th style="background-color: #fff">{{ $data_service[0]->pl_longitude }}, {{ $data_service[0]->pl_latitude }}</th>
 				                        </tr>
 				                        </tbody>
 				                        <thead>
 				                        <tr>
 				                            <th>Trạng thái</th>
 											<?php 
-												$status = $data_places[0]->pl_status;
+												$status = $data_service[0]->sv_status;
 												$str = "";
 												if($status == 0){
 													$str = "Chờ duyệt";
@@ -101,21 +153,21 @@
 				                            <th style="background-color: #fff">
 				                            	<?php if($status == 0 || $status == 2) {?>
 				                            	<a class="btn btn-success" 
-				                            		href="{{ route('_AJAX_ACTIVE_PLACE', $data_places[0]->id) }}">Duyệt địa điểm</a> 
+				                            		href="{{ route('_AJAX_ACTIVE_SERVICES', $data_service[0]->service_id) }}">Duyệt dịch vụ</a> 
 				                            	<?php } else if($status == 1){ ?>
-				                            	<a class="btn btn-danger" href="{{ route('_AJAX_SPAM_PLACE', $data_places[0]->id) }}">Đánh dấu địa điểm</a>
+				                            	<a class="btn btn-danger" href="{{ route('_AJAX_SPAM_SERVICES', $data_service[0]->service_id) }}">Đánh dấu dịch vụ</a>
 				                            	<?php }else if($status == -1){ ?>
-												<a class="btn btn-info" href="{{ route('_AJAX_UNSPAM_PLACE', $data_places[0]->id) }}">Tắt đánh dấu</a>
+												<a class="btn btn-info" href="{{ route('_DETAIL_UNSPAM_SERVICES', $data_service[0]->service_id) }}">Tắt đánh dấu</a>
 				                            	<?php }else {} ?>
-				                            	<a class="btn btn-warning" href="{{ route('_AJAX_UNACTIVE_PLACE', $data_places[0]->id) }}">Ẩn địa điểm</a>
+				                            	<a class="btn btn-warning" href="{{ route('_DETAIL_UNACTIVE_SERVICES', $data_service[0]->service_id) }}">Ẩn dịch vụ</a>
 
 				                            </th>
 				                        </tr>
 				                        </tbody>
 				                    </table>
-		                                <p class="mrg15B"><?= $data_places[0]->pl_details ?></p>
+		                                <p class="mrg15B"><?= $data_service[0]->sv_description ?></p>
 
-			                            <p class="mrg15B"><?= $data_places[0]->pl_content ?></p>
+			                            <p class="mrg15B"><?= $data_service[0]->sv_content ?></p>
 			                            <div class="clearfix" style="padding-top: 30px"></div>
 			                        </div>
 			                    </div>

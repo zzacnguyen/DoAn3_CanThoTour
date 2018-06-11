@@ -189,4 +189,11 @@
 	Route::get('lvtn-unactive-places/{id}', 'CMS_EditDataController@_DETAIL_UNACTIVE_PLACE')->name('_AJAX_UNACTIVE_PLACE');
 	Route::get('lvtn-spam-places/{id}', 'CMS_EditDataController@_DETAIL_SPAM_PLACE')->name('_AJAX_SPAM_PLACE');
 	Route::get('lvtn-unspam-places/{id}', 'CMS_EditDataController@_DETAIL_UNSPAM_PLACE')->name('_AJAX_UNSPAM_PLACE');
-	
+	Route::get('lvtn-services-details/{id}', 'CMS_ComponentController@_SERVICE_DETAILS')->name('_SERVICE_DETAILS');
+
+
+	Route::get('lvtn-active-services/{id}', 'CMS_EditDataController@_DETAIL_ACTIVE_SERVICE')->name('_AJAX_ACTIVE_SERVICES');
+	Route::get('lvtn-unactive-services/{id}', 'CMS_EditDataController@_DETAIL_UNACTIVE_SERVICES')->name('_DETAIL_UNACTIVE_SERVICES');
+	Route::get('lvtn-spam-services/{id}', 'CMS_EditDataController@_AJAX_SPAM_SERVICES')->name('_AJAX_SPAM_SERVICES');
+	Route::get('lvtn-unspam-services/{id}', 'CMS_EditDataController@_DETAIL_UNSPAM_SERVICES')->name('_DETAIL_UNSPAM_SERVICES');
+	Route::get('lvtn-services-details/{id}', 'CMS_ComponentController@_SERVICE_DETAILS')->name('_SERVICE_DETAILS');

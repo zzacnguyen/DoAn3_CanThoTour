@@ -42,7 +42,7 @@
                 <tbody>
                     @foreach($data as $item)
                     <tr>
-                        <td><a href="javascript:void(0);">
+                        <td><a href="{{ route('_SERVICE_DETAILS', $item->id) }}">
                             @if($item->hotel_name != null)
                                 {{$item->hotel_name}} 
                             @elseif($item->eat_name != null)
