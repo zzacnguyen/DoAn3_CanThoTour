@@ -217,6 +217,7 @@ class handler {
                     mkdir(dirname($target), 0777, true);
                 }
                 if (move_uploaded_file($file['tmp_name'], $target)){
+                    $this->watermarkImg($file['name'], $target, $newDirectory);
                     return array('success'=> true, "uuid" => $uuid);
                 }
             }
@@ -401,6 +402,78 @@ class handler {
     protected function isWindows() {
     	$isWin = (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN');
     	return $isWin;
+    }
+
+    public function watermarkImg($source_image2,$destination2,$id)
+    {
+        $source_image = "public/thumbnails/gallery/".$id."/".$source_image2;
+        $destination = $destination2;
+        $water = 'public/resource/images/logo-water-2.png';
+
+        $info = getimagesize($source_image);
+        $imgtype = image_type_to_mime_type($info[2]);
+        
+        // create the proper image from the filetype    
+        switch($imgtype){
+            case 'image/gif':
+                $image = imagecreatefromgif($source_image);
+                break;
+            case 'image/jpg':
+            case 'image/jpeg':
+                $image = imagecreatefromjpeg($source_image);
+                break;
+            case 'image/png':
+                $image = imagecreatefrompng($source_image);
+                break;
+            default:
+                die('Not a valid image type.');
+        }
+        
+        $watermark = getimagesize($water);
+        $watermark_type = image_type_to_mime_type($watermark[2]);
+        
+        // create the proper image from the watermark filetype
+        switch($watermark_type){
+            case 'image/png':
+                $watermark = imagecreatefrompng($water);
+                break;
+            case 'image/gif':
+                $watermark = imagecreatefromgif($water);
+            default:
+                die('Not a valid watermark image.');
+        }
+        
+        // image size
+        $image_width = imagesx($image);
+        $image_height = imagesy($image);
+        
+        // watermark size
+        $watermark_width = imagesx($watermark);
+        $watermark_height = imagesy($watermark);
+        
+        // position the watermark
+        
+        // center center
+        // $start_width = (($image_width - $watermark_width) / 2);
+        // $start_height = (($image_height - $watermark_height) / 2);
+        
+        // top left
+        // $start_width = 0;
+        // $start_height = 0;
+        
+        // bottom right
+        $start_width = ($image_width - $watermark_width);
+        $start_height = ($image_height - $watermark_height);
+        
+        // create the image
+        imagecopy($image, $watermark, $start_width, $start_height, 0, 0, $watermark_width, $watermark_height);
+        
+        // and display it
+        if(Imagejpeg($image,$destination,100)) {
+          return 1;
+        }
+          // If something went wrong
+        return -1;
     }
 
 }

@@ -268,6 +268,9 @@ Route::post('multiple-upload-image/{id}','ImagesController@multipleUploadImage')
 Route::get('get-gallery/{id}','ImagesController@get_gallery'); 
 Route::delete('delete-gallery-image/{id}','ImagesController@multipleUploadImage'); 
 
+Route::get('image-handler/s={s},d={d}','ImagesController@image_handler'); 
+Route::get('watermark-img','ImagesController@watermark_img'); 
+
 
 
 //================= EVENT ================
