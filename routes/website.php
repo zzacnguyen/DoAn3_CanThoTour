@@ -124,7 +124,6 @@ Route::get('loadWard/{id}','publicaddplaceController@loadWard');
 
 
 
-
 //================== search header =============
 Route::get('search-services-all/keyword={k}','pageController@searchServices_All');
 
