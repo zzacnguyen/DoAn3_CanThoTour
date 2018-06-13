@@ -159,8 +159,16 @@ class tripScheduleController extends Controller
             return 1;
         } catch (Exception $e) {
             return -1;
-        }
-            
+        } 
+    }
+    public function success_schedule(Request $request)
+    {
+        tripScheduleModel::where('id',$request->id)->where('user_id',$request->user_id)
+                                ->update(
+                                [
+                                    'trip_status' => $request->status_lt
+                                ]);
+        return 1;
     }
 
 }

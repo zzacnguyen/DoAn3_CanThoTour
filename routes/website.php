@@ -260,6 +260,7 @@ Route::get('get-idtripschedule-web','tripScheduleController@get_idtripschedule_w
 Route::get('delete-all-detail-schedule-web/{id}','tripScheduleController@delete_All_detailSchedule_web');
 Route::get('delete-schedule-web/{id}','tripScheduleController@delete_Schedule');
 Route::post('edit-schedule','tripScheduleController@edit_Schedule');
+Route::post('success-schedule','tripScheduleController@success_schedule');
 
 
 //test multiple image
