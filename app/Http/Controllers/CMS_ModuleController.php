@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Colection;
 use App\usersModel;
 use App\pointModel;
+use Session;
 class CMS_ModuleController extends Controller
 {
 	public function _GET_MONTH()
@@ -477,6 +478,12 @@ class CMS_ModuleController extends Controller
 		$data_percent_place = $this::_DISPLAY_PERCENT_PLACES();
 		$data_percent_services = $this::_DISPLAY_PERCENT_SERVICES();
 		$data_place = $this::_GET_DATA_PLACES_CHANGE(); 
+
+		$data_user = null;
+		if(Session::has('login') && Session::get('user_info') != null){
+			$data_user = Session::get('user_info');
+		}
+		// dd($data_user['username']);
     	if (view()->exists('view.CMS.master')){return view('CMS.components.error');}
     	else	{
 			return view('CMS.master', [
@@ -494,7 +501,8 @@ class CMS_ModuleController extends Controller
 					'data12'=>$data_percent_user,
 					'data13'=>$data_percent_place,
 					'data14'=>$data_percent_services,
-					'data15'=>$data_place
+					'data15'=>$data_place,
+					'data_user'=>$data_user
 			]);
 		}
 

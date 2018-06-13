@@ -401,48 +401,44 @@ class loginController extends Controller
 
     public function login_admin(Request $request)
     {
-        $rules = [
-            'username' =>'required',
-            'password' => 'required|min:4'
-        ];
-   
-        $validator = Validator::make($request->all(), $rules);
-
-        if ($validator->fails()) {
-            $erro = array('result' => null,'error' => 2, 'status' => 'ERROR');
-            return json_encode($erro);
-        } 
-        else
-        {
-            $username = $request->input('username');
-            $pass = $request->input('password');
-            if( Auth::attempt(['username' => $username, 'password' =>$pass])) {
-
-                $result = DB::select('CALL login_info_phone(?)',array(Auth::user()->user_id));
-                // dd($result);
-                $level = array(); // personal
+        $username = $request->username;
+        $password = $request->password;
+        if( Auth::attempt(['username' => $username, 'password' => $password])) {
+            $user = Auth::user();
+                
+            $result = DB::select('CALL login_info_phone(?)',array(Auth::user()->user_id));
+                $flag = false;
+                $level = array();
                 foreach ($result as $result) {
-                    if ($result->admin != null ) {
-                        $level[] = 6; // admin
+                    if ($result->admin != null) {
+                        $flag = true;
+                        $level = 1;
+                    }
+                    elseif ($result->moderator != null && $result->active_mod == 1) 
+                    {
+                        $flag = true;
+                        $level = 2;
                     }
 
                     $result_info = array(
-                        'id'       => $result->user_id,
-                        'username' => $result->username,
-                        'fullname' => $result->contact_name,
-                        'avatar'   => $result->contact_avatar,
-                        'level'    => $level
+                        'id' => $result->user_id,
+                        'username' =>$result->username,
+                        'avatar' =>$result->contact_avatar,
+                        'level' =>$level
                     );
-                    
                 }
-                $result_user['result'] = $result_info;  
-                $result_user['error'] = null;
-                $result_user['status'] = "OK";
-                return json_encode($result_user);
-            } else {
-                $erro = array('result' => null,'error' => 1, 'status' => 'ERROR');
-                return json_encode($erro);
+            if ($flag) {
+                Session()->put('login',true);  
+                Session()->put('user_info',$result_info);
+                return redirect('lvtn-dashboard');
             }
+            else{
+                return redirect('lvtn-login');
+            } 
+                
+        } 
+        else {
+            return redirect()->back()->with(['erro'=>'Tên tài khoản hoặc mật khẩu không đúng','userold'=>$username]);
         }
     }
 

@@ -200,3 +200,4 @@
 
 
 	Route::get('lvtn-login', 'CMS_ComponentController@login_admin')->name('login_admin');
+	Route::post('login-admin','loginController@login_admin')->name('login-admin');

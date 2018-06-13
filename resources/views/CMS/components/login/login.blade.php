@@ -46,28 +46,36 @@
 </style>
 <div class="center-vertical bg-black">
     <div class="center-content row">
-        <form action="" id="login-validation" class="center-margin col-xs-11 col-sm-5" method="">
+        <form action="{{route('login-admin')}}" id="login-validation" class="center-margin col-xs-11 col-sm-5" method="POST">
             <h3 class="text-center pad25B font-gray font-size-23">ĐĂNG NHẬP <span class="opacity-80">v1.0</span></h3>
             <div id="login-form" class="content-box">
                 <div class="content-box-wrapper pad20A">
 
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Tài khoản:</label>
+                        <label for="">Tài khoản:</label>
                         <div class="input-group input-group-lg">
                             <span class="input-group-addon addon-inside bg-white font-primary">
                                 <i class="glyph-icon icon-envelope-o"></i>
                             </span>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Tài khoản">
+                            @if(Session::has('userold'))
+                                <input type="text" class="form-control" value="{{Session::get('userold')}}" placeholder="Tài khoản" name="username">
+                            @else
+                                <input type="text" class="form-control" placeholder="Tài khoản" name="username">
+                            @endif
+
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Mật khẩu:</label>
+                        <label for="">Mật khẩu:</label>
                         <div class="input-group input-group-lg">
                             <span class="input-group-addon addon-inside bg-white font-primary">
                                 <i class="glyph-icon icon-unlock-alt"></i>
                             </span>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mật khẩu">
+                            <input type="password" class="form-control" id="" placeholder="Mật khẩu" name="password">
                         </div>
+                        @if(Session::has('erro'))
+                            <small style="color: red;">{{Session::get('erro')}}</small>
+                        @endif
                     </div>
                 </div>
                 <div class="button-pane">
