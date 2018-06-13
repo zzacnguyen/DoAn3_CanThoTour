@@ -147,7 +147,7 @@
 <script type="text/javascript" src="{{ asset('public/resourceAdminTemplate/assets/js-core/modernizr.js')}}"></script>
 <script type="text/javascript" src="{{ asset('public/resourceAdminTemplate/assets/js-core/jquery-cookie.js')}}"></script>
 
-
+<script type="text/javascript" src="{{ asset('public/resourceAdminTemplate/assets/myscript/notification.js')}}"></script>
 
 
     <script type="text/javascript">

@@ -19,7 +19,7 @@
     <a href="#" class="hdr-btn sb-toggle-left" id="chatbox-btn" title="Người dùng đang truy cập">
         <i class="glyph-icon icon-wifi"></i>
     </a>
-{{--     <div class="dropdown" id="notifications-btn" >
+    <div class="dropdown" id="notifications-btn" >
         <a data-toggle="dropdown" href="#" title="">
             <span class="small-badge bg-yellow"></span>
             <i class="glyph-icon icon-linecons-megaphone"></i>
@@ -27,104 +27,24 @@
         <div class="dropdown-menu box-md float-right ">
             <div class="popover-title display-block clearfix pad10A">Thông báo</div>
             <div class="scrollable-content scrollable-slim-box">
-                <ul class="no-border notifications-box">
+                <ul class="no-border notifications-box" id="id-notifications">
                     <li>
                         <span class="bg-danger icon-notification glyph-icon icon-bullhorn"></span>
-                        <span class="notification-text">This is an error notification</span>
-                        <div class="notification-time">
+                        <span class="notification-text">Người dùng vừa thêm địa điểm mới</span>
+                        {{-- <div class="notification-time">
                             a few seconds ago
                             <span class="glyph-icon icon-clock-o"></span>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="bg-warning icon-notification glyph-icon icon-users"></span>
-                        <span class="notification-text font-blue">This is a warning notification</span>
-                        <div class="notification-time">
-                            <b>15</b> minutes ago
-                            <span class="glyph-icon icon-clock-o"></span>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="bg-green icon-notification glyph-icon icon-sitemap"></span>
-                        <span class="notification-text font-green">A success message example.</span>
-                        <div class="notification-time">
-                            <b>2 hours</b> ago
-                            <span class="glyph-icon icon-clock-o"></span>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="bg-azure icon-notification glyph-icon icon-random"></span>
-                        <span class="notification-text">This is an error notification</span>
-                        <div class="notification-time">
-                            a few seconds ago
-                            <span class="glyph-icon icon-clock-o"></span>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="bg-warning icon-notification glyph-icon icon-ticket"></span>
-                        <span class="notification-text">This is a warning notification</span>
-                        <div class="notification-time">
-                            <b>15</b> minutes ago
-                            <span class="glyph-icon icon-clock-o"></span>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="bg-blue icon-notification glyph-icon icon-user"></span>
-                        <span class="notification-text font-blue">Alternate notification styling.</span>
-                        <div class="notification-time">
-                            <b>2 hours</b> ago
-                            <span class="glyph-icon icon-clock-o"></span>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="bg-purple icon-notification glyph-icon icon-user"></span>
-                        <span class="notification-text">This is an error notification</span>
-                        <div class="notification-time">
-                            a few seconds ago
-                            <span class="glyph-icon icon-clock-o"></span>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="bg-warning icon-notification glyph-icon icon-user"></span>
-                        <span class="notification-text">This is a warning notification</span>
-                        <div class="notification-time">
-                            <b>15</b> minutes ago
-                            <span class="glyph-icon icon-clock-o"></span>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="bg-green icon-notification glyph-icon icon-user"></span>
-                        <span class="notification-text font-green">A success message example.</span>
-                        <div class="notification-time">
-                            <b>2 hours</b> ago
-                            <span class="glyph-icon icon-clock-o"></span>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="bg-purple icon-notification glyph-icon icon-user"></span>
-                        <span class="notification-text">This is an error notification</span>
-                        <div class="notification-time">
-                            a few seconds ago
-                            <span class="glyph-icon icon-clock-o"></span>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="bg-warning icon-notification glyph-icon icon-user"></span>
-                        <span class="notification-text">This is a warning notification</span>
-                        <div class="notification-time">
-                            <b>15</b> minutes ago
-                            <span class="glyph-icon icon-clock-o"></span>
-                        </div>
+                        </div> --}}
                     </li>
                 </ul>
             </div>
-            <div class="pad10A button-pane button-pane-alt text-center">
+            {{-- <div class="pad10A button-pane button-pane-alt text-center">
                 <a href="#" class="btn btn-primary" title="View all notifications">
                     Xem tất cả thông báo
                 </a>
-            </div>
+            </div> --}}
         </div>
-    </div> --}}
+    </div>
 {{--     <div class="dropdown" id="progress-btn">
         <a data-toggle="dropdown" href="#" title="">
             <span class="small-badge bg-azure"></span>

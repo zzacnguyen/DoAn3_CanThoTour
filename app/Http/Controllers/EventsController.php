@@ -176,7 +176,7 @@ class EventsController extends Controller
                         ->where('vnt_events.user_id',$user_id)
                         ->where('event_user', 1)
                         ->select('vnt_events.service_id as id_sv', 'vnt_events.id as id_event',  'vnt_events.event_name','vnt_events.user_id','vnt_events.event_start', 'vnt_events.event_end', 'vnt_images.id as image_id','vnt_images.image_details_1', 'vnt_events.event_status', 'vnt_events.type_id','vnt_vieweventuser.user_id as seen','event_user')
-                        ->get();
+                        ->orderBy('vnt_events.created_at','desc')->get();
 
         $data_event = array('event_public' => $event_public, 'event_user' => $event_user);
         return json_encode($data_event);
@@ -226,5 +226,21 @@ class EventsController extends Controller
         eventModel::where('id',$id_event)->where('event_user',1)
                         ->update(['event_status' => 1]);
         return 1;
+    }
+
+    // event admin
+    /**
+     * khi người dùng click vào thông báo, chuyển trạng thái event_status = 1 - đã cũ
+     * chỉ áp dụng cho event có type_id khác 1
+     * @param id_event - array evens.id 
+     */
+    public function get_event_admin(){
+        $event_user = DB::table('vnt_events')
+                        ->leftJoin('vnt_vieweventuser', 'vnt_events.id', '=', 'vnt_vieweventuser.id_events')
+                        ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_events.service_id')
+                        ->where('event_user', 2)
+                        ->select('vnt_events.service_id as id_sv', 'vnt_events.id as id_event',  'vnt_events.event_name','vnt_events.user_id','vnt_events.event_start', 'vnt_events.event_end', 'vnt_images.id as image_id','vnt_images.image_details_1', 'vnt_events.event_status', 'vnt_events.type_id','vnt_vieweventuser.user_id as seen','event_user')
+                        ->orderBy('vnt_events.created_at','desc')->get();
+        return json_decode($event_user);
     }
 }

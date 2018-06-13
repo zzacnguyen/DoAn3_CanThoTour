@@ -57,6 +57,10 @@ class CMS_EditDataController extends Controller
     {
         servicesModel::where('id', $id)
         ->update(['sv_status'=>-1]);
+
+        $user = servicesModel::where('id', $id)->select('user_id')->first();
+        $this::add_event(3,"Dịch vụ đã bị đánh dấu spam", $user->user_id);
+
         return redirect()->route('LIST_UNACTICE_SERVICES')->with('message', "Hoàn tất, đánh dấu spam một dịch vụ!");
     }
 
@@ -64,16 +68,91 @@ class CMS_EditDataController extends Controller
     {
         servicesModel::where('id', $id)
         ->update(['sv_status'=>0]);
-        return redirect()->route('LIST_UNACTICE_SERVICES')->with('message', "Hoàn tất, đánh dấu spam một dịch vụ!");
+        return redirect()->route('LIST_UNACTICE_SERVICES')->with('message', "Hoàn tất, bỏ đánh dấu spam một dịch vụ!");
     }   
 
+    public function _DETAIL_ACTIVE_PLACE($id)
+    {
+        touristPlacesModel::where('id',$id)
+        ->update(['pl_status'=>1]);
+
+        $user = touristPlacesModel::where('id', $id)->select('user_id')->first();
+        $this::add_event(1,"Địa điểm của bạn đã được duyệt", $user->user_id);
+
+        return redirect()->route('_PLACES_DETAILS', $id);
+    }
+    public function _DETAIL_UNACTIVE_PLACE($id)
+    {
+        touristPlacesModel::where('id',$id)
+        ->update(['pl_status'=>0]);
+
+        $user = touristPlacesModel::where('id', $id)->select('user_id')->first();
+        $this::add_event(1,"Địa điểm của bạn đã bị ẩn", $user->user_id);
+        return redirect()->route('_PLACES_DETAILS', $id);   
+    }
+    public function _DETAIL_SPAM_PLACE($id)
+    {
+        touristPlacesModel::where('id',$id)
+        ->update(['pl_status'=>-1]);
+
+        $user = touristPlacesModel::where('id', $id)->select('user_id')->first();
+        $this::add_event(1,"Địa điểm của bạn đã bị đánh dấu spam", $user->user_id);
+
+        return redirect()->route('_PLACES_DETAILS', $id);   
+    }
+    public function _DETAIL_UNSPAM_PLACE($id)
+    {
+        touristPlacesModel::where('id',$id)
+        ->update(['pl_status'=>0]);
+
+        $user = touristPlacesModel::where('id', $id)->select('user_id')->first();
+        $this::add_event(1,"Địa điểm của bạn đã được bỏ đánh dấu spam", $user->user_id);
+        return redirect()->route('_PLACES_DETAILS', $id);   
+    }
+
+
+    public function _DETAIL_ACTIVE_SERVICE($id)
+    {
+        servicesModel::where('id',$id)
+        ->update(['sv_status'=>1]);
+
+        $user = servicesModel::where('id', $id)->select('user_id')->first();
+        $this::add_event(1,"Dịch vụ của bạn đã được duyệt", $user->user_id);
+
+        return redirect()->route('_SERVICE_DETAILS', $id);
+    }
+    public function _DETAIL_UNACTIVE_SERVICES($id)
+    {
+        servicesModel::where('id',$id)
+        ->update(['sv_status'=>0]);
+
+        $user = servicesModel::where('id', $id)->select('user_id')->first();
+        $this::add_event(1,"Dịch vụ của bạn đã bị ẩn", $user->user_id);
+        return redirect()->route('_SERVICE_DETAILS', $id);   
+    }
+    public function _AJAX_SPAM_SERVICES($id)
+    {
+        servicesModel::where('id',$id)
+        ->update(['sv_status'=>-1]);
+
+        $user = servicesModel::where('id', $id)->select('user_id')->first();
+        $this::add_event(1,"Dịch vụ của bạn đã bị đánh dấu spam", $user->user_id);
+        return redirect()->route('_SERVICE_DETAILS', $id);   
+    }
+    public function _DETAIL_UNSPAM_SERVICES($id)
+    {
+        servicesModel::where('id',$id)
+        ->update(['sv_status'=>0]);
+
+        $user = servicesModel::where('id', $id)->select('user_id')->first();
+        $this::add_event(1,"Dịch vụ của bạn đã được hủy đánh dấu spam", $user->user_id);
+        return redirect()->route('_SERVICE_DETAILS', $id);   
+    }
+
+
     public function add_event($type_event,$event_name, $user_id){
-        // try 
-        // {
-            
-        // } catch (Exception $e) {
-            
-        // }
+        try 
+        {
             $dt = Carbon::now();
             $event = new eventModel();
             $event->event_name   = $event_name;
@@ -85,61 +164,10 @@ class CMS_EditDataController extends Controller
             $event->event_user   = $type_event;
             $event->service_id   = 0;
             $event->save();
+        } catch (Exception $e) {
+            
+        }
+            
     }
-
-    public function _DETAIL_ACTIVE_PLACE($id)
-    {
-        touristPlacesModel::where('id',$id)
-        ->update(['pl_status'=>1]);
-        
-        return redirect()->route('_PLACES_DETAILS', $id);
-    }
-    public function _DETAIL_UNACTIVE_PLACE($id)
-    {
-        touristPlacesModel::where('id',$id)
-        ->update(['pl_status'=>0]);
-        return redirect()->route('_PLACES_DETAILS', $id);   
-    }
-    public function _DETAIL_SPAM_PLACE($id)
-    {
-        touristPlacesModel::where('id',$id)
-        ->update(['pl_status'=>-1]);
-        return redirect()->route('_PLACES_DETAILS', $id);   
-    }
-    public function _DETAIL_UNSPAM_PLACE($id)
-    {
-        touristPlacesModel::where('id',$id)
-        ->update(['pl_status'=>0]);
-        return redirect()->route('_PLACES_DETAILS', $id);   
-    }
-
-
-    public function _DETAIL_ACTIVE_SERVICE($id)
-    {
-        servicesModel::where('id',$id)
-        ->update(['sv_status'=>1]);
-        return redirect()->route('_SERVICE_DETAILS', $id);
-    }
-    public function _DETAIL_UNACTIVE_SERVICES($id)
-    {
-        servicesModel::where('id',$id)
-        ->update(['sv_status'=>0]);
-        return redirect()->route('_SERVICE_DETAILS', $id);   
-    }
-    public function _AJAX_SPAM_SERVICES($id)
-    {
-        servicesModel::where('id',$id)
-        ->update(['sv_status'=>-1]);
-        return redirect()->route('_SERVICE_DETAILS', $id);   
-    }
-    public function _DETAIL_UNSPAM_SERVICES($id)
-    {
-        servicesModel::where('id',$id)
-        ->update(['sv_status'=>0]);
-        return redirect()->route('_SERVICE_DETAILS', $id);   
-    }
-
-
-    
     
 }

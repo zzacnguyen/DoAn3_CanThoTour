@@ -402,7 +402,7 @@ class CMS_AddDataController extends Controller
         ->update(['pl_status'=>1]);
 
         $user_id = touristPlacesModel::where('id',$id)->select('user_id','pl_name')->first();
-        $this::add_event(1,"Địa điểm đã được duyệt", $user_id->user_id);
+        $this::add_event(1,"Địa điểm của bạn đã được duyệt", $user_id->user_id);
 
         return redirect()->route('_DISPLAY_TOURIST_PLACES_UNACTIVE')->with('message', "Hoàn tất, Địa điểm vừa chọn đã được duyệt!");
     }
@@ -411,13 +411,21 @@ class CMS_AddDataController extends Controller
     {
         touristPlacesModel::where('id',$id)
         ->update(['pl_status'=>-1]);
+
+        $user_id = touristPlacesModel::where('id',$id)->select('user_id','pl_name')->first();
+        $this::add_event(1,"Địa điểm của bạn đã bị đánh dấu spam", $user_id->user_id);
+
         return redirect()->route('_DISPLAY_TOURIST_PLACES_UNACTIVE')->with('message', "Hoàn tất, Địa điểm đã bị đánh dấu spam!");
     }
     public function UNACCTIVE_PLACES($id)
     {
         touristPlacesModel::where('id',$id)
         ->update(['pl_status'=>0]);
-        return redirect()->route('ALL_LIST_PLACE')->with('message', "Hoàn tất, Địa điểm đã bị tắt!");
+
+        $user = touristPlacesModel::where('id', $id)->select('user_id')->first();
+        $this::add_event(1,"Địa điểm của bạn đã bị ẩn", $user->user_id);
+
+        return redirect()->route('ALL_LIST_PLACE')->with('message', "Hoàn tất, Địa điểm đã bị ẩn!");
     }
 
     public function ACCTIVE_ENTERPRISE($id)
@@ -437,12 +445,8 @@ class CMS_AddDataController extends Controller
 
 
     public function add_event($type_event,$event_name, $user_id){
-        // try 
-        // {
-            
-        // } catch (Exception $e) {
-            
-        // }
+        try 
+        {
             $dt = Carbon::now();
             $event = new eventModel();
             $event->event_name   = $event_name;
@@ -454,5 +458,9 @@ class CMS_AddDataController extends Controller
             $event->event_user   = $type_event;
             $event->service_id   = 0;
             $event->save();
+        } catch (Exception $e) {
+            
+        }
+            
     }
 }
