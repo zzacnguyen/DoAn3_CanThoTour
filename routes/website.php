@@ -278,6 +278,10 @@ Route::get('load-event/{id}','EventsController@load_event');
 Route::post('seen-event-user','EventsController@seen_event_user');
 Route::get('old-event-user/{id_event}','EventsController@old_event_user');
 
+Route::post('post-type-event','typeEvents@postTypeEvent');
+
+
+
 
 
 
