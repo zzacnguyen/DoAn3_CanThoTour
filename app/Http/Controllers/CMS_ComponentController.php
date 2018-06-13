@@ -588,6 +588,9 @@ class CMS_ComponentController extends Controller
             'data_services'=>$data2]);
     }
 
-
+    public function login_admin()
+    {
+        return view('CMS.components.login.login');
+    }
 
 }
