@@ -198,4 +198,5 @@
 	Route::get('lvtn-unspam-services/{id}', 'CMS_EditDataController@_DETAIL_UNSPAM_SERVICES')->name('_DETAIL_UNSPAM_SERVICES');
 	Route::get('lvtn-services-details/{id}', 'CMS_ComponentController@_SERVICE_DETAILS')->name('_SERVICE_DETAILS');
 
-	
+
+	Route::get('lvtn-login', 'CMS_ComponentController@login_admin')->name('login_admin');
