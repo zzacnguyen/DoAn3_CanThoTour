@@ -14,13 +14,13 @@
 			<div class="col-md-3">
 			    <ul class="list-group">
 			        <li class="mrg10B">
-			            <a href="#faq-tab-1" data-toggle="tab" class="list-group-data_service[0] bg-white">
+			            <a href="#faq-tab-1" data-toggle="tab" class="list-group-item bg-white">
 			                Tổng quan
 			                <i class="glyph-icon icon-angle-right mrg0A"></i>
 			            </a>
 			        </li>
 			        <li class="mrg10B">
-			            <a href="#faq-tab-2" data-toggle="tab" class="list-group-data_service[0] bg-white">
+			            <a href="#faq-tab-2" data-toggle="tab" class="list-group-item bg-white">
 			                Mở google maps
 			                <i class="glyph-icon font-green icon-angle-right mrg0A"></i>
 			            </a>
