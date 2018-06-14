@@ -167,6 +167,7 @@ class EventsController extends Controller
         ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_events.service_id')
         ->join('vnt_services','vnt_events.service_id','=','vnt_services.id')
         ->where('event_status','<>', -1)
+        ->where('event_user',0)
         ->where('vnt_events.type_id','=', 1)->orderBy('vnt_events.id','desc')->limit(10)->get();
 
         $event_user = DB::table('vnt_events')
@@ -198,16 +199,22 @@ class EventsController extends Controller
     }
 
     public function seen_event_user(Request $request){
-        $event = new SeenEventModel;
-        $event->user_id = $request->input('user_id');
-        $event->id_events = $request->input('id_events');
-        if($event->save())
-        {
-            return 1;
+        $event_exit = SeenEventModel::where('user_id',$request->input('user_id'))
+                                    ->where('id_events',$request->input('id_events'))->first();
+        if ($event_exit == null) {
+            $event = new SeenEventModel;
+            $event->user_id = $request->input('user_id');
+            $event->id_events = $request->input('id_events');
+            if($event->save())
+            {
+                return 1;
+            }
+            else{
+                return -1;
+            }
         }
-        else{
-            return -1;
-        }
+        else{return -1;}
+            
     }
 
 
@@ -217,7 +224,7 @@ class EventsController extends Controller
      * @param id_event - array evens.id 
      */
     public function old_event_user($id_event){
-        eventModel::where('id',$id_event)->where('event_user',1)
+        eventModel::where('id',$id_event)->where('event_user','<>',0)->where('event_user','<>',4)
                         ->update(['event_status' => 1]);
         return 1;
     }

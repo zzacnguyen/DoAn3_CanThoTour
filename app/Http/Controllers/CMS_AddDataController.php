@@ -425,7 +425,7 @@ class CMS_AddDataController extends Controller
         ->update(['pl_status'=>0]);
 
         $user = touristPlacesModel::where('id', $id)->select('user_id')->first();
-        $this::add_event(1,"Địa điểm của bạn đã bị ẩn", $user->user_id);
+        $this::add_event(-1,"Địa điểm của bạn đã bị ẩn", $user->user_id,$id);
 
         return redirect()->route('ALL_LIST_PLACE')->with('message', "Hoàn tất, Địa điểm đã bị ẩn!");
     }
