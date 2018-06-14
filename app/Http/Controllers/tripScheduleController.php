@@ -43,7 +43,8 @@ class tripScheduleController extends Controller
     	$schedule->trip_name = $request->input('trip_name')  ;
     	$schedule->trip_startdate = $request->input('trip_startdate');
     	$schedule->trip_enddate = $request->input('trip_enddate');
-    	$schedule->user_id = $user_id;
+        $schedule->user_id = $user_id;
+    	$schedule->trip_status = 0;
     	if($schedule->save())
         {
             return json_encode("status:200");

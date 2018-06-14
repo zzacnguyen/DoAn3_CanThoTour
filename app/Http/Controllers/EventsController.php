@@ -83,9 +83,7 @@ class EventsController extends Controller
                 DB::raw('CASE WHEN EXISTS (SELECT vnt_vieweventuser.id FROM vnt_vieweventuser WHERE vnt_vieweventuser.user_id ='. $id .' AND vnt_events.id = vnt_vieweventuser.id_events) THEN 1 ELSE 0 END AS is_seen')
             )
         ->join('vnt_images', 'vnt_images.service_id', '=', 'vnt_events.service_id')
-        ->whereYear('event_end', '>=', $year)
-        ->whereDay('event_end', '>=',$day)
-        ->whereMonth('event_end', '>=', $month)
+        ->where('event_end','>','CURDATE()')
         ->where('event_status','<>', -1)
         ->distinct()
         ->paginate(10);
@@ -130,13 +128,14 @@ class EventsController extends Controller
     public function add_event_web(Request $request)
     {
         $events = new eventModel();
-        $events->event_name=$request->input("event_name");
-        $events->event_start=$request->input("event_start");
-        $events->event_end=$request->input("event_end");
+        $events->event_name   = $request->input("event_name");
+        $events->event_start  = $request->input("event_start");
+        $events->event_end    = $request->input("event_end");
         $events->event_status = $request->event_status;
-        $events->type_id=$request->input("type_id");
-        $events->service_id=$request->input("service_id");
-        $events->user_id=$request->input("user_id");
+        $events->type_id      = $request->input("type_id");
+        $events->service_id   = $request->input("service_id");
+        $events->user_id      = $request->input("user_id");
+        $events->event_user   = 0;
         
         if($events->save()){
             $result['success'] = true;
@@ -174,7 +173,8 @@ class EventsController extends Controller
                         ->leftJoin('vnt_vieweventuser', 'vnt_events.id', '=', 'vnt_vieweventuser.id_events')
                         ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_events.service_id')
                         ->where('vnt_events.user_id',$user_id)
-                        ->where('event_user', 1)
+                        ->where('event_user','<>',0)
+                        ->where('event_user','<>',4)
                         ->select('vnt_events.service_id as id_sv', 'vnt_events.id as id_event',  'vnt_events.event_name','vnt_events.user_id','vnt_events.event_start', 'vnt_events.event_end', 'vnt_images.id as image_id','vnt_images.image_details_1', 'vnt_events.event_status', 'vnt_events.type_id','vnt_vieweventuser.user_id as seen','event_user')
                         ->orderBy('vnt_events.created_at','desc')->get();
 
@@ -185,18 +185,12 @@ class EventsController extends Controller
     public function load_event_sv($id_sv){
         // $result = eventModel::where('service_id',$id_sv)
         //             ->where('type_id',1)->get();
-        $dt = Carbon::now();
-        $year = $dt->year;
-        $month = $dt->month;
-        $day = $dt->day;
         $result = DB::table('vnt_events')
         ->select('vnt_events.service_id', 'vnt_events.id as id_event', 'vnt_events.event_name', 
                 DB::raw('DATE_FORMAT(event_start, "%d-%m-%Y") as event_start'),
                 DB::raw('DATE_FORMAT(event_end, "%d-%m-%Y") as event_end')
             )
-        ->whereYear('event_end', '>=', $year)
-        ->whereDay('event_end', '>=',$day)
-        ->whereMonth('event_end', '>=', $month)
+        ->where('event_end','>','CURDATE()')
         ->where('service_id',$id_sv)
         ->get();
 
@@ -238,9 +232,18 @@ class EventsController extends Controller
         $event_user = DB::table('vnt_events')
                         ->leftJoin('vnt_vieweventuser', 'vnt_events.id', '=', 'vnt_vieweventuser.id_events')
                         ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_events.service_id')
-                        ->where('event_user', 2)
+                        ->where('event_user', 4)
                         ->select('vnt_events.service_id as id_sv', 'vnt_events.id as id_event',  'vnt_events.event_name','vnt_events.user_id','vnt_events.event_start', 'vnt_events.event_end', 'vnt_images.id as image_id','vnt_images.image_details_1', 'vnt_events.event_status', 'vnt_events.type_id','vnt_vieweventuser.user_id as seen','event_user')
                         ->orderBy('vnt_events.created_at','desc')->get();
         return json_decode($event_user);
     }
+
+    //  
+    // 1 la cac vai tro cua nguoi dung duoc kich hoat
+    // 2 la dia diem-dich vu duoc duyet
+    // 3 dia diem hoac dich vu duoc bo danh dau spam
+    // 4 dia diem hoac dich vu da duoc them moi - admin
+    // -1 la dia diem hoac dich vu bi danh dau spam
+    // -2 dia diem hoac dich vu bi xoa 
+    // -3 vai tro cua tai khoan bi khoa
 }

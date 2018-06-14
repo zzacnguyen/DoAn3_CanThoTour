@@ -50,7 +50,8 @@ class CMS_EditDataController extends Controller
         servicesModel::where('id', $id)
         ->update(['sv_status'=>1]);
         $user = servicesModel::where('id', $id)->select('user_id')->first();
-        $this::add_event(1,"Dịch vụ của bạn đã được duyệt", $user->user_id);
+        $this::add_event(2,"Dịch vụ của bạn đã được duyệt", $user->user_id, $id);
+
         return redirect()->route('LIST_UNACTICE_SERVICES')->with('message', "Hoàn tất, duyệt thành công một dịch vụ!");
     }
     public function EDIT_STATUS_UNACTIVE_SERVICES2($id)
@@ -59,7 +60,7 @@ class CMS_EditDataController extends Controller
         ->update(['sv_status'=>-1]);
 
         $user = servicesModel::where('id', $id)->select('user_id')->first();
-        $this::add_event(3,"Dịch vụ đã bị đánh dấu spam", $user->user_id);
+        $this::add_event(-1,"Dịch vụ đã bị đánh dấu spam", $user->user_id, $id);
 
         return redirect()->route('LIST_UNACTICE_SERVICES')->with('message', "Hoàn tất, đánh dấu spam một dịch vụ!");
     }
@@ -68,6 +69,10 @@ class CMS_EditDataController extends Controller
     {
         servicesModel::where('id', $id)
         ->update(['sv_status'=>0]);
+
+        $user = servicesModel::where('id', $id)->select('user_id')->first();
+        $this::add_event(3,"Dịch vụ đã được bỏ đánh dấu spam", $user->user_id, $id);
+
         return redirect()->route('LIST_UNACTICE_SERVICES')->with('message', "Hoàn tất, bỏ đánh dấu spam một dịch vụ!");
     }   
 
@@ -77,7 +82,7 @@ class CMS_EditDataController extends Controller
         ->update(['pl_status'=>1]);
 
         $user = touristPlacesModel::where('id', $id)->select('user_id')->first();
-        $this::add_event(1,"Địa điểm của bạn đã được duyệt", $user->user_id);
+        $this::add_event(2,"Địa điểm của bạn đã được duyệt", $user->user_id, $id);
 
         return redirect()->route('_PLACES_DETAILS', $id);
     }
@@ -87,7 +92,7 @@ class CMS_EditDataController extends Controller
         ->update(['pl_status'=>0]);
 
         $user = touristPlacesModel::where('id', $id)->select('user_id')->first();
-        $this::add_event(1,"Địa điểm của bạn đã bị ẩn", $user->user_id);
+        $this::add_event(-1,"Địa điểm của bạn đã bị ẩn", $user->user_id);
         return redirect()->route('_PLACES_DETAILS', $id);   
     }
     public function _DETAIL_SPAM_PLACE($id)
@@ -96,7 +101,7 @@ class CMS_EditDataController extends Controller
         ->update(['pl_status'=>-1]);
 
         $user = touristPlacesModel::where('id', $id)->select('user_id')->first();
-        $this::add_event(1,"Địa điểm của bạn đã bị đánh dấu spam", $user->user_id);
+        $this::add_event(-1,"Địa điểm của bạn đã bị đánh dấu spam", $user->user_id, $id);
 
         return redirect()->route('_PLACES_DETAILS', $id);   
     }
@@ -106,7 +111,7 @@ class CMS_EditDataController extends Controller
         ->update(['pl_status'=>0]);
 
         $user = touristPlacesModel::where('id', $id)->select('user_id')->first();
-        $this::add_event(1,"Địa điểm của bạn đã được bỏ đánh dấu spam", $user->user_id);
+        $this::add_event(2,"Địa điểm của bạn đã được bỏ đánh dấu spam", $user->user_id, $id);
         return redirect()->route('_PLACES_DETAILS', $id);   
     }
 
@@ -117,7 +122,7 @@ class CMS_EditDataController extends Controller
         ->update(['sv_status'=>1]);
 
         $user = servicesModel::where('id', $id)->select('user_id')->first();
-        $this::add_event(1,"Dịch vụ của bạn đã được duyệt", $user->user_id);
+        $this::add_event(2,"Dịch vụ của bạn đã được duyệt", $user->user_id, $id);
 
         return redirect()->route('_SERVICE_DETAILS', $id);
     }
@@ -127,7 +132,8 @@ class CMS_EditDataController extends Controller
         ->update(['sv_status'=>0]);
 
         $user = servicesModel::where('id', $id)->select('user_id')->first();
-        $this::add_event(1,"Dịch vụ của bạn đã bị ẩn", $user->user_id);
+        $this::add_event(-1,"Dịch vụ của bạn đã bị ẩn", $user->user_id, $id);
+
         return redirect()->route('_SERVICE_DETAILS', $id);   
     }
     public function _AJAX_SPAM_SERVICES($id)
@@ -136,7 +142,7 @@ class CMS_EditDataController extends Controller
         ->update(['sv_status'=>-1]);
 
         $user = servicesModel::where('id', $id)->select('user_id')->first();
-        $this::add_event(1,"Dịch vụ của bạn đã bị đánh dấu spam", $user->user_id);
+        $this::add_event(1,"Dịch vụ của bạn đã bị đánh dấu spam", $user->user_id,$id);
         return redirect()->route('_SERVICE_DETAILS', $id);   
     }
     public function _DETAIL_UNSPAM_SERVICES($id)
@@ -145,12 +151,13 @@ class CMS_EditDataController extends Controller
         ->update(['sv_status'=>0]);
 
         $user = servicesModel::where('id', $id)->select('user_id')->first();
-        $this::add_event(1,"Dịch vụ của bạn đã được hủy đánh dấu spam", $user->user_id);
+        $this::add_event(3,"Dịch vụ của bạn đã được hủy đánh dấu spam", $user->user_id, $id);
+
         return redirect()->route('_SERVICE_DETAILS', $id);   
     }
 
 
-    public function add_event($type_event,$event_name, $user_id){
+    public function add_event($type_event,$event_name, $user_id,$id_dv_pla){
         try 
         {
             $dt = Carbon::now();
@@ -162,7 +169,7 @@ class CMS_EditDataController extends Controller
             $event->event_status = 0;
             $event->type_id      = 1;
             $event->event_user   = $type_event;
-            $event->service_id   = 0;
+            $event->service_id   = $id_dv_pla;
             $event->save();
         } catch (Exception $e) {
             

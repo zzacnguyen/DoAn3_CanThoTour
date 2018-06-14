@@ -376,6 +376,7 @@ class CMS_AddDataController extends Controller
         tourguideModel::where('user_id',$user_id)
         ->update(['account_active'=>1]);
         $this::add_event(1,"Vai trò Hướng Dẫn Viên đã được duyệt", $user_id);
+
         return redirect()->route('ALL_LIST_TOURGUIDE')->with('message', "Hoàn tất, Tài khoản đã trở thành tài khoản hướng dẫn viên du lịch!");
     }
     
@@ -383,6 +384,7 @@ class CMS_AddDataController extends Controller
     {
         tourguideModel::where('user_id',$user_id)
         ->update(['account_active'=>0]);
+        $this::add_event(-3,"Vai trò Hướng Dẫn Viên đã bị khóa", $user_id);
         return redirect()->route('ALL_LIST_TOURGUIDE')->with('message', "Hoàn tất, Tài khoản đã bị tắt chức năng dành cho hướng dẫn viên du lịch!");
     }
     public function ACCTIVE_PLACES($id)
@@ -391,7 +393,7 @@ class CMS_AddDataController extends Controller
         ->update(['pl_status'=>1]);
 
         $user_id = touristPlacesModel::where('id',$id)->select('user_id','pl_name')->first();
-        $this::add_event(1,"Địa điểm đã được duyệt", $user_id->user_id);
+        $this::add_event(2,"Địa điểm của bạn đã được duyệt", $user_id->user_id, $id);
         
         return redirect()->route('ALL_LIST_PLACE')->with('message', "Hoàn tất, Địa điểm đã được duyệt!");
     }
@@ -402,7 +404,7 @@ class CMS_AddDataController extends Controller
         ->update(['pl_status'=>1]);
 
         $user_id = touristPlacesModel::where('id',$id)->select('user_id','pl_name')->first();
-        $this::add_event(1,"Địa điểm của bạn đã được duyệt", $user_id->user_id);
+        $this::add_event(2,"Địa điểm của bạn đã được duyệt", $user_id->user_id, $id);
 
         return redirect()->route('_DISPLAY_TOURIST_PLACES_UNACTIVE')->with('message', "Hoàn tất, Địa điểm vừa chọn đã được duyệt!");
     }
@@ -413,7 +415,7 @@ class CMS_AddDataController extends Controller
         ->update(['pl_status'=>-1]);
 
         $user_id = touristPlacesModel::where('id',$id)->select('user_id','pl_name')->first();
-        $this::add_event(1,"Địa điểm của bạn đã bị đánh dấu spam", $user_id->user_id);
+        $this::add_event(-1,"Địa điểm của bạn đã bị đánh dấu spam", $user_id->user_id, $id);
 
         return redirect()->route('_DISPLAY_TOURIST_PLACES_UNACTIVE')->with('message', "Hoàn tất, Địa điểm đã bị đánh dấu spam!");
     }
@@ -444,7 +446,7 @@ class CMS_AddDataController extends Controller
     }
 
 
-    public function add_event($type_event,$event_name, $user_id){
+    public function add_event($type_event,$event_name, $user_id, $id_sv_pla = 0){
         try 
         {
             $dt = Carbon::now();
@@ -456,7 +458,7 @@ class CMS_AddDataController extends Controller
             $event->event_status = 0;
             $event->type_id      = 1;
             $event->event_user   = $type_event;
-            $event->service_id   = 0;
+            $event->service_id   = $id_sv_pla;
             $event->save();
         } catch (Exception $e) {
             
