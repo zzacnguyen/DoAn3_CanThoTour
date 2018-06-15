@@ -84,9 +84,9 @@ Route::get('point-for-user/{id}', 'PointController@AllPoint');
 // search new
 Route::get('search/placevicinity/location={latitude},{longitude}&radius={radius}','SearchController@searchPlaceVicinity');
 
-// Route::get('search/servicevicinity/location={latitude},{longtitude}&type={type}&radius={radius}','SearchController@searchServicesVicinity');
+Route::get('search/servicevicinity/location={latitude},{longtitude}&type={type}&radius={radius}','SearchController@searchServicesVicinity');
 
-Route::get('search-service-vicinity/location={latitude},{longtitude}&type={type}&radius={radius}','SearchController@searchServicesVicinity');
+// Route::get('search-service-vicinity/location={latitude},{longtitude}&type={type}&radius={radius}','SearchController@searchServicesVicinity');
 
 Route::get('search/searchServicesTypeKeyword/type={type}&keyword={keyword}','SearchController@searchServicesTypeKeyword');
 
