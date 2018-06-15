@@ -204,6 +204,7 @@ class ImagesController extends Controller
         $path_details2 = public_path().'\\details2\\';
         $path_icon = public_path().'\\icons\\';
         $path_thumb = public_path().'\\thumbnails\\';
+        $path_banner = public_path().'\\banners\\';
 
         //upload banner
         $file_banner = $request->file('banner');

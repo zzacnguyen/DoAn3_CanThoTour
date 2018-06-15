@@ -19,17 +19,34 @@
 			                <i class="glyph-icon icon-angle-right mrg0A"></i>
 			            </a>
 			        </li>
-			        <li class="mrg10B">
-			            <a href="#faq-tab-2" data-toggle="tab" class="list-group-item bg-white">
-			                Mở google maps
-			                <i class="glyph-icon font-green icon-angle-right mrg0A"></i>
-			            </a>
-			        </li>
+			       
 			    </ul>
 			</div>
 			<div class="col-md-9">
 			    <div class="tab-content">
 			        <div class="tab-pane fade active in pad0A" id="faq-tab-1">
+			        	 <div class="panel-group" id="accordion1">
+			                <div class="panel">
+			                    <div class="panel-heading">
+			                        <h4 class="panel-title">
+			                            <a data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1">
+			                                Vị trí
+			                            </a>
+			                        </h4>
+			                    </div>
+			                    <div id="collapseOne1" class="panel-collapse collapse in">
+			                        <div class="panel-body pad0B">
+			                            <div class="example-box-wrapper">
+									        <div class="row">
+									            <div class="content-box pad10A center-margin col-md-12">
+									                <div id="map-marker" style="height: 250px;"></div>
+									            </div>
+									        </div>
+									    </div>   
+			                        </div>
+			                    </div>
+			                </div>
+			            </div>
 			            <div class="panel-group" id="accordion5">
 			                <div class="panel">
 			                    <div class="panel-heading">
@@ -175,28 +192,7 @@
 			            </div>
 			        </div>
 			        <div class="tab-pane fade pad0A" id="faq-tab-2">
-			            <div class="panel-group" id="accordion1">
-			                <div class="panel">
-			                    <div class="panel-heading">
-			                        <h4 class="panel-title">
-			                            <a data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1">
-			                                Vị trí
-			                            </a>
-			                        </h4>
-			                    </div>
-			                    <div id="collapseOne1" class="panel-collapse collapse in">
-			                        <div class="panel-body pad0B">
-			                            <div class="example-box-wrapper">
-									        <div class="row">
-									            <div class="content-box pad10A center-margin col-md-12">
-									                <div id="map-marker" style="height: 250px;"></div>
-									            </div>
-									        </div>
-									    </div>   
-			                        </div>
-			                    </div>
-			                </div>
-			            </div>
+			           
 			        </div>
 			        
 			    </div>

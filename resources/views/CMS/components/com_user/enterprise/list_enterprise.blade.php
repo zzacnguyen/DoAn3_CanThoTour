@@ -24,9 +24,7 @@
                     <th>Login social ID</th>
                     <th>Name</th>
                     <th>Phone number</th>
-                    <th>Email</th>
-                    <th>Website</th>
-                    <th>Ngày đăng ký</th>
+                    
                     <th>Được duyệt</th>
                     <th>Thao tác</th>
                 </tr>
@@ -38,9 +36,7 @@
                     <th>Login social ID</th>
                     <th>Name</th>
                     <th>Phone number</th>
-                    <th>Email</th>
-                    <th>Website</th>
-                    <th>Ngày đăng ký</th>
+                    
                     <th>Được duyệt</th>
                     <th>Thao tác</th>
                 </tr>
@@ -52,9 +48,6 @@
                         <td>{{ $item->social_login_id }}</td>
                         <td>{{ $item->contact_name }}</td>
                         <td>{{ $item->contact_phone }}</td>
-                        <td>{{ $item->contact_email_address }}</td>
-                        <td>{{ $item->contact_website }}</td>
-                        <td>{{ $item->created_at }}</td>
                         <td> <?php if($item->account_active == 1)  
                                 echo "Được duyệt";
                                  else 

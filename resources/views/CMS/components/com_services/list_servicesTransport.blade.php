@@ -4,12 +4,8 @@
 
 <div id="page-title">
     <h2>Danh sách dịch vụ</h2>
-    <p>Dưới đây là dữ liệu dịch vụ Vui chơi giải trí.</p>
-    <div id="theme-options" class="admin-options">
-    <a href="{{ route('_SERVICE_DETAILS', $item->id) }}" class="btn btn-primary theme-switcher tooltip-button" data-placement="left" title="Color schemes and layout options">
-        <i class="glyph-icon icon-linecons-cog icon-spin"></i>
-    </a>
-</div>
+    <p>Dưới đây là dữ liệu dịch vụ phương tiện di chuyển.</p>
+   </div>
 <div class="panel">
     <div class="panel-body">
     <h3 class="title-hero">

@@ -24,9 +24,7 @@
                     <th>Login social ID</th>
                     <th>Name</th>
                     <th>Phone number</th>
-                    <th>Email</th>
-                    <th>Website</th>
-                    <th>Ngày đăng ký</th>
+                    
                     
                 </tr>
                 </thead>
@@ -37,9 +35,7 @@
                     <th>Login social ID</th>
                     <th>Name</th>
                     <th>Phone number</th>
-                    <th>Email</th>
-                    <th>Website</th>
-                    <th>Ngày đăng ký</th>
+                   
 
                 </tr>
                 </tfoot>
@@ -50,9 +46,7 @@
                         <td>{{ $item->social_login_id }}</td>
                         <td>{{ $item->contact_name }}</td>
                         <td>{{ $item->contact_phone }}</td>
-                        <td>{{ $item->contact_email_address }}</td>
-                        <td>{{ $item->contact_website }}</td>
-                        <td>{{ $item->created_at }}</td>
+                        
                     </tr>
                     @endforeach
                 </tbody>
