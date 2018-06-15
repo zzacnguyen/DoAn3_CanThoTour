@@ -18,7 +18,7 @@
         
         <li>
             <a href="javascript:void(0)" title="Danh mục người dùng">
-                <i class="glyph-icon icon-typicons-users-outline"></i>
+                <i class="glyph-icon "></i>
                 <span>Thông tin người dùng</span>
             </a>
             <div class="sidebar-submenu">
@@ -57,13 +57,13 @@
         <li class="header"><span>Danh mục địa điểm</span></li>
         <li>
             <a href="{{ route('ALL_LIST_PLACE') }}" title="Danh sách địa điểm">
-                <i class="glyph-icon icon-fire"></i>
+                <i class="glyph-icon "></i>
                 <span>Xem địa điểm</span>
             </a>
         </li>
         <li>
             <a href="{{ route('ADD_TOURIST_PLACES') }}" title="Thêm địa điểm mới">
-                <i class="glyph-icon icon-plus"></i>
+                <i class="glyph-icon "></i>
                 <span>Thêm địa điểm mới</span>
             </a>
         </li>
@@ -78,31 +78,31 @@
 
         <li>
             <a href="{{ route('_GET_VIEW_LIST_SERVICES_BY_FOODANDDRINK') }}" title="Danh sách dịch vụ ăn uống">
-                <i class="glyph-icon icon-coffee"></i>
+                <i class="glyph-icon "></i>
                 <span>Ăn uống</span>
             </a>
         </li>
         <li>
             <a href="{{ route('_GET_VIEW_LIST_SERVICES_BY_HOTEL') }}" title="Danh sách dịch vụ khách sạn - nơi ở">
-                <i class="glyph-icon icon-home"></i>
+                <i class="glyph-icon "></i>
                 <span>Khách sạn</span>
             </a>
         </li>
         <li>
             <a href="{{ route('_GET_VIEW_LIST_SERVICES_BY_SIGHTSEEING') }}" title="Danh sách các dịch vụ tham quan">
-                <i class="glyph-icon icon-tree"></i>
+                <i class="glyph-icon "></i>
                 <span>Tham quan</span>
             </a>
         </li>
         <li>
             <a href="{{ route('_GET_VIEW_SERVICES_BY_ENTERTAIMENTS') }}" title="Danh sách dịch vụ vui chơi giải trí">
-                <i class="glyph-icon icon-soccer-ball-o"></i>
+                <i class="glyph-icon "></i>
                 <span>Vui chơi giải trí</span>
             </a>
         </li>
         <li>
             <a href="{{ route('_GET_VIEW_LIST_SERVICES_BY_TRANSPORT') }}" title="Danh sách dịch vụ vận chuyển">
-                <i class="glyph-icon icon-taxi"></i>
+                <i class="glyph-icon "></i>
                 <span>Phương tiện di chuyển</span>
             </a>
         </li>
@@ -110,53 +110,24 @@
 
         <li>
             <a href="{{ route('_GET_LIST_ALL_POINT') }}" title="Danh sách điểm dành cho dịch vụ">
-                <i class="glyph-icon icon-file-powerpoint-o"></i>
+                <i class="glyph-icon "></i>
                 <span>Danh mục điểm</span>
             </a>
         </li>
         <li>
             <a href="{{ route('_GET_EVENT_TYPES') }}" title="Danh sách các loại hình sự kiện">
-                <i class="glyph-icon icon-pied-piper"></i>
+                <i class="glyph-icon "></i>
                 <span>Danh mục loại hình sự kiện</span>
             </a>
         </li>
         <li>
             <a href="{{ route('_GETVIEW_LIST_SOCIAL') }}" title="Danh sách các mạng xã hội">
-                <i class="glyph-icon icon-google-plus-square"></i>
+                <i class="glyph-icon "></i>
                 <span>Danh mục mạng xã hội</span>
             </a>
         </li>
 
 
-        <li class="header"><span>SPAM</span></li>
-
-        <li>
-            <a href="{{ route('LIST_SPAM_SERVICES') }}" title="Dịch vụ spam">
-                <i class="glyph-icon icon-alert"></i>
-                <span>Dịch vụ spam</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('LIST_SPAM_SERVICES') }}" title="Danh sách địa điểm spam">
-                <i class="glyph-icon icon-alert"></i>
-                <span>Danh sách địa điểm spam</span>
-            </a>
-        </li>
-        {{-- <li>
-            <a href="javascript:void(0)" title="Danh mục người dùng">
-                <i class="glyph-icon icon-location-arrow"></i>
-                <span>Danh mục địa chỉ</span>
-            </a>
-            <div class="sidebar-submenu">
-                <ul>
-                    <li><a href="{{ route('ALL_LIST_ADMIN') }}" title="Danh sách Tỉnh thành phố"><span>Tỉnh thành</span></a></li>
-                    <li><a href="{{ route('ALL_LIST_MOD') }}" title="Danh sách quận huyện"><span>Quận/huyện</span></a></li>
-                    <li><a href="{{ route('ALL_LIST_PARTNER') }}" title="Danh sách phường xã"><span>Phường/xã</span></a></li>
-                </ul>
-
-            </div><!-- .sidebar-submenu -->
-        </li>
-         --}}
         
     </ul><!-- #sidebar-menu -->
 </div>
