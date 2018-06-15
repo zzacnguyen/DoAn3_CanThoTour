@@ -71,6 +71,7 @@ class SearchController extends Controller
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->select('vnt_services.id', 'vnt_eating.eat_name','vnt_images.id as image_id','vnt_images.image_details_1')
                                     ->where('tourist_places_id',$place_id)
+                                    ->where('sv_status',1)
                                     ->where('sv_types',$typeServices)->take(5)->get();
                 if (!empty($result)) {
                     foreach ($result as $value) {
@@ -88,6 +89,7 @@ class SearchController extends Controller
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->select('vnt_services.id','vnt_hotels.hotel_name','vnt_images.id as image_id','vnt_images.image_details_1')
                                     ->where('tourist_places_id',$place_id)
+                                    ->where('sv_status',1)
                                     ->where('sv_types',$typeServices)->take(5)->get();
                 if (!empty($result)) {
                     foreach ($result as $value) {
@@ -105,6 +107,7 @@ class SearchController extends Controller
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->select('vnt_services.id','vnt_transport.transport_name','vnt_images.id as image_id','vnt_images.image_details_1')
                                     ->where('tourist_places_id',$place_id)
+                                    ->where('sv_status',1)
                                     ->where('sv_types',$typeServices)->take(5)->get();
                 if (!empty($result)) {
                     foreach ($result as $value) {
@@ -122,6 +125,7 @@ class SearchController extends Controller
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->select('vnt_services.id','vnt_sightseeing.sightseeing_name','vnt_images.id as image_id','vnt_images.image_details_1')
                                     ->where('tourist_places_id',$place_id)
+                                    ->where('sv_status',1)
                                     ->where('sv_types',$typeServices)->take(5)->get();
                 if (!empty($result)) {
                     foreach ($result as $value) {
@@ -139,6 +143,7 @@ class SearchController extends Controller
                                     ->leftJoin('vnt_images','vnt_services.id','=','vnt_images.service_id')
                                     ->select('vnt_services.id','vnt_entertainments.entertainments_name','vnt_images.id as image_id','vnt_images.image_details_1')
                                     ->where('tourist_places_id',$place_id)
+                                    ->where('sv_status',1)
                                     ->where('sv_types',$typeServices)->get();
                 if (!empty($result)) {
                     foreach ($result as $value) {
@@ -154,7 +159,7 @@ class SearchController extends Controller
     }
 
     //tìm dịch vụ lân cận
-    public function searchServicesVicinity($latitude,$longitude, $type,int $radius)
+    public function searchServicesVicinity222($latitude,$longitude, $type,int $radius)
     {
         if ($radius >=100) 
         {
@@ -581,7 +586,7 @@ class SearchController extends Controller
     }
 
 
-    public function searchServicesVicinity222($latitude,$longitude, $type,int $radius)
+    public function searchServicesVicinity($latitude,$longitude, $type,int $radius)
     {
         if ($radius >=100) 
         {
@@ -594,9 +599,10 @@ class SearchController extends Controller
                 //     $arr_distancePlace[$value['id']] = $value['distantce'];
                 // }
                 foreach ($arr_distance as $key => $value) {
-                    if (!empty($this::getServicesAll($key,$type,$value))) {
-                        foreach ($this::getServicesAll($key,$type,$value) as $k => $v) {
-                            $r[] = $v;
+                    if (!empty($this::getServicesAll($value['id'],$type,$value['distantce']))) {
+                        
+                        foreach ($this::getServicesAll($value['id'],$type,$value['distantce']) as $k => $v) {
+                            $r[]= $v;
                         }
                     }
                 }
@@ -620,5 +626,10 @@ class SearchController extends Controller
             $resultAll = array('data' => null,'status' => 'DISTANCE');
             return json_encode($resultAll);
         } 
+    }
+
+    public function get_sv_()
+    {
+        # code...
     }
 }
