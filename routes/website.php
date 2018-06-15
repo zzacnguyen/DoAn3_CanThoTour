@@ -228,7 +228,7 @@ Route::get('get-edit-place-user/{userid}/{id}','accountController@get_edit_place
 Route::post('post-edit-place-user/{userid}/{id}','accountController@post_edit_place_user');
 Route::get('get-add-place-user','accountController@get_add_place_user');
 Route::post('post-add-place-user/{user_id}','accountController@post_add_place_user');
-
+Route::get('get-sv-idplace/{idplace}','accountController@get_sv_idplace');
 
 
 // doi mat khau

@@ -1195,7 +1195,7 @@ class accountController extends Controller
     // ADD SERVICE
     public function post_add_service_user2(Request $request,$user_id)
     {
-        return $request->all();
+        // return $request->all();
         $table=new servicesModel;
 
             $table->sv_description=$request->sv_description;
@@ -1262,6 +1262,100 @@ class accountController extends Controller
     }
 
 
-    //====================== event ==================
+    public function get_sv_idplace($id_place)
+    {
+        $result = servicesModel::where('tourist_places_id',$id_place)->get();
+        // return $result;
+        foreach ($result as $value) {
+            
+            $mane_image = $this::get_name_ser($value->id, $value->sv_types);
+            if ($mane_image != null) {
+                foreach ($mane_image as $v) {
+                     $name = $v->sv_name;
+                     $image = $v->image_details_1;
+                 } 
+            }
+            else{
+                $name = null;
+                $image = null;
+            }
+
+            $likes = DB::table('vnt_likes')->where('service_id', '=',$value->sv_id)->count();
+
+            // $ratings = DB::table('vnt_visitor_ratings')->where('service_id',$value->sv_id)->first();
+            $ratings = DB::select("SELECT avg(vr_rating) as 'rating' FROM `vnt_visitor_ratings` WHERE service_id = '$value->sv_id'");
+            foreach ($ratings as $val) {
+                $rating_sv = round($val->rating,1);
+            }
+            if (!empty($rating_sv)) {
+                $ponit_rating = $rating_sv;
+            }else{ $ponit_rating = 0; }
+
+            if (isset($value->hotel_number_star )) {
+                $hotel_number_star = $value->hotel_number_star;
+                $mang[] = array(
+                    'id_service'        => $value->sv_id,
+                    'name'              => $name,
+                    'hotel_number_star' => $value->hotel_number_star,
+                    'description'       => $value->sv_description,
+                    'image'             => $image,
+                    // 'name_city'         => $name_city,
+                    'sv_highest_price'  => $value->sv_highest_price,
+                    'sv_lowest_price'   => $value->sv_lowest_price,
+                    'like'              => $likes,
+                    'view'              => $value->sv_counter_view,
+                    'point'             => $value->sv_counter_point,
+                    'rating'            => $ponit_rating,
+                    'sv_type'           => $value->sv_types);
+            }
+            else{
+                $mang[] = array(
+                    'id_service'        => $value->sv_id,
+                    'name'              => $name,
+                    'image'             => $image,
+                    // 'name_city'         => $name_city,
+                    'sv_highest_price'  => $value->sv_highest_price,
+                    'sv_lowest_price'   => $value->sv_lowest_price,
+                    'like'              => $likes,
+                    'view'              => $value->sv_counter_view,
+                    'point'             => $value->sv_counter_point,
+                    'rating'            => $ponit_rating,
+                    'sv_type'           => $value->sv_types);
+            }
+            
+        }
+        if (isset($mang)) {
+            return $mang;
+        }
+        else{return null;}
+    }
+
+    public function get_name_ser($id_service, $type)
+    {
+        switch ($type) {
+            case 1:
+             $result = DB::select("SELECT sv_name,image_details_1 FROM sv_eat WHERE sv_id='$id_service' AND sv_status=1");
+            break;
+            case 2:
+             $result = DB::select("SELECT sv_name,image_details_1 FROM sv_hotel WHERE sv_id='$id_service' AND sv_status=1");
+            break;
+            case 3:
+             $result = DB::select("SELECT sv_name,image_details_1 FROM sv_stranport WHERE sv_id='$id_service' AND sv_status=1");
+            break;
+            case 4:
+             $result = DB::select("SELECT sv_name,image_details_1 FROM sv_sightseeting WHERE sv_id='$id_service' AND sv_status=1");
+            break;
+            case 5:
+             $result = DB::select("SELECT sv_name,image_details_1 FROM sv_entertaiment WHERE sv_id='$id_service' AND sv_status=1");
+            break;
+        }
+        if (isset($result)) {
+            return $result;
+        }
+        else{
+            return null;
+        }
+    }
+
     
 }
