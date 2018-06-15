@@ -346,6 +346,7 @@ class pageController extends Controller
                 foreach ($result as $result) {
                     if ($result->admin != null) {
                         $level[] = 1;
+                        // break;
                     }
                     if($result->moderator != null && $result->active_mod == 1){
                         $level[] = 2;

@@ -370,10 +370,11 @@ class accountController extends Controller
         return $quyen;      
     }
 
-    public function SaveUpgradeLevelUser(Request $request,$id){ // 
+    public function SaveUpgradeLevelUser(Request $request,$id){ //
+        // return  $request->all();
         $quyen = (int)$request->quyen;
         // 1-moderator 2-partner 3-enterprise 4-tourguide
-        $mytime = Carbon\Carbon::now();
+        $mytime = Carbon::now();
         $datenow = $mytime->toDateTimeString();
         if ($quyen > 0 && $quyen <= 4) {
             switch ($quyen) {
@@ -947,6 +948,7 @@ class accountController extends Controller
     }
 
     public function get_name_image_ser($type,$id_service){
+        // return $type;
         switch ($type) {
             case 1:
                 $lam = DB::select("select * from sv_eat WHERE sv_id = '$id_service'");
@@ -964,30 +966,37 @@ class accountController extends Controller
                 $lam = DB::select("select * from sv_entertaiment WHERE sv_id = '$id_service'");
                 break;
         }
-        return $lam;
+        if (isset($lam)) {
+            return $lam;
+        }else{return null;}
+        
     }
 
     public function get_search_nhieunhat(){
         $result_lis = DB::select("SELECT id_service, COUNT(id_service) AS 'num' FROM vnt_user_search GROUP BY id_service ORDER BY num desc limit 10");
+        // dd($result_lis);
         foreach ($result_lis as $value) {
             $sv = servicesModel::where('id',$value->id_service)->first();
-
-            $get_name_image = $this::get_name_image_ser($sv->sv_types,$value->id_service);
-            // dd($get_name_image);
-            foreach ($get_name_image as $v) {
-                $name = $v->sv_name;
-                $image = $v->image_details_1;
+            if ($sv !=null) {
+                $get_name_image = $this::get_name_image_ser($sv->sv_types,$value->id_service);
+                // dd($get_name_image);
+                foreach ($get_name_image as $v) {
+                    $name = $v->sv_name;
+                    $image = $v->image_details_1;
+                }
+                $result[] = array
+                    (
+                        'sv_id' => $value->id_service,
+                        'sv_type' => $sv->sv_types,
+                        'sv_name' => $name,
+                        'sv_description' => $sv->sv_description,
+                        'sv_image' => $image
+                    );
             }
-            $result[] = array
-                (
-                    'sv_id' => $value->id_service,
-                    'sv_type' => $sv->sv_types,
-                    'sv_name' => $name,
-                    'sv_description' => $sv->sv_description,
-                    'sv_image' => $image
-                );
+                
 
         }
+        // return $get_name_image;
         if (isset($result)) {
             return json_encode($result);
         }
@@ -1255,7 +1264,7 @@ class accountController extends Controller
                         # code...
                         break;
                 }
-
+                $this::add_event(4, 'Một dịch dụ vừa được thêm mới - Đang chờ duyệt', $user_id,$max);
                 return $max;
             }
             else
@@ -1272,12 +1281,13 @@ class accountController extends Controller
         // return $result;
         foreach ($result as $value) {
             
-            $mane_image = $this::get_name_ser($value->id, $value->sv_types);
+            $mane_image = $this::get_name_ser2($value->id, $value->sv_types);
+            // return $mane_image;
             if ($mane_image != null) {
                 foreach ($mane_image as $v) {
                      $name = $v->sv_name;
                      $image = $v->image_details_1;
-                 } 
+                } 
             }
             else{
                 $name = null;
@@ -1298,7 +1308,7 @@ class accountController extends Controller
             if (isset($value->hotel_number_star )) {
                 $hotel_number_star = $value->hotel_number_star;
                 $mang[] = array(
-                    'id_service'        => $value->sv_id,
+                    'id_service'        => $value->id,
                     'name'              => $name,
                     'hotel_number_star' => $value->hotel_number_star,
                     'description'       => $value->sv_description,
@@ -1314,7 +1324,7 @@ class accountController extends Controller
             }
             else{
                 $mang[] = array(
-                    'id_service'        => $value->sv_id,
+                    'id_service'        => $value->id,
                     'name'              => $name,
                     'image'             => $image,
                     // 'name_city'         => $name_city,
@@ -1334,23 +1344,23 @@ class accountController extends Controller
         else{return null;}
     }
 
-    public function get_name_ser($id_service, $type)
+    public function get_name_ser2($id_service, $type)
     {
         switch ($type) {
             case 1:
-             $result = DB::select("SELECT sv_name,image_details_1 FROM sv_eat WHERE sv_id='$id_service' AND sv_status=1");
+             $result = DB::select("SELECT sv_name,image_details_1 FROM sv_eat WHERE sv_id='$id_service' ");
             break;
             case 2:
-             $result = DB::select("SELECT sv_name,image_details_1 FROM sv_hotel WHERE sv_id='$id_service' AND sv_status=1");
+             $result = DB::select("SELECT sv_name,image_details_1 FROM sv_hotel WHERE sv_id='$id_service' ");
             break;
             case 3:
-             $result = DB::select("SELECT sv_name,image_details_1 FROM sv_stranport WHERE sv_id='$id_service' AND sv_status=1");
+             $result = DB::select("SELECT sv_name,image_details_1 FROM sv_stranport WHERE sv_id='$id_service' ");
             break;
             case 4:
-             $result = DB::select("SELECT sv_name,image_details_1 FROM sv_sightseeting WHERE sv_id='$id_service' AND sv_status=1");
+             $result = DB::select("SELECT sv_name,image_details_1 FROM sv_sightseeting WHERE sv_id='$id_service' ");
             break;
             case 5:
-             $result = DB::select("SELECT sv_name,image_details_1 FROM sv_entertaiment WHERE sv_id='$id_service' AND sv_status=1");
+             $result = DB::select("SELECT sv_name,image_details_1 FROM sv_entertaiment WHERE sv_id='$id_service' ");
             break;
         }
         if (isset($result)) {

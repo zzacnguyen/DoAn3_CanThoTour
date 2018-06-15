@@ -193,6 +193,7 @@ class EventsController extends Controller
             )
         ->where('event_end','>','CURDATE()')
         ->where('service_id',$id_sv)
+        ->where('event_user',0)
         ->get();
 
         return json_encode($result);
