@@ -22,8 +22,9 @@ use App\sightseeingModel;
 use App\entertainmentsModel;
 use App\imagesModel;
 use App\usersModel;
-use Carbon;
+use Carbon\Carbon;
 use Hash;
+use App\eventModel;
 use App\userSearchModel;
 use App\ImagesController;
 class accountController extends Controller
@@ -757,7 +758,10 @@ class accountController extends Controller
             $table->pl_status='0';
             $table->pl_content='0';
             $table->pl_details='0';
-            $table->save();
+            if ($table->save()) {
+                $this::add_event(4, 'Một địa điểm vừa được thêm mới - Đang chờ duyệt', $user_id);
+            }
+
             return "ok";
         }
         catch(\Illuminate\Database\QueryException $ex){ 
@@ -1357,5 +1361,23 @@ class accountController extends Controller
         }
     }
 
-    
+    public function add_event($type_event,$event_name, $user_id, $id_sv_pla = 0){
+        try 
+        {
+            $dt = Carbon::now();
+            $event = new eventModel();
+            $event->event_name   = $event_name;
+            $event->user_id      = $user_id;
+            $event->event_start  = $dt;
+            $event->event_end    = $dt;
+            $event->event_status = 0;
+            $event->type_id      = 1;
+            $event->event_user   = $type_event;
+            $event->service_id   = $id_sv_pla;
+            $event->save();
+        } catch (Exception $e) {
+            
+        }
+            
+    }
 }
