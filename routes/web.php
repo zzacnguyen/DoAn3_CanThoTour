@@ -60,6 +60,7 @@ Route::resource('transport', 'transportController');
 //sự kiện
 //đã check
 Route::resource('events', 'EventsController');
+// Route::get('get-events', 'EventsController@');
 
 //đã check
 Route::get('counter-events/{id}', 'CounterEventsController@countEvent'); 

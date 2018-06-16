@@ -83,8 +83,9 @@ class EventsController extends Controller
                 DB::raw('CASE WHEN EXISTS (SELECT vnt_vieweventuser.id FROM vnt_vieweventuser WHERE vnt_vieweventuser.user_id ='. $id .' AND vnt_events.id = vnt_vieweventuser.id_events) THEN 1 ELSE 0 END AS is_seen')
             )
         ->join('vnt_images', 'vnt_images.service_id', '=', 'vnt_events.service_id')
-        ->where('event_end','>','CURDATE()')
+        ->whereDate('event_end','>=',date('Y-m-d'))
         ->where('event_status','<>', -1)
+        ->where('event_user', 0)
         ->distinct()
         ->paginate(10);
         $encode=json_encode($event);
@@ -168,6 +169,7 @@ class EventsController extends Controller
         ->join('vnt_services','vnt_events.service_id','=','vnt_services.id')
         ->where('event_status','<>', -1)
         ->where('event_user',0)
+        // ->where('vnt_vieweventuser.user_id',$user_id)
         ->where('vnt_events.type_id','=', 1)->orderBy('vnt_events.id','desc')->limit(10)->get();
 
         $event_user = DB::table('vnt_events')
@@ -191,7 +193,7 @@ class EventsController extends Controller
                 DB::raw('DATE_FORMAT(event_start, "%d-%m-%Y") as event_start'),
                 DB::raw('DATE_FORMAT(event_end, "%d-%m-%Y") as event_end')
             )
-        ->where('event_end','>','CURDATE()')
+        ->whereDate('event_end','>=',date('Y-m-d'))
         ->where('service_id',$id_sv)
         ->where('event_user',0)
         ->get();
