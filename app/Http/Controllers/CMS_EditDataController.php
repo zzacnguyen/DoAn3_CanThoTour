@@ -114,8 +114,6 @@ class CMS_EditDataController extends Controller
         $this::add_event(2,"Địa điểm của bạn đã được bỏ đánh dấu spam", $user->user_id, $id);
         return redirect()->route('_PLACES_DETAILS', $id);   
     }
-
-
     public function _DETAIL_ACTIVE_SERVICE($id)
     {
         servicesModel::where('id',$id)
@@ -156,6 +154,11 @@ class CMS_EditDataController extends Controller
         return redirect()->route('_SERVICE_DETAILS', $id);   
     }
 
+
+    public function ACTIVE_USER($id)
+    {
+        
+    }
 
     public function add_event($type_event,$event_name, $user_id,$id_dv_pla){
         try 

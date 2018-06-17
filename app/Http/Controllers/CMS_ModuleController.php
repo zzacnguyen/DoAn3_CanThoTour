@@ -461,6 +461,7 @@ class CMS_ModuleController extends Controller
 
     public function getDashboard(){
 
+    	if(Session::has('login') && Session::get('user_info') != null){
 
 		$data_couter_user_six_month =  $this::Couter_User_Six_Month();
 		$data_couter_user_one_month = $this::_DISPLAY_NEW_USER();
@@ -504,16 +505,21 @@ class CMS_ModuleController extends Controller
 					'data15'=>$data_place,
 					'data_user'=>$data_user
 			]);
+			}
+		}
+		else
+		{
+			return redirect()->route('login_admin');
 		}
 
 	}
 
-
-
 	public function _GETVIEW_ADD_TOURIST_PLACES()
 	{
-		if (view()->exists('CMS.components.com_tourist_places.add_tourist_places')){
+		$str = "Đang lấy dữ liệu";
 
+		return $str;
+		if (view()->exists('CMS.components.com_tourist_places.add_tourist_places')){
 			return view('CMS.components.com_tourist_places.add_tourist_places',
 				[
 				'data1'=>$this::_DISPLAY_PROVINCE_CITY(),

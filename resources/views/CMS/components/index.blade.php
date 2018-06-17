@@ -99,6 +99,7 @@
 @include('CMS.script.header-script')
 </head>
     <body>
+
     <div id="sb-site">
         
         @include('CMS.layout.sidebar_overlay.overlay')
@@ -145,7 +146,7 @@
         </div>
     </div>
     
-@include('CMS.script.footer-script')
+    @include('CMS.script.footer-script')
 
 </body>
 </html>

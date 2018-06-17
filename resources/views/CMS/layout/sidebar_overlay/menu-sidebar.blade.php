@@ -64,7 +64,7 @@
         <li>
             <a href="{{ route('ADD_TOURIST_PLACES') }}" title="Thêm địa điểm mới">
                 <i class="glyph-icon "></i>
-                <span>Thêm địa điểm mới</span>
+                <span>Thu thập dữ liệu</span>
             </a>
         </li>
         {{-- <li>

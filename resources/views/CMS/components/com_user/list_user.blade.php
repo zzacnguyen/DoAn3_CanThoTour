@@ -15,40 +15,32 @@
     <h3 class="title-hero">
         DANH SÁCH NGƯỜI DÙNG
     </h3>
-        <div class="example-box-wrapper">
-            <table id="datatable-reorder" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                <thead>
-                <tr>
-                    <th>User name</th>
-                    <th>Login social ID</th>
-                    <th>Name</th>
-                    <th>Phone number</th>
-                    <th>Ngày đăng ký</th>
-                </tr>
-                </thead>
-
-                <tfoot>
-                <tr>
-                    <th>User name</th>
-                    <th>Login social ID</th>
-                    <th>Name</th>
-                    <th>Phone number</th>
-                    <th>Ngày đăng ký</th>
-                </tr>
-                </tfoot>
-                <tbody>
-                    @foreach($data as $item)
-                    <tr>
-                        <td>{{ $item->username }}</td>
-                        <td>{{ $item->social_login_id }}</td>
-                        <td>{{ $item->contact_name }}</td>
-                        <td>{{ $item->contact_phone }}</td>
-                        <td>{{ $item->created_at }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            {!! $data->render() !!}
+            <div class="pad5T pad5B pad10L pad10R dashboard-buttons clearfix">
+            <a href="{{  route('ALL_LIST_ADMIN') }}" class="btn vertical-button remove-border btn-info" title="QUẢN TRỊ VIÊN" style="
+    width: 220px;
+">
+                QUẢN TRỊ VIÊN
+            </a>
+            <a href="{{  route('ALL_LIST_MOD') }}" class="btn vertical-button remove-border btn-danger" title="" style="
+    width: 220px;
+">
+                KIỂM DUYỆT VIÊN
+            </a>
+            <a href="{{  route('ALL_LIST_PARTNER') }}" class="btn vertical-button remove-border btn-purple" title="" style="
+    width: 220px;
+">
+                CỘNG TÁC VIÊN
+            </a>
+            <a href="{{  route('ALL_LIST_ENTERPRISE') }}" class="btn vertical-button remove-border btn-azure" title="" style="
+    width: 220px;
+">
+                DOANH NGHIỆP
+            </a>
+            <a href="{{  route('ALL_LIST_TOURGUIDE') }}" class="btn vertical-button remove-border btn-yellow" title="" style="
+    width: 220px;
+">
+                HƯỚNG DẪN VIÊN DU LỊCH
+            </a>
         </div>
     </div>
 </div>
