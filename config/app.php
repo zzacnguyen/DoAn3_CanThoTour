@@ -190,6 +190,9 @@ return [
         //CHỖ NÀY THÊM CK EDITOR
         Unisharp\Ckeditor\ServiceProvider::class,
         
+
+        //chỗ này dùng cào web
+        Weidner\Goutte\GoutteServiceProvider::class,
     ],
 
     /*
@@ -245,7 +248,7 @@ return [
         'MultiLang' => Longman\LaravelMultiLang\Facades\MultiLang::class,
         'GoogleMaps' => GoogleMaps\Facade\GoogleMapsFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-
+        'Goutte' => Weidner\Goutte\GoutteFacade::class,
     ],
 
 ];
