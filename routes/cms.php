@@ -204,3 +204,31 @@
 
 	// thong bao 
 	Route::get('get-event-admin','EventsController@get_event_admin');
+
+
+
+	Route::get('crawer-places', 'CMS_CrawlerController@Crawler');
+	Route::get('/web/crawler/thecodingstuff', function() {
+	    $crawler = Goutte::request('GET', 'https://thecodingstuff.com');
+	    $crawler->filter('h2.blog-entry-title a')->each(function ($node) {
+	      dump($node->text());
+	    });
+	});
+
+
+	Route::get('get-view-crawler', 'CMS_CrawlerController@getViewLink')->name('getViewLink');
+	Route::post('get-view-crawler', 'CMS_CrawlerController@CrawlerStep1');
+	// Route::get('get-view-crawler-step-1', 'CMS_CrawlerController@CrawlerStep1')->name('getViewLink');
+
+
+
+	Route::post('crawler-1', 'CMS_CrawlerController@Post1');
+	Route::post('crawler-2', 'CMS_CrawlerController@Post2');
+	Route::post('crawler-3', 'CMS_CrawlerController@Post3');
+	Route::post('crawler-4', 'CMS_CrawlerController@Post4');
+	Route::post('crawler-5', 'CMS_CrawlerController@Post5');
+	Route::post('crawler-6', 'CMS_CrawlerController@Post6');
+	Route::post('crawler-7', 'CMS_CrawlerController@Post7');
+	Route::post('crawler-8', 'CMS_CrawlerController@Post8');
+	Route::post('crawler-9', 'CMS_CrawlerController@Post9');
+	Route::post('crawler-10', 'CMS_CrawlerController@Post10');

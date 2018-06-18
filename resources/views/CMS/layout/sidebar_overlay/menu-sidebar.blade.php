@@ -62,7 +62,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('ADD_TOURIST_PLACES') }}" title="Thêm địa điểm mới">
+            <a href="{{ route('getViewLink') }}" title="Thu thập dữ liệu">
                 <i class="glyph-icon "></i>
                 <span>Thu thập dữ liệu</span>
             </a>
