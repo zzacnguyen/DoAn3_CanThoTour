@@ -6,6 +6,9 @@
     <style>
         /* Loading Spinner */
         .spinner{margin:0;width:70px;height:18px;margin:-35px 0 0 -9px;position:absolute;top:50%;left:50%;text-align:center}.spinner > div{width:18px;height:18px;background-color:#333;border-radius:100%;display:inline-block;-webkit-animation:bouncedelay 1.4s infinite ease-in-out;animation:bouncedelay 1.4s infinite ease-in-out;-webkit-animation-fill-mode:both;animation-fill-mode:both}.spinner .bounce1{-webkit-animation-delay:-.32s;animation-delay:-.32s}.spinner .bounce2{-webkit-animation-delay:-.16s;animation-delay:-.16s}@-webkit-keyframes bouncedelay{0%,80%,100%{-webkit-transform:scale(0.0)}40%{-webkit-transform:scale(1.0)}}@keyframes bouncedelay{0%,80%,100%{transform:scale(0.0);-webkit-transform:scale(0.0)}40%{transform:scale(1.0);-webkit-transform:scale(1.0)}}
+        body{
+            background-color: white;
+        }
     </style>
     <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
@@ -42,15 +45,24 @@
     html,body {
         height: 100%;
     }
-
+    input, button{
+        border-radius: 0 !important;
+    }
+    button{
+        border-radius: 0 !important;
+        background-color: #00a680 !important;
+    }
+    button:hover{
+        font-weight: 600;
+    }
 </style>
-<div class="center-vertical bg-black">
+<div class="center-vertical">
     <div class="center-content row">
         <form action="{{route('login-admin')}}" id="login-validation" class="center-margin col-xs-11 col-sm-5" method="POST">
-            <h3 class="text-center pad25B font-gray font-size-23">ĐĂNG NHẬP <span class="opacity-80">v1.0</span></h3>
-            <div id="login-form" class="content-box">
-                <div class="content-box-wrapper pad20A">
-
+            <div id="login-form" class="content-box" style="box-shadow: 1px 2px 5px 1px;border-radius: 0px;">
+                <div class="content-box-wrapper pad20A" style="border-radius: 0px;">
+                    <h2 class="text-center" style="font-weight: bold;">Đăng nhập</h2>
+                    <br>
                     <div class="form-group">
                         <label for="">Tài khoản:</label>
                         <div class="input-group input-group-lg">

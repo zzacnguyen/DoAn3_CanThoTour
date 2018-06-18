@@ -1,4 +1,4 @@
-
+{{-- 
 
 <div class="panel" style="padding-top: 25px;margin-top:  25px;">
     <h2>Danh sách nhiệm vụ</h2>
@@ -25,14 +25,14 @@
                                 <button class="btn btn-default" data-dismiss="modal" type="button">Hủy bỏ</button>
                                 <a class="btn btn-danger" href="{{route('DELETE_TASK', $item->id)}}" id="remove-button" type="submit">Đồng ý</a>
                             </div>
-                        </div><!-- end modal-content -->
-                    </div><!-- end modal-dialog -->
-                </div><!-- end modal -->
+                        </div>
+                    </div>
+                </div>
                 
             </li>
            @endforeach
         </ul>
     </div>
 </div>
-<?php
 
+ --}}

@@ -14,14 +14,15 @@
 }
 #header-logo .logo-content-big,
 .logo-content-small {
-    background: url('../../image-resources/logo-admin.png') left 50% no-repeat;
+    background: url('../../image-resources/logo-vnt-2.png') no-repeat;
     text-indent: -999em;
     position: absolute;
-    height: 34px;
-    width: 190px;
+    height: 35px;
+    width: 218px;
     left: 10px;
     top: 50%;
     margin-top: -17px;
+    background-size: cover;
 }
 .logo-content-small {
     width: 35px;
@@ -84,6 +85,7 @@
     margin-right: 10px;
     float: left;
     width: 96px;
+    color: black;
 }
 #page-header .user-account-btn > a.user-profile .glyph-icon {
     width: 28px;
@@ -153,11 +155,11 @@
     background: rgba(255,255,255,0.05);
     border-radius: 3px;
     margin: 8px 10px 0 0;
-    color: rgba(255,255,255,0.7);
+    color: black;
 }
 #header-nav-right a.hdr-btn:hover {
-    background: rgba(255,255,255,0.15);
-    color: rgba(255,255,255,0.8);
+    background: #00a680;
+    color: white;
 }
 
 /* Mobile navigation */
@@ -236,6 +238,8 @@ body #nav-toggle.collapsed span {
     margin: 0;
     padding: 5px 20px;
     list-style: none;
+    background-color: white;
+    /*border: 1px solid #ddd;*/
 }
 #sidebar-menu li {
     position: relative;
@@ -260,6 +264,7 @@ body #nav-toggle.collapsed span {
     border: transparent solid 1px;
     line-height: 35px;
     height: 36px;
+    color: black;
 }
 #sidebar-menu > li > a .bs-badge,
 #sidebar-menu > li > a .bs-label {
@@ -391,14 +396,14 @@ body #nav-toggle.collapsed span {
 }
 #page-content {
     margin-left: 260px;
-    padding: 20px 30px;
+    padding: 5px 15px;
 }
 
 #page-content > .container {
     margin: 0px;
-    padding: 0px;
     max-width: 100%;
     width:100%;
+    background-color: white;
 }
 /* Page title */
 

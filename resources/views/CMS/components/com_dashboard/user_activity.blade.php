@@ -1,5 +1,5 @@
 
-<div class="panel">
+{{-- <div class="panel">
     <div class="panel-body">
         <h3 class="title-hero">
             Địa điểm tranh chấp
@@ -31,4 +31,4 @@
             </div>
         </div>
     </div>
-</div>        
+</div>         --}}

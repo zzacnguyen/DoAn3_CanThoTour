@@ -308,9 +308,10 @@ body .button-pane-top {
     margin-bottom: 20px;
     border-width: 1px;
     border-style: solid;
-    border-radius: 4px;
+    border-radius: 0px;
     background-color: #fff;
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+
 }
 .panel-body {
     padding: 15px 20px;

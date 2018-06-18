@@ -1,6 +1,14 @@
+<style type="text/css">
+    a.btn{
+        border-radius: 0 !important;
+    }
+    button{
+        border-radius: 0 !important;
+    }
+</style>
 <div class="row">
     <div class="col-md-4">
-        <div class=" dashboard-box dashboard-box-chart bg-white content-box" style="background-color: #F0F0F0">
+        <div class=" dashboard-box dashboard-box-chart bg-white content-box" style="background-color: #F0F0F0;border-radius: 0;">
             <div class="content-wrapper" >
                 <div class="header">
                     {{ $data2  }}
@@ -30,7 +38,7 @@
         </div>
     </div>
     <div class="col-md-4">
-        <div style="background-color: #F0F0F0" class="dashboard-box dashboard-box-chart bg-white content-box">
+        <div style="background-color: #F0F0F0; border-radius: 0;" class="dashboard-box dashboard-box-chart bg-white content-box">
             <div class="content-wrapper">
                 <div class="header">
                 {{ $data3  }}
@@ -60,7 +68,7 @@
         </div>
     </div>
     <div class="col-md-4">
-        <div style="background-color: #F0F0F0"  class="dashboard-box dashboard-box-chart bg-white content-box">
+        <div style="background-color: #F0F0F0; border-radius: 0;"  class="dashboard-box dashboard-box-chart bg-white content-box">
             <div class="content-wrapper">
                 <div class="header">
                 {{ $data5  }} 

@@ -11,7 +11,7 @@
             THÔNG TIN DỊCH VỤ
         </h3>
 		<div class="row">
-			<div class="col-md-3">
+			{{-- <div class="col-md-3">
 			    <ul class="list-group">
 			        <li class="mrg10B">
 			            <a href="#faq-tab-1" data-toggle="tab" class="list-group-item bg-white">
@@ -21,8 +21,8 @@
 			        </li>
 			       
 			    </ul>
-			</div>
-			<div class="col-md-9">
+			</div> --}}
+			<div class="col-md-offset-2 col-md-9">
 			    <div class="tab-content">
 			        <div class="tab-pane fade active in pad0A" id="faq-tab-1">
 			        	 <div class="panel-group" id="accordion1">

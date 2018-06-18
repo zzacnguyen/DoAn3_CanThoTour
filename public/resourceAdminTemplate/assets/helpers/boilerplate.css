@@ -241,3 +241,8 @@ html {
 .jqstooltip {
     box-sizing: content-box;
 }
+
+
+a.btn, button{
+    border-radius: 0px !important;
+}

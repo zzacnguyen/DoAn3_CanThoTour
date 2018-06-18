@@ -1,4 +1,4 @@
-
+{{-- 
 @if(!empty($errors->first()))
     <div class=" error row col-lg-12" >
         <div class="alert alert-danger">
@@ -58,4 +58,4 @@
              <input  class="btn btn-success" style="margin-bottom: 20px; margin-left: 90%" type="submit" value="Xong">
         </form>
     </div>
-</div>
+</div> --}}

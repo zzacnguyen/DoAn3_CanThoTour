@@ -1,3 +1,13 @@
+<style type="text/css">
+    .user-profile:hover{
+        font-weight: 600;
+    }
+    .user-account-btn:hover{
+        border: 1px solid #ddd;
+    }
+</style>
+
+
 <div id="header-nav-left">
     <div class="user-account-btn dropdown">
         <a href="#" title="My Account" class="user-profile clearfix" data-toggle="dropdown">
@@ -9,7 +19,7 @@
                 @endif
                    
                 <span>{{Session::get('user_info')['username']}}</span>
-                <i class="glyph-icon icon-angle-down"></i>
+                <i style="color: black" class="glyph-icon icon-angle-down"></i>
             @endif
         </a>
         <div class="dropdown-menu float-left">
