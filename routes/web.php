@@ -87,6 +87,8 @@ Route::get('search/placevicinity/location={latitude},{longitude}&radius={radius}
 
 Route::get('search/servicevicinity/location={latitude},{longtitude}&type={type}&radius={radius}','SearchController@searchServicesVicinity');
 
+Route::get('search-near-m/lat={latitude}&lon={longitude}&radius={radius}','SearchController@timquanhday');
+
 // Route::get('search-service-vicinity/location={latitude},{longtitude}&type={type}&radius={radius}','SearchController@searchServicesVicinity');
 
 Route::get('search/searchServicesTypeKeyword/type={type}&keyword={keyword}','SearchController@searchServicesTypeKeyword');
