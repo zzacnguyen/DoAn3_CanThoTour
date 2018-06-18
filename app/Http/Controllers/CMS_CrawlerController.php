@@ -39,12 +39,18 @@ class CMS_CrawlerController extends Controller
 	      return  $node->text();
 	    });
 
+		$hotel_image = array();
+		$hotel_image =  $crawler->filter('.hotel_image')->each(function ($node) {
+	      return  $node->attr('src');
+	    });	    
+
+
 		$domain = 'https://www.booking.com';
 		
 		$duongdan1 = trim($domain).trim($duondgan[0]);
 		$new = str_replace('#hotelTmpl', '', $duongdan1);
 
-	    return view('CMS.components.com_crawler.list_crawler_step_1',['ten_khach_san'=>$ten_khach_san, 'toado'=>$toado, 'mota'=>$mota, 'so_luong'=>$so_luong_tin, 'duong_dan'=>$new] );
+	    return view('CMS.components.com_crawler.list_crawler_step_1',['ten_khach_san'=>$ten_khach_san, 'toado'=>$toado, 'mota'=>$mota, 'so_luong'=>$so_luong_tin, 'duong_dan'=>$new, 'hinh_anh'=>$hotel_image] );
 	}
 
 
@@ -53,6 +59,9 @@ class CMS_CrawlerController extends Controller
 		
 		$duong_dan = $request->input('link_bai_viet');
 		$crawler2 = Goutte::request('GET', trim($duong_dan));
+		$mo_ta = $request->input('mo_ta');
+		$toado = $request->input('toa_do');
+		$toa_do_extract = explode(',', $toado);
 
 		$ten_khach_san2 = array();
 	    $ten_khach_san2 =  $crawler2->filter('h2.hp__hotel-name')->each(function ($node) {
@@ -70,14 +79,38 @@ class CMS_CrawlerController extends Controller
 	    });
 
 
+
 	    $hinhanh_ = array();
 		$hinhanh_ =  $crawler2->filter('img')->each(function ($node) {
 	      return  $node->attr('src');
 	    });
 
-	    print_r($hinhanh_);
+        $place                  = new touristPlacesModel;
+        $place->pl_name         = $ten_khach_san2[0];
+        $place->pl_details      = $mo_ta;
+        $place->pl_address      = $diachi[0];
+        $place->pl_phone_number = "Đang cập nhật";
+        $place->pl_latitude     = $toa_do_extract[1];
+        $place->pl_longitude    = $toa_do_extract[0];
+        $place->id_ward    = "";
+        $place->pl_status       = 0;
+        $place->user_id   = "";
+        $place->pl_content   = $mo_ta;
+        if($place->save()){
+            $id_place = $this::GetIDLast(DB::table('vnt_tourist_places'));
+            
+        } else {
+            return json_encode("status:500");
+        }
 
-		return "TÍNH";
+
+
+
+
+
+
+
+	    print_r($hinhanh_);
 	}
 
 
@@ -104,7 +137,10 @@ class CMS_CrawlerController extends Controller
 	      return  $node->attr('src');
 	    });	    
 
-		echo  $hotel_image[0];
+		// echo  $hotel_image[1];
+		foreach ($hotel_image as $value) {
+
+		}
 	    $mota = array();
 		$mota =  $crawler->filter('.hotel_desc')->each(function ($node) {
 	      return  $node->text();
