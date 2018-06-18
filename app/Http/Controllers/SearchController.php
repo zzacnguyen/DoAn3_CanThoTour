@@ -19,7 +19,7 @@ class SearchController extends Controller
         $dist = rad2deg($dist);
         $miles = $dist * 60 * 1.1515;
         // $unit = strtoupper($unit);
-        return ($miles * 1.609344)*1000; //trả về mét
+        return round(($miles * 1.609344)*1000); //trả về mét
         
     }
 
