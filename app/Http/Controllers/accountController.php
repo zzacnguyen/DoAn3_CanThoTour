@@ -1390,4 +1390,31 @@ class accountController extends Controller
         }
             
     }
+
+    //=============== delete place =============
+    public function delete_place($id_place)
+    {
+        $sv = servicesModel::where('tourist_places_id',$id_place)->get();
+        if ($sv != null) {
+            foreach ($sv as $value) {
+                if ($value->sv_types == 1) {
+                    eatingModel::where('service_id',$value->id);
+                }
+                elseif ($value->sv_types == 2) {
+                    hotelModel::where('service_id',$value->id);
+                }
+                elseif ($value->sv_types == 3) {
+                    transportModel::where('service_id',$value->id);
+                }
+                elseif ($value->sv_types == 4) {
+                    sightseeingModel::where('service_id',$value->id);
+                }
+                elseif ($value->sv_types == 5) {
+                    entertainmentsModel::where('service_id',$value->id);
+                }
+                ImagesController::where('service_id',$value->id)->delete();
+            }
+        }
+            
+    }
 }
