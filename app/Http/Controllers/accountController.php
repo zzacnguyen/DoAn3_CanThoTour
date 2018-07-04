@@ -568,6 +568,16 @@ class accountController extends Controller
                 $image2 = $v->image_banner;
                 $image3 = $v->image_details_2;
             }
+            $type_hotel = 0;
+            if ($info->sv_types == 2) {
+                try {
+                    $_hotel = hotelsModel::where('service_id',$info->id)->first();
+                    $type_hotel = $_hotel->hotel_number_star;
+                } catch (Exception $e) {
+                    $type_hotel = 0;
+                }
+                
+            }
             $likes = DB::table('vnt_likes')->where('service_id', '=',$info->id)->count();
             // echo "string";
             $ratings = DB::table('vnt_visitor_ratings')->where('service_id',$info->id)->first();
@@ -599,6 +609,7 @@ class accountController extends Controller
                     'sv_content' =>$info->sv_content,
                     'image_banner'=>$image2,
                     'image_details_2'=>$image3,
+                    'type_hotel' =>$type_hotel
                 );     
         }
         else{
@@ -658,7 +669,7 @@ class accountController extends Controller
                     return 1;
                     break;
                 case 2:
-                    hotelsModel::where('service_id',$id)->update(['hotel_name'=>$request->sv_name,'hotel_number_star'=>5,'hotel_status'=>'1']);
+                    hotelsModel::where('service_id',$id)->update(['hotel_name'=>$request->sv_name,'hotel_number_star'=>$request->typehotel,'hotel_status'=>'1']);
                     return 1;
                     break;
                 case 3:
@@ -1245,7 +1256,7 @@ class accountController extends Controller
                         // return json_encode(1);
                         break;
                     case 2:
-                        hotelsModel::insert(['hotel_name'=>$request->sv_name,'hotel_number_star'=>5,'hotel_status'=>'1','service_id'=>$max]);
+                        hotelsModel::insert(['hotel_name'=>$request->sv_name,'hotel_number_star'=>5,'hotel_status'=>$request->type_hotel,'service_id'=>$max]);
                         // return json_encode(1);
                         break;
                     case 3:
