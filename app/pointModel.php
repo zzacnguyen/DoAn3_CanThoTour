@@ -8,3 +8,4 @@ class pointModel extends Model
 {
     protected $table = 'vnt_point';
 }
+ 

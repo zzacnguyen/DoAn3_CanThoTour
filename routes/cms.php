@@ -205,7 +205,7 @@
 	// thong bao 
 	Route::get('get-event-admin','EventsController@get_event_admin');
 
-
+	Route::get('ajax-edit-point/id={id}&diem={point_rate}&tieude={point_title}&mota={point_description}', 'CMS_EditDataController@EditPoint');
 
 	Route::get('crawer-places', 'CMS_CrawlerController@Crawler');
 	Route::get('/web/crawler/thecodingstuff', function() {

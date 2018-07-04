@@ -9,6 +9,7 @@ use App\Http\Requests\AddPointRequest;
 use App\Http\Requests\AddTypeEventRequest;
 use App\servicesModel;
 use App\eventModel;
+
 use App\touristPlacesModel;
 use Carbon\Carbon;
 class CMS_EditDataController extends Controller
@@ -159,6 +160,15 @@ class CMS_EditDataController extends Controller
     {
         
     }
+
+
+    public function EditPoint($id, $point_rate, $point_title, $point_description)
+    {
+        pointModel::where('id',$id)
+        ->update(['point_title'=>$point_title, 'point_description'=>$point_description, 'point_rate'=>$point_rate]);
+        return "";
+    }
+
 
     public function add_event($type_event,$event_name, $user_id,$id_dv_pla){
         try 
