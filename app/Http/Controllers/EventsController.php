@@ -163,9 +163,9 @@ class EventsController extends Controller
         ->select('vnt_events.service_id as id_sv', 'vnt_events.id as id_event', 'vnt_events.event_name', 'vnt_images.id as image_id','vnt_images.image_details_1', 'vnt_events.event_status', 'vnt_events.type_id', 
                 DB::raw('DATE_FORMAT(event_start, "%d-%m-%Y") as event_start'),
                 DB::raw('DATE_FORMAT(event_end, "%d-%m-%Y") as event_end'),
-                'vnt_vieweventuser.user_id as seen','vnt_services.sv_types','event_user'
+                'vnt_services.sv_types','event_user',DB::raw('CASE WHEN EXISTS (SELECT vnt_vieweventuser.id FROM vnt_vieweventuser WHERE vnt_vieweventuser.user_id ='. $user_id .' AND vnt_events.id = vnt_vieweventuser.id_events) THEN 1 ELSE 0 END AS is_seen')
             )
-        ->leftJoin('vnt_vieweventuser', 'vnt_events.id', '=', 'vnt_vieweventuser.id_events')
+        // ->leftJoin('vnt_vieweventuser', 'vnt_events.id', '=', 'vnt_vieweventuser.id_events')
         ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_events.service_id')
         ->join('vnt_services','vnt_events.service_id','=','vnt_services.id')
         ->where('event_status','<>', -1)
