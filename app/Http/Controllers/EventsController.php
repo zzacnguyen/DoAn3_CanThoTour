@@ -257,4 +257,17 @@ class EventsController extends Controller
     // -1 la dia diem hoac dich vu bi danh dau spam
     // -2 dia diem hoac dich vu bi xoa 
     // -3 vai tro cua tai khoan bi khoa
+
+
+    public function delete_event($id)
+    {
+        try {
+            SeenEventModel::where('id_events',$id)->delete();
+            eventModel::where('id',$id)->delete();
+            return 1;
+        } catch (Exception $e) {
+            return -1;
+        }
+            
+    }
 }
