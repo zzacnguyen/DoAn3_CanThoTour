@@ -286,6 +286,128 @@ class ImagesController extends Controller
             return json_encode("status:500");   
         }
     }
+
+    public function EditImage_web($id, Request $request)
+    {
+        // return $request->banner;
+        // return $request->details1;
+        // return $request->details2;
+        $image_old = DB::table('vnt_images')
+        ->where('service_id', '=', $id)
+        ->select('image_banner', 'image_details_1', 'image_details_2')
+        ->first();
+        // return $image_old;
+        if ($image_old == null) {
+            // return 'toiday';
+            $img_ = new imagesModel();
+            $img_->image_banner = '';
+            $img_->image_details_1 = '';
+            $img_->image_details_2 = '';
+            $img_->image_status = '';
+            $img_->service_id = $id;
+            $img_->save();
+                $image_old = DB::table('vnt_images')
+            ->where('service_id', '=', $id)
+            ->select('image_banner', 'image_details_1', 'image_details_2')
+            ->get();
+        }
+        // return 'toiday';
+        $name_old_banner = $image_old->image_banner;
+        $name_old_image_details_1 = $image_old->image_details_1;
+        $name_old_image_details_2 = $image_old->image_details_2;
+        // return $name_old_banner;
+        
+        $date = date("Y_m_d");
+        $timedate = date("h_i_s");
+        $time = '_'.$date.'_'.$timedate;
+
+        
+        $path_details1 = public_path().'\\details1\\';
+        $path_details2 = public_path().'\\details2\\';
+        $path_icon = public_path().'\\icons\\';
+        $path_thumb = public_path().'\\thumbnails\\';
+        $path_banner = public_path().'\\banners\\';
+
+        //upload banner
+        $file_banner = $request->file('details1');
+        $file_details_1 = $request->file('banner') ;
+        $file_details_2 = $request->file('details2');
+
+        if(!empty($file_banner))
+            {
+                // return 'toiday';
+                $image_path_banner = $path_banner.$name_old_banner;
+                $image_path_thumb_banner = $path_thumb.$name_old_banner;
+                $image_path_icon_banner = $path_icon.$name_old_banner;
+                if(File::exists($image_path_banner)) {
+                    File::delete($image_path_banner);
+                    File::delete($image_path_thumb_banner);
+                    File::delete($image_path_icon_banner);
+                }
+                $image_banner = \Image::make($file_banner);
+                $name_banner = "banner_".$time.'.'.$file_banner->getClientOriginalExtension();
+                $image_banner->resize(768,720);
+                $image_banner->save($path_banner.$name_banner);
+                $image_banner->resize(600,400);
+                $image_banner->save($path_thumb.$name_banner);
+                $image_banner->resize(50,50);
+                $image_banner->save($path_icon.$name_banner);
+                $name_banner = "banner_".$time.'.'.$file_banner->getClientOriginalExtension();
+                imagesModel::where('service_id',$id)
+                    ->update(['image_banner'=>$name_banner]);
+            }
+        if(!empty($file_details_1))
+            {
+                $image_path_details_1 = $path_details1.$name_old_image_details_1;
+                $image_path_thumb_details_1 = $path_thumb.$name_old_image_details_1;
+                $image_path_icon_details_1 = $path_icon.$name_old_image_details_1;
+                if(File::exists($image_path_details_1)) {
+                    File::delete($image_path_details_1);
+                    File::delete($image_path_thumb_details_1);
+                    File::delete($image_path_icon_details_1);
+                }
+                $name_details_1 = "details1_".$time.'.'.$file_details_1->getClientOriginalExtension();
+                $image_details1 = \Image::make($file_details_1);
+                $image_details1->resize(1280,720);
+                $image_details1->save($path_details1.$name_details_1);
+                $image_details1->resize(600,400);
+                $image_details1->save($path_thumb.$name_details_1);
+                $image_details1->resize(50,50);
+                $image_details1->save($path_icon.$name_details_1);
+                imagesModel::where('service_id',$id)
+
+                    ->update(['image_details_1'=>$name_details_1]);
+            }
+        if(!empty($file_details_2))
+            {
+                // return 'toiday';
+                $image_path_details_2 = $path_details1.$name_old_image_details_2;
+                $image_path_thumb_details_2 = $path_thumb.$name_old_image_details_2;
+                $image_path_icon_details_2 = $path_icon.$name_old_image_details_2;
+                if(File::exists($image_path_details_2)) {
+                    File::delete($image_path_details_2);
+                    File::delete($image_path_thumb_details_2);
+                    File::delete($image_path_icon_details_2);
+                }
+                $name_details_2 = "details2_".$time.'.'.$file_details_2->getClientOriginalExtension();
+                $image_details2 = \Image::make($file_details_2);
+                $image_details2->resize(1280,720);
+                $image_details2->save($path_details2.$name_details_2);
+                $image_details2->resize(600,400);
+                $image_details2->save($path_thumb.$name_details_2);
+                $image_details2->resize(50,50);
+                $image_details2->save($path_icon.$name_details_2);
+                imagesModel::where('service_id',$id)
+                    ->update(['image_details_2'=>$name_details_2]);
+
+            }
+        return json_encode(1);
+    }
+
+
+
+
+
     public function UploadImageUser(Request $request, $user_id)
     {
         $date = date("Y_m_d");
@@ -347,7 +469,7 @@ class ImagesController extends Controller
         $uploader->allowedExtensions = array(); // all files types allowed by default
 
         // Specify max file size in bytes.
-        $uploader->sizeLimit = null;
+        $uploader->sizeLimit = 2097152;
 
         // Specify the input name set in the javascript.
         $uploader->inputName = "qqfile"; // matches Fine Uploader's default inputName value by default

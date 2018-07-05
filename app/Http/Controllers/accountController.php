@@ -666,23 +666,23 @@ class accountController extends Controller
              switch ($request->sv_types) {
                 case 1:
                     eatingModel::where('service_id',$id)->update(['eat_name'=>$request->sv_name,'eat_status'=>'1']);
-                    return 1;
+                    return $id;
                     break;
                 case 2:
                     hotelsModel::where('service_id',$id)->update(['hotel_name'=>$request->sv_name,'hotel_number_star'=>$request->typehotel,'hotel_status'=>'1']);
-                    return 1;
+                    return $id;
                     break;
                 case 3:
                     transportModel::where('service_id',$id)->update(['transport_name'=>$request->sv_name,'transport_status'=>'1']);
-                    return 1;
+                    return $id;
                     break;
                 case 4:
                      sightseeingModel::where('service_id',$id)->update(['sightseeing_name'=>$request->sv_name,'sightseeing_status'=>'1']);
-                    return 1;
+                    return $id;
                     break;
                 case 5:
                     entertainmentsModel::where('service_id',$id)->update(['entertainments_name'=>$request->sv_name,'entertainments_status'=>'1']);
-                    return 1;
+                    return $id;
                     break;
                 }
         // try{
@@ -1341,7 +1341,9 @@ class accountController extends Controller
                     'view'              => $value->sv_counter_view,
                     'point'             => $value->sv_counter_point,
                     'rating'            => $ponit_rating,
-                    'sv_type'           => $value->sv_types);
+                    'sv_type'           => $value->sv_types,
+                    'sv_status'         => $value->sv_status
+                );
             }
             else{
                 $mang[] = array(
@@ -1355,7 +1357,9 @@ class accountController extends Controller
                     'view'              => $value->sv_counter_view,
                     'point'             => $value->sv_counter_point,
                     'rating'            => $ponit_rating,
-                    'sv_type'           => $value->sv_types);
+                    'sv_type'           => $value->sv_types,
+                    'sv_status'         => $value->sv_status
+                );
             }
             
         }
