@@ -709,11 +709,21 @@ class accountController extends Controller
     }
     public function get_edit_place_user($user_id,$id)
     {
-        $data['info']=tp::where('user_id',$user_id)->where('id',$id)->get();
-        $data['address']=DB::select('select * from c_city_district_ward_place WHERE id_place ='.$data['info'][0]->id.' ');
-        $data['city']=city::all();
-        $data['district']=districtModel::all();
-        $data['ward']=wardModel::all();
+        $data['info']=tp::where('user_id',$user_id)->where('id',$id)->first();
+        // dd($data);
+        if ($data['info'] == null) {
+            $data['address'] = null;
+            $data['city']    = null;
+            $data['district']= null;
+            $data['ward']    = null;
+        }
+        else{
+            $data['address']  = DB::select('select * from c_city_district_ward_place WHERE id_place ='.$data['info']->id.' ');
+            $data['city']     = city::all();
+            $data['district'] = districtModel::all();
+            $data['ward']     = wardModel::all();
+        }
+            
         return json_encode($data);
         
     
