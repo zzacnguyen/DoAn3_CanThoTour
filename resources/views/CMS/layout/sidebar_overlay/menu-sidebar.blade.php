@@ -120,12 +120,12 @@
                 <span>Danh mục loại hình sự kiện</span>
             </a>
         </li>
-        <li>
+       {{--  <li>
             <a href="{{ route('_GETVIEW_LIST_SOCIAL') }}" title="Danh sách các mạng xã hội">
                 <i class="glyph-icon "></i>
                 <span>Danh mục mạng xã hội</span>
             </a>
-        </li>
+        </li> --}}
 
 
         

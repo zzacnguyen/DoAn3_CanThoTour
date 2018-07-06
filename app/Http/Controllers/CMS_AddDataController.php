@@ -334,6 +334,29 @@ class CMS_AddDataController extends Controller
         }
     }
 
+    public function ADD_TYPES_EVENT_AJAX($request)
+    {
+
+        $max_id = DB::table('vnt_types')
+         ->select('id')
+         ->orderBy('id', 'desc')
+         ->limit(1)
+         ->get();
+         
+        $tmp_id = 0;
+         
+         foreach ($max_id as $value) {
+            $tmp_id = (($value->id)+1)*1;
+         }
+        $type =  new typesModel;
+        $type->id = $tmp_id*1;
+        $type->type_name = $request;
+        $type->type_status = 1;
+        $type->save();
+        return "";
+
+    }
+
     public function ADD_SOCIAL(AddSocialRequest $request)
     {
 

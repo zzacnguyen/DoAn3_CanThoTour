@@ -160,7 +160,10 @@
 	//DANH MỤC LOẠI HÌNH SỰ KIỆN
 	Route::get('lvtn-list-type-events', 'CMS_ModuleController@_GETVIEW_LIST_TYPE_EVENT' )->name('_GET_EVENT_TYPES');
 	Route::get('lvtn-add-type-events', 'CMS_ModuleController@_GETVIEW_ADD_TYPES_EVENT' )->name('_GETVIEW_ADD_TYPES_EVENT');
+
 	Route::post('lvtn-add-type-events', 'CMS_AddDataController@ADD_TYPES_EVENT' );
+	Route::get('lvtn-add-type-events-ajax/ten={ten}', 'CMS_AddDataController@ADD_TYPES_EVENT_AJAX' );
+	
 	Route::get('lvtn-edit-type-events/{id}', 'CMS_ModuleController@_GETVIEW_EDIT_EVENT_TYPES' )->name('_GETVIEW_EDIT_EVENT_TYPES');
 	Route::post('lvtn-edit-type-events/{id}', 'CMS_EditDataController@EDIT_TYPES_EVENT' );
 
@@ -232,3 +235,4 @@
 	Route::post('crawler-8', 'CMS_CrawlerController@Post8');
 	Route::post('crawler-9', 'CMS_CrawlerController@Post9');
 	Route::post('crawler-10', 'CMS_CrawlerController@Post10');
+
