@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Goutte;
 use Symfony\Component\DomCrawler\Crawler;
 use App\Http\Requests;
+use App\touristPlacesModel;
+use DB;
+use App\hotelsModel;
+use App\servicesModel;
 class CMS_CrawlerController extends Controller
 {
 
@@ -20,97 +24,144 @@ class CMS_CrawlerController extends Controller
 		$URL = $request->input('duong_dan');
 		$crawler = Goutte::request('GET', $URL);
 		$ten_khach_san = array();
-	    $ten_khach_san =  $crawler->filter('span.sr-hotel__name')->each(function ($node) {
+	    $ten_khach_san =  $crawler->filter('h2.hp__hotel-name')->each(function ($node) {
 	      return  $node->text();
 	    });
+		$so_sao_text =  $crawler->filter('i.bk-icon-wrapper')->each(function ($node) {
+	      	return  $node->attr('title');
+	    });
+
+		
+		preg_match_all('!\d+!', $so_sao_text[0], $matches);
+		$so_sao_tmp = $matches[0];
+		$so_sao = (string)$so_sao_tmp[0];
 
 	    $toado = array();
-	    $toado =  $crawler->filter('.bicon-map-pin')->each(function ($node) {
-	      return  $node->attr('data-coords');
+	    $toado =  $crawler->filter('a.city_centre_map_link_show_map')->each(function ($node) {
+	      return  $node->attr('data-bbox');
 	    });
 
-	    $duondgan = array();
-	    $duondgan =  $crawler->filter('.hotel_name_link')->each(function ($node) {
-	      return  $node->attr('href');
+		$toa_do_tmp = (string)$toado[0];	    
+	    
+	    $toa_do = explode(',', $toa_do_tmp);
+	    $kinhdo = $toa_do[0];
+	    $vido = $toa_do[1];
+	    $toado = [$kinhdo, $vido];
+	   	$mota =  $crawler->filter('div.hp_desc_main_content ')->each(function ($node) {
+	      return  $node->text();
 	    });
-
-	    $mota = array();
-		$mota =  $crawler->filter('.hotel_desc')->each(function ($node) {
+	    
+	   	$diachi = array();
+	    $diachi =  $crawler->filter('span.hp_address_subtitle')->each(function ($node) {
 	      return  $node->text();
 	    });
 
-		$hotel_image = array();
-		$hotel_image =  $crawler->filter('.hotel_image')->each(function ($node) {
-	      return  $node->attr('src');
-	    });	    
+	    $mo_ta = (string)$mota[0];
+	    
+	    $gia  ="Đang cập nhật";
 
-
-		$domain = 'https://www.booking.com';
-		
-		$duongdan1 = trim($domain).trim($duondgan[0]);
-		$new = str_replace('#hotelTmpl', '', $duongdan1);
-
-	    return view('CMS.components.com_crawler.list_crawler_step_1',['ten_khach_san'=>$ten_khach_san, 'toado'=>$toado, 'mota'=>$mota, 'so_luong'=>$so_luong_tin, 'duong_dan'=>$new, 'hinh_anh'=>$hotel_image] );
-	}
-
-
-	public function Post1(Request $request)
-	{
-		
-		$duong_dan = $request->input('link_bai_viet');
-		$crawler2 = Goutte::request('GET', trim($duong_dan));
-		$mo_ta = $request->input('mo_ta');
-		$toado = $request->input('toa_do');
-		$toa_do_extract = explode(',', $toado);
-
-		$ten_khach_san2 = array();
-	    $ten_khach_san2 =  $crawler2->filter('h2.hp__hotel-name')->each(function ($node) {
-	      return  $node->text();
-	    });
-
-	    $diachi = array();
-	    $diachi =  $crawler2->filter('span.hp_address_subtitle')->each(function ($node) {
-	      return  $node->text();
-	    });
-
-	    $noidung = array();
-	    $noidung =  $crawler2->filter('div.loc_ltr_for_rtl')->each(function ($node) {
-	      return  $node->html();
-	    });
-
+	    $website = "Đang cập nhật";
 
 
 	    $hinhanh_ = array();
-		$hinhanh_ =  $crawler2->filter('img')->each(function ($node) {
+		$hinhanh_ =  $crawler->filter('img')->each(function ($node) {
 	      return  $node->attr('src');
 	    });
+    
 
+		// $domain = 'https://www.booking.com';
+		
+		// $duongdan1 = trim($domain).trim($duondgan[0]);
+		// $new = str_replace('#hotelTmpl', '', $duongdan1);
+
+	    return view('CMS.components.com_crawler.list_crawler_step_1',['ten_khach_san'=>$ten_khach_san, 'kinhdo'=>$kinhdo,'vido'=>$vido, 'mota'=>$mota, 'so_luong'=>$so_luong_tin, 'diachi'=>$diachi, 'sosao'=>$so_sao]);
+	// }
+	}
+
+	public function Post1(Request $request)
+	{ 
+		$ten_khach_san =  $request->input('ten_dia_diem');
+		
+		$mo_ta = $request->input('mo_ta');
+		$toado = $request->input('toa_do');
+		$sosao = $request->input('sosao');
+		$toa_do_extract = explode(',', $toado);
+		$diachi =  $request->input('diachi');
         $place                  = new touristPlacesModel;
-        $place->pl_name         = $ten_khach_san2[0];
+        $place->pl_name         = $ten_khach_san;
         $place->pl_details      = $mo_ta;
         $place->pl_address      = $diachi[0];
         $place->pl_phone_number = "Đang cập nhật";
         $place->pl_latitude     = $toa_do_extract[1];
         $place->pl_longitude    = $toa_do_extract[0];
-        $place->id_ward    = "";
-        $place->pl_status       = 0;
-        $place->user_id   = "";
+        $place->id_ward    = "1";
+        $place->pl_status       = 1;
+        $place->user_id   = "1";
         $place->pl_content   = $mo_ta;
+
+        $max_id = DB::table('vnt_tourist_places')
+        ->select('id')
+        ->orderBy('id', 'DESC')
+        ->limit(1)
+        ->get();
+        
+
+        
+
         if($place->save()){
-            $id_place = $this::GetIDLast(DB::table('vnt_tourist_places'));
+        	$tmp_id = 0;
+	        foreach ($max_id as $value) {
+	            $tmp_id = (($value->id)+1)*1;
+	        } 
+            $id_place = $tmp_id;
             
         } else {
             return json_encode("status:500");
         }
 
 
+		$vnt_services                 = new servicesModel;
+        $vnt_services->sv_description   = $mo_ta;
+        $vnt_services->sv_open    = "Đang cập nhật";
+        $vnt_services->sv_close  = "Đang cập nhật";
+        $vnt_services->sv_highest_price  =  "Đang cập nhật";
+        $vnt_services->sv_lowest_price =  "Đang cập nhật";
+        $vnt_services->sv_phone_number   = "Đang cập nhật";
+        $vnt_services->sv_content   =$mo_ta;
+        $vnt_services->sv_status   = 0;
+        $vnt_services->sv_types   =2;
+        $vnt_services->tourist_places_id   = $id_place;
+        $vnt_services->sv_counter_view=0;
+        $vnt_services->sv_counter_point=0;
+        $vnt_services->user_id=1;
+        $vnt_services->sv_website   = "Đang cập nhật";
+        $vnt_services->save();
+        $lastServices = DB::table('vnt_services')->orderBy('id', 'desc')->first();
+        $convert = (array)$lastServices;
+        $id_service =  $convert['id'];
+        $id_type =  $convert['sv_types'];
+        
+        $vnt_hotels = new hotelsModel;
+	    $vnt_hotels->hotel_name =  $ten_khach_san;
+	    $vnt_hotels->hotel_number_star =  $sosao;
+	    $vnt_hotels->hotel_status =  1;
+	    $vnt_hotels->service_id =  $id_service;
+	    if($vnt_hotels->save()){
+
+	    	if($request->input('action') == "Lưu lại và thoát")
+	        	return redirect('/lvtn-list-services-unactive')->with('message', "Hoàn tất, Đã lưu địa điểm, dịch vụ!");
+		    else{
+		    	return redirect('/get-view-crawler')->with('message', "Hoàn tất, Đã lưu địa điểm, dịch vụ!");
+		    }
+	    }	
+	    else
+	    {
+	        return json_encode("status:500");
+	    }
+        
+       
 
 
-
-
-
-
-	    print_r($hinhanh_);
 	}
 
 

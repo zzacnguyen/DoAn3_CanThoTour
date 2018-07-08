@@ -40,14 +40,14 @@
                                 {{Session::get('user_info')['username']}}
                                 {{-- <i>Tính Phan / Developer website</i> --}}
                             </span>
-                            <a href="#" title="Edit profile">Chỉnh sửa hồ sơ</a>
-                            <a href="#" title="View notifications">Xem thông báo</a>
+                            {{-- <a href="#" title="Edit profile">Chỉnh sửa hồ sơ</a>
+                            <a href="#" title="View notifications">Xem thông báo</a> --}}
                         @endif
                             
                     </div>
                 </div>
                 <div class="divider"></div>
-                <ul class="reset-ul mrg5B">
+                {{-- <ul class="reset-ul mrg5B">
                     <li>
                         <a href="#">
                             <i class="glyph-icon float-right icon-caret-right"></i>
@@ -62,7 +62,7 @@
                             
                         </a>
                     </li>
-                </ul>
+                </ul> --}}
                 <div class="pad5A button-pane button-pane-alt text-center">
                     <a href="{{ route('login_admin') }}" class="btn display-block font-normal btn-danger">
                         <i class="glyph-icon icon-power-off"></i>

@@ -136,7 +136,7 @@
                      $(document).ready(function () {          
                             setTimeout(function() {
                                 $('.success').slideUp("slow");
-                            }, 1000);
+                            }, 3000);
                     });
                     </script>
 <!-- Sparklines charts -->

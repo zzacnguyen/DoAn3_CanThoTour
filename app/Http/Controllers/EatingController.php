@@ -15,8 +15,10 @@ class EatingController extends Controller
     public function index()
     {
         $eating_list = DB::table('vnt_eating')
-        ->select('vnt_eating.service_id AS id','eat_name','vnt_images.id AS image_id','vnt_images.image_details_1')
+        ->select('vnt_eating.service_id AS id','eat_name','vnt_images.id AS image_id','vnt_images.image_details_1') 
+        ->join('vnt_services', 'vnt_services.id', '=', 'vnt_eating.service_id')
         ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_eating.service_id')
+        ->where('vnt_services.sv_status','=', 1)
         ->paginate(10);
         $encode=json_encode($eating_list);
         return $encode;

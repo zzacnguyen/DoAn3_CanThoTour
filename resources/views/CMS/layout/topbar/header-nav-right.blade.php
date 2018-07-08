@@ -1,8 +1,8 @@
 
 <div id="header-nav-right">
-    <a href="#" class="hdr-btn popover-button" title="Tìm kiếm" data-placement="bottom" data-id="#popover-search">
+{{--     <a href="#" class="hdr-btn popover-button" title="Tìm kiếm" data-placement="bottom" data-id="#popover-search">
         <i class="glyph-icon icon-search"></i>
-    </a>
+    </a> --}}
     <div class="hide" id="popover-search">
         <div class="pad5A box-md">
             <div class="input-group">
@@ -16,9 +16,9 @@
     <a href="#" class="hdr-btn" id="fullscreen-btn" title="Mở toàn màn hình">
         <i class="glyph-icon icon-arrows-alt"></i>
     </a>
-    <a href="#" class="hdr-btn sb-toggle-left" id="chatbox-btn" title="Người dùng đang truy cập">
+    {{-- <a href="#" class="hdr-btn sb-toggle-left" id="chatbox-btn" title="Người dùng đang truy cập">
         <i class="glyph-icon icon-wifi"></i>
-    </a>
+    </a> --}}
     <div class="dropdown" id="notifications-btn" >
         <a data-toggle="dropdown" href="#" title="">
             <span class="small-badge bg-yellow"></span>
@@ -167,7 +167,7 @@
                         </span>
                         Vietnamtour
                     </a>
-                    <a href="#" class="btn vertical-button remove-border btn-purple" title="">
+                    {{-- <a href="#" class="btn vertical-button remove-border btn-purple" title="">
                         <span class="glyph-icon icon-separator-vertical pad0A medium">
                             <i class="glyph-icon icon-fire opacity-80 font-size-20"></i>
                         </span>
@@ -184,7 +184,7 @@
                             <i class="glyph-icon icon-laptop opacity-80 font-size-20"></i>
                         </span>
                         Công việc
-                    </a>
+                    </a> --}}
                     <a href="{{ route('_GETVIEW_USAGE_MANUAL') }}" class="btn vertical-button remove-border btn-warning" title="">
                         <span class="glyph-icon icon-separator-vertical pad0A medium">
                             <i class="glyph-icon icon-code opacity-80 font-size-20"></i>
