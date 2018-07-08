@@ -528,6 +528,18 @@ class publicDetail extends Controller
         }
     }
 
-    
+    public function count_share($url = "https://www.facebook.com/lam.themen")
+    {
+        $url = "https://www.youtube.com/watch?v=El_8oFXGehY&t=111s";
+        $lam = "http://graph.facebook.com/?ids=".urlencode($url);
+        // return $url;
+        $json = json_decode(file_get_contents("http://graph.facebook.com/?ids=".urlencode($url)),true);
+        return $json;
+
+        // $source_url = 'https://www.facebook.com/lam.themen';
+        // $rest_url = "http://api.facebook.com/restserver.php?format=json&method=links.getStats&urls=".urlencode($source_url);
+        // $json = json_decode(file_get_contents($rest_url),true);
+        // return $json;
+    }
 
 }

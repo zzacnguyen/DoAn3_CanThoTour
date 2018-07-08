@@ -144,6 +144,8 @@ Route::get('checkLogin','pageController@checkLogin');
 Route::get('get-service-top-view/{limit}','publicDetail@get_service_top_view');
 Route::get('load-event-sv/{id_sv}','EventsController@load_event_sv');
 
+Route::get('count-share/{url}','publicDetail@count_share');
+
 
 //============ check like
 Route::get('checkLike/userid={d}&svid={s}','publicDetail@checkLike');

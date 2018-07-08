@@ -748,27 +748,23 @@ class accountController extends Controller
         return json_encode($data);
     }
     public function post_add_place_user(Request $request,$user_id)
-    {
-            // $table=new tp;
-            // $table->pl_name=$request->place_name;
-            // $table->pl_address=$request->place_address;
-            // $table->pl_phone_number=$request->place_phone;
-            // $table->pl_latitude=$request->vido;
-            // $table->pl_longitude=$request->kinhdo;
-            // $table->id_ward=$request->place_ward;
-            // $table->user_enterprise_id=$user_id;
-            // $table->user_partner_id=1;
-            // $table->user_tour_guide_id=1;
-            // $table->pl_status='0';
-            // $table->pl_content='0';
-            // $table->pl_details='0';
-            // $table->save();
-            // return "ok";
-         // return json_encode($request->all());
-       
-        
+    {  
+        // return $request->all();
         try
         {
+            // return ($request->place_name);
+            if (strlen($request->place_name) < 5 ) {
+                return -1;
+            }
+            elseif ((float)$request->vido < 0 || (float)$request->kinhdo < 0) {
+                return -2;
+            }
+            elseif ((int)$request->place_ward < 0 || $request->place_ward == null) {
+                return -3;
+            }
+            elseif ((int)$user_id < 0 || $user_id == null) {
+                return -4;
+            }
             $table=new tp;
             $table->pl_name=$request->place_name;
             $table->pl_address=$request->place_address;
@@ -784,10 +780,10 @@ class accountController extends Controller
                 $this::add_event(4, 'Một địa điểm vừa được thêm mới - Đang chờ duyệt', $user_id);
             }
 
-            return "ok";
+            return 1;
         }
         catch(\Illuminate\Database\QueryException $ex){ 
-            return "error";
+            return -5;
         }
     }
     public function post_add_service_user(Request $request,$user_id)
