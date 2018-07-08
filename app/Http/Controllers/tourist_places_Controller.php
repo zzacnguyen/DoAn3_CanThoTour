@@ -50,7 +50,7 @@ class tourist_places_controller extends Controller
         $place->pl_latitude     = $request->input('pl_latitude');
         $place->pl_longitude    = $request->input('pl_longitude');
         $place->id_ward    = $request->input('id_ward');
-        $place->pl_status       = 1;
+        $place->pl_status       = 0;
         $place->user_id   = $request->input('user_id');
         $place->pl_content   = "_";
         if($place->save()){
@@ -69,7 +69,7 @@ class tourist_places_controller extends Controller
         $vnt_services->sv_highest_price  = $request->input('sv_highest_price');
         $vnt_services->sv_lowest_price = $request->input('sv_lowest_price');
         $vnt_services->sv_phone_number   = $request->input('sv_phone_number');
-        $vnt_services->sv_status   = 1;
+        $vnt_services->sv_status   = 0;
         $vnt_services->sv_types   = $request->input('sv_types');
         $vnt_services->tourist_places_id   =$id_place;
         $vnt_services->sv_counter_view=0;
