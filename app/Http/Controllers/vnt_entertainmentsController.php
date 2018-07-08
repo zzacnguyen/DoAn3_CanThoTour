@@ -15,7 +15,7 @@ class vnt_entertainmentsController extends Controller
     {
         $entertainments = DB::table('vnt_entertainments')
         ->select('vnt_entertainments.service_id AS id','entertainments_name','vnt_images.id AS image_id','vnt_images.image_details_1')
-        ->join('vnt_services', 'vnt_services.id', '=', 'vnt_eating.service_id')
+        ->join('vnt_services', 'vnt_services.id', '=', 'vnt_entertainments.service_id')
         ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_entertainments.service_id')
         ->where('vnt_services.sv_status','=', 1)
         ->paginate(10);

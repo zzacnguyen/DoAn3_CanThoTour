@@ -84,6 +84,7 @@ class Rating_Service_Controller extends Controller
                 $sv_counter_point1 = $value->sv_counter_point;
             }
 
+
             $point_now = 0;
             $point_total = 0;
             $point_total_1 = 0;
@@ -92,13 +93,14 @@ class Rating_Service_Controller extends Controller
             ->select('point_now','point_exchanged', 'point_total')
             ->where('user_id', '=' ,$user_id)
             ->get();
-            // return $point;
+            
             $point_detail = new PointDetailsModel();
             $point_detail->rating_id = $tmp_id_rating;
             $point_detail->point_id = 3;
             $point_detail->point_user_id = $user_id;
             $point_detail->service_id = $service_id;
             $point_detail->save();
+
 
             foreach ($point as $value) {
                 $point_now = $value->point_now;
@@ -108,6 +110,8 @@ class Rating_Service_Controller extends Controller
             ->select('point_rate')
             ->where('id','=',3)
             ->get();
+
+
             foreach ($get_point_rating as $value) {
                 $point_rate = $value->point_rate;                
             }

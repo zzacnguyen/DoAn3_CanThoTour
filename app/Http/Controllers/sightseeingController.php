@@ -17,7 +17,7 @@ class sightseeingController extends Controller
         
         $sightseeing = DB::table('vnt_sightseeing')
         ->select('vnt_sightseeing.service_id AS id','sightseeing_name', 'vnt_images.id AS image_id','vnt_images.image_details_1')
-        ->join('vnt_services', 'vnt_services.id', '=', 'vnt_eating.service_id')
+        ->join('vnt_services', 'vnt_services.id', '=', 'vnt_sightseeing.service_id')
         ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_sightseeing.service_id')
         ->where('vnt_services.sv_status','=', 1)
         ->orderBy('vnt_sightseeing.service_id', 'DESC')

@@ -15,7 +15,7 @@ class vnt_hotelsController extends Controller
     {
         $hotels = DB::table('vnt_hotels')
         ->select('vnt_hotels.service_id AS id','hotel_name','vnt_images.id AS image_id','vnt_images.image_details_1')
-        ->join('vnt_services', 'vnt_services.id', '=', 'vnt_eating.service_id')
+        ->join('vnt_services', 'vnt_services.id', '=', 'vnt_hotels.service_id')
         ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_hotels.service_id')
         ->where('vnt_services.sv_status','=', 1)
         ->paginate(10);

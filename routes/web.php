@@ -1,26 +1,6 @@
 <?php
 include 'website.php';
 include 'cms.php';
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|	1. Đếm sự kiện
-|	
-|	
-|
-|
-|
-|
-|
-|
-|
-
-| 
-|
-*/
-//sai
-Route::get('couter/couter={id}', 'CounterEventsController@Counter');
 
 //đã test get page
 Route::resource('eating', 'EatingController');

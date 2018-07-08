@@ -29,13 +29,9 @@ class CounterEventsController extends Controller
         ->whereYear('event_end', '>=', $year)
         ->whereDay('event_end', '>=',$day)
         ->whereMonth('event_end', '>=', $month)
-        ->where('user_id','=', $id)
+        ->where('vnt_vieweventuser.user_id','=', $id)
         ->count();
 
         return  json_encode($eventSeen -  $events);
-    }
-    public function Counter($name)
-    {
-
     }
 }

@@ -15,7 +15,7 @@ class transportController extends Controller
     {
         $transport = DB::table('vnt_transport')
         ->select('vnt_transport.service_id AS id','transport_name','vnt_images.id AS image_id','vnt_images.image_details_1') 
-        ->join('vnt_services', 'vnt_services.id', '=', 'vnt_eating.service_id')
+        ->join('vnt_services', 'vnt_services.id', '=', 'vnt_transport.service_id')
         ->leftJoin('vnt_images', 'vnt_images.service_id', '=', 'vnt_transport.service_id')
          ->where('vnt_services.sv_status','=', 1)
         ->paginate(10);
