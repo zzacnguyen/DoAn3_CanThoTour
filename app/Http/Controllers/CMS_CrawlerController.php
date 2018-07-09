@@ -80,6 +80,7 @@ class CMS_CrawlerController extends Controller
 
 	public function Post1(Request $request)
 	{ 
+		// return 1;
 		$ten_khach_san =  $request->input('ten_dia_diem');
 		$mo_ta = $request->input('mo_ta');
 		$toado = $request->input('toa_do');

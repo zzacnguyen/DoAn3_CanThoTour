@@ -37,7 +37,7 @@
             @for ($i = 0; $i < 1; $i++)
                 {{-- expr --}}
             
-            <form id="frm_add_task" class="bg-success" name="frm_add_task" action="/crawler-{{$i+1}}" method="post"  enctype="multipart/form-data">
+            <form id="frm_add_task" class="bg-success" name="frm_add_task" action="crawler-{{$i+1}}" method="post"  enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div>
                     <div class="col-md-12 form-group" style="padding-top: 20px" >
