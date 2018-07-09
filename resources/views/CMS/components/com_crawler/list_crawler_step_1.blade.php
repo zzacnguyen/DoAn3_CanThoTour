@@ -86,10 +86,10 @@
                     <div class="clearfix"></div>
                     <div class="col-md-12">
                          <div class="btn-toolbar" role="toolbar" style="text-align: center;" >
-{{--                             <div>
-                                <input class="btn btn-success " style="float: right; margin-bottom: 25px;    margin-left: 15px; " type="submit" name="action" value="Lưu lại và thoát"> 
-                            </div> --}}
                             <div>
+                                <input class="btn btn-success " style="float: right; margin-bottom: 25px;    margin-left: 15px; " type="submit" name="action" value="Lưu lại và thoát"> 
+                            </div>
+                            <div> 
                                 <input class="btn btn-info " style="float: right; margin-bottom: 25px;    " type="submit" name="action" value="Lưu lại tiếp tục">
                             </div>
                         </div>

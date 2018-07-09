@@ -81,7 +81,6 @@ class CMS_CrawlerController extends Controller
 	public function Post1(Request $request)
 	{ 
 		$ten_khach_san =  $request->input('ten_dia_diem');
-		
 		$mo_ta = $request->input('mo_ta');
 		$toado = $request->input('toa_do');
 		$sosao = $request->input('sosao');
@@ -98,15 +97,11 @@ class CMS_CrawlerController extends Controller
         $place->pl_status       = 1;
         $place->user_id   = "1";
         $place->pl_content   = $mo_ta;
-
         $max_id = DB::table('vnt_tourist_places')
         ->select('id')
         ->orderBy('id', 'DESC')
         ->limit(1)
         ->get();
-        
-
-        
 
         if($place->save()){
         	$tmp_id = 0;
